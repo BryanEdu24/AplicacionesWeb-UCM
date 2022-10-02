@@ -1,0 +1,81 @@
+body {
+    background: url("./Recursos/FondoEstadio.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.navbar {
+    /* display: none; */
+}
+
+.pepe {
+    display: flex;
+}
+
+.logoImg {
+    
+}
+
+.userSession {
+}
+
+.userSession {
+    width: 17%;
+    text-align: center;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.LogoUser {
+    margin-right: 5%;
+}
+
+.NameUserOutSession {
+}
+
+.NameUser {
+    color: white;
+}
+
+.LogoText {
+    padding-left: 2%;   
+    margin-top: 4%;
+    margin-bottom: 4%;
+}
+
+/*-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
+.PrincipalTitle {
+    background-color: red;
+    margin-bottom: 1%;
+}
+
+.Titles {
+    background-color: orangered;
+    margin-top: 2%;
+    border-style: solid;
+    border-color: aqua;
+    height: 10em;
+}
+/* .Tarea1{
+    background-color: aliceblue;
+}
+.Label1{
+    background-color: lightcoral;
+}
+.Link1{
+    background-color: lightgreen;
+} */
+
+
+.Tarea2, .Tarea3, .Tarea4, .Tarea5 {
+    border-style: solid;
+    border-color: blue;
+}
+
+.col {
+    height: 2em;
+}

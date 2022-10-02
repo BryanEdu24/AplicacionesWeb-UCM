@@ -1,0 +1,128 @@
+body{
+    background-color: antiquewhite;
+    display: grid;
+    grid-template-rows: 7.5em 20em 2em;
+    grid-row-gap: 10px;
+}
+
+header {
+    background-color: brown;
+}
+
+.NavBar  {
+    display: none;
+    background-color: royalblue;
+    border-style: solid;
+    display: flex;
+    border-style: solid;
+    border-color: navy;
+    height: 7.1em;
+}
+
+.Logo {
+    background-color: aquamarine;
+    width: 9%;
+    margin: 5px;
+    border-style: solid;
+    border-color: navy;
+    display: flex;
+    align-items: center;
+}
+
+.Title {
+    background-color: transparent;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.Identification {
+    background-color: skyblue;
+    width: 50%;
+    text-align: center;
+    margin: 5px;
+    border-style: solid;
+    border-color: navy;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.LogoUser {
+    background-color: red;
+    margin-right: 10%;
+}
+
+.NameUserOutSession {
+    background-color: yellow;
+}
+
+.NameUser {
+    background-color: green;
+    padding: 5px;
+    border-style: solid;
+}
+
+.OutSession {
+    margin-top: 7%;
+    margin-bottom: 3%;
+}
+
+
+/* Main------ */
+main, footer{
+    margin: 0 20%;
+}
+main{
+    background-color: aquamarine;
+    display: grid;
+    grid-template-rows: 20% 20% 20% 20% 20%;
+}
+
+.section{
+    background-color: thistle;
+    margin: 7px 0px;
+    border: solid 2px rgb(102, 17, 102);
+    display: flex;
+    flex-direction: row;
+}
+
+/* .task,.label, .Finishlink{
+    display: block;
+} */
+
+.task{
+    background-color: lightslategrey;
+    width: 40%;
+}
+.label{
+    background-color: lightsalmon;
+    width: 40%;
+}
+.Finishlink{
+    background-color: black;
+    width: 20%;
+}
+
+
+
+/* ------------- Footer--------- */
+
+footer{
+    background-color: black;
+}
+.DeleteButton, .NewButton{
+    color: white;
+    border: solid 2px;
+    border-radius: 15px;
+    margin-top: 5px;
+}
+
+.DeleteButton{
+    background-color:lightcoral;
+    float:left;
+}
+.NewButton{
+    background-color: lightgreen;
+    float: right; 
+}
