@@ -54,3 +54,47 @@ body {
     margin-bottom: 1%;
 }
 
+.PrincipalBlock {
+    background-color: teal;
+    border-style: solid;
+    border-color: white;
+    width: 50em;
+}
+
+.PrincipalBlock ul {
+    padding-inline-start: 0%;
+    list-style-type: none;
+    border-style: solid;
+    border-color: black;
+}
+
+.PrincipalBlock li#TaskToDo {
+    text-decoration: none;
+    display: flex;
+    border-style: solid;
+    border-color: greenyellow;
+}
+
+.PrincipalBlock li#TaskDone {
+    text-decoration: line-through;
+    border-style: solid;
+    border-color: red;
+}
+
+li {
+    background-color: orange;
+    margin-bottom: 2%;
+}
+
+.ButtonFinalize {
+    padding: 5px;
+    color: #ffffff;
+    background-color: #1883ba;
+    border-radius: 6px;
+    border: 2px solid #0016b0;
+}
+
+.ButtonFinalize:hover{
+    color: #1883ba;
+    background-color: #ffffff;
+}
