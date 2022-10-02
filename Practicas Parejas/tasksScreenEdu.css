@@ -6,19 +6,19 @@ body {
     background-size: cover;
 }
 
-.navbar {
-    /* display: none; */
+.LogoAndText {
+    background-color: beige;
 }
 
-.pepe {
-    display: flex;
+.LogoImg {
+    background-color: aqua;
+
 }
 
-.logoImg {
-    
-}
-
-.userSession {
+.LogoText {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: blueviolet;
 }
 
 .userSession {
@@ -26,24 +26,25 @@ body {
     text-align: center;
     margin: 5px;
     display: flex;
-    justify-content: center;
+    justify-content: right;
+    background-color: red;
 }
 
 .LogoUser {
-    margin-right: 5%;
+    background-color: yellow;
 }
 
 .NameUserOutSession {
+    background-color: green;
 }
 
 .NameUser {
     color: white;
+    background-color: blue;
 }
 
-.LogoText {
-    padding-left: 2%;   
-    margin-top: 4%;
-    margin-bottom: 4%;
+.OutSession {
+    background-color: brown;
 }
 
 /*-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -53,29 +54,3 @@ body {
     margin-bottom: 1%;
 }
 
-.Titles {
-    background-color: orangered;
-    margin-top: 2%;
-    border-style: solid;
-    border-color: aqua;
-    height: 10em;
-}
-/* .Tarea1{
-    background-color: aliceblue;
-}
-.Label1{
-    background-color: lightcoral;
-}
-.Link1{
-    background-color: lightgreen;
-} */
-
-
-.Tarea2, .Tarea3, .Tarea4, .Tarea5 {
-    border-style: solid;
-    border-color: blue;
-}
-
-.col {
-    height: 2em;
-}
