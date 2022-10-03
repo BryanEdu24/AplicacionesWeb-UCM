@@ -1,5 +1,5 @@
 body {
-    background: url("./Recursos/FondoEstadio.jpg") no-repeat center center fixed;
+    background: url("./Recursos/Fondo.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -7,18 +7,19 @@ body {
 }
 
 .LogoAndText {
-    background-color: beige;
+    /* background-color: beige; */
+    display: flex;
+    align-items: center;
 }
 
 .LogoImg {
-    background-color: aqua;
+    /* background-color: aqua; */
 
 }
 
 .LogoText {
-    margin-left: auto;
-    margin-right: auto;
-    background-color: blueviolet;
+    margin-left: 3%;
+    /* background-color: blueviolet; */
 }
 
 .userSession {
@@ -27,74 +28,135 @@ body {
     margin: 5px;
     display: flex;
     justify-content: right;
-    background-color: red;
+    align-items: center;
+    /* background-color: red; */
 }
 
 .LogoUser {
-    background-color: yellow;
+    /* background-color: yellow; */
 }
 
 .NameUserOutSession {
-    background-color: green;
+    /* background-color: green; */
 }
 
 .NameUser {
     color: white;
-    background-color: blue;
+    padding-bottom: 1%;
+    /* background-color: blue; */
+}
+
+.NavButton {
+    background-color: transparent;
+    color: white;
+    border-style: solid;
+    border-color: white;
+    border-radius: 10px;
+    padding: 7px;
+}
+
+.NavButton:hover {
+    color: white ;
+    background-color: #0b496d;
 }
 
 .OutSession {
-    background-color: brown;
+    color: white;
+    /* background-color: brown; */
 }
 
 /*-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 .PrincipalTitle {
-    background-color: red;
+    /* background-color: red; */
+    margin-top: 1%;
     margin-bottom: 1%;
+    color: white;
 }
 
 .PrincipalBlock {
-    background-color: teal;
-    border-style: solid;
-    border-color: white;
+    /* background-color: teal; */
     width: 50em;
 }
 
 .PrincipalBlock ul {
     padding-inline-start: 0%;
     list-style-type: none;
-    border-style: solid;
-    border-color: black;
+    /* border-style: solid; */
+    /* border-color: black; */
+    background-color: lightgrey;
+    opacity: 0.7;
+    border-radius: 7px;
 }
 
 .PrincipalBlock li#TaskToDo {
     text-decoration: none;
+    /* border-style: solid; */
+    /* border-color: greenyellow; */
+    padding-left: 1.5%;
     display: flex;
-    border-style: solid;
-    border-color: greenyellow;
+    justify-content: space-between;
 }
 
 .PrincipalBlock li#TaskDone {
     text-decoration: line-through;
-    border-style: solid;
-    border-color: red;
+    padding-left: 1.5%;
+    /* border-style: solid; */
+    /* border-color: red; */
 }
 
 li {
-    background-color: orange;
+    background-color: lightsteelblue;
+    border-radius: 7px;
     margin-bottom: 2%;
+    height: 3em;
 }
 
 .ButtonFinalize {
     padding: 5px;
-    color: #ffffff;
-    background-color: #1883ba;
+    color: white;
+    background-color: deepskyblue;
+    border: 4px solid midnightblue;
+    font-size: 18px;
+    font-weight: 500;
     border-radius: 6px;
-    border: 2px solid #0016b0;
+    margin-right: 2%;
 }
 
 .ButtonFinalize:hover{
+    color: white;
+    border-color: magenta;
+    background-color: darkviolet;
+}
+
+.FinalButtonsSection {
+    /* background-color: aqua; */
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.ButtonDeleteTask {
+    padding: 5px;
+    color: lightcoral;
+    background-color: red;
+    border-radius: 6px;
+    border: 2px solid white;
+}
+
+.ButtonDeleteTask:hover{
     color: #1883ba;
-    background-color: #ffffff;
+    background-color: white;
+}
+
+.ButtonAddTask {
+    padding: 5px;
+    color: lightgreen;
+    background-color: green;
+    border-radius: 6px;
+    border: 2px solid white;
+}
+
+.ButtonAddTask:hover{
+    color: #1883ba;
+    background-color: white;
 }

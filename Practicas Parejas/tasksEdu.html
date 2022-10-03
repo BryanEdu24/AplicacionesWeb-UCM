@@ -27,10 +27,10 @@
                     <img src="./Recursos/UserImg.png" alt="Avatar del Usuario" width="50" height="50" class="LogoUser mx-auto">
                     <div class="NameUserOutSession">
                         <div class="NameUser">
-                            Nombre de Usuario
+                            cordovaperez@ucm.es
                         </div>
                         <div class="OutSession">
-                            <button type="button" class="btn btn-outline-light navbutton" onclick="location.href = '/registroUser';">Desconectar</button>
+                            <button type="button" class="NavButton" onclick="location.href = '';">Desconectar</button>
                         </div>
                     </div>
               </div>
@@ -55,42 +55,46 @@
             </nav>
 
             <div class="PrincipalTitle text-center">
-                <h1>Tareas (invisiblizar pero printer No)</h1>
+                <h1>Tareas<h1>
             </div>
 
             <div class="container PrincipalBlock">
                 <ul>
                     <li id="TaskToDo">
-                        <p>Preparar Prácticas AW</p>
+                        <h4><p>Preparar Prácticas AW</p></h4>
                         <button class="ButtonFinalize">Finalizar</button>
                     </li>
                     
                     <li id="TaskDone">
-                        <p>Mirar fechas del congreso</p>
+                        <h4><p>Mirar fechas del congreso</p></h4>
                     </li>
                     
                     <li id="TaskToDo">
-                        <p>Ir al supermercado</p>
+                        <h4><p>Ir al supermercado</p></h4>
                         <button class="ButtonFinalize">Finalizar</button>
                     </li>
                     
                     <li id="TaskToDo">
-                        <p>Jugar al fútbol</p>
+                        <h4><p>Jugar al fútbol</p></h4>
                         <button class="ButtonFinalize">Finalizar</button>
                     </li>
 
                     <li id="TaskToDo">
-                        <p>Hablar con profesor</p>
+                        <h4><p>Hablar con profesor</p></h4>
                         <button class="ButtonFinalize">Finalizar</button>
                     </li>
                 </ul>
+
+                <div class="FinalButtonsSection d-flex justify-content-between">
+                    <div>
+                        <button class="ButtonDeleteTask">Eliminar Tareas</button>
+                    </div>
+                    <div>
+                        <button class="ButtonAddTask">Añadir Nueva</button>
+                    </div>
+                </div>
             </div> 
         </main>
-
-        <footer>
-
-        </footer>
-        
     </body>
     
 </html>
