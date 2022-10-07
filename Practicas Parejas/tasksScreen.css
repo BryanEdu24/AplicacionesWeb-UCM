@@ -7,19 +7,17 @@ body {
 }
 
 .LogoAndText {
-    /* background-color: beige; */
     display: flex;
     align-items: center;
 }
 
 .LogoImg {
-    /* background-color: aqua; */
-
+    width: 50px;
+    height: 50px;
 }
 
 .LogoText {
     margin-left: 3%;
-    /* background-color: blueviolet; */
 }
 
 .userSession {
@@ -29,21 +27,16 @@ body {
     display: flex;
     justify-content: right;
     align-items: center;
-    /* background-color: red; */
 }
 
 .LogoUser {
-    /* background-color: yellow; */
-}
-
-.NameUserOutSession {
-    /* background-color: green; */
+    width: 50px;
+    height: 50px;
 }
 
 .NameUser {
     color: white;
     padding-bottom: 1%;
-    /* background-color: blue; */
 }
 
 .NavButton {
@@ -62,19 +55,14 @@ body {
 
 .OutSession {
     color: white;
-    /* background-color: brown; */
 }
 
-/*-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
-
 .PrincipalTitle {
-    /* background-color: red; */
     color: white;
     display: none;
 }
 
 .PrincipalBlock {
-    /* background-color: teal; */
     width: 50em;
     margin-top: 2%;
 }
@@ -82,8 +70,6 @@ body {
 .PrincipalBlock ul {
     padding-inline-start: 0%;
     list-style-type: none;
-    /* border-style: solid; */
-    /* border-color: black; */
     background-color: lightgrey;
     opacity: 0.7;
     border-radius: 7px;
@@ -91,8 +77,6 @@ body {
 
 .PrincipalBlock li#TaskToDo {
     text-decoration: none;
-    /* border-style: solid; */
-    /* border-color: greenyellow; */
     padding-left: 1.5%;
     display: flex;
     justify-content: space-between;
@@ -102,8 +86,6 @@ body {
 .PrincipalBlock li#TaskDone {
     text-decoration: line-through;
     padding-left: 1.5%;
-    /* border-style: solid; */
-    /* border-color: red; */
 }
 
 li {
@@ -133,9 +115,10 @@ li {
 }
 
 .FinalButtonsSection {
-    /* background-color: aqua; */
     padding-left: 2%;
     padding-right: 2%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .ButtonDeleteTask {

@@ -1,41 +1,39 @@
-.navbar, button, title{
-    display: none;
-}
-body{
+body {
     text-align: left;
-    font-family: 'Helvetica'
+    font-family: 'Helvetica';
 }
 
-h1{
-    font-size: 18px;
-    text-align: left;
+.navbar, button, title {
+    display: none;
 }
+
 .PrincipalBlock h4, .PrincipalBlock h6 {
     font-size: 12px;
     text-align: left;
 }
-.ToDo{
+
+.label {
+    display: inline-block;
+    align-self: center;
+}
+
+.ToDo {
     font-weight: bold;
     align-self: center;
     display: inline-block;
 }
 
-.label{
-    display: inline-block;
-    align-self: center;
-}
-
-.ToDo::after{
+.ToDo::after {
     content: "\003A";
 }
-h6:before{
-    content: "\0028";
+
+#TaskDone {
+    margin-left: 1em;
 }
-h6::after{
-    content: "\0029";
-}
-.Der{
-    margin: -1.1em;
+
+h1 {
+    font-size: 18px;
+    text-align: left;
 }
 
 #TaskDone h4{
@@ -43,6 +41,14 @@ h6::after{
     font-weight: bold;
 }
 
-#TaskDone {
-    margin-left: 1em;
+h6:before {
+    content: "\0028";
+}
+
+h6::after {
+    content: "\0029";
+}
+
+.Der{
+    margin: -1.1em;
 }
