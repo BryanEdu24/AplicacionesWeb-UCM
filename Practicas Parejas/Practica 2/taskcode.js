@@ -1,3 +1,5 @@
+"use strict";
+
 let listaTareas = [
     {text: "Preparar prácticas AW", tags:["universidad","awt"]}
     , {text: "Mirar fechas congreso", done: true, tags:[]}
@@ -7,16 +9,41 @@ let listaTareas = [
 ];
 
 /*
-Función getToDoTasks(tasks)
 Esta función devuelve un array con los textos de aquellas tareas de la lista de tareas tasks que no
 estén finalizadas. Por ejemplo, la llamada:
 getToDoTasks(listaTareas)
 devuelve el siguiente array:
 [ 'Preparar prácticas AW', 'Ir al supermercado', ‘Jugar al fútbol’, ‘Hablar con profesor’ ]
+*/
+function getToDoTasks(taskslist) {
+	let result = taskslist.filter(function(tarea){
+		return !tarea.done;
+	});
 
-Función findByTag(tasks, tag)
+    let pepe = taskslist.map(function(tarea) {
+        return tarea.text;
+    })
+    return pepe;
+}
+console.log(getToDoTasks(listaTareas));
+
+
+/*
 Esta función devuelve un array que contiene las tareas del array tasks que contengan, en su lista
 de etiquetas, la etiqueta pasada como segundo parámetro.
+ */
+/*
+function findByTag(taskslist, tag){
+
+}
+*/
+
+/*
+Función getToDoTasks(tasks)
+
+
+Función findByTag(tasks, tag)
+
 
 Función findByTags(tasks, tags)
 Esta función devuelve un array que contiene aquellas tareas del array tasks que contengan al
