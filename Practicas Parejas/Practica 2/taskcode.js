@@ -16,14 +16,25 @@ devuelve el siguiente array:
 [ 'Preparar prácticas AW', 'Ir al supermercado', ‘Jugar al fútbol’, ‘Hablar con profesor’ ]
 */
 function getToDoTasks(taskslist) {
-	let result = taskslist.filter(function(tarea){
+	/*let result = taskslist.filter(function(tarea){
 		return !tarea.done;
 	});
 
     let pepe = taskslist.map(function(tarea) {
         return tarea.text;
     })
-    return pepe;
+    return pepe;*/
+    let result = taskslist.map(function(tarea){
+		if(!tarea.done){
+			return tarea.text;
+		}
+	});
+
+	let filtered = result.filter(function(tarea) {
+		 return tarea !== undefined;
+	});
+
+	return filtered;
 }
 console.log(getToDoTasks(listaTareas));
 
@@ -32,11 +43,16 @@ console.log(getToDoTasks(listaTareas));
 Esta función devuelve un array que contiene las tareas del array tasks que contengan, en su lista
 de etiquetas, la etiqueta pasada como segundo parámetro.
  */
-/*
-function findByTag(taskslist, tag){
 
+function findByTag(taskslist, tag){
+    let result = taskslist.filter(function(tarea) {
+        return tarea.tags.includes(tag);
+	});
+
+	return result;
 }
-*/
+console.log(findByTag(listaTareas, "personal"));
+
 
 /*
 Función getToDoTasks(tasks)
