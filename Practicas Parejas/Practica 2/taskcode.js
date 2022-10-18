@@ -8,12 +8,9 @@ let listaTareas = [
     , {text: "Hablar con profesor", done: false, tags:["universidad", "tp2"]}
 ];
 
-/*
+/* 1.
 Esta función devuelve un array con los textos de aquellas tareas de la lista de tareas tasks que no
-estén finalizadas. Por ejemplo, la llamada:
-getToDoTasks(listaTareas)
-devuelve el siguiente array:
-[ 'Preparar prácticas AW', 'Ir al supermercado', ‘Jugar al fútbol’, ‘Hablar con profesor’ ]
+estén finalizadas.
 */
 function getToDoTasks(taskslist) {
 	/*let result = taskslist.filter(function(tarea){
@@ -39,42 +36,60 @@ function getToDoTasks(taskslist) {
 console.log(getToDoTasks(listaTareas));
 
 
-/*
+/* 2.
 Esta función devuelve un array que contiene las tareas del array tasks que contengan, en su lista
 de etiquetas, la etiqueta pasada como segundo parámetro.
- */
-
+*/
 function findByTag(taskslist, tag){
-    let result = taskslist.filter(function(tarea) {
+    let localed = taskslist.filter(function(tarea) {
         return tarea.tags.includes(tag);
 	});
 
-	return result;
+	return localed;
 }
 console.log(findByTag(listaTareas, "personal"));
 
-
-/*
-Función getToDoTasks(tasks)
-
-
-Función findByTag(tasks, tag)
-
-
-Función findByTags(tasks, tags)
+/* 3.
 Esta función devuelve un array que contiene aquellas tareas del array tasks que contengan al
 menos una etiqueta que coincida con una de las del array tags pasado como segundo parámetro.
+*/
+function findByTags(taskslist, tags) {
+    let localed = taskslist.filter(function(tarea) {
+        // return tarea.tags.includes.some(tags);
+	});
 
-Función countDone(tasks)
+	return localed;
+}
+console.log(findByTags(listaTareas, ["personal", "practica"]));
+
+/* 4.
 Esta función devuelve el número de tareas completadas en el array de tareas tasks pasado como
 parámetro.
-Por ejemplo, la llamada:
-countDone(listaTareas)
-devuelve 1.
+*/
+function countDone(taskslist) {
 
-Función createTask(texto)
+}
+console.log(countDone(listaTareas));
+
+/* 5.
 Esta función recibe un texto intercalado con etiquetas, cada una de ellas formada por una serie de
 caracteres alfanuméricos precedidos por el signo @ . Esta función debe devolver un objeto tarea
 con su array de etiquetas extraídas de la cadena texto. Por otra parte, el atributo text de la tarea
 resultante no debe contener las etiquetas de la cadena de entrada ni espacios en blanco de más.
+*/
+function createTask(texto) {
+
+}
+console.log(createTask(texto));
+
+/*
+1-Función getToDoTasks(tasks)
+
+2-Función findByTag(tasks, tag)
+
+3-Función findByTags(tasks, tags)
+
+4-Función countDone(tasks)
+
+5-Función createTask(texto)
 */
