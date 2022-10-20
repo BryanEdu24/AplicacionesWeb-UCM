@@ -33,13 +33,12 @@ function getToDoTasks(taskslist) {
 
 	return filtered;
 }
-// console.log(getToDoTasks(listaTareas));
-
+//  console.log(getToDoTasks(listaTareas));
 
 /* 2.
 Esta función devuelve un array que contiene las tareas del array tasks que contengan, en su lista
 de etiquetas, la etiqueta pasada como segundo parámetro.
-*/+
+*/
 function findByTag(taskslist, tag){
     let localed = taskslist.filter(function(tarea) {
         return tarea.tags.includes(tag);
@@ -88,11 +87,26 @@ con su array de etiquetas extraídas de la cadena texto. Por otra parte, el atri
 resultante no debe contener las etiquetas de la cadena de entrada ni espacios en blanco de más.
 */
 function createTask(texto) {
-	let newText = palabras.filter(function(array) {
-		//
+	let text = texto.match(/\@+\w+/g);
+	return text;
+
+	let separatedWords = texto.split(" "); // Array
+
+	let textoFinal = separatedWords.filter(function(textoFinal) {
+		 return textoFinal.charAt(0) !== "@";
 	});
+
+	let tgs = separatedWords.filter(function(txt2) {
+		 return txt2.charAt(0) === "@";
+	});
+
+	tgs = tgs.map(function(tag){
+		return tag.replace("@","");
+	});
+
+	return { text: textoFinal.join(" "), tags: tgs };
 }
-console.log(createTask(texto));
+console.log(createTask("Ir al medico @personal @salud"));
 
 /*
 1-Función getToDoTasks(tasks)
