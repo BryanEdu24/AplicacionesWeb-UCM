@@ -89,7 +89,7 @@ resultante no debe contener las etiquetas de la cadena de entrada ni espacios en
 */
 function createTask(texto) {
 	let newText = palabras.filter(function(array) {
-		
+		//
 	});
 }
 console.log(createTask(texto));
