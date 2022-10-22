@@ -87,10 +87,17 @@ con su array de etiquetas extraídas de la cadena texto. Por otra parte, el atri
 resultante no debe contener las etiquetas de la cadena de entrada ni espacios en blanco de más.
 */
 function createTask(texto) {
-	let text = texto.match(/\@+\w+/g);
-	return text;
+	let tagsText = texto.match(/\@+\w+/g); // Array de tags
+	let text = texto.match(/[a-zA-Z_]\w+/g); // Array de tags
+	let arrayTxtWords = texto.split("@"); // Array
 
-	let separatedWords = texto.split(" "); // Array
+	let prueba = texto.match(/\@{0}\w+/g);
+	return arrayTxtWords;
+	// tagsText = tagsText.map(function(tag){ // Array de tags sin @
+	// 	return tag.replace("@","");
+	// });
+	
+	// return { text: textFinal.join(" "), tags: tagsText };
 
 	let textoFinal = separatedWords.filter(function(textoFinal) {
 		 return textoFinal.charAt(0) !== "@";
