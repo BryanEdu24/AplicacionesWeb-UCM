@@ -88,30 +88,18 @@ resultante no debe contener las etiquetas de la cadena de entrada ni espacios en
 */
 function createTask(texto) {
 	let tagsText = texto.match(/\@+\w+/g); // Array de tags
-	let text = texto.match(/[a-zA-Z_]\w+/g); // Array de tags
-	let arrayTxtWords = texto.split("@"); // Array
+	let text = texto.match(/[a-zA-Z_]\w+/g); // Array de palabras sin @
+	let arrayTxtWords = texto.split(" "); // Array de palabras con @
 
-	let prueba = texto.match(/\@{0}\w+/g);
-	return arrayTxtWords;
-	// tagsText = tagsText.map(function(tag){ // Array de tags sin @
-	// 	return tag.replace("@","");
-	// });
-	
-	// return { text: textFinal.join(" "), tags: tagsText };
+	let textoFinal = arrayTxtWords.filter(function(textoFinal) {
+		return textoFinal.charAt(0) !== "@";
+   });
 
-	let textoFinal = separatedWords.filter(function(textoFinal) {
-		 return textoFinal.charAt(0) !== "@";
-	});
-
-	let tgs = separatedWords.filter(function(txt2) {
-		 return txt2.charAt(0) === "@";
-	});
-
-	tgs = tgs.map(function(tag){
+	tagsText = tagsText.map(function(tag){ // Array de tags sin @
 		return tag.replace("@","");
 	});
 
-	return { text: textoFinal.join(" "), tags: tgs };
+	return { text: textoFinal.join(" "), tags: tagsText };
 }
 console.log(createTask("Ir al medico @personal @salud"));
 
