@@ -1,0 +1,12 @@
+body {
+    background-image: linear-gradient(to right, #b6fbff, #83a4d4);
+}
+
+.Formulario {
+    background-color: HoneyDew;
+    text-align: center;
+    width: 50%;
+    margin: auto;
+    border-radius: 10px;
+}
+
