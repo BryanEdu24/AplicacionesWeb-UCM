@@ -2,14 +2,20 @@
 class DAOTasks {
     constructor(pool) { 
         this.pool = pool;
-     }
+    }
+
     getAllTasks(email, callback) { 
         this.pool.getConnection(function (err,connection){
             if (err) {
                 callback(new Error("Error de conexión a la base de datos"));
             }
             else {
-                const sql = "SELECT * FROM aw_tareas_usuarios WHERE email = ? AND password = ?";
+                const sql = "SELECT DISTINCT W.idTarea, W.texto, T.hecho, E.texto "
+                + "FROM aw_tareas_usuarios U JOIN aw_tareas_user_tarea T ON U.idUser = T.idUser " 
+                + "JOIN aw_tareas_tareas W ON T.idTarea = W.idTarea "
+                + "JOIN aw_tareas_tareas_etiquetas L ON W.idTarea = L.idTarea "
+                + "JOIN aw_tareas_etiquetas E ON L.idEtiqueta = E.idEtiqueta "
+                + "WHERE U.email = ?";
                 connection.query( sql,
                     [email], 
                     function(err, tasks) {
@@ -24,6 +30,7 @@ class DAOTasks {
             }
         });
     }
+
     insertTask(email, task, callback) {  
         this.pool.getConnection(function (err,connection){
             if (err) {
@@ -45,13 +52,14 @@ class DAOTasks {
             }
         });
     }
+
     markTaskDone(idTask, callback) { 
         this.pool.getConnection(function (err,connection){
             if (err) {
                 callback(new Error("Error de conexión a la base de datos"));
             }
             else {
-                const sql = "SELECT * FROM aw_tareas_usuarios WHERE email = ? AND password = ?";
+                const sql = "UPDATE aw_tareas_user_tarea U SET hecho = 1 WHERE U.idTarea = ?";
                 connection.query( sql,
                     [idTask], 
                     function(err, tasks) {
@@ -66,6 +74,7 @@ class DAOTasks {
             }
         });
     }
+    
     deleteCompleted(email, callback) { 
         this.pool.getConnection(function (err,connection){
             if (err) {

@@ -52,20 +52,28 @@ function cb_getAllTasks(err, tags){
 function cb_insertTask(err){
     if (err) {
     console.log(err.message);
+    } else{
+        console.log("Tarea insertada correctamente");
     } 
+
 }
 
 function cb_markTaskDone(err){
     if (err) {
     console.log(err.message);
-    } 
+    } else{
+        console.log("Tarea marcada como realizada");
+    }
 }
 
 function cb_deleteCompleted(err){
     if (err) {
     console.log(err.message);
+    } else{
+        console.log("Tareas eliminadas correctamente");
     } 
 }
 
 
 // Uso de los métodos de las clases DAOUsers y DAOTasks
+daoTask.markTaskDone('1', cb_markTaskDone);
