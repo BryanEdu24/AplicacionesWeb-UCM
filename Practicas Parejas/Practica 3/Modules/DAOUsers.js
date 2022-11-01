@@ -11,7 +11,7 @@ class DAOUsers {
                 callback(new Error("Error de conexión a la base de datos"));
             }
             else {
-                connection.query("SELECT * FROM user WHERE email = ? AND password = ?" ,
+                connection.query("SELECT * FROM aw_tareas_usuarios WHERE email = ? AND password = ?" ,
                     [email,password], 
                     function(err, rows) {
                         connection.release(); // devolver al pool la conexión
@@ -32,9 +32,33 @@ class DAOUsers {
     }
 
     getUserImageName(email,callback){
+        let nameFile;
+        this.pool.getConnection(function(err,connection){
+            if (err) {
+                callback(new Error("Error de conexión a la base de datos"));
+            }
+            else {
+                connection.query("SELECT U.img FROM aw_tareas_usuarios AS U WHERE email = ?",
+                    [email],
+                    function(err, img){
+                        connection.release(); //devolver la conexión a pool
+                        if(err){
+                            callback(new Error("Error de acceso a la base de datos"));
+                        }else{
+                            if (img.length === 0) {
+                                callback(new Error("No existe el usuario")); //no está el usuario con el password proporcionado
+                            }
+                            else {
+                                nameFile = img;
+                                callback(null, nameFile);
+                            } 
+                        }
+                    }
 
+                )
+            }
+        });
     }
-
 }
 
 module.exports = DAOUsers;
