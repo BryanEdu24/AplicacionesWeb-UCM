@@ -98,17 +98,28 @@ class DAOTasks {
                             callback(new Error("Error de acceso a la base de datos"));
                         }
                         else{
-                            let cuenta = tasks.length;
-                            for (let index = 0; index < tasks.length; index++) {
-                                const sql = "SELECT DISTINCT W.idTarea "
-                                + "FROM aw_tareas_usuarios U JOIN aw_tareas_user_tarea T ON U.idUser = T.idUser " 
-                                + "JOIN aw_tareas_tareas W ON T.idTarea = W.idTarea "
-                                + "JOIN aw_tareas_tareas_etiquetas L ON W.idTarea = L.idTarea "
-                                + "JOIN aw_tareas_etiquetas E ON L.idEtiqueta = E.idEtiqueta "
-                                + "WHERE U.email = ? AND T.hecho = 1;"; 
-                            }
-                            console.log(cuenta);
-                            callback(null);
+                            tasks.forEach(task => {
+                                const sqlusers = 'SELECT W.idUser' +
+                                ' FROM aw_tareas_user_tarea W'+
+                                ' WHERE W.idTarea = ? AND W.hecho = 1';
+                                connection.query(sqlusers,
+                                    [task.idTarea],
+                                    function(err2,users) {
+                                        //connection.release();
+                                        if (err2){
+                                            callback(new Error("Error de acceso a la base de datos"));
+                                            // console.log("Error al realizar la consulta para contar los usuarios");
+                                        }else if(users.length === 1){ //Como solo tiene un usario --> Hacemos borrado en cascada
+                                            console.log(users);
+                                            console.log("Un solo usuario vinculado a la tarea " + task.idTarea);
+                                        }else{ //Como son varios usuarios --> Solo borramos el idTarea de ese usuario
+                                            console.log(users);
+                                            console.log("Varios usuarios vinculados a la tarea " + task.idTarea);
+                                        }
+                                    });
+                                console.log(task.idTarea);  
+                                callback(null);
+                            });
                         }
                     });
             }
