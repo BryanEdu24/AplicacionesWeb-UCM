@@ -1,7 +1,5 @@
 "use strict"
 
-const { password } = require("./config");
-
 class DAOTasks {
     constructor(pool) { 
         this.pool = pool;
