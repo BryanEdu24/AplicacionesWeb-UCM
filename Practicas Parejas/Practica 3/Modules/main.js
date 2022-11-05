@@ -76,4 +76,5 @@ function cb_deleteCompleted(err){
 
 
 // Uso de los métodos de las clases DAOUsers y DAOTasks
-daoTask.markTaskDone('1', cb_markTaskDone);
+// daoTask.markTaskDone('1', cb_markTaskDone);
+daoTask.deleteCompleted('aitor.tilla@ucm.es', cb_deleteCompleted);

@@ -1,4 +1,7 @@
 "use strict"
+
+const { password } = require("./config");
+
 class DAOTasks {
     constructor(pool) { 
         this.pool = pool;
@@ -81,7 +84,12 @@ class DAOTasks {
                 callback(new Error("Error de conexión a la base de datos"));
             }
             else {
-                const sql = "SELECT * FROM aw_tareas_usuarios WHERE email = ? AND password = ?";
+                const sql = "SELECT DISTINCT W.idTarea "
+                + "FROM aw_tareas_usuarios U JOIN aw_tareas_user_tarea T ON U.idUser = T.idUser " 
+                + "JOIN aw_tareas_tareas W ON T.idTarea = W.idTarea "
+                + "JOIN aw_tareas_tareas_etiquetas L ON W.idTarea = L.idTarea "
+                + "JOIN aw_tareas_etiquetas E ON L.idEtiqueta = E.idEtiqueta "
+                + "WHERE U.email = ? AND T.hecho = 1;";
                 connection.query( sql,
                     [email], 
                     function(err, tasks) {
@@ -90,6 +98,16 @@ class DAOTasks {
                             callback(new Error("Error de acceso a la base de datos"));
                         }
                         else{
+                            let cuenta = tasks.length;
+                            for (let index = 0; index < tasks.length; index++) {
+                                const sql = "SELECT DISTINCT W.idTarea "
+                                + "FROM aw_tareas_usuarios U JOIN aw_tareas_user_tarea T ON U.idUser = T.idUser " 
+                                + "JOIN aw_tareas_tareas W ON T.idTarea = W.idTarea "
+                                + "JOIN aw_tareas_tareas_etiquetas L ON W.idTarea = L.idTarea "
+                                + "JOIN aw_tareas_etiquetas E ON L.idEtiqueta = E.idEtiqueta "
+                                + "WHERE U.email = ? AND T.hecho = 1;"; 
+                            }
+                            console.log(cuenta);
                             callback(null);
                         }
                     });
