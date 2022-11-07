@@ -69,12 +69,10 @@ function cb_markTaskDone(err){
 function cb_deleteCompleted(err){
     if (err) {
     console.log(err.message);
-    } else{
-        console.log("Tareas eliminadas correctamente");
-    } 
+    }
 }
 
 
 // Uso de los métodos de las clases DAOUsers y DAOTasks
 // daoTask.markTaskDone('1', cb_markTaskDone);
-daoTask.deleteCompleted('aitor.tilla@ucm.es', cb_deleteCompleted);
+daoTask.deleteCompleted('felipe.lotas@ucm.es', cb_deleteCompleted);

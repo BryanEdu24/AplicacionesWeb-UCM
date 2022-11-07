@@ -82,7 +82,7 @@ class DAOTasks {
                 callback(new Error("Error de conexión a la base de datos"));
             }
             else {
-                const sql = "SELECT DISTINCT W.idTarea "
+                const sql = "SELECT DISTINCT W.idTarea, U.idUser "
                 + "FROM aw_tareas_usuarios U JOIN aw_tareas_user_tarea T ON U.idUser = T.idUser " 
                 + "JOIN aw_tareas_tareas W ON T.idTarea = W.idTarea "
                 + "JOIN aw_tareas_tareas_etiquetas L ON W.idTarea = L.idTarea "
@@ -93,26 +93,54 @@ class DAOTasks {
                     function(err, tasks) {
                         connection.release(); // devolver al pool la conexión
                         if (err) {
-                            callback(new Error("Error de acceso a la base de datos"));
+                            callback(new Error("Error de acceso a la base de datos 1"));
                         }
-                        else{
+                        else if (tasks.length === 0) {
+                            console.log("No hay tareas finalizadas para dicho usuario");
+                        }else{
                             tasks.forEach(task => {
                                 const sqlusers = 'SELECT W.idUser' +
                                 ' FROM aw_tareas_user_tarea W'+
-                                ' WHERE W.idTarea = ? AND W.hecho = 1';
+                                ' WHERE W.idTarea = ?';
                                 connection.query(sqlusers,
                                     [task.idTarea],
                                     function(err2,users) {
                                         //connection.release();
                                         if (err2){
-                                            callback(new Error("Error de acceso a la base de datos"));
-                                            // console.log("Error al realizar la consulta para contar los usuarios");
+                                            callback(new Error("Error de acceso a la base de datos 2"));
                                         }else if(users.length === 1){ //Como solo tiene un usario --> Hacemos borrado en cascada
-                                            console.log(users);
                                             console.log("Un solo usuario vinculado a la tarea " + task.idTarea);
-                                        }else{ //Como son varios usuarios --> Solo borramos el idTarea de ese usuario
                                             console.log(users);
-                                            console.log("Varios usuarios vinculados a la tarea " + task.idTarea);
+                                            const sqldeleteCascade = 'DELETE FROM aw_tareas_tareas '+ 
+                                            'WHERE idTarea = ?';
+                                            connection.query(sqldeleteCascade,
+                                                [task.idTarea],
+                                                function(err3, del1){
+                                                    if (err3) {
+                                                        callback(new Error("Error de acceso a la base de datos 3c"));
+                                                    }
+                                                    else{
+                                                        console.log("Borrado en cascada de la tarea " + task.idTarea + " del usuario: "+ task.idUser);
+                                                        callback(null);
+                                                    } 
+                                                });
+
+                                        }else{ //Como son varios usuarios --> Solo borramos el idTarea de ese usuario
+                                            console.log("Varios usuarios vinculados a la tarea " + task.idTarea + " que esta vinculada al usuario: "+ task.idUser);
+                                            console.log(users);
+                                            const sqldeleteOneUser = 'DELETE FROM aw_tareas_user_tarea '+ 
+                                            'WHERE idTarea = ? AND idUser = ? AND hecho = 1; ';
+                                            connection.query(sqldeleteOneUser,
+                                                [task.idTarea, task.idUser],
+                                                function(err3,del2){
+                                                    if (err3) {
+                                                        callback(new Error("Error de acceso a la base de datos 3u"));
+                                                    }
+                                                    else{
+                                                        console.log("Tarea " + task.idTarea + " eliminada correctamente del usuario: "+ task.idUser);
+                                                        callback(null);
+                                                    }
+                                                });
                                         }
                                     });
                                 console.log(task.idTarea);  
@@ -123,7 +151,6 @@ class DAOTasks {
             }
         });
     }
-
 }
     
 module.exports = DAOTasks;
