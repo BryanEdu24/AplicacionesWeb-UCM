@@ -72,7 +72,12 @@ function cb_deleteCompleted(err){
     }
 }
 
+var task = {
+    texto: 'prueba2',
+    hecho: 1
+};
 
 // Uso de los métodos de las clases DAOUsers y DAOTasks
 // daoTask.markTaskDone('1', cb_markTaskDone);
-daoTask.deleteCompleted('felipe.lotas@ucm.es', cb_deleteCompleted);
+// daoTask.deleteCompleted('felipe.lotas@ucm.es', cb_deleteCompleted);
+daoTask.insertTask('felipe.lotas@ucm.es',task,cb_insertTask);

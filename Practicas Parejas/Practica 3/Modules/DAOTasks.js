@@ -37,17 +37,49 @@ class DAOTasks {
             if (err) {
                 callback(new Error("Error de conexión a la base de datos"));
             }
-            else { //Debemos hacer dos connection.query?
-                const sql = "SELECT * FROM aw_tareas_usuarios WHERE email = ? AND password = ?";
+            else { 
+                const sql = "SELECT U.idUser " +
+                "FROM aw_tareas_usuarios U " +
+                "WHERE U.email = ? " +
+                "UNION " +
+                "SELECT W.idTarea " +
+                "FROM aw_tareas_tareas W  " +
+                "WHERE W.texto = ? ";
                 connection.query( sql,
-                    [email], 
-                    function(err, tasks) {
+                    [email, task.texto], 
+                    function(err, taskNew) {
                         connection.release(); // devolver al pool la conexión
                         if (err) {
                             callback(new Error("Error de acceso a la base de datos"));
                         }
-                        else{
-                            callback(null);
+                        else if (taskNew.length === 2) {
+                            callback(new Error("Ya existe la tarea"));
+                        }else{
+                            const sqlInsertTask = "INSERT INTO aw_tareas_tareas(texto)"+
+                            " VALUES(?)";
+                            connection.query( sqlInsertTask,
+                                [task.texto],
+                                function(err,TaskIn){
+                                    if (err) {
+                                        callback(new Error("Error de acceso a la base de datos a la hora de insertar en aw_tareas_tareas"));
+                                    }else{ //Insertamos en la tabla user_tareas
+                                        const sqlInsertUserTask = "INSERT INTO aw_tareas_user_tarea (idUser, idTarea, hecho)"+
+                                        "VALUES (?, ?, ?)";
+                                        connection.query(sqlInsertUserTask,
+                                            [taskNew[0].idUser, TaskIn.insertId, task.hecho],
+                                            function(err, TaskUser){
+                                                if (err) {
+                                                    callback(new Error("Error de acceso a la base de datos a la hora de insertar en aw_tareas_user_tarea"));
+                                                } else {
+                                                    console.log("Inserción de: ("+ taskNew[0].idUser +
+                                                    ", "+ TaskIn.insertId + " ,"+
+                                                    task.hecho +") completada.");
+                                                    //Ahora se debe hacer la inserción de las etiquetas en la tabla etiquetas y luego en la relación tarea_etiquetas
+                                                    callback(null);
+                                                }
+                                            });
+                                    }
+                                });
                         }
                     });
             }
@@ -82,12 +114,10 @@ class DAOTasks {
                 callback(new Error("Error de conexión a la base de datos"));
             }
             else {
-                const sql = "SELECT DISTINCT W.idTarea, U.idUser "
-                + "FROM aw_tareas_usuarios U JOIN aw_tareas_user_tarea T ON U.idUser = T.idUser " 
-                + "JOIN aw_tareas_tareas W ON T.idTarea = W.idTarea "
-                + "JOIN aw_tareas_tareas_etiquetas L ON W.idTarea = L.idTarea "
-                + "JOIN aw_tareas_etiquetas E ON L.idEtiqueta = E.idEtiqueta "
-                + "WHERE U.email = ? AND T.hecho = 1;";
+                const sql = "SELECT DISTINCT T.idTarea, U.idUser" +
+                " FROM aw_tareas_usuarios U" +
+                " JOIN aw_tareas_user_tarea T ON U.idUser = T.idUser" + 
+                " WHERE U.email = 'felipe.lotas@ucm.es' AND T.hecho = 1"
                 connection.query( sql,
                     [email], 
                     function(err, tasks) {
@@ -96,7 +126,7 @@ class DAOTasks {
                             callback(new Error("Error de acceso a la base de datos 1"));
                         }
                         else if (tasks.length === 0) {
-                            console.log("No hay tareas finalizadas para dicho usuario");
+                            callback(new Error("No hay tareas finalizadas para dicho usuario"));
                         }else{
                             tasks.forEach(task => {
                                 const sqlusers = 'SELECT W.idUser' +
@@ -124,7 +154,7 @@ class DAOTasks {
                                                         callback(null);
                                                     } 
                                                 });
-
+                                            callback(null);
                                         }else{ //Como son varios usuarios --> Solo borramos el idTarea de ese usuario
                                             console.log("Varios usuarios vinculados a la tarea " + task.idTarea + " que esta vinculada al usuario: "+ task.idUser);
                                             console.log(users);
@@ -144,7 +174,6 @@ class DAOTasks {
                                         }
                                     });
                                 console.log(task.idTarea);  
-                                callback(null);
                             });
                         }
                     });
