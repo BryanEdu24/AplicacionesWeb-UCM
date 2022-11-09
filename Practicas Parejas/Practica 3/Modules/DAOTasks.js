@@ -38,12 +38,9 @@ class DAOTasks {
                 callback(new Error("Error de conexión a la base de datos"));
             }
             else { 
-                const sql = "SELECT U.idUser " +
-                "FROM aw_tareas_usuarios U " +
-                "WHERE U.email = ? " +
-                "UNION " +
-                "SELECT W.idTarea " +
-                "FROM aw_tareas_tareas W  " +
+                const sql = "SELECT U.idUser FROM aw_tareas_usuarios U " +
+                "WHERE U.email = ? UNION " +
+                "SELECT W.idTarea FROM aw_tareas_tareas W  " +
                 "WHERE W.texto = ? ";
                 connection.query( sql,
                     [email, task.texto], 
@@ -75,6 +72,65 @@ class DAOTasks {
                                                     ", "+ TaskIn.insertId + " ,"+
                                                     task.hecho +") completada.");
                                                     //Ahora se debe hacer la inserción de las etiquetas en la tabla etiquetas y luego en la relación tarea_etiquetas
+                                                    let labels = task.etiquetas;
+                                                    labels.forEach(label => {
+                                                        //Comprobamos si existe la etiqueta 
+                                                        const sqlLabel= "SELECT idEtiqueta "+
+                                                        "FROM aw_tareas_etiquetas "+
+                                                        "WHERE texto = ?";
+                                                        connection.query(sqlLabel,
+                                                            [label.texto],
+                                                            function(err, Etiqueta){
+                                                                if (err) {
+                                                                    callback(new Error("Error de acceso a la base de datos a la hora de comprobar si existe la etiqueta"));
+                                                                } else if (Etiqueta.length !== 0) {
+
+                                                                    callback(new Error("Ya existe la etiqueta: "+ label.texto + 
+                                                                    " en la tabla etiquetas con id: "+ Etiqueta[0].idEtiqueta));
+                                                                    console.log("...Se procede a asociar la etiqueta existente...");
+                                                                    const sqlInserIdTag = "INSERT INTO aw_tareas_tareas_etiquetas (idTarea, idEtiqueta)" + 
+                                                                    "VALUES (?, ?)";  
+                                                                    connection.query(sqlInserIdTag, 
+                                                                        [TaskIn.insertId, Etiqueta[0].idEtiqueta],
+                                                                        function(err, it) {
+                                                                            if (err) {
+                                                                                callback(new Error("Error en bbdd a la hora de la inserción doble"));
+                                                                            }
+                                                                            else {
+                                                                                console.log("Insercción de ("+TaskIn.insertId+ ", "+  Etiqueta[0].idEtiqueta +
+                                                                                ") en la tabla tareas-etiquetas, realizado correctamente." );
+                                                                            }
+                                                                        });
+
+                                                                } else {
+
+                                                                    const sqlInsertLabel = "INSERT INTO aw_tareas_etiquetas (texto) "+
+                                                                    "VALUES (?)";
+                                                                    connection.query(sqlInsertLabel,
+                                                                        [label.texto],
+                                                                        function(err, tag) {
+                                                                            if (err) {
+                                                                                callback(new Error("Error en bbdd cuando queremos meter una etiqueta"));
+                                                                            }else{
+                                                                                console.log("Etiqueta: " + label.texto + " con id: "+tag.insertId +" insertada correctamente." );
+                                                                                const sqlInserIdTag = "INSERT INTO aw_tareas_tareas_etiquetas (idTarea, idEtiqueta)" + 
+                                                                                "VALUES (?, ?)";  
+                                                                                connection.query(sqlInserIdTag,
+                                                                                    [TaskIn.insertId, tag.insertId],
+                                                                                    function(err, it) {
+                                                                                        if (err) {
+                                                                                            callback(new Error("Error en bbdd a la hora de la inserción doble"));
+                                                                                        }
+                                                                                        else {
+                                                                                            console.log("Insercción de ("+TaskIn.insertId+ ", "+ tag.insertId +
+                                                                                            ") en la tabla tareas-etiquetas, realizado correctamente." );
+                                                                                        }
+                                                                                    });
+                                                                            }
+                                                                        });
+                                                                }
+                                                            });
+                                                    });
                                                     callback(null);
                                                 }
                                             });
