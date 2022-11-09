@@ -8,12 +8,13 @@ body {
 }
 
 .Formulario {
-    background-color: honeydew;
+    background-color: whitesmoke;
     text-align: center;
     min-width: 50%;
     max-width: 50%;
     margin: auto;
     margin-top: 2%;
+    margin-bottom: 3%;
     border-radius: 10px;
     box-shadow: 0 0 20px 5px midnightblue;
 }
@@ -23,13 +24,17 @@ body {
     margin-bottom: 2%;
 }
 
-input {
-    background-color: whitesmoke;
+input, select {
+    background-color: Cornsilk;
     border: 0;
     border-radius: 5px;
     border-bottom: solid darkgray;
     padding: 1%;
     margin-bottom: 3.5%;
+}
+
+select {
+    width: 41%;
 }
 
 .titulo {
@@ -51,6 +56,19 @@ input {
 
 .password-icon {
     cursor: pointer;
+}
+
+#checkbox {
+    margin-right: 3%;
+}
+
+#adjunto {
+    background-color: cornsilk;
+    border: 0;
+    border-radius: 5px;
+    padding: 1%;
+    margin-bottom: 3.5%;
+    font-style: oblique;
 }
 
 .loginBoton {

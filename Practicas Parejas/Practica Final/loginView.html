@@ -14,11 +14,11 @@
     <body>
         <div class="logo">
             <a href="https://ucm.es/">
-                <img src="https://ucm.es/themes/ucm16/media/img/logo.png" alt="Logo de la UCM">
+                <img src="https://ucm.es/themes/ucm16/media/img/logo.png" alt="Logo de la UCM" title="Universidad Complutense de Madrid">
             </a>
         </div>
 
-        <form action="" class="Formulario">
+        <form action="" class="Formulario" title="Formulario de inicio sesión">
             <div class="inicioSesion"><h2><strong>Iniciar Sesión</strong></h2></div>
             <hr style="width: 85%; margin: auto;">
             <div class="containerTitulos">
@@ -30,20 +30,20 @@
                 </div>
             </div>
             <div class="containerInputs">
-                <div>
-                    <img src="Recursos/emailVector.svg" height="25" width="25" alt="">
+                <div title="Correo electrónico">
+                    <img src="Recursos/emailVector.svg" height="25" width="25" alt="E-mail">
                     <input type="email" class="loginEmail" required="true" autofocus placeholder="Introduzca su Email" />
                 </div>
-                <div class="seccionPassword">
-                    <img src="Recursos/contraseniaVector.svg" height="25" width="25" alt="">
+                <div class="seccionPassword" title="Contraseña">
+                    <img src="Recursos/contraseniaVector.svg" height="25" width="25" alt="Contraseña">
                     <input type="password" name="loginContrasenia" class="loginContrasenia" required="true" placeholder="Introduzca su contraseña"/>
-                    <span class="fa fa-fw fa-eye password-icon show-password"></soan>
+                    <span class="fa fa-fw fa-eye password-icon show-password" title="Mostrar/Ocultar Contraseña"></soan>
                 </div>
                 <div>   
-                    <input type="submit" name="Login" value="Entrar" class="loginBoton" />
+                    <input type="submit" name="Login" value="Entrar" class="loginBoton" title="Inicio de Sesión"/>
                 </div>
                 <div class="preguntaSignIn">
-                    <p>¿No estas registrado? <a href="registerView.html">¡Crea tu cuenta!</a></p>
+                    <p>¿No estas registrado? <a href="registerView.html" title="Registro de Usuario">¡Crea tu cuenta!</a></p>
                 </div>
             </div>
         </form>
@@ -55,13 +55,13 @@
             showPassword = document.querySelector('.show-password');
             showPassword.addEventListener('click', () => {
                 // elementos input de tipo clave
-                loginContrasenia = document.querySelector('.loginContrasenia');
+                contrasenia = document.querySelector('.loginContrasenia');
 
-                if ( loginContrasenia.type === "text" ) {
-                    loginContrasenia.type = "password"
+                if ( contrasenia.type === "text" ) {
+                    contrasenia.type = "password"
                     showPassword.classList.remove('fa-eye-slash');
                 } else {
-                    loginContrasenia.type = "text"
+                    contrasenia.type = "text"
                     showPassword.classList.toggle("fa-eye-slash");
                 }
             })
