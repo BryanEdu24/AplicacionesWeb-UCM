@@ -10,30 +10,32 @@ const fs = require("fs");
 // Crear un servidor Express.js
 const app = express();
 // Crear un pool de conexiones a la base de datos de MySQL
-// const pool = mysql.createPool(config.mysqlConfig);
+const pool = mysql.createPool(config.mysqlConfig);
 // Crear una instancia de DAOTasks
-// const daoT = new DAOTasks(pool);
-//middleware static se 2añade a la página web
-// const ficheroEstaticos = path.join(__dirname, "public");
-// app.use(express.static(ficheroEstaticos));
+const daoT = new DAOTasks(pool);
+
+//middleware static se añade a la página web
+const ficheroEstaticos = path.join(__dirname, "public");
+app.use(express.static(ficheroEstaticos));
 
 //ejs
 app.set("view engine", "ejs"); // Configuracion de ejs como motor de plantilas
 
-/* //Definimos directorio de plantillas:
+//Definimos directorio de plantillas:
 const dirPlantilla = path.join(__dirname, "views");
-app.set("views", dirPlantilla); */
+app.set("views", dirPlantilla);
 
-
-/* var usuarios = ["Elver Galarga", "Elver Gotas", "Mari Flor"]; */
+var usuarios = ["Elver Galarga", "Elver Gotas", "Mari Flor"];
 
 app.get("/", function (request, reponse) {
-    // reponse.status(200);
-    reponse.render("prueba");
+    reponse.status(200);
+    reponse.render("prueba", {pepe: usuarios});
 });
 
-
-
+/* app.get("", function (req, response){
+    // response.status(200);
+    response.render("tasks");
+}); */
 
 // Arrancar el servidor
 app.listen(config.port, function(err) {
