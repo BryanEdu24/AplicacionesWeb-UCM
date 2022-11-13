@@ -1,0 +1,25 @@
+.navbar {
+    color: white;
+
+}
+
+.container-fluid {
+    /* background-color: blue; */
+}
+
+.logo {
+    /* background-color: aqua  ; */
+}
+
+.tituloSubtitulo {
+    /* background-color: red; */
+}
+
+.fotoUsuario {
+    /* background-color: yellowgreen; */
+    border-radius: 30px;
+}
+
+.fotoPerfil {
+    padding: 10%;
+}
