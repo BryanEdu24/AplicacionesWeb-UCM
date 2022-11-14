@@ -101,10 +101,49 @@ function createTask(texto) {
 /* console.log("---------- 5. Función createTask ----------");
 console.log(createTask("Ir al medico @personal @salud"), "\n"); */
 
+//CALLBACKS // Funciones callback de DATasks
+
+function cb_getAllTasks(err, tags){
+    if (err) {
+    console.log(err.message);
+    } else {
+        console.log("Etiquetas asociadas: \n");
+        console.log(tags);
+    }
+}
+
+function cb_insertTask(err){
+    if (err) {
+    console.log(err.message);
+    } else{
+        console.log("Tarea insertada correctamente");
+    } 
+
+}
+
+function cb_markTaskDone(err){
+    if (err) {
+    console.log(err.message);
+    } else{
+        console.log("Tarea marcada como realizada");
+    }
+}
+
+function cb_deleteCompleted(err){
+    if (err) {
+    console.log(err.message);
+    }
+}
+
+
 module.exports = {
 	getToDoTasks: getToDoTasks,
 	findByTag: findByTag,
 	findByTags: findByTags,
 	countDone: countDone,
-	createTask: createTask
+	createTask: createTask,
+	cb_getAllTasks: cb_getAllTasks,
+	cb_deleteCompleted: cb_deleteCompleted,
+	cb_insertTask: cb_insertTask,
+	cb_markTaskDone: cb_markTaskDone
 }

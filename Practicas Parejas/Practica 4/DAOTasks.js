@@ -8,24 +8,35 @@ class DAOTasks {
     getAllTasks(email, callback) {
         this.pool.getConnection(function (err,connection){
             if (err) {
-                callback(new Error("Error de conexión a la base de datos"));
+                callback(new Error("Error de conexión a la base de datos 1"));
             }
             else {
-                const sql = "SELECT DISTINCT W.idTarea, W.texto, T.hecho, E.texto "
+                const sql = "SELECT DISTINCT W.idTarea, W.textoTarea, T.hecho "
                 + "FROM aw_tareas_usuarios U JOIN aw_tareas_user_tarea T ON U.idUser = T.idUser "
                 + "JOIN aw_tareas_tareas W ON T.idTarea = W.idTarea "
-                + "JOIN aw_tareas_tareas_etiquetas L ON W.idTarea = L.idTarea "
-                + "JOIN aw_tareas_etiquetas E ON L.idEtiqueta = E.idEtiqueta "
                 + "WHERE U.email = ?";
                 connection.query( sql,
                     [email],
                     function(err, tasks) {
                         connection.release(); // devolver al pool la conexión
                         if (err) {
-                            callback(new Error("Error de acceso a la base de datos"));
+                            callback(new Error("Error de acceso a la base de datos 2"));
                         }
                         else{
-                           callback(null,tasks);
+                            tasks.forEach(function(task){
+                                const sql = "SELECT DISTINCT E.texto"
+                                + " FROM aw_tareas_etiquetas E JOIN aw_tareas_tareas_etiquetas L ON E.idEtiqueta = L.idEtiqueta "
+                                + " WHERE L.idTarea = ?";
+                                connection.query(sql,
+                                    [task.idTarea],
+                                    function(err, tags){
+                                        if (err) {
+                                            callback(new Error("Error de acceso a la base de datos a la hora de conseguir etiquetas"));
+                                        }else{
+                                            callback(null, tasks, tags);
+                                        }
+                                    });
+                            });
                         }
                     });
             }

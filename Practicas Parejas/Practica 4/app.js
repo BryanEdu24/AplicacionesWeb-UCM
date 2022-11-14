@@ -25,17 +25,20 @@ app.set("view engine", "ejs"); // Configuracion de ejs como motor de plantilas
 const dirPlantilla = path.join(__dirname, "views");
 app.set("views", dirPlantilla);
 
-var usuarios = ["Elver Galarga", "Elver Gotas", "Mari Flor"];
-
-app.get("/", function (request, reponse) {
-    reponse.status(200);
-    reponse.render("prueba", {pepe: usuarios});
-});
-
-/* app.get("", function (req, response){
-    // response.status(200);
-    response.render("tasks");
-}); */
+let taskList,tagsList;
+daoT.getAllTasks('felipe.lotas@ucm.es',function cb_getAllTasks(err, tasks,tags){
+    if (err) {
+    console.log(err.message);
+    } else {
+        taskList = tasks;
+        tagsList = tags;
+    }
+});   
+ app.get("", function (req, response){
+     response.status(200);
+     return response.render("tasks", {taskList: taskList, tagsList: tagsList} ); 
+ });
+    
 
 // Arrancar el servidor
 app.listen(config.port, function(err) {
