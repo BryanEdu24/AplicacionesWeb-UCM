@@ -1,0 +1,71 @@
+body {
+    background: linear-gradient(#b6fbff, MediumSlateBlue) no-repeat fixed;
+}
+
+.password-icon {
+    cursor: pointer;
+}
+
+.logo {
+    margin-left: 1%;
+    margin-top: 1%;
+}
+
+.row {
+    margin: 0 auto;
+}
+
+.divGeneral {
+    background-color: whitesmoke;
+    width: 35em;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 0 20px 5px midnightblue;
+}
+
+.containerTextos {
+    padding-top: 3%;
+    padding-bottom: 2%;
+}
+
+.tituloSubtitulo {
+    color: dimgray;
+    margin-top: 2%;
+}
+
+input {
+    background-color: cornsilk;
+    border: 0;
+    border-radius: 5px;
+    border-bottom: solid darkgray;
+    padding: 1%;
+    margin-top: 3.5%;
+}
+
+.seccionPassword {
+    margin-left: 5%;
+}
+
+.loginBoton {
+    background-color: royalblue;
+    color: white;
+    border: 0;
+    border-radius: 10px;
+    font-size: 20px;
+    width: 7em;
+    padding: 1%;
+    margin-top: 5%;
+    margin-bottom: 3%;
+}
+
+.loginBoton:hover {
+    background-color: DarkCyan;
+    color: white;
+    border: 0;
+    box-shadow: 0px 0px 5px 3px grey;
+}
+
+.preguntaSignIn {
+    margin-top: 4%;
+    padding-bottom: 2%;
+}
