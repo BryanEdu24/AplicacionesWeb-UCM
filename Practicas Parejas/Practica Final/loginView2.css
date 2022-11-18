@@ -1,5 +1,7 @@
 body {
-    background: linear-gradient(#b6fbff, MediumSlateBlue) no-repeat fixed;
+    background-image: url("./Recursos/background.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .password-icon {
@@ -20,7 +22,8 @@ body {
     width: 35em;
     text-align: center;
     border-radius: 10px;
-    box-shadow: 0 0 20px 5px midnightblue;
+    box-shadow: 0 0 20px 5px black;
+    margin-bottom: 5%;
 }
 
 .containerTextos {
