@@ -5,8 +5,18 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <%- include("./flash")%>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <%- include("subplantillas/head") %>
+    <%- include("subplantillas/navbar") %>
+
+    <table>
+      <tr>
+          <th>Correo:</th>
+          <td><%= usuarios.correo %></td>
+      </tr>
+      <tr>
+          <th>Contraseña:</th>
+          <td><%= usuarios.contraseña %></td>
+      </tr>
+  </table>
   </body>
 </html>

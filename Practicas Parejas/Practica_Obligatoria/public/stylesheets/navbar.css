@@ -1,0 +1,48 @@
+.navbar {
+    color: white;
+    box-shadow: 1px 15px 15px darkgrey;
+}
+
+.titulo_y_Subtitulo {
+    text-align: center;
+}
+
+.infoUsuario {
+    background-color: red;
+}
+
+.nombreUsuario {
+    font-size: 20px;
+}
+
+.fotoPerfil {
+    padding: 1%;
+    background-color: white;
+}
+
+.fotoPerfil:hover {
+    box-shadow: 0 0 0 3px lightseagreen;
+}   
+
+img, .dropdown-toggle {
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    border:0;
+}
+
+.dropdown-item {
+    color: white;
+}
+
+.dropdown-item:hover {
+    color: white;
+    background-color: crimson;
+}
+
+.dropdown-toggle {
+    background-color: transparent;
+    color: lightcyan;
+    border: 0; 
+}
