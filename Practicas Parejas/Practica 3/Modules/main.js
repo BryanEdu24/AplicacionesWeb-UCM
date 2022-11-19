@@ -79,6 +79,8 @@ var task = {
 };
 
 // Uso de los métodos de las clases DAOUsers y DAOTasks
+daoUser.isUserCorrect('felipe.lotas@ucm.es','Felipe',cb_isUserCorrect);
+daoUser.getUserImageName('felipe.lotas@ucm.es', cb_getUserImageName);
 //daoTask.markTaskDone('5', cb_markTaskDone);
 //daoTask.deleteCompleted('felipe.lotas@ucm.es', cb_deleteCompleted);
 daoTask.insertTask('felipe.lotas@ucm.es',task,cb_insertTask);

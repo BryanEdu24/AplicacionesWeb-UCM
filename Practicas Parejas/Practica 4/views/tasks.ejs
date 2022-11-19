@@ -7,8 +7,8 @@
         <title>Gestor de tareas AW</title>
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-        <link rel="stylesheet" href="./css/tasksScreen.css" media="screen">
-        <link rel="stylesheet" href="./css/tasksPrint.css" media="print">
+        <link rel="stylesheet" href="/css/tasksScreen.css" media="screen">
+        <link rel="stylesheet" href="/css/tasksPrint.css" media="print">
         <link rel="shortcut icon" href="./img/LogoIcon.png">
     </head>
 
@@ -58,7 +58,7 @@
             </div>
 
             <div class="container PrincipalBlock">
-                <ul>
+                <ul> 
                     <% taskList.forEach(function(task){ %>
                         <% if(task.hecho === 0) { %>
                             <li id="TaskToDo">
