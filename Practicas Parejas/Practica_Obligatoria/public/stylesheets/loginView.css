@@ -2,7 +2,6 @@ body {
     background-image: url("./Recursos/background.svg");
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh;
 }
 
 .password-icon {

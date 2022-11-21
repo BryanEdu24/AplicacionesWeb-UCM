@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="./mainViewUser.css" media="screen">
         <link rel="stylesheet" href="./navbar.css" media="screen">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script> 
-
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     </head>
 
     <body>
@@ -43,7 +43,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </div>
+                         </div>
                     </div>
                 </div>
             </nav>
@@ -51,8 +51,49 @@
         <!-- Aqui acaba la navbar -->
 
         <!-- Front del mainViewUser -->
-        <div class="mt-5 containerPrincipalUser">
-            AQUI VA BARRA DE BUSQUEDA
+        <div class="containerUser container">
+            <div class="wrap">
+                <div class="search d-flex justify-content-end">
+                    <input type="text" class="searchTerm" placeholder="Buscar avisos...">
+                    <button type="submit" class="searchButton">
+                        <img src="./Recursos/lupaVector.svg" title="www.ucm.es" alt="Logo de la UCM" class="lupa">
+                    </button>
+                </div>
+            </div>
+
+
+            <table class="tablaUser">
+                <tr class="titulos">
+                    <th>Fecha</th>
+                    <th>Texto</th>
+                    <th>Tipo</th>
+                    <th>Técnico</th>
+                </tr>
+                
+                <tr class="filas">
+                    <td class="fechas">12/10/2021</td>
+                    <td>No puedo conectar a la red corporativa. Parece que el fallo...</td>
+                    <td class="tipos"><img src="./Recursos/exclamacion.png" alt="" width="25" height="25"></td>
+                    <td class="tecnicos">CR7</td>
+                </tr>
+                
+                <tr class="filas">
+                    <td class="fechas">10/10/2021</td>
+                    <td>Propongo cambiar el diseño de la web a un modelo responsive para que se pueda visualizar en el móvil...</td>
+                    <td class="tipos"><img src="./Recursos/pregunta.png" alt="" width="25" height="25"></td>
+                    <td class="tecnicos">Aitor Tilla</td>
+                </tr>
+                
+                <tr>
+                    <td class="fechas">05/01/2021</td>
+                    <td>Feliz año a todos vosotros por el buen trabajo realizado y las atenciones recibidas...</td>
+                    <td class="tipos"><img src="./Recursos/ok.png" alt="" width="25" height="25"></td>
+                    <td class="tecnicos">Felipe Lotas</td>
+                </tr>
+            </table>
+            
+
         </div>
+        
     </body>
 </html>
