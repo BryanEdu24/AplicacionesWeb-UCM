@@ -1,10 +1,11 @@
 "use strict";
 module.exports = {
-    mysqlConfig:{
-        host: "localhost",// Ordenador que ejecuta el SGBD
-        user: "root", // Usuario que accede a la BD
-        password: "", // Contraseña con la que se accede a la BD
-        database: "bbddd_aw" // Nombre de la base de datos
+    mysqlConfig: {
+        host: "localhost",
+        user: "root",
+        password: "",
+        database: "UCM_CAU",
+        port: 3306
     },
-    port: 3000 //Puerto donde escucha el servidor
+    portS: 3000 //Puerto donde escucha el servidor
 }

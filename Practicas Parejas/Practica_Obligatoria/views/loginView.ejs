@@ -11,6 +11,12 @@
         <link rel="stylesheet" href="stylesheets/loginView.css" media="screen">
     </head>
     <body>
+        <% let mensaje = getFlash(); %>
+        <% if (mensaje) { %>
+            <div class="flash">
+                <%= mensaje %>
+            </div>
+        <% } %>
         <div class="logo">
             <a href="https://ucm.es/">
                 <img src="https://ucm.es/themes/ucm16/media/img/logo.png" alt="Logo de la UCM" title="Universidad Complutense de Madrid">
