@@ -48,26 +48,47 @@
 }
 
 .tablaUser {
-    background-color: Thistle;
+    background-color: midnightblue;
     border-radius: 10px;
     margin: 0 auto;
     border-collapse: collapse;
-}
-
-.titulos {
-    border-radius: 50px 5px 5px 5px;
+    width: 80%;
 }
 
 th {
     color: white;
     text-align: center;
-    border-bottom: gainsboro 2px solid;
-    background-color: DarkSlateBlue;
+    border-right: gainsboro 2px solid;
+    border-left: gainsboro 2px solid;
+}
+
+.tablaUser tr:first-child th:first-child {
+    border-left: none;
+}
+
+.tablaUser tr:first-child th:last-child {
+    border-right: none;
+}
+
+.tablaUser tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+}
+
+.tablaUser tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
+
+td {
+    background-color: thistle;
 }
 
 .fechas, .tipos, .tecnicos {
     text-align: center;
-    width: 15%;
+    width: 20vh;
+}
+
+.tipos {
+    width: 10vh;
 }
 
 .fechas {
