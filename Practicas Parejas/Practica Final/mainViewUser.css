@@ -47,11 +47,48 @@
     height: 4vh;
 }
 
+.menuOpciones {
+    margin-left: 10%;
+}
+
+.botonMisAvisos {
+    border-radius: 5px;
+    padding: 0.5%;
+    color: black;
+    background-color: silver;
+}
+
+.botonMisAvisos:hover {
+    border-radius: 5px;
+    padding: 0.5%;
+    color: white;
+    background-color: slategray;
+}
+
+/* .botonMisAvisos:current{
+    background-color: red; dejar activo el boton
+} */
+
+.botonHistorialAvisos {
+    border-radius: 5px;
+    padding: 0.5%;
+    color: black;
+    background-color: silver;
+}
+
+.botonHistorialAvisos:hover {
+    border-radius: 5px;
+    padding: 0.5%;
+    color: white;
+    background-color: slategray;
+}
+
 .tablaUser {
     background-color: midnightblue;
     border-radius: 10px;
     margin: 0 auto;
     border-collapse: collapse;
+    margin-top: 1.5%;
     width: 80%;
 }
 
@@ -60,6 +97,8 @@ th {
     text-align: center;
     border-right: gainsboro 2px solid;
     border-left: gainsboro 2px solid;
+    padding: 1%;
+    font-weight: bold;
 }
 
 .tablaUser tr:first-child th:first-child {
@@ -80,6 +119,7 @@ th {
 
 td {
     background-color: thistle;
+    padding: 0.5%;
 }
 
 .fechas, .tipos, .tecnicos {

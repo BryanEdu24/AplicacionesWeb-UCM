@@ -10,18 +10,20 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
         <link rel="stylesheet" href="stylesheets/loginView.css" media="screen">
     </head>
+
     <body>
-        <% let mensaje = getFlash(); %>
-        <% if (mensaje) { %>
-            <div class="flash">
-                <%= mensaje %>
-            </div>
-        <% } %>
         <div class="logo">
             <a href="https://ucm.es/">
                 <img src="https://ucm.es/themes/ucm16/media/img/logo.png" alt="Logo de la UCM" title="Universidad Complutense de Madrid">
             </a>
         </div>
+
+        <% let mensaje = getandClearFlash(); %>
+        <% if (mensaje) { %>
+            <div class="flash">
+                <%= mensaje %>
+            </div>
+        <% } %>
 
         <div class="row justify-content-center mt-4">
             <div class="divGeneral ">
@@ -38,7 +40,7 @@
                     <div class="containerInputs col justify-content-center">
                         <div>
                             <img src="images/emailVector.svg" height="25" width="25" alt="E-mail" title="Simbolo correo">
-                            <input type="email" name="correo"class="loginEmail" required="true" autofocus placeholder="Introduzca su Email" title="Correo electrónico"/>
+                            <input type="email" class="loginEmail" required="true" name="correo" autofocus placeholder="Introduzca su Email" title="Correo electrónico"/>
                         </div>
                         <div class="seccionPassword">
                             <img src="images/contraseniaVector.svg" height="25" width="25" alt="Contraseña" title="Simbolo contraseña">
@@ -46,7 +48,7 @@
                             <span class="fa fa-fw fa-eye password-icon show-password" title="Mostrar/Ocultar Contraseña"></soan>
                         </div>
                         <div>   
-                            <input type="submit" value="Entrar" class="loginBoton" title="Inicio de Sesión"/>
+                            <input type="submit" name="Login" value="Entrar" class="loginBoton" title="Inicio de Sesión"/>
                         </div>
                         <div class="preguntaSignIn">
                             <p>¿No estas registrado? <a href="registerView.html" title="Registro de Usuario">¡Crea tu cuenta!</a></p>
@@ -57,36 +59,3 @@
         </div>
     </body>
 </html>
-
-<!-- <!DOCTYPE html>
-<html>
-    <head>
-        <title>Formulario de tipo POST</title>
-        <meta charset="utf-8">
-    </head>
-    <body>
-        <form method="POST" action="procesar_post.html">
-            <div>
-                <label for="formNombre">Nombre:</label>
-                <input type="text" name="nombre" id="formNombre">
-            </div>
-            <div>
-                <label for="formEdad">Edad:</label>
-                <input type="text" name="edad" id="formEdad">
-            </div>
-            <div>
-                <input type="radio" name="sexo" value="H" id="formHombre"/>
-                <label for="formHombre">Hombre</label>
-                <input type="radio" name="sexo" value="M" id="formMujer"/>
-                <label for="formMujer">Mujer</label>
-            </div>
-            <div>
-                <input type="checkbox" name="fumador" value="ON" id="formFumador"/>
-                <label for="formFumador">Fumador/a</label>
-            </div>
-            <div>
-                <input type="submit" value="Enviar">
-            </div>
-        </form>
-    </body>
-</html> -->

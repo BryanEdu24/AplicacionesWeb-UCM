@@ -26,6 +26,22 @@ const middlewareSession = session({
 // Crear una instancia de DAOTasks
 const daoU = new DAOUsers(pool);
 
+function mensajeFlash(request, response, next) {
+  response.setFlash = (str) => {
+      request.session.flashMessage = str;
+  }
+  response.locals.getandClearFlash = () => {
+      let mensaje = request.session.flashMessage;
+      delete request.session.flashMessage;
+      return mensaje;
+  }
+  next();
+};
+
+
+app.use(express.static(path.join(__dirname, "public")));
+app.use(bodyParser.urlencoded({ extended: true }))
+
 app.use(middlewareSession);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -33,29 +49,17 @@ app.set("views", path.join(__dirname, "views"));
 /*
  * Middleware para gestionar los mensajes flash
  */
-app.use((request, response, next) => {
-  response.setFlash = (str) => {
-      request.session.flashMessage = str;
-  }
-  response.locals.getFlash = () => {
-      let mensaje = request.session.flashMessage;
-      delete request.session.flashMessage;
-      return mensaje;
-  }
-  next();
-});
+app.use(mensajeFlash);
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use(express.static(path.join(__dirname, "public")));
-app.use(bodyParser.urlencoded({ extended: true }));
-
-
 
 app.post("/procesar_post.html", (request, response) => {
       daoU.isUserCorrect(request.body.correo, 
-        request.body.contrasenia, function (err, ok){
+        request.body.contrasenia, function cb_isUserCorrect(err, ok){
           if (err){
+            console.log(err.message);
             response.status(500);
             response.setFlash("Error interno de acceso a la base de datos");
             response.redirect("/");

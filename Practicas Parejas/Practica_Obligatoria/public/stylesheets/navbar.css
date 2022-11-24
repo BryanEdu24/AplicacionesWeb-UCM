@@ -5,17 +5,10 @@ body {
     height: 100vh;
 }
 
-.navbar {
+.row {
     color: white;
     box-shadow: 1px 15px 15px darkgrey;
-}
-
-.titulo_y_Subtitulo {
-    text-align: center;
-}
-
-.infoUsuario {
-    background-color: red;
+    margin: 0 auto;
 }
 
 .nombreUsuario {
@@ -46,10 +39,17 @@ img, .dropdown-toggle {
 .dropdown-item:hover {
     color: white;
     background-color: crimson;
+    border:0;
 }
 
 .dropdown-toggle {
     background-color: transparent;
-    color: lightcyan;
+    color: white;
+    border: 0;
+}
+
+.dropdown-toggle:hover {
+    background-color: transparent;
+    color: white;
     border: 0; 
 }

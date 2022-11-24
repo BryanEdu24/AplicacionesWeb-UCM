@@ -11,16 +11,23 @@ class DAOUsers {
                 callback(new Error("Error de conexión a la base de datos"));
             }
             else {
-                connection.query("SELECT * FROM ucm_cau WHERE email = ? AND password = ?" ,
+                console.log(email);
+                console.log(password);
+                connection.query(" SELECT * FROM usuarios WHERE email = ? AND password = ?" ,
                     [email,password], 
                     function(err, rows) {
                         connection.release(); // devolver al pool la conexión
                         if (err) {
+                            /* console.log(email);
+                            console.log(password);
+                            console.log(pool); */
                             callback(new Error("Error de acceso a la base de datos"));
                         }
                         else{
                             if (rows.length === 0) {
+                                
                                 callback(null, false); //no está el usuario con el password proporcionado
+
                             }
                             else {
                                 callback(null, true);
