@@ -45,7 +45,7 @@ class DAOUsers {
                 callback(new Error("Error de conexión a la base de datos"));
             }
             else {
-                connection.query("SELECT U.img FROM ucm_cau AS U WHERE email = ?",
+                connection.query("SELECT U.img FROM usuarios AS U WHERE email = ?",
                     [email],
                     function(err, img){
                         connection.release(); //devolver la conexión a pool

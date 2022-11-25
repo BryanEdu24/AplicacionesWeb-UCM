@@ -60,21 +60,36 @@ app.post("/procesar_post.html", (request, response) => {
         request.body.contrasenia, function cb_isUserCorrect(err, ok){
           if (err){
             console.log(err.message);
-            response.status(500);
             response.setFlash("Error interno de acceso a la base de datos");
             response.redirect("/");
           }else if (ok){
             response.status(500);
-            response.render("index", {
-              correo: request.body.correo,
-              contrasenia: request.body.contrasenia
-            });
+            request.session.currentUser = request.body.correo;
+            daoU.getUserImageName(request.body.correo, function cb_getUserImageName (err, nameArchivo){
+              if(err){
+                console.log(err.message);
+                response.setFlash("Error interno de acceso a la base de datos");
+                response.redirect("/");
+              }else {
+                response.render("index", {
+                  correo: request.body.correo,
+                  contrasenia: request.body.contrasenia,
+                  imagen: nameArchivo[0].img
+                });
+              }
+            })
+            
           }else{
             response.status(500);
             response.setFlash("Usuario y/o contraseña incorrectos");
             response.redirect("/");
           }
         });
+});
+
+app.get("/logOut.html", (request, response) => {
+  request.session.destroy();
+  response.redirect("/");
 });
 
 
