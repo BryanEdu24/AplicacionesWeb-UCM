@@ -41,14 +41,13 @@
                             <span class="fa fa-fw fa-eye password-icon show-password" title="Mostrar/Ocultar Contraseña"></soan>
                         </div>
 
-                        <div class="alertaLogin mt-4">
-                            <% let mensaje = getandClearFlash(); %>
-                            <% if (mensaje) { %>
-                                <div class="alert-danger" role="alert" data-mdb-delay="3000">
-                                    <%= mensaje %>
-                                </div>
-                            <% } %>
-                        </div>
+                        <% let mensaje = getandClearFlash(); %>
+                        <% if (mensaje) { %>
+                            <div class="alert text-center alert-simple alert-danger mt-4" role="alert" data-brk-library="component__alert">
+                                <i class="fa fa-exclamation-triangle"></i>
+                                <%= mensaje %>
+                            </div>
+                        <% } %>
 
                         <div>   
                             <input type="submit" name="Login" value="Entrar" class="loginBoton" title="Inicio de Sesión"/>
