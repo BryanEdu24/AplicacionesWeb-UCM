@@ -8,7 +8,7 @@ body {
     cursor: pointer;
 }
 
-.logo {
+.logoLogin {
     margin-left: 1%;
     margin-top: 1%;
 }
@@ -17,7 +17,7 @@ body {
     margin: 0 auto;
 }
 
-.divGeneral {
+.divGeneralLogin {
     background-color: whitesmoke;
     width: 35em;
     text-align: center;
@@ -26,12 +26,12 @@ body {
     margin-bottom: 5%;
 }
 
-.containerTextos {
+.containerTextosLogin {
     padding-top: 3%;
     padding-bottom: 2%;
 }
 
-.tituloSubtitulo {
+.tituloSubtituloLogin {
     color: dimgray;
     margin-top: 2%;
 }
@@ -45,8 +45,12 @@ input {
     margin-top: 3.5%;
 }
 
-.seccionPassword {
+.seccionPasswordLogin {
     margin-left: 5%;
+}
+
+.alertaLgin {
+    width: 5vh;
 }
 
 .loginBoton {

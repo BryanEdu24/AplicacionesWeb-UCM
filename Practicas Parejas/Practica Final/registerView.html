@@ -37,12 +37,12 @@
                         </div>
                         <div class="seccionPassword">
                             <img src="Recursos/contraseniaVector.svg" height="25" width="25" alt="Contraseña" title="Simbolo contraseña">
-                            <input type="password" name="loginContrasenia1" class="loginContrasenia1" required="true" placeholder="Establezca contraseña" title="Contraseña"/>
+                            <input type="password" name="registerContrasenia1" class="registerContrasenia1" required="true" placeholder="Establezca contraseña" title="Contraseña"/>
                             <span class="fa fa-fw fa-eye password-icon show-password1" title="Mostrar/Ocultar Contraseña"></soan>
                         </div>
                         <div class="seccionPassword">
                             <img src="Recursos/contraseniaVector.svg" height="25" width="25" alt="Contraseña" title="Simbolo contraseña">
-                            <input type="password" name="loginContrasenia2" class="loginContrasenia2" required="true" placeholder="Repita contraseña" title="Confirmar contraseña"/>
+                            <input type="password" name="registerContrasenia2" class="registerContrasenia2" required="true" placeholder="Repita contraseña" title="Confirmar contraseña"/>
                             <span class="fa fa-fw fa-eye password-icon show-password2" title="Mostrar/Ocultar Contraseña"></soan>
                         </div>
                         <div>
@@ -70,7 +70,7 @@
                             <input type="file" id="adjunto" name="fotoAdjunta" accept=".png, .jpg" title="Foto de perfil"/>
                         </div>
                         <div>   
-                            <input type="submit" name="Login" value="Registrarse" class="loginBoton" title="Registro de Usuario"/>
+                            <input type="submit" name="Login" value="Registrarse" class="registerBoton" title="Registro de Usuario"/>
                         </div>
                         <div class="preguntaSignIn" >
                             <p>¿Ya tienes una cuenta? <a href="loginView.html" title="Inicio de Sesión">¡Inicia Sesión!</a></p>
@@ -87,7 +87,7 @@
             showPassword1 = document.querySelector('.show-password1');
             showPassword1.addEventListener('click', () => {
                 // elementos input de tipo clave
-                contrasenia1 = document.querySelector('.loginContrasenia1');
+                contrasenia1 = document.querySelector('.registerContrasenia1');
 
                 if (contrasenia1.type === "text") {
                     contrasenia1.type = "password"
@@ -104,7 +104,7 @@
             showPassword2 = document.querySelector('.show-password2');
             showPassword2.addEventListener('click', () => {
                 // elementos input de tipo clave
-                contrasenia2 = document.querySelector('.loginContrasenia2');
+                contrasenia2 = document.querySelector('.registerContrasenia2');
 
                 if (contrasenia2.type === "text") {
                     contrasenia2.type = "password"
@@ -118,13 +118,3 @@
     </script>
 
 </html>
-
-<!-- 
-    Falta:
-    - Comprobar correo (@ucm.es)
-    - Contraseña1 y Contraseña2 (8-16 caracteres, digito, miniscula, mayuscula, caracter no alfanumerico >= 1)
-    - NumEmpleado (4 dígitos-3 minusculas, comprobar esto antes que la cuenta "Tecnico/PAS")
-    - Checkbox oculto para todos los prefiles (menos PAS)
-    - Imagen default si usuario no mete foto perfil
-    - Mostrar error
- -->

@@ -12,26 +12,19 @@
     </head>
 
     <body>
-        <div class="logo">
+        <div class="logoLogin">
             <a href="https://ucm.es/">
                 <img src="https://ucm.es/themes/ucm16/media/img/logo.png" alt="Logo de la UCM" title="Universidad Complutense de Madrid">
             </a>
         </div>
 
-        <% let mensaje = getandClearFlash(); %>
-        <% if (mensaje) { %>
-            <div class="flash">
-                <%= mensaje %>
-            </div>
-        <% } %>
-
         <div class="row justify-content-center mt-4">
-            <div class="divGeneral ">
-                <form method="POST" action="procesar_post.html" class="Formulario col" title="Formulario de inicio sesión">
-                    <div class="containerTextos">
+            <div class="divGeneralLogin">
+                <form method="POST" action="procesar_post.html" class="col" title="Formulario de inicio sesión">
+                    <div class="containerTextosLogin">
                         <h2 class="mb-3"><strong>Iniciar Sesión</strong></h2>
                         <hr style="width: 85%; margin:auto;">
-                        <div class="tituloSubtitulo">
+                        <div class="tituloSubtituloLogin">
                             <h4><strong>UCM - CAU</strong></h4>
                             <h5><strong>Centro de Atención al Usuario</strong></h5>
                         </div>      
@@ -42,11 +35,21 @@
                             <img src="images/emailVector.svg" height="25" width="25" alt="E-mail" title="Simbolo correo">
                             <input type="email" class="loginEmail" required="true" name="correo" autofocus placeholder="Introduzca su Email" title="Correo electrónico"/>
                         </div>
-                        <div class="seccionPassword">
+                        <div class="seccionPasswordLogin">
                             <img src="images/contraseniaVector.svg" height="25" width="25" alt="Contraseña" title="Simbolo contraseña">
                             <input type="password" name="contrasenia" class="loginContrasenia" required="true" placeholder="Introduzca su contraseña" title="Contraseña"/>
                             <span class="fa fa-fw fa-eye password-icon show-password" title="Mostrar/Ocultar Contraseña"></soan>
                         </div>
+
+                        <div class="alertaLogin mt-4">
+                            <% let mensaje = getandClearFlash(); %>
+                            <% if (mensaje) { %>
+                                <div class="alert-danger" role="alert" data-mdb-delay="3000">
+                                    <%= mensaje %>
+                                </div>
+                            <% } %>
+                        </div>
+
                         <div>   
                             <input type="submit" name="Login" value="Entrar" class="loginBoton" title="Inicio de Sesión"/>
                         </div>
@@ -58,4 +61,24 @@
             </div>
         </div>
     </body>
+
+    <script>
+        window.addEventListener("load", function() {
+           // icono para mostrar contraseña
+           showPassword = document.querySelector('.show-password');
+           showPassword.addEventListener('click', () => {
+               // elementos input de tipo clave
+               contrasenia = document.querySelector('.loginContrasenia');
+
+               if (contrasenia.type === "text") {
+                   contrasenia.type = "password"
+                   showPassword.classList.remove('fa-eye-slash');
+               } else {
+                   contrasenia.type = "text"
+                   showPassword.classList.toggle("fa-eye-slash");
+                }
+           })
+        });
+   </script>
+
 </html>

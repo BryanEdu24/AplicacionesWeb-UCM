@@ -51,4 +51,24 @@
             </div>
         </div>
     </body>
+
+    <script>
+        window.addEventListener("load", function() {
+           // icono para mostrar contraseña
+           showPassword = document.querySelector('.show-password');
+           showPassword.addEventListener('click', () => {
+               // elementos input de tipo clave
+               contrasenia = document.querySelector('.loginContrasenia');
+
+               if (contrasenia.type === "text") {
+                   contrasenia.type = "password"
+                   showPassword.classList.remove('fa-eye-slash');
+               } else {
+                   contrasenia.type = "text"
+                   showPassword.classList.toggle("fa-eye-slash");
+                }
+           })
+        });
+   </script>
+
 </html>
