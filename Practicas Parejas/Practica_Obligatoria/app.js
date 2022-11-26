@@ -9,6 +9,7 @@ const MySQLStore = mysqlSession(session);
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const registerRouter = require('./routes/register')
 const DAOUsers = require('./DAOUsers');
 const { request } = require("http");
 const { response } = require("express");
@@ -54,7 +55,7 @@ app.use(mensajeFlash);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-// app.use('/imageUser', imageUserRouter);
+
 
 app.post("/procesar_post.html", (request, response) => {
       daoU.isUserCorrect(request.body.correo, 
@@ -102,6 +103,7 @@ app.get("/images/:id", (request, response) => {
 });
 
 
+app.use('/registerView.html', registerRouter);
 
 app.listen(config.portS, function(err) {
   if (err) {
