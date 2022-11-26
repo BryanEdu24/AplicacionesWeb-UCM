@@ -57,28 +57,32 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 
+
+
 app.post("/procesar_post.html", (request, response) => {
-      daoU.isUserCorrect(request.body.correo, 
-        request.body.contrasenia, function cb_isUserCorrect(err, ok){
-          if (err){
-            console.log(err.message);
-            response.setFlash("Error interno de acceso a la base de datos");
-            response.redirect("/");
-          }else if (ok){
-            response.status(500);
-            request.session.currentUser = request.body.correo;
-            response.locals.userEmail = request.body.correo;
-            response.render("index", {
-              correo: request.body.correo,
-              contrasenia: request.body.contrasenia,
-            });
-          }else{
-            response.status(500);
-            response.setFlash("Usuario y/o contraseña incorrectos");
-            response.redirect("/");
-          }
+  daoU.isUserCorrect(request.body.correo, 
+    request.body.contrasenia, function cb_isUserCorrect(err, ok){
+      if (err){
+        console.log(err.message);
+        response.setFlash("Error interno de acceso a la base de datos");
+        response.redirect("/");
+      }else if (ok){
+        response.status(500);
+        request.session.currentUser = request.body.correo;
+        response.locals.userEmail = request.body.correo;
+        response.render("index", {
+          correo: request.body.correo,
+          contrasenia: request.body.contrasenia,
         });
+      }else{
+        response.status(500);
+        response.setFlash("Usuario y/o contraseña incorrectos");
+        response.redirect("/");
+      }
+    });
 });
+
+
 
 app.get("/logOut.html", (request, response) => {
   request.session.destroy();
@@ -103,7 +107,26 @@ app.get("/images/:id", (request, response) => {
 });
 
 
-app.use('/registerView.html', registerRouter);
+// app.use('/registerView.html', registerRouter);
+
+app.get('/registerView.html', function(req, res, next) {
+  res.render('registerView');
+});
+
+app.post("/registerPost.html", (request, response) => {
+  console.log(request.body);
+  /* response.render("infoForm", {
+      correo: request.body.correo,
+      contrasenia: request.body.contrasenia,
+      nombre: request.body.NombreUsuario,
+      opcion: request.body.opciones,
+      tecnico: (request.body.tecnico === "ON" ? "SI­" : "No"),
+      numEmpleado: request.body.numEmpleado
+  }); */
+  response.end();
+});
+
+
 
 app.listen(config.portS, function(err) {
   if (err) {
