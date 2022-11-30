@@ -5,7 +5,9 @@ const mysql = require("mysql");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const mysqlSession = require("express-mysql-session");
-const MySQLStore = mysqlSession(session);
+
+const { check, validationResult } = require("express-validator");
+const multer = require("multer");
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -14,6 +16,7 @@ const DAOUsers = require('./DAOUsers');
 const { request } = require("http");
 const { response } = require("express");
 
+const MySQLStore = mysqlSession(session);
 const app = express();
 //pool de conexiones
 const pool = mysql.createPool(config.mysqlConfig);
@@ -41,15 +44,14 @@ function mensajeFlash(request, response, next) {
 
 
 app.use(express.static(path.join(__dirname, "public")));
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 app.use(middlewareSession);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-/*
- * Middleware para gestionar los mensajes flash
- */
+// Middleware para gestionar los mensajes flash
 app.use(mensajeFlash);
 
 
@@ -58,7 +60,7 @@ app.use('/users', usersRouter);
 
 
 
-
+/* Post de iniciar sesión */
 app.post("/procesar_post.html", (request, response) => {
   daoU.isUserCorrect(request.body.correo, 
     request.body.contrasenia, function cb_isUserCorrect(err, ok){
@@ -83,13 +85,7 @@ app.post("/procesar_post.html", (request, response) => {
 });
 
 
-
-app.get("/logOut.html", (request, response) => {
-  request.session.destroy();
-  response.redirect("/");
-});
-
-app.get("/images/:id", (request, response) => {
+app.get("/uploads/:id", (request, response) => {
   response.status(400);
   console.log("userEmail: " + request.params.id);
   let emailUser = request.params.id;
@@ -97,36 +93,78 @@ app.get("/images/:id", (request, response) => {
            if(err){
              console.log(err.message);
            }else if (nameArchivo[0].img === null) {
-               response.sendFile(path.join(__dirname, 'public/images', 'usuarioAnonimo.png'));
+               response.sendFile(path.join(__dirname, 'public/uploads', 'usuarioAnonimo.png'));
                
            }else {
             let imagen =  nameArchivo[0].img;
-            response.sendFile(path.join(__dirname, 'public/images', imagen));
+            response.sendFile(path.join(__dirname, 'public/uploads', imagen));
            }
   }) 
 });
 
+/* Para cerrar sesión */
+app.get("/logOut.html", (request, response) => {
+  request.session.destroy();
+  response.redirect("/");
+});
 
 // app.use('/registerView.html', registerRouter);
-
+/* Renderizar la página de registrarse */
 app.get('/registerView.html', function(req, res, next) {
   res.render('registerView');
 });
 
-app.post("/registerPost.html", (request, response) => {
-  console.log(request.body);
-  /* response.render("infoForm", {
-      correo: request.body.correo,
-      contrasenia: request.body.contrasenia,
-      nombre: request.body.NombreUsuario,
-      opcion: request.body.opciones,
-      tecnico: (request.body.tecnico === "ON" ? "SI­" : "No"),
-      numEmpleado: request.body.numEmpleado
-  }); */
+/* Carpeta de destino donde guardar imagenes */
+var almacen = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, 'public', 'uploads'));
+  },
+  filename: function (req, file, cb) {
+      cb(null, file.originalname);
+  }
+});
+const multerFactory = multer({ storage: almacen });
+
+/* Post del register */
+app.post("/registerPost.html", 
+  multerFactory.single('foto'),
+  // El correo ha de ser una dirección de correo válida.
+  check("correo","Dirección de correo no válida").isEmail(),
+  // Comprobación de contraseña
+  check("contrasenia","La contraseña no tiene entre 8 y 16 caracteres").isLength({ min: 8, max: 16 }),
+  check("contrasenia", "Contraseña no contiene al menos un dígito").matches(/[0-9]+/),
+  check("contrasenia", "Contraseña no contiene al menos una minuscula").matches(/[a-z]+/),
+  check("contrasenia", "Contraseña no contiene al menos una mayuscula").matches(/[A-Z]+/),
+  check("contrasenia", "Contraseña no contiene al menos un caracter no alfanumérico").matches(/[^a-zA-Z0-9]+/),
+  /* Comprobar que ambas contraseñas son iguales */
+  // check("contrasenia", "Ambas contraseñas no coinciden").equals('contrasenia2'),
+  //Numero de empleado deberá ser 4 digitos seguidos de un guión y 3 letras minúsculas
+/*   check("numEmpleado", "Numero de empleado formato erroneo").matches(/\d{4}\-[a-z]{3}/), */
+  (request, response) => {
+  const errors = validationResult(request);
+  if (errors.isEmpty()) {
+      console.log("Todo correcto");
+      console.log(request.body);
+      if (request.file.filename) { // Si se ha subido un fichero
+        console.log(`Nombre del fichero: ${request.file.originalname}` );
+        console.log(`Nombre del fichero2: ${request.file.filename}` );
+        console.log(`Fichero guardado en: ${request.file.path}`);
+        console.log(`Tamaño: ${request.file.size}`);
+        console.log(`Tipo de fichero: ${request.file.mimetype}`);
+      }
+      response.render("infoForm", {
+        correo: request.body.correo,
+        contrasenia: request.body.contrasenia,
+        nombre: request.body.NombreUsuario,
+        opcion: request.body.opciones,
+        tecnico: (request.body.tecnico === "ON" ? "SI­" : "No"),
+        numEmpleado: request.body.numEmpleado
+    });
+  } else {
+      response.render("registerViewErrors", {errores: errors.array()});
+  }
   response.end();
 });
-
-
 
 app.listen(config.portS, function(err) {
   if (err) {
@@ -136,5 +174,3 @@ app.listen(config.portS, function(err) {
   console.log(`Servidor arrancado en el puerto ${config.portS}`);
   }
  });
-
- //Naa no te preocupes, voy ahora a probarlo 
