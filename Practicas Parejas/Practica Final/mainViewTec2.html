@@ -9,7 +9,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <link rel="stylesheet" href="./mainViewTec2.css" media="screen">
         <link rel="stylesheet" href="./navbar.css" media="screen">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script> 
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     </head>
 
@@ -29,7 +29,7 @@
                     </div>
                     <div class="perfilUsuario d-flex align-items-center">
                         <span class="nombreUsuario">
-                            Felipe Lotas&#8195	
+                            Felipe Lotas&#8195
                         </span>
                         <div class="dropdown ">
                             <button class="btn dropdown-toggle" data-bs-toggle="dropdown">
@@ -38,7 +38,7 @@
                             <ul class="dropdown-menu dropdown-menu-end bg-dark" title="Cerrar Sesión">
                                 <li>
                                     <a class="dropdown-item" href="./loginView.html">
-                                        Cerrar Sesión&#8195	
+                                        Cerrar Sesión&#8195
                                         <span><img src="./Recursos/logOutVector.svg" alt="Log-Out" width="25" height="25"></span>
                                     </a>
                                 </li>
@@ -78,47 +78,112 @@
 
             <table class="tablaTec2">
                 <tr>
+                    <th>Tipo</th>
                     <th>Fecha</th>
                     <th>Texto</th>
-                    <th>Tipo</th>
-                    <th>Técnico</th>
+                    <th>Acciones</th>
                 </tr>
 
-                <tr class="filas">
+                <tr>
+                    <td class="tipos"><img src="./Recursos/exclamacion.png" alt="" width="35" height="35"></td>
                     <td class="fechas">12/10/2021</td>
                     <td>No puedo conectar a la red corporativa. Parece que el fallo...</td>
-                    <td class="tipos"><img src="./Recursos/exclamacion.png" alt="" width="35" height="35"></td>
-                    <td class="tecnicos"></td>
+                    <td class="acciones">
+                        <img src="./Recursos/visualizarVector.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalMisAvisos">
+                        <img src="./Recursos/basura.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalBorrarAviso">
+                    </td>
                 </tr>
-                
-                <tr class="filas">
+
+                <tr>
+                    <td class="tipos"><img src="./Recursos/pregunta.png" alt="" width="35" height="35"></td>
                     <td class="fechas">10/10/2021</td>
                     <td>Propongo cambiar el diseño de la web a un modelo responsive para que se pueda visualizar en el móvil...</td>
-                    <td class="tipos"><img src="./Recursos/pregunta.png" alt="" width="35" height="35"></td>
-                    <td class="tecnicos">Aitor Tilla</td>
+                    <td class="acciones">
+                        <img src="./Recursos/visualizarVector.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalMisAvisos">
+                        <img src="./Recursos/basura.svg" alt="" width="35" height="35">
+                    </td>
                 </tr>
-                
+
                 <tr>
+                    <td class="tipos"><img src="./Recursos/ok.png" alt="" width="35" height="35"></td>
                     <td class="fechas">05/01/2021</td>
                     <td>Feliz año a todos vosotros por el buen trabajo realizado y las atenciones recibidas...</td>
-                    <td class="tipos"><img src="./Recursos/ok.png" alt="" width="35" height="35"></td>
-                    <td class="tecnicos">Felipe Lotas</td>
+                    <td class="acciones">
+                        <img src="./Recursos/visualizarVector.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalMisAvisos">
+                        <img src="./Recursos/basura.svg" alt="" width="35" height="35">
+                    </td>
                 </tr>
             </table>
         </div>
-        
+
+        <!-- Modal para visaulaizar aviso -->
+        <div class="modal fade" id="modalMisAvisos">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <!-- cabecera del diálogo -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Felipe Lotas</h4>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <!-- cuerpo del diálogo -->
+                    <div class="modal-body">
+                        <div class="subEncabezadoModal d-flex justify-content-between">
+                            <div><h5>Fecha: 12/10/2021</h5></div>
+                            <div><h5>Aviso nº<i>202101020001</i>: <label class="badge rounded-pill pildora">Sugerencia</label></h5></div>
+                        </div>
+                        <div class="comunicacionesModal"><h4>🔹<strong> Comunicaciones: </strong>Correo electrónico</h4></div>
+                        <div class="perfilModal"><h4>🔹<strong> Perfil: </strong>PDI</h4></div>
+                        <div class="observacionesModal">
+                            <h4>🔹<strong> Observaciones:</strong></h4>
+                            <div class="contenidoObservacion">
+                                He solicitado una nueva cuenta de correo electrónico para mi departamento pero no he recibido todavía ninguna respuesta. Por favor es urgente que dispongamos de esa cuenta genérica lo antes posible ya que en breve celebraremos el II Congreso de ciberseguridad y necesitamos esa cuenta para centralizar peticiones. Muchas Gracias.
+                            </div>
+                        </div>
+                        <div class="comentariosModal">
+                            <h4>🔸<strong> Comentarios del Técnico:</strong></h4>
+                            <div class="contenidoComentario">
+                                La cuenta ha sido creada. A partir de ahora podéis utilizar la cuenta ciberseguridad.ii@ucm.es La clave de entrada es 121345. Recordad cambiarla la primera vez que entréis. Gracias por utilizar este servicio.
+                            </div>
+                        </div>
+                        <div class="avisoEliminadoModal">
+                            <h4>🔸<strong> Comentarios del Técnico:</strong></h4>
+                            <div class="contenidoComentarioBorrado">
+                                Este aviso ha sido eliminado por el técnico Aitor Tilla debido a:
+                                <br>
+                                "La cuenta de correo que se solicita no cuenta con los permisos del Departamento correspondiente."
+                            </div>
+                        </div>          
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para eliminar aviso -->
+        <div class="modal fade" id="modalBorrarAviso">
+            <div class="modal-dialog modal-sm modal-dialog-centered">
+                <div class="modal-content">
+                    <!-- cabecera del diálogo -->
+                    <div class="modal-header borrarborde">
+                    <h4 class="modal-title">⚠ Eliminar Aviso</h4>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+            
+                    <!-- cuerpo del diálogo -->
+                    <div class="modal-body">
+                        ¿Está seguro que quieres eliminarlo?
+                    </div>
+            
+                    <!-- pie del diálogo -->
+                    <div class="modal-footer borrarborde">
+                        <button type="button" class="btn btnCancelarBorrado" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btnEliminarAviso" data-bs-dismiss="modal">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div> 
     </body>
 
-    <script>
-        function marcarNegrita(txt, boton) {
-        if (boton == 'b1') {
-            document.getElementById("b1").bold;
-        }
-        else {
-            document.getElementById("b1").style.textDecoration = none;
-        }
-    }
-    </script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
 
 </html>

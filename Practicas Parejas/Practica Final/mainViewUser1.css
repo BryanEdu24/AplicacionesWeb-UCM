@@ -127,10 +127,6 @@ td {
     width: 20vh;
 }
 
-.tipos {
-    width: 10vh;
-}
-
 .fechas {
     border-right: gainsboro 2px solid;
 }
@@ -138,8 +134,99 @@ td {
 .tipos {
     border-right: gainsboro 2px solid;
     border-left: gainsboro 2px solid;
+    width: 10vh;
 }
 
-.filas {
+.tecnicos {
+    border-left: gainsboro 2px solid;    
+}
+
+tr {
     border-bottom: gainsboro 2px solid;
+}
+
+tr:last-child {
+    border: 0;
+}
+
+.modal {
+    background-color: #2e4b8185;
+    backdrop-filter: blur(8px);
+}
+
+.modal-content {
+    background-color: #343a40;
+    color: white;
+    border-radius: 20px;
+}
+
+.pildora {
+    background-color: PaleGoldenrod;
+    color: black;
+}
+
+.comunicacionesModal {
+    background-color: lightcyan;
+    color: black;
+    border-radius: 5px;
+    padding-left: 1.5%;
+    padding: 0.5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.perfilModal {
+    background-color: lightcyan;
+    color: black;
+    border-radius: 5px;
+    padding-left: 1.5%;
+    padding: 0.5%;
+    margin-bottom: 1%;
+}
+
+.observacionesModal {
+    background-color: lightcyan;
+    color: black;
+    border-radius: 5px;
+    padding-left: 1.5%;
+    padding: 0.5%;
+    margin-bottom: 1%;
+}
+
+.contenidoObservacion {
+    border-radius: 5px;
+    margin-left: 5%;
+    margin-right: 2%;
+    margin-bottom: 1%;
+}
+
+.comentariosModal {
+    background-color: lightcyan;
+    color: black;
+    border-radius: 5px;
+    padding-left: 1.5%;
+    padding: 0.5%;
+    margin-bottom: 1%;
+}
+
+.contenidoComentario {
+    border-radius: 5px;
+    margin-left: 5%;
+    margin-right: 2%;
+    margin-bottom: 1%;
+}
+
+.avisoEliminadoModal {
+    background-color: lightcyan;
+    color: black;
+    border-radius: 5px;
+    padding-left: 1.5%;
+    padding: 0.5%;
+}
+
+.contenidoComentarioBorrado {
+    border-radius: 5px;
+    margin-left: 5%;
+    margin-right: 2%;
+    margin-bottom: 1%;
 }

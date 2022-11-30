@@ -40,9 +40,10 @@
 
                         <% let mensaje = getandClearFlash(); %>
                         <% if (mensaje) { %>
-                            <div class="alert text-center alert-simple alert-danger mt-4" role="alert" data-brk-library="component__alert">
+                            <div class="alert text-center alert-simple alert-danger alert-dismissible fade show mt-4" role="alert" data-brk-library="component__alert">
                                 <i class="fa fa-exclamation-triangle"></i>
                                 <%= mensaje %>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         <% } %>
 
@@ -74,6 +75,7 @@
                 }
            })
         });
-   </script>
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>  
 
 </html>
