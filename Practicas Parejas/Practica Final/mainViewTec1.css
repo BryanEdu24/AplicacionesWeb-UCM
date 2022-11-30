@@ -152,6 +152,7 @@ td {
 }
 
 .tipos {
+    border-right: gainsboro 2px solid;
     width: 10vh;
 }
 
@@ -159,14 +160,128 @@ td {
     border-right: gainsboro 2px solid;
 }
 
-.tipos {
-    border-right: gainsboro 2px solid;
-}
-
 .acciones {
     border-left: gainsboro 2px solid;    
 }
 
-.filas {
+tr {
     border-bottom: gainsboro 2px solid;
+}
+
+tr:last-child {
+    border: 0;
+}
+
+.modal {
+    background-color: #2e4b8185;
+    backdrop-filter: blur(8px);
+    border: 0;
+}
+
+.modal-content {
+    background-color: #343a40;
+    color: white;
+    border-radius: 20px;
+}
+
+.pildora {
+    background-color: PaleGoldenrod;
+    color: black;
+}
+
+.comunicacionesModal {
+    background-color: lightcyan;
+    color: black;
+    border-radius: 5px;
+    padding-left: 1.5%;
+    padding: 0.5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.perfilModal {
+    background-color: lightcyan;
+    color: black;
+    border-radius: 5px;
+    padding-left: 1.5%;
+    padding: 0.5%;
+    margin-bottom: 1%;
+}
+
+.observacionesModal {
+    background-color: lightcyan;
+    color: black;
+    border-radius: 5px;
+    padding-left: 1.5%;
+    padding: 0.5%;
+    margin-bottom: 1%;
+}
+
+.contenidoObservacion {
+    border-radius: 5px;
+    margin-left: 5%;
+    margin-right: 2%;
+    margin-bottom: 1%;
+}
+
+.asignarTecnicoModal {
+    background-color: lightcyan;
+    color: black;
+    border-radius: 5px;
+    padding-left: 1.5%;
+    padding: 0.5%;
+    margin-bottom: 1%;
+}
+
+.contenidoAsignacion {
+    border-radius: 5px;
+    margin-left: 5%;
+    margin-right: 2%;
+}
+
+select {
+    background-color: cornsilk;
+    border: 0;
+    border-radius: 5px;
+    border-bottom: solid darkgray;
+    padding: 1%;
+    width: 30vh;
+}
+
+.btnAsignarTecnico {
+    background-color: SeaGreen;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    padding: 1%;
+    font-size: 18px;
+}
+
+.btnAsignarTecnico:hover {
+    background-color: darkgreen;
+    color: white;
+}
+
+.borrarborde {
+    border-top: none;
+}
+
+.btnCancelarBorrado {
+    background-color: crimson;
+    color: white;
+}
+
+.btnCancelarBorrado:hover {
+    background-color: lightcoral;
+    color: black;
+}
+
+.btnEliminarAviso {
+    background-color: dodgerblue;
+    color: white;
+}
+
+.btnEliminarAviso:hover {
+    background-color: skyblue;
+    color: black;
 }
