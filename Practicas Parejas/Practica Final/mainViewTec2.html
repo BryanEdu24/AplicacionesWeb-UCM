@@ -116,7 +116,7 @@
             </table>
         </div>
 
-        <!-- Modal para visaulaizar aviso -->
+        <!-- Modal para visualizar aviso -->
         <div class="modal fade" id="modalMisAvisos">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
@@ -132,26 +132,23 @@
                             <div><h5>Fecha: 12/10/2021</h5></div>
                             <div><h5>Aviso nº<i>202101020001</i>: <label class="badge rounded-pill pildora">Sugerencia</label></h5></div>
                         </div>
-                        <div class="comunicacionesModal"><h4>🔹<strong> Comunicaciones: </strong>Correo electrónico</h4></div>
-                        <div class="perfilModal"><h4>🔹<strong> Perfil: </strong>PDI</h4></div>
+                        <div class="comunicacionesModal"><h5>🔹<strong> Comunicaciones: </strong>Correo electrónico</h5></div>
+                        <div class="perfilModal"><h5>🔹<strong> Perfil: </strong>PDI</h5></div>
                         <div class="observacionesModal">
-                            <h4>🔹<strong> Observaciones:</strong></h4>
+                            <h5>🔹<strong> Observaciones:</strong></h5>
                             <div class="contenidoObservacion">
                                 He solicitado una nueva cuenta de correo electrónico para mi departamento pero no he recibido todavía ninguna respuesta. Por favor es urgente que dispongamos de esa cuenta genérica lo antes posible ya que en breve celebraremos el II Congreso de ciberseguridad y necesitamos esa cuenta para centralizar peticiones. Muchas Gracias.
                             </div>
                         </div>
                         <div class="comentariosModal">
-                            <h4>🔸<strong> Comentarios del Técnico:</strong></h4>
-                            <div class="contenidoComentario">
-                                La cuenta ha sido creada. A partir de ahora podéis utilizar la cuenta ciberseguridad.ii@ucm.es La clave de entrada es 121345. Recordad cambiarla la primera vez que entréis. Gracias por utilizar este servicio.
+                            <h5>🔸<strong> Comentarios del Técnico:</strong></h5>
+                            <div class="contenidoComentario col-auto">
+                                <textarea name="commentTec" class="form-control commentTec" rows="4"  placeholder="Escriba una respuesta al aviso..."></textarea>
                             </div>
-                        </div>
-                        <div class="avisoEliminadoModal">
-                            <h4>🔸<strong> Este aviso ha sido eliminado por el técnico Aitor Tilla debido a:</strong></h4>
-                            <div class="contenidoComentarioBorrado">
-                                "La cuenta de correo que se solicita no cuenta con los permisos del Departamento correspondiente."
+                            <div class="text-end me-3">
+                                <button type="submit" class="btnFinAviso">Finalizar Aviso</button>
                             </div>
-                        </div>          
+                        </div>    
                     </div>
                 </div>
             </div>
@@ -163,7 +160,7 @@
                 <div class="modal-content">
                     <!-- cabecera del diálogo -->
                     <div class="modal-header borrarborde">
-                    <h4 class="modal-title">⚠ Eliminar Aviso</h4>
+                    <h4 class="modal-title">⚠Eliminar Aviso</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                     </div>
             

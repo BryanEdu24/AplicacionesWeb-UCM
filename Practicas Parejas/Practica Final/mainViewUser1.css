@@ -119,7 +119,10 @@ th {
 
 td {
     background-color: thistle;
-    padding: 0.5%;
+}
+
+td:first-child {
+    padding: 1%;
 }
 
 .fechas, .tipos, .tecnicos {
@@ -206,22 +209,12 @@ tr:last-child {
     border-radius: 5px;
     padding-left: 1.5%;
     padding: 0.5%;
-    margin-bottom: 1%;
 }
 
 .contenidoComentario {
     border-radius: 5px;
     margin-left: 5%;
     margin-right: 2%;
-    margin-bottom: 1%;
-}
-
-.avisoEliminadoModal {
-    background-color: lightcyan;
-    color: black;
-    border-radius: 5px;
-    padding-left: 1.5%;
-    padding: 0.5%;
 }
 
 .contenidoComentarioBorrado {

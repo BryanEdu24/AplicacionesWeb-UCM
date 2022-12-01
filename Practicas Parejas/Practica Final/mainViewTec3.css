@@ -143,7 +143,10 @@ th {
 
 td {
     background-color: thistle;
-    padding: 0.5%;
+}
+
+td:first-child {
+    padding: 1%;
 }
 
 .fechas, .tipos, .acciones {

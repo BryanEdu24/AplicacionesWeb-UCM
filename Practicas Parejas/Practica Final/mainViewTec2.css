@@ -143,7 +143,10 @@ th {
 
 td {
     background-color: thistle;
-    padding: 0.5%;
+}
+
+td:first-child {
+    padding: 1%;
 }
 
 .fechas, .tipos, .acciones {
@@ -168,7 +171,11 @@ tr {
     border-bottom: gainsboro 2px solid;
 }
 
-tr:last-child {
+tr:last-child  {
+    border: 0;
+}
+
+tr:first-child {
     border: 0;
 }
 
@@ -235,24 +242,17 @@ tr:last-child {
 
 .contenidoComentario {
     border-radius: 5px;
-    margin-left: 5%;
+    margin-left: 3%;
     margin-right: 2%;
     margin-bottom: 1%;
 }
 
-.avisoEliminadoModal {
-    background-color: lightcyan;
-    color: black;
+.commentTec {
+    background-color: cornsilk;
+    border: 0;
     border-radius: 5px;
-    padding-left: 1.5%;
-    padding: 0.5%;
-}
-
-.contenidoComentarioBorrado {
-    border-radius: 5px;
-    margin-left: 5%;
-    margin-right: 2%;
-    margin-bottom: 1%;
+    border-bottom: solid darkgray;
+    padding: 1%;
 }
 
 .borrarborde {
@@ -277,4 +277,18 @@ tr:last-child {
 .btnEliminarAviso:hover {
     background-color: skyblue;
     color: black;
+}
+
+.btnFinAviso {
+    background-color: SeaGreen;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    padding: 1%;
+    font-size: 18px;
+}
+
+.btnFinAviso:hover {
+    background-color: darkgreen;
+    color: white;
 }

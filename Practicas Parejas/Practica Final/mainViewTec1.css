@@ -19,7 +19,7 @@
 .search {
     height: 30%;
 }
-  
+
 .searchTerm {
     width: 45vh;
     height: 6vh;
@@ -28,7 +28,7 @@
     border-radius: 5px 0 0 5px;
     background-color: papayawhip;
 }
-  
+
 .searchButton {
     width: 8vh;
     height: 6vh;
@@ -143,7 +143,10 @@ th {
 
 td {
     background-color: thistle;
-    padding: 0.5%;
+}
+
+td:first-child {
+    padding: 1%;
 }
 
 .fechas, .tipos, .acciones {
@@ -161,14 +164,18 @@ td {
 }
 
 .acciones {
-    border-left: gainsboro 2px solid;    
+    border-left: gainsboro 2px solid;
 }
 
 tr {
     border-bottom: gainsboro 2px solid;
 }
 
-tr:last-child {
+tr:last-child  {
+    border: 0;
+}
+
+tr:first-child {
     border: 0;
 }
 
