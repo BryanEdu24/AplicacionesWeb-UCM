@@ -61,15 +61,24 @@
                 </div>
             </div>
 
-            <div class="menuOpciones">
-                <button class="botonMisAvisos" onclick="window.location.href='mainViewUser1.html'">
-                    Mis avisos
-                </button>
-
-                <button class="botonHistorialAvisos" onclick="window.location.href='mainViewUser2.html'">
-                    Historial de Avisos
-                </button>
+            <div class="menuOpciones d-flex justify-content-between">
+                <div class="d-flex">
+                    <button class="botonMisAvisos" onclick="window.location.href='mainViewUser1.html'">
+                        Mis avisos
+                    </button>
+    
+                    <button class="botonHistorialAvisos" onclick="window.location.href='mainViewUser2.html'">
+                        Historial de Avisos
+                    </button>
+                </div>
+                <div>
+                    <button class="botonMisAvisos">
+                        Nuevo Aviso
+                    </button>
+                </div>
             </div>
+
+            
 
             <table class="tablaUser2">
                 <tr>
@@ -84,7 +93,7 @@
                     <td class="fechas">12/10/2021</td>
                     <td>No puedo conectar a la red corporativa. Parece que el fallo...</td>
                     <td class="acciones">
-                        <img src="./Recursos/visualizarVector.svg" alt="" width="35" height="35">
+                        <img src="./Recursos/visualizarVector.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalHistorialAvisos">
                     </td>
                 </tr>
                 
@@ -108,5 +117,42 @@
             </table>
         </div>
         
+        <!-- Modal para visualizar aviso -->
+        <div class="modal fade" id="modalHistorialAvisos">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <!-- cabecera del diálogo -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Felipe Lotas</h4>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <!-- cuerpo del diálogo -->
+                    <div class="modal-body">
+                        <div class="subEncabezadoModal d-flex justify-content-between">
+                            <div><h5>Fecha: 12/10/2021</h5></div>
+                            <div><h5>Aviso nº<i>202101020001</i>: <label class="badge rounded-pill pildora">Sugerencia</label></h5></div>
+                        </div>
+                        <div class="comunicacionesModal"><h5>🔹<strong> Comunicaciones: </strong>Correo electrónico</h5></div>
+                        <div class="perfilModal"><h5>🔹<strong> Perfil: </strong>PDI</h5></div>
+                        <div class="observacionesModal">
+                            <h5>🔹<strong> Observaciones:</strong></h5>
+                            <div class="contenidoObservacion">
+                                He solicitado una nueva cuenta de correo electrónico para mi departamento pero no he recibido todavía ninguna respuesta. Por favor es urgente que dispongamos de esa cuenta genérica lo antes posible ya que en breve celebraremos el II Congreso de ciberseguridad y necesitamos esa cuenta para centralizar peticiones. Muchas Gracias.
+                            </div>
+                        </div>
+                        <div class="comentariosModal">
+                            <h5>🔸<strong> Comentarios del Técnico:</strong></h5>
+                            <div class="contenidoComentario">
+                                Macho solicitas los que quieras que yo estoy a punto de eliminarte la cuenta. Más te vale aprobar todo cabroncete ;)
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+
 </html>

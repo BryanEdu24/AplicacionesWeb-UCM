@@ -182,7 +182,6 @@ tr:first-child {
 .modal {
     background-color: #2e4b8185;
     backdrop-filter: blur(8px);
-    border: 0;
 }
 
 .modal-content {
@@ -269,26 +268,40 @@ select {
     color: white;
 }
 
-.borrarborde {
-    border-top: none;
-}
-
-.btnCancelarBorrado {
-    background-color: crimson;
-    color: white;
-}
-
-.btnCancelarBorrado:hover {
-    background-color: lightcoral;
+.comentariosModal {
+    background-color: lightcyan;
     color: black;
+    border-radius: 5px;
+    padding-left: 1.5%;
+    padding: 0.5%;
+    margin-bottom: 1%;
 }
 
-.btnEliminarAviso {
-    background-color: dodgerblue;
+.contenidoComentario {
+    border-radius: 5px;
+    margin-left: 3%;
+    margin-right: 2%;
+    margin-bottom: 1%;
+}
+
+.commentTec {
+    background-color: cornsilk;
+    border: 0;
+    border-radius: 5px;
+    border-bottom: solid darkgray;
+    padding: 1%;
+}
+
+.btnFinAviso {
+    background-color: SeaGreen;
     color: white;
+    border: 0;
+    border-radius: 5px;
+    padding: 1%;
+    font-size: 18px;
 }
 
-.btnEliminarAviso:hover {
-    background-color: skyblue;
-    color: black;
+.btnFinAviso:hover {
+    background-color: darkgreen;
+    color: white;
 }

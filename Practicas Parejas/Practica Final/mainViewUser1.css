@@ -65,10 +65,6 @@
     background-color: slategray;
 }
 
-/* .botonMisAvisos:current{
-    background-color: red; dejar activo el boton
-} */
-
 .botonHistorialAvisos {
     border-radius: 5px;
     padding: 0.5%;
@@ -148,7 +144,11 @@ tr {
     border-bottom: gainsboro 2px solid;
 }
 
-tr:last-child {
+tr:last-child  {
+    border: 0;
+}
+
+tr:first-child {
     border: 0;
 }
 
