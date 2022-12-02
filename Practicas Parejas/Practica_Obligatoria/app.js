@@ -30,6 +30,14 @@ const middlewareSession = session({
 // Crear una instancia de DAOUsers
 const daoU = new DAOUsers(pool);
 
+const checkContrasenias = (contrasenia, contrasenia2) => {
+  if (contrasenia.equals(contrasenia2)) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
 function mensajeFlash(request, response, next) {
   response.setFlash = (str) => {
       request.session.flashMessage = str;
@@ -46,7 +54,6 @@ function mensajeFlash(request, response, next) {
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-
 app.use(middlewareSession);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -125,33 +132,58 @@ var almacen = multer.diskStorage({
 });
 const multerFactory = multer({ storage: almacen });
 
+app.post("/procesar_formulario.html"
+        , multerFactory.single('foto'), function(request, response) {
+    let nombreFichero = null;
+    if (request.file.filename) { // Si se ha subido un fichero
+        console.log(`Nombre del fichero: ${request.file.originalname}` );
+        console.log(`Nombre del fichero2: ${request.file.filename}` );
+        console.log(`Fichero guardado en: ${request.file.path}`);
+        console.log(`Tamaño: ${request.file.size}`);
+        console.log(`Tipo de fichero: ${request.file.mimetype}`);
+        nombreFichero = request.file.originalname;
+    }
+    response.render("infoForm", {
+      correo: request.body.correo,
+      contrasenia: request.body.contrasenia,
+      nombre: request.body.NombreUsuario,
+      opcion: request.body.opciones,
+      tecnico: (request.body.tecnico === "ON" ? "SI­" : "No"),
+      numEmpleado: request.body.numEmpleado
+  });
+    
+});
+
 /* Post del register */
 app.post("/registerPost.html", 
   multerFactory.single('foto'),
   // El correo ha de ser una dirección de correo válida.
   check("correo","Dirección de correo no válida").isEmail(),
   // Comprobación de contraseña
-  check("contrasenia","La contraseña no tiene entre 8 y 16 caracteres").isLength({ min: 8, max: 16 }),
+  /* check("contrasenia","La contraseña no tiene entre 8 y 16 caracteres").isLength({ min: 8, max: 16 }),
   check("contrasenia", "Contraseña no contiene al menos un dígito").matches(/[0-9]+/),
   check("contrasenia", "Contraseña no contiene al menos una minuscula").matches(/[a-z]+/),
   check("contrasenia", "Contraseña no contiene al menos una mayuscula").matches(/[A-Z]+/),
-  check("contrasenia", "Contraseña no contiene al menos un caracter no alfanumérico").matches(/[^a-zA-Z0-9]+/),
-  /* Comprobar que ambas contraseñas son iguales */
-  // check("contrasenia", "Ambas contraseñas no coinciden").equals('contrasenia2'),
-  //Numero de empleado deberá ser 4 digitos seguidos de un guión y 3 letras minúsculas
-/*   check("numEmpleado", "Numero de empleado formato erroneo").matches(/\d{4}\-[a-z]{3}/), */
+  check("contrasenia", "Contraseña no contiene al menos un caracter no alfanumérico").matches(/[^a-zA-Z0-9]+/), */
+/*check("numEmpleado", "Numero de empleado formato erroneo").matches(/\d{4}\-[a-z]{3}/), */
   (request, response) => {
   const errors = validationResult(request);
   if (errors.isEmpty()) {
       console.log("Todo correcto");
       console.log(request.body);
-      if (request.file.filename) { // Si se ha subido un fichero
-        console.log(`Nombre del fichero: ${request.file.originalname}` );
-        console.log(`Nombre del fichero2: ${request.file.filename}` );
-        console.log(`Fichero guardado en: ${request.file.path}`);
-        console.log(`Tamaño: ${request.file.size}`);
-        console.log(`Tipo de fichero: ${request.file.mimetype}`);
+
+      if (request.file) {
+        let imagen = request.file.buffer ;
       }
+      if (request.file) {
+        if (request.file.filename) { // Si se ha subido un fichero
+          console.log(`Nombre del fichero: ${request.file.originalname}` );
+          console.log(`Nombre del fichero2: ${request.file.filename}` );
+          console.log(`Fichero guardado en: ${request.file.path}`);
+          console.log(`Tamaño: ${request.file.size}`);
+          console.log(`Tipo de fichero: ${request.file.mimetype}`);
+        }
+      }       
       response.render("infoForm", {
         correo: request.body.correo,
         contrasenia: request.body.contrasenia,
@@ -161,6 +193,8 @@ app.post("/registerPost.html",
         numEmpleado: request.body.numEmpleado
     });
   } else {
+      console.log(request.body.contrasenia);
+      console.log(request.body.contrasenia2);
       response.render("registerViewErrors", {errores: errors.array()});
   }
   response.end();
@@ -174,3 +208,4 @@ app.listen(config.portS, function(err) {
   console.log(`Servidor arrancado en el puerto ${config.portS}`);
   }
  });
+

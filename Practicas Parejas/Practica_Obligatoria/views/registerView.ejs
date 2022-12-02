@@ -16,7 +16,8 @@
 
         <div class="row justify-content-center mt-4">
             <div class="divGeneral">
-                <form method="POST" action="registerPost.html" enctype="multipart/form-data" class="Formulario col"  title="Formulario de registro">                    <div class="containerTextos">
+                <!-- enctype="multipart/form-data" -->
+                <form method="POST" action="registerPost.html" onsubmit="validate()" enctype="multipart/form-data" class="Formulario col"  title="Formulario de registro">                    <div class="containerTextos">
                         <h2 class="mb-3"><strong>Crear cuenta</strong></h2>
                         <hr style="width: 85%; margin:auto;">
                         <div class="tituloSubtitulo">
@@ -32,12 +33,12 @@
                         </div>
                         <div class="seccionPassword">
                             <img src="images/contraseniaVector.svg" height="25" width="25" alt="Contraseña" title="Simbolo contraseña">
-                            <input type="password" name="contrasenia" class="registerContrasenia1" required="true" placeholder="Establezca contraseña" title="Contraseña"/>
+                            <input type="password" name="contrasenia" id ="password" class="registerContrasenia1" required="true" placeholder="Establezca contraseña" title="Contraseña"/>
                             <span class="fa fa-fw fa-eye password-icon show-password1" title="Mostrar/Ocultar Contraseña"></soan>
                         </div>
                         <div class="seccionPassword">
                             <img src="images/contraseniaVector.svg" height="25" width="25" alt="Contraseña" title="Simbolo contraseña">
-                            <input type="password" name="contrasenia2" class="registerContrasenia2" required="true" placeholder="Repita contraseña" title="Confirmar contraseña"/>
+                            <input type="password" name="contrasenia2" id ="confirm_password" class="registerContrasenia2" required="true" placeholder="Repita contraseña" title="Confirmar contraseña"/>
                             <span class="fa fa-fw fa-eye password-icon show-password2" title="Mostrar/Ocultar Contraseña"></soan>
                         </div>
                         <div>
@@ -58,9 +59,10 @@
                             <section id="divOculto" style="display:none;">
                                 <input type="checkbox" id="checkbox" name="tecnico" value="ON" title="Usuario Técnico" onChange="esTecnico(this)">
                                 <label for="checkbox" title="Usuario Técnico"><strong>Técnico&#8195</strong></label>
-
+                                
                                 <img src="images/numEmpleadoVector.svg" height="30" width="30" alt="Identificador Técnico" title="Identificador Técnico">
-                                <input type="text" name="numEmpleado" id="numTecOculto" class="loginNumEmpleado" required="true" disabled placeholder="Número de empleado" title="Ej: 1234-xxx"/>
+                                <input type="text" name="numEmpleado" id="numTecOculto" class="loginNumEmpleado" required="true" disabled placeholder="Número de empleado" 
+                                title="Ej: 1234-xxx"/>
                             </section>
 
                         </div>
@@ -82,6 +84,14 @@
     </body>
 
     <script>
+
+    function validate(){
+        var numerEmployee = document.getElementById('numTecOculto').value;
+        var numEmpleadoRGEX = /\d{4}\-[a-z]{3}/;
+        var numEmpleadoResult = numEmpleadoRGEX.test(numerEmployee);
+        alert("Error: formato del numero de empleado, erroneo" );
+    }
+
 
         function esTecnico(sel) {
             if (sel.checked) {
@@ -108,6 +118,23 @@
                 divT.style.display = "none";
             }
         }   
+        
+        window.addEventListener("load", function() {
+            // icono para mostrar contraseña
+            showPassword1 = document.querySelector('.show-password1');
+            showPassword1.addEventListener('click', () => {
+                // elementos input de tipo clave
+                contrasenia1 = document.querySelector('.registerContrasenia1');
+
+                if (contrasenia1.type === "text") {
+                    contrasenia1.type = "password"
+                    showPassword1.classList.remove('fa-eye-slash');
+                } else {
+                    contrasenia1.type = "text"
+                    showPassword1.classList.toggle("fa-eye-slash");
+                 }
+            })
+         });
 
         window.addEventListener("load", function() {
             // icono para mostrar contraseña
@@ -126,6 +153,19 @@
             })
         });
 
+        //Comprobar que ambas contraseñas sean iguales
+        var password = document.getElementById("password");
+        var confirm_password = document.getElementById("confirm_password");
+
+        function validatePassword(){
+        if(password.value != confirm_password.value) {
+            confirm_password.setCustomValidity("Las contraseñas no coinciden");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+        }
+        password.onchange = validatePassword;
+        confirm_password.onkeyup = validatePassword;
     </script>
 
 </html>
