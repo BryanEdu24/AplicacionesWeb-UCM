@@ -5,7 +5,6 @@ const mysql = require("mysql");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const mysqlSession = require("express-mysql-session");
-
 const { check, validationResult } = require("express-validator");
 const multer = require("multer");
 
@@ -50,6 +49,7 @@ function mensajeFlash(request, response, next) {
   next();
 };
 
+const multerFactory = multer({ storage: multer.memoryStorage() });
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
@@ -79,9 +79,18 @@ app.post("/procesar_post.html", (request, response) => {
         response.status(500);
         request.session.currentUser = request.body.correo;
         response.locals.userEmail = request.body.correo;
-        response.render("index", {
-          correo: request.body.correo,
-          contrasenia: request.body.contrasenia,
+        daoU.getidUser(request.body.correo,request.body.contrasenia, function cb_geidUser(err,id){
+          if (err) {
+            console.log(err.message);
+            response.setFlash("Error interno de acceso a la base de datos");
+            response.redirect("/");
+          } else {
+              response.render("index", {
+              id: id,
+              correo: request.body.correo,
+              contrasenia: request.body.contrasenia,
+            });
+          }
         });
       }else{
         response.status(500);
@@ -93,20 +102,22 @@ app.post("/procesar_post.html", (request, response) => {
 
 
 app.get("/uploads/:id", (request, response) => {
-  response.status(400);
-  console.log("userEmail: " + request.params.id);
-  let emailUser = request.params.id;
-  daoU.getUserImageName(emailUser, function cb_getUserImageName (err, nameArchivo){
-           if(err){
-             console.log(err.message);
-           }else if (nameArchivo[0].img === null) {
-               response.sendFile(path.join(__dirname, 'public/uploads', 'usuarioAnonimo.png'));
-               
-           }else {
-            let imagen =  nameArchivo[0].img;
-            response.sendFile(path.join(__dirname, 'public/uploads', imagen));
-           }
-  }) 
+  console.log("id User: " + request.params.id);
+  let idUser = Number(request.params.id);
+  if (isNaN(idUser)) {
+    response.status(400);
+    response.end("Petición incorrecta");
+  } else{
+      daoU.getUserImageName(idUser, function cb_getUserImageName (err, nameArchivo){
+      if(err){
+        console.log(err.message);
+      }else if (nameArchivo[0].foto === null) {
+          response.sendFile(path.join(__dirname, 'public/uploads', 'usuarioAnonimo.png'));
+      }else {
+        response.end(nameArchivo[0].img);
+      }
+    }) 
+  } 
 });
 
 /* Para cerrar sesión */
@@ -121,36 +132,36 @@ app.get('/registerView.html', function(req, res, next) {
   res.render('registerView');
 });
 
-/* Carpeta de destino donde guardar imagenes */
-var almacen = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, 'public', 'uploads'));
-  },
-  filename: function (req, file, cb) {
-      cb(null, file.originalname);
-  }
-});
-const multerFactory = multer({ storage: almacen });
+
 
 app.post("/procesar_formulario.html"
         , multerFactory.single('foto'), function(request, response) {
-    let nombreFichero = null;
-    if (request.file.filename) { // Si se ha subido un fichero
-        console.log(`Nombre del fichero: ${request.file.originalname}` );
-        console.log(`Nombre del fichero2: ${request.file.filename}` );
-        console.log(`Fichero guardado en: ${request.file.path}`);
-        console.log(`Tamaño: ${request.file.size}`);
-        console.log(`Tipo de fichero: ${request.file.mimetype}`);
-        nombreFichero = request.file.originalname;
-    }
-    response.render("infoForm", {
+    console.log(request.body.numEmpleado);
+    let usuario = {
       correo: request.body.correo,
       contrasenia: request.body.contrasenia,
       nombre: request.body.NombreUsuario,
       opcion: request.body.opciones,
-      tecnico: (request.body.tecnico === "ON" ? "SI­" : "No"),
-      numEmpleado: request.body.numEmpleado
-  });
+      tecnico: (request.body.tecnico === "ON" ? "tecnico­" : "usuario"),
+      numEmpleado: null,
+      imagen: null
+    };
+    if (request.body.numEmpleado != undefined) {
+      usuario.numEmpleado = request.body.numEmpleado;
+    }
+    console.log(usuario);
+    if (request.file) {
+      usuario.imagen= request.file.buffer ;
+    }
+    daoU.insertUser(usuario, function(err, newId) {
+        if (!err) {
+          usuario.id = newId;
+          response.redirect("/");
+          console.log("usuario ingresado correctamente");
+        }
+    });
+      
+    
     
 });
 
@@ -175,15 +186,7 @@ app.post("/registerPost.html",
       if (request.file) {
         let imagen = request.file.buffer ;
       }
-      if (request.file) {
-        if (request.file.filename) { // Si se ha subido un fichero
-          console.log(`Nombre del fichero: ${request.file.originalname}` );
-          console.log(`Nombre del fichero2: ${request.file.filename}` );
-          console.log(`Fichero guardado en: ${request.file.path}`);
-          console.log(`Tamaño: ${request.file.size}`);
-          console.log(`Tipo de fichero: ${request.file.mimetype}`);
-        }
-      }       
+          
       response.render("infoForm", {
         correo: request.body.correo,
         contrasenia: request.body.contrasenia,

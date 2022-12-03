@@ -17,7 +17,7 @@
         <div class="row justify-content-center mt-4">
             <div class="divGeneral">
                 <!-- enctype="multipart/form-data" -->
-                <form method="POST" action="registerPost.html" onsubmit="validate()" enctype="multipart/form-data" class="Formulario col"  title="Formulario de registro">                    <div class="containerTextos">
+                <form method="POST" action="procesar_formulario.html" onsubmit="validate()" enctype="multipart/form-data" class="Formulario col"  title="Formulario de registro">                    <div class="containerTextos">
                         <h2 class="mb-3"><strong>Crear cuenta</strong></h2>
                         <hr style="width: 85%; margin:auto;">
                         <div class="tituloSubtitulo">
@@ -85,12 +85,13 @@
 
     <script>
 
-    function validate(){
+    /* function validate(){
         var numerEmployee = document.getElementById('numTecOculto').value;
         var numEmpleadoRGEX = /\d{4}\-[a-z]{3}/;
-        var numEmpleadoResult = numEmpleadoRGEX.test(numerEmployee);
+        var numEmpleadoResult = numEmpleadoRGEX
+        .test(numerEmployee);
         alert("Error: formato del numero de empleado, erroneo" );
-    }
+    } */
 
 
         function esTecnico(sel) {

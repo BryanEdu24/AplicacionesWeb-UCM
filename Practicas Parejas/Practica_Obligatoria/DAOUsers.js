@@ -5,6 +5,35 @@ class DAOUsers {
         this.pool = pool;
     }
 
+    getidUser(email,password,callback){
+        this.pool.getConnection(function (err,connection){
+            if (err) {
+                callback(new Error("Error de conexión a la base de datos"));
+            }
+            else {
+                console.log(email);
+                console.log(password);
+                connection.query(" SELECT id FROM personas WHERE email = ? AND password = ?" ,
+                    [email,password], 
+                    function(err, id) {
+                        connection.release(); // devolver al pool la conexión
+                        if (err) {
+                            callback(new Error("Error de acceso a la base de datos"));
+                        }
+                        else{
+                            if (id.length === 0) {
+                                callback(null, false); //no está el usuario con el password proporcionado
+                            }
+                            else {
+                                callback(null, id[0].id);
+                            } 
+                        }
+                    });
+            }
+        });
+    }
+    
+
     isUserCorrect(email,password,callback){
         this.pool.getConnection(function (err,connection){
             if (err) {
@@ -13,7 +42,7 @@ class DAOUsers {
             else {
                 console.log(email);
                 console.log(password);
-                connection.query(" SELECT * FROM usuarios WHERE email = ? AND password = ?" ,
+                connection.query(" SELECT * FROM personas WHERE email = ? AND password = ?" ,
                     [email,password], 
                     function(err, rows) {
                         connection.release(); // devolver al pool la conexión
@@ -38,15 +67,15 @@ class DAOUsers {
         });
     }
 
-    getUserImageName(email,callback){
+    getUserImageName(idUser,callback){
         let nameFile;
         this.pool.getConnection(function(err,connection){
             if (err) {
                 callback(new Error("Error de conexión a la base de datos"));
             }
             else {
-                connection.query("SELECT U.img FROM usuarios AS U WHERE email = ?",
-                    [email],
+                connection.query("SELECT U.img FROM personas AS U WHERE id = ?",
+                    [idUser],
                     function(err, img){
                         connection.release(); //devolver la conexión a pool
                         if(err){
@@ -66,6 +95,23 @@ class DAOUsers {
             }
         });
     }
+
+    insertUser(usuario, callback) {
+       this.pool.getConnection(function(err, connection) {
+            if (err)    callback(new Error("Error de conexión a la base de datos"));
+            else {
+                let sql =
+                "INSERT INTO personas(nombre, email, password, rol, numEmpleado, Foto) VALUES (?, ?, ?, ?, ?, ?)";
+                connection.query(sql, [usuario.nombre, usuario.correo,
+                usuario.contrasenia, usuario.tecnico, usuario.numEmpleado, usuario.imagen],
+                function(err, result) {
+                    connection.release();
+                    if (err)    callback(new Error("Error a la hora de hacer la insercción"));
+                    else    callback(null, result.insertId);
+                });
+            }
+        });
+        }
 }
 
 module.exports = DAOUsers;
