@@ -80,6 +80,37 @@
     background-color: slategray;
 }
 
+.float{
+	position:fixed;
+	width:11vh;
+	height:11vh;
+	bottom:4vh;
+	right:5vh;
+    background-color: midnightblue;
+	border-radius: 50px;
+	text-align:center;
+	box-shadow: 2px 2px 2px black;
+    border: 0;
+}
+
+.float:hover {
+	position:fixed;
+	width:11vh;
+	height:11vh;
+	bottom:4.5vh;
+	right:5.5vh;
+    background-color: dimgrey;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 3px 3px 3px 3px black;
+    border: 0;
+}
+
+.btnFlotante {
+    width: 7vh;
+    height: 7vh; 
+}
+
 .tablaUser2 {
     background-color: midnightblue;
     border-radius: 10px;
@@ -218,4 +249,56 @@ tr:first-child {
     margin-left: 3%;
     margin-right: 2%;
     margin-bottom: 1%;
+}
+
+.comunicacionesModal {
+    background-color: lightcyan;
+    color: black;
+    border-radius: 5px;
+    padding-left: 1.5%;
+    padding: 0.5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.animacionRadioBtn{
+    border-radius: 15px;
+    padding: 1%;
+    color:black;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    background-image: linear-gradient(to left, transparent, transparent 50%, Navy 50%, SlateBlue);
+    background-position: 100% 0;
+    background-size: 200% 100%;
+    transition: all .15s ease-in;
+}
+
+.animacionRadioBtn:hover{
+    background-position: 0 0;
+    color: white;
+}
+
+.comentariosModal {
+    background-color: lightcyan;
+    color: black;
+    border-radius: 5px;
+    padding-left: 1.5%;
+    padding: 0.5%;
+    margin-bottom: 1%;
+}
+
+.contenidoComentario {
+    border-radius: 5px;
+    margin-left: 3%;
+    margin-right: 2%;
+    margin-bottom: 1%;
+}
+
+.commentTec {
+    background-color: cornsilk;
+    border: 0;
+    border-radius: 5px;
+    border-bottom: solid darkgray;
+    padding: 1%;
 }
