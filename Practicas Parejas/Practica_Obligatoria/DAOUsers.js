@@ -5,35 +5,6 @@ class DAOUsers {
         this.pool = pool;
     }
 
-    getidUser(email,password,callback){
-        this.pool.getConnection(function (err,connection){
-            if (err) {
-                callback(new Error("Error de conexión a la base de datos"));
-            }
-            else {
-                console.log(email);
-                console.log(password);
-                connection.query(" SELECT id FROM personas WHERE email = ? AND password = ?" ,
-                    [email,password], 
-                    function(err, id) {
-                        connection.release(); // devolver al pool la conexión
-                        if (err) {
-                            callback(new Error("Error de acceso a la base de datos"));
-                        }
-                        else{
-                            if (id.length === 0) {
-                                callback(null, false); //no está el usuario con el password proporcionado
-                            }
-                            else {
-                                callback(null, id[0].id);
-                            } 
-                        }
-                    });
-            }
-        });
-    }
-    
-
     isUserCorrect(email,password,callback){
         this.pool.getConnection(function (err,connection){
             if (err) {
@@ -47,19 +18,14 @@ class DAOUsers {
                     function(err, rows) {
                         connection.release(); // devolver al pool la conexión
                         if (err) {
-                            /* console.log(email);
-                            console.log(password);
-                            console.log(pool); */
                             callback(new Error("Error de acceso a la base de datos"));
                         }
                         else{
                             if (rows.length === 0) {
-                                
-                                callback(null, false); //no está el usuario con el password proporcionado
-
+                                callback(null, false, null); //no está el usuario con el password proporcionado
                             }
                             else {
-                                callback(null, true);
+                                callback(null, true, rows[0].id);
                             } 
                         }
                     });
@@ -74,7 +40,7 @@ class DAOUsers {
                 callback(new Error("Error de conexión a la base de datos"));
             }
             else {
-                connection.query("SELECT U.img FROM personas AS U WHERE id = ?",
+                connection.query("SELECT U.foto FROM personas AS U WHERE id = ?",
                     [idUser],
                     function(err, img){
                         connection.release(); //devolver la conexión a pool

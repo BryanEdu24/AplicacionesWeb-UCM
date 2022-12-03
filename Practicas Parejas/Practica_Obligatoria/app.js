@@ -65,12 +65,10 @@ app.use(mensajeFlash);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-
-
 /* Post de iniciar sesión */
 app.post("/procesar_post.html", (request, response) => {
   daoU.isUserCorrect(request.body.correo, 
-    request.body.contrasenia, function cb_isUserCorrect(err, ok){
+    request.body.contrasenia, function cb_isUserCorrect(err, ok, id){
       if (err){
         console.log(err.message);
         response.setFlash("Error interno de acceso a la base de datos");
@@ -79,19 +77,11 @@ app.post("/procesar_post.html", (request, response) => {
         response.status(500);
         request.session.currentUser = request.body.correo;
         response.locals.userEmail = request.body.correo;
-        daoU.getidUser(request.body.correo,request.body.contrasenia, function cb_geidUser(err,id){
-          if (err) {
-            console.log(err.message);
-            response.setFlash("Error interno de acceso a la base de datos");
-            response.redirect("/");
-          } else {
-              response.render("index", {
-              id: id,
-              correo: request.body.correo,
-              contrasenia: request.body.contrasenia,
-            });
-          }
-        });
+        response.render("index", {
+          id: id,
+          correo: request.body.correo,
+          contrasenia: request.body.contrasenia,
+          });
       }else{
         response.status(500);
         response.setFlash("Usuario y/o contraseña incorrectos");
@@ -100,8 +90,52 @@ app.post("/procesar_post.html", (request, response) => {
     });
 });
 
+/* Post del register */
+app.post("/registerPost.html", 
+  multerFactory.single('foto'),
+  // El correo ha de ser una dirección de correo válida.
+  check("correo","Dirección de correo no válida").isEmail(),
+  // Comprobación de contraseña
+  // check("contrasenia","La contraseña no tiene entre 8 y 16 caracteres").isLength({ min: 8, max: 16 }),
+/*   check("contrasenia", "Contraseña no contiene al menos un dígito").matches(/[0-9]+/),
+  check("contrasenia", "Contraseña no contiene al menos una minuscula").matches(/[a-z]+/),
+  check("contrasenia", "Contraseña no contiene al menos una mayuscula").matches(/[A-Z]+/),
+  check("contrasenia", "Contraseña no contiene al menos un caracter no alfanumérico").matches(/[^a-zA-Z0-9]+/), */
+  (request, response) => {
+  const errors = validationResult(request);
+  if (errors.isEmpty()) {
+      console.log("Todo correcto");
+      let usuario = {
+        correo: request.body.correo,
+        contrasenia: request.body.contrasenia,
+        nombre: request.body.NombreUsuario,
+        opcion: request.body.opciones,
+        tecnico: (request.body.tecnico === "ON" ? "tecnico­" : "usuario"),
+        numEmpleado: null,
+        imagen: null
+      };
+      if (request.body.numEmpleado != undefined) {
+        usuario.numEmpleado = request.body.numEmpleado;
+      }
+      console.log(usuario);
+      if (request.file) {
+        usuario.imagen= request.file.buffer ;
+      }
+      daoU.insertUser(usuario, function(err, newId) {
+          if (!err) {
+            usuario.id = newId;
+            response.redirect("/");
+            console.log("usuario ingresado correctamente");
+          }
+      });
+  } else {
+      response.render("registerViewErrors", {errores: errors.array()});
+  }
+  response.end();
+});
 
-app.get("/uploads/:id", (request, response) => {
+/* Conseguir imagen del usuario por BD */
+app.get("/images/:id", (request, response) => {
   console.log("id User: " + request.params.id);
   let idUser = Number(request.params.id);
   if (isNaN(idUser)) {
@@ -112,9 +146,9 @@ app.get("/uploads/:id", (request, response) => {
       if(err){
         console.log(err.message);
       }else if (nameArchivo[0].foto === null) {
-          response.sendFile(path.join(__dirname, 'public/uploads', 'usuarioAnonimo.png'));
+          response.sendFile(path.join(__dirname, 'public/images', 'usuarioAnonimo.png'));
       }else {
-        response.end(nameArchivo[0].img);
+        response.end(nameArchivo[0].foto);
       }
     }) 
   } 
@@ -126,82 +160,7 @@ app.get("/logOut.html", (request, response) => {
   response.redirect("/");
 });
 
-// app.use('/registerView.html', registerRouter);
-/* Renderizar la página de registrarse */
-app.get('/registerView.html', function(req, res, next) {
-  res.render('registerView');
-});
 
-
-
-app.post("/procesar_formulario.html"
-        , multerFactory.single('foto'), function(request, response) {
-    console.log(request.body.numEmpleado);
-    let usuario = {
-      correo: request.body.correo,
-      contrasenia: request.body.contrasenia,
-      nombre: request.body.NombreUsuario,
-      opcion: request.body.opciones,
-      tecnico: (request.body.tecnico === "ON" ? "tecnico­" : "usuario"),
-      numEmpleado: null,
-      imagen: null
-    };
-    if (request.body.numEmpleado != undefined) {
-      usuario.numEmpleado = request.body.numEmpleado;
-    }
-    console.log(usuario);
-    if (request.file) {
-      usuario.imagen= request.file.buffer ;
-    }
-    daoU.insertUser(usuario, function(err, newId) {
-        if (!err) {
-          usuario.id = newId;
-          response.redirect("/");
-          console.log("usuario ingresado correctamente");
-        }
-    });
-      
-    
-    
-});
-
-/* Post del register */
-app.post("/registerPost.html", 
-  multerFactory.single('foto'),
-  // El correo ha de ser una dirección de correo válida.
-  check("correo","Dirección de correo no válida").isEmail(),
-  // Comprobación de contraseña
-  /* check("contrasenia","La contraseña no tiene entre 8 y 16 caracteres").isLength({ min: 8, max: 16 }),
-  check("contrasenia", "Contraseña no contiene al menos un dígito").matches(/[0-9]+/),
-  check("contrasenia", "Contraseña no contiene al menos una minuscula").matches(/[a-z]+/),
-  check("contrasenia", "Contraseña no contiene al menos una mayuscula").matches(/[A-Z]+/),
-  check("contrasenia", "Contraseña no contiene al menos un caracter no alfanumérico").matches(/[^a-zA-Z0-9]+/), */
-/*check("numEmpleado", "Numero de empleado formato erroneo").matches(/\d{4}\-[a-z]{3}/), */
-  (request, response) => {
-  const errors = validationResult(request);
-  if (errors.isEmpty()) {
-      console.log("Todo correcto");
-      console.log(request.body);
-
-      if (request.file) {
-        let imagen = request.file.buffer ;
-      }
-          
-      response.render("infoForm", {
-        correo: request.body.correo,
-        contrasenia: request.body.contrasenia,
-        nombre: request.body.NombreUsuario,
-        opcion: request.body.opciones,
-        tecnico: (request.body.tecnico === "ON" ? "SI­" : "No"),
-        numEmpleado: request.body.numEmpleado
-    });
-  } else {
-      console.log(request.body.contrasenia);
-      console.log(request.body.contrasenia2);
-      response.render("registerViewErrors", {errores: errors.array()});
-  }
-  response.end();
-});
 
 app.listen(config.portS, function(err) {
   if (err) {
