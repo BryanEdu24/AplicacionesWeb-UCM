@@ -2,7 +2,6 @@ const config = require("./config");
 const express = require("express");
 const path = require("path");
 const mysql = require("mysql");
-const bodyParser = require("body-parser");
 const session = require("express-session");
 const mysqlSession = require("express-mysql-session");
 const { check, validationResult } = require("express-validator");
@@ -74,7 +73,6 @@ app.post("/procesar_post.html", (request, response) => {
         response.setFlash("Error interno de acceso a la base de datos");
         response.redirect("/");
       }else if (ok){
-        response.status(500);
         request.session.currentUser = request.body.correo;
         response.locals.userEmail = request.body.correo;
         response.render("index", {
