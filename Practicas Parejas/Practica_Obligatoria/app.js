@@ -129,7 +129,6 @@ app.post("/registerPost.html",
   } else {
       response.render("registerViewErrors", {errores: errors.array()});
   }
-  response.end();
 });
 
 /* Conseguir imagen del usuario por BD */

@@ -69,7 +69,7 @@ class DAOUsers {
                 let sql =
                 "INSERT INTO personas(nombre, email, password, rol, numEmpleado, Foto) VALUES (?, ?, ?, ?, ?, ?)";
                 connection.query(sql, [usuario.nombre, usuario.correo,
-                usuario.contrasenia, usuario.tecnico, usuario.numEmpleado, usuario.imagen],
+                usuario.contrasenia, usuario.opcion, usuario.numEmpleado, usuario.imagen],
                 function(err, result) {
                     connection.release();
                     if (err)    callback(new Error("Error a la hora de hacer la insercción"));
