@@ -19,7 +19,7 @@
 .search {
     height: 30%;
 }
-  
+
 .searchTerm {
     width: 45vh;
     height: 6vh;
@@ -28,7 +28,7 @@
     border-radius: 5px 0 0 5px;
     background-color: papayawhip;
 }
-  
+
 .searchButton {
     width: 8vh;
     height: 6vh;
@@ -78,37 +78,6 @@
     padding: 0.5%;
     color: white;
     background-color: slategray;
-}
-
-.float{
-	position:fixed;
-	width:11vh;
-	height:11vh;
-	bottom:4vh;
-	right:5vh;
-    background-color: midnightblue;
-	border-radius: 50px;
-	text-align:center;
-	box-shadow: 2px 2px 2px black;
-    border: 0;
-}
-
-.float:hover {
-	position:fixed;
-	width:11vh;
-	height:11vh;
-	bottom:4.5vh;
-	right:5.5vh;
-    background-color: dimgrey;
-	border-radius:50px;
-	text-align:center;
-	box-shadow: 3px 3px 3px 3px black;
-    border: 0;
-}
-
-.btnFlotante {
-    width: 7vh;
-    height: 7vh; 
 }
 
 .tablaUser2 {
@@ -251,6 +220,37 @@ tr:first-child {
     margin-bottom: 1%;
 }
 
+.float{
+	position:fixed;
+	width:11vh;
+	height:11vh;
+	bottom:4vh;
+	right:5vh;
+    background-color: midnightblue;
+	border-radius: 50px;
+	text-align:center;
+	box-shadow: 2px 2px 2px black;
+    border: 0;
+}
+
+.float:hover {
+	position:fixed;
+	width:11vh;
+	height:11vh;
+	bottom:4.5vh;
+	right:5.5vh;
+    background-color: dimgrey;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 3px 3px 3px 3px black;
+    border: 0;
+}
+
+.btnFlotante {
+    width: 7vh;
+    height: 7vh;
+}
+
 .comunicacionesModal {
     background-color: lightcyan;
     color: black;
@@ -285,14 +285,12 @@ tr:first-child {
     border-radius: 5px;
     padding-left: 1.5%;
     padding: 0.5%;
-    margin-bottom: 1%;
 }
 
 .contenidoComentario {
     border-radius: 5px;
     margin-left: 3%;
     margin-right: 2%;
-    margin-bottom: 1%;
 }
 
 .commentTec {
@@ -301,4 +299,119 @@ tr:first-child {
     border-radius: 5px;
     border-bottom: solid darkgray;
     padding: 1%;
+}
+
+.borrarborde {
+    border-top: none;
+    margin-top: -3vh;
+}
+
+.btnCancelarNuevoAviso {
+    background-color: crimson;
+    color: white;
+    width: 13vh;
+    text-align: center;
+}
+
+.btnCancelarNuevoAviso:hover {
+    background-color: lightcoral;
+    color: black;
+}
+
+.btnNuevoAviso {
+    background-color: dodgerblue;
+    color: white;
+    width: 13vh;
+    text-align: center;
+}
+
+.btnNuevoAviso:hover {
+    background-color: skyblue;
+    color: black;
+}
+
+.fotoSuperpuesta {
+    position: relative;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+    top: -10vh;
+}
+
+.fotoPerfilModal {
+    background-color: white;
+    border: 3px solid #252525;
+}
+
+.nameModal {
+    margin-top: -7%;
+    margin-bottom: 3%;
+}
+
+.horaModal {
+    font-size: 15px;
+}
+
+.fechaCreacionModal {
+    background-color: lightcyan;
+    color: black;
+    border-radius: 5px;
+    padding-left: 1.5%;
+    padding: 0.5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.contraseniaModal {
+    background-color: lightcyan;
+    color: black;
+    border-radius: 5px;
+    padding-left: 1.5%;
+    padding: 0.5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.contraModal {
+    background-color: transparent;
+    border: 0;
+}
+
+.password-icon {
+    cursor: pointer;
+}
+
+.nameUserModal {
+    background-color: lightcyan;
+    color: black;
+    border-radius: 5px;
+    padding-left: 1.5%;
+    padding: 0.5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.datosAvisosModal {
+    background-color: lightcyan;
+    color: black;
+    border-radius: 5px;
+    padding-left: 10%;
+    padding: 0.5%;
+    margin-top: 1%;
+    margin-left: 5%;
+    margin-bottom: 1%;
+}
+
+.btnCerrarPerfil {
+    background-color: crimson;
+    color: white;
+    width: 13vh;
+    text-align: center;
+}
+
+.btnCerrarPerfil:hover {
+    background-color: lightcoral;
+    color: black;
 }

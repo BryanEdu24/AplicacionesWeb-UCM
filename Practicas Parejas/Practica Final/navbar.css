@@ -32,11 +32,23 @@ img, .dropdown-toggle {
     border:0;
 }
 
-.dropdown-item {
-    color: white;
+.btn:focus {
+    outline: 0;
+    box-shadow: none;
 }
 
-.dropdown-item:hover {
+.dropdown-item {
+    color: white;
+    cursor: pointer;
+}
+
+.perfil:hover {
+    color: white;
+    background-color: lightseagreen;
+    border:0;
+}
+
+.cerrarSesion:hover {
     color: white;
     background-color: crimson;
     border:0;
