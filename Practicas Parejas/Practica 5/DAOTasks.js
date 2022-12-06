@@ -23,6 +23,7 @@ class DAOTasks {
                             callback(new Error("Error de acceso a la base de datos 2"));
                         }
                         else{
+                            let i = 0;
                             tasks.forEach(function(task){
                                 const sql = "SELECT DISTINCT E.texto"
                                 + " FROM aw_tareas_etiquetas E JOIN aw_tareas_tareas_etiquetas L ON E.idEtiqueta = L.idEtiqueta "
@@ -33,7 +34,8 @@ class DAOTasks {
                                         if (err) {
                                             callback(new Error("Error de acceso a la base de datos a la hora de conseguir etiquetas"));
                                         }else{
-                                            callback(null, tasks, tags);
+                                            if(i === tasks.length-1) callback(null, tasks, tags);
+                                            else i++;
                                         }
                                     });
                             });

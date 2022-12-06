@@ -59,7 +59,7 @@ body {
 
 .PrincipalTitle {
     color: white;
-    display: none;
+    /* display: none; */
 }
 
 .PrincipalBlock {
@@ -69,14 +69,14 @@ body {
 
 .PrincipalBlock ul {
     padding-inline-start: 0%;
-    list-style-type: none;
+    /* list-style-type: none; */
     background-color: lightgrey;
     opacity: 0.7;
     border-radius: 7px;
 }
 
 .PrincipalBlock li#TaskToDo {
-    text-decoration: none;
+    /* text-decoration: none; */
     padding-left: 1.5%;
     display: flex;
     justify-content: space-between;

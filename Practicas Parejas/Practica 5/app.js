@@ -75,34 +75,11 @@ var almacen = multer.diskStorage({
 
 const multerFactory = multer({ storage: almacen });
 
-let taskList,tagsList;
-daoT.getAllTasks('felipe.lotas@ucm.es',function cb_getAllTasks(err, tasks,tags){
-    if (err) {
-    console.log(err.message);
-    } else {
-        taskList = tasks;
-        tagsList = tags;
-    }
-});
-
 //Abrir login
-app.get('/', function (request,response,next){
+app.get('/', function (request,response){
     request.session.currentUser = undefined;
     console.log(request.session.currentUser);
     response.render('login');
-});
-
-/* Ruta para abrir la página tasks del usuario */
-app.get("/tasks.html",accessControl ,function (req, response){
-    console.log("Estamos en el get de tasks.html");
-    response.status(200);
-    response.render("tasks");
-});
-
-/* Para cerrar sesión */
-app.get("/logOut.html", accessControl, (request, response) => {
-    request.session.destroy();
-    response.redirect("/");
 });
 
 //Post de iniciar sesión
@@ -114,11 +91,9 @@ app.post("/procesar_post.html", (request, response) => {
           response.setFlash("Error interno de acceso a la base de datos");
           response.redirect("/");
         }else if (ok){
-          response.status(500);
           request.session.currentUser = request.body.correo;
           console.log("Log en post: "+request.session.currentUser );
-        //   response.locals.userEmail = request.body.correo;
-          response.redirect("/tasks.html");
+          response.redirect("/tasks");
         }else{
           response.status(500);
           response.setFlash("Usuario y/o contraseña incorrectos");
@@ -142,6 +117,28 @@ app.get("/profile_imgs/:email", (request, response) => {
       }) 
   });
 
+/* Ruta para abrir la página tasks del usuario */
+app.get("/tasks",accessControl ,function (req, response){
+    console.log("Estamos en el get de tasks.html");
+    let listaTareas;
+    let userEmail = response.locals.userEmail;
+    daoT.getAllTasks(userEmail, function (err, tasks, tags) {
+        if (err) {
+            console.log(err.message);
+        } else {
+            listaTareas=tasks;
+            listaEtiquetas=tags;
+            response.render("tasks", {listaTareas: listaTareas });      
+            console.log("Todo bien"); 
+        }
+    }); 
+});
+
+/* Para cerrar sesión */
+app.get("/logOut.html", accessControl, (request, response) => {
+    request.session.destroy();
+    response.redirect("/");
+});
 
 // Arrancar el servidor
 app.listen(config.port, function(err) {
