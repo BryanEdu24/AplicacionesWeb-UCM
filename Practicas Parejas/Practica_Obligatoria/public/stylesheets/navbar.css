@@ -39,9 +39,16 @@ img, .dropdown-toggle {
 
 .dropdown-item {
     color: white;
+    cursor: pointer;
 }
 
-.dropdown-item:hover {
+.perfil:hover {
+    color: white;
+    background-color: lightseagreen;
+    border:0;
+}
+
+.cerrarSesion:hover {
     color: white;
     background-color: crimson;
     border:0;
@@ -57,4 +64,111 @@ img, .dropdown-toggle {
     background-color: transparent;
     color: white;
     border: 0; 
+}
+
+/* css para modales en general */
+
+.modal {
+    background-color: #2e4b8185;
+    backdrop-filter: blur(8px);
+    border: 0;
+}
+
+.modal-content {
+    background-color: #343a40;
+    color: white;
+    border-radius: 20px;
+}
+
+.borrarborde {
+    border-top: none;
+    margin-top: -3vh;
+}
+
+/* css para el modal del perfil */
+
+.fotoSuperpuesta {
+    position: relative;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+    top: -10vh;
+}
+
+.fotoPerfilModal {
+    background-color: white;
+    border: 3px solid #252525;
+}
+
+.nameModal {
+    margin-top: -7%;
+    margin-bottom: 3%;
+}
+
+.horaModal {
+    font-size: 15px;
+}
+
+.fechaCreacionModal {
+    background-color: lightcyan;
+    color: black;
+    border-radius: 5px;
+    padding-left: 1.5%;
+    padding: 0.5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.contraseniaModal {
+    background-color: lightcyan;
+    color: black;
+    border-radius: 5px;
+    padding-left: 1.5%;
+    padding: 0.5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.contraModal {
+    background-color: transparent;
+    border: 0;
+}
+
+.password-icon {
+    cursor: pointer;
+}
+
+.nameUserModal {
+    background-color: lightcyan;
+    color: black;
+    border-radius: 5px;
+    padding-left: 1.5%;
+    padding: 0.5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.datosAvisosModal {
+    background-color: lightcyan;
+    color: black;
+    border-radius: 5px;
+    padding-left: 10%;
+    padding: 0.5%;
+    margin-top: 1%;
+    margin-left: 5%;
+    margin-bottom: 1%;
+}
+
+.btnCerrarPerfil {
+    background-color: crimson;
+    color: white;
+    width: 13vh;
+    text-align: center;
+}
+
+.btnCerrarPerfil:hover {
+    background-color: lightcoral;
+    color: black;
 }

@@ -6,6 +6,7 @@
         <!-- Para la navbar: (menu despegable Cerrar Sesión) -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script> 
         <link rel="stylesheet" href="stylesheets/navbar.css" media="screen">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
     </head>
 
     <nav class="row bg-dark fixed">
@@ -21,17 +22,22 @@
             </div>
             <div class="perfilUsuario d-flex align-items-center">
                 <span class="nombreUsuario">
-                    <%= userEmail %>&#8195	
+                    <%= nameUser %>&#8195	
                 </span>
                 <div class="dropdown ">
                     <button class="btn dropdown-toggle" data-bs-toggle="dropdown">
-                        <img class="rounded-circle fotoPerfil" src="images/<%=id%>" alt="Foto del Usuario" width="75" height="75"/>
+                        <img class="rounded-circle fotoPerfil" src="images/<%=idUser%>" alt="Foto del Usuario" width="75" height="75"/>
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-end bg-dark" title="Cerrar Sesión">
+                    <ul class="dropdown-menu dropdown-menu-end bg-dark">
                         <li>
-                            <!-- No borrar esta linea -->
-                            <a class="dropdown-item" href="logOut.html"> 
-                                Cerrar Sesión&#8195	
+                            <div class="dropdown-item perfil d-flex justify-content-between" data-bs-toggle="modal" data-bs-target="#modalPerfil">
+                                Perfil
+                                <span><img src="images/usuarioBlancoVector.svg" alt="Perfil Usuario" width="25" height="25"></span>
+                            </div>
+                        </li>
+                        <li title="Cerrar Sesión">
+                            <a class="dropdown-item cerrarSesion d-flex justify-content-between" href="./logOut.html">
+                                Cerrar Sesión	
                                 <span><img src="images/logOutVector.svg" alt="Log-Out" width="25" height="25"></span>
                             </a>
                         </li>
@@ -41,4 +47,71 @@
         </div>
     </nav>
     
+    <script>
+        window.addEventListener("load", function() {
+           // icono para mostrar contraseña
+           showPassword = document.querySelector('.show-password');
+           showPassword.addEventListener('click', () => {
+               // elementos input de tipo clave
+               contrasenia = document.querySelector('.contraModal');
+
+               if (contrasenia.type === "text") {
+                   contrasenia.type = "password"
+                   showPassword.classList.toggle("fa-eye-slash");
+               } else {
+                   contrasenia.type = "text"
+                   showPassword.classList.remove('fa-eye-slash');
+                   showPassword.classList.remove('fa-eye');
+                }
+           })
+        });
+   </script>
+
+    <!-- Modal para Pefil Usuario -->
+    <div class="modal fade" id="modalPerfil">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <!-- cuerpo del diálogo -->
+                <div class="modal-body">
+                    <div class="fotoSuperpuesta">
+                        <img class="rounded-circle fotoPerfilModal" src="images/usuarioAnonimo.png" alt="Foto del Usuario" width="100" height="100"/>
+                    </div>
+                    <h4 class="text-center nameModal">Bryan Eduardo Córdova Ascurra</h4>
+
+                    <div class="d-flex align-items-center justify-content-center">
+                        <div>
+                            <div class="fechaCreacionModal"><h5>🔹<strong> Fecha de creación: </strong>12/10/2022 <i class="horaModal">(20:45:59)</i></h5></div>
+                            <div class="perfilModal"><h5>🔹<strong>Tipo de perfil: </strong>Técnico</h5></div>
+                            <div class="contraseniaModal">
+                                <h5 class="d-flex justify-content-between align-items-center">
+                                    <strong>🔹Contraseña: </strong>
+                                    <input type="password" name="contraModal" class="contraModal" value="LaQueTenga" disabled />
+                                    <span class="fa fa-fw fa-eye password-icon show-password" title="Mostrar/Ocultar Contraseña"></span>
+                                </h5>
+                            </div>
+                            <div class="nameUserModal"><h5>🔹<strong>Nickname: </strong>Susana Horia</h5></div>
+                        </div>
+                        <div class="datosAvisosModal">
+                            <div class="">
+                                <h5>
+                                    🔹<strong> Datos de Avisos: </strong>
+                                </h5>
+                            </div>
+                            <div class="ms-4">
+                                <h5>◽<strong> Avisos realizados: </strong>20</h5>
+                                <h5>◽<strong> Incidencias: </strong>15</h5>
+                                <h5>◽<strong> Sugerencias: </strong>3</h5>
+                                <h5>◽<strong> Felicitaciones: </strong>2</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- pie del diálogo -->
+                <div class="modal-footer borrarborde">
+                    <button type="button" class="btn btnCerrarPerfil" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </html>
