@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head> 
+        <%- include("subplantillas/head") %>
+        <link rel="stylesheet" href="stylesheets/mainViewTec2.css" media="screen">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    </head>
+
+    <body>
+        <%- include("subplantillas/navbar") %>
+        <!-- Front del mainViewTec -->
+        <div class="containerUser container ">
+            <div class="wrap">
+                <div class="search d-flex justify-content-end">
+                    <input type="text" class="searchTerm" placeholder="Buscar avisos...">
+                    <button type="submit" class="searchButton">
+                        <img src="images/lupaVector.svg" title="www.ucm.es" alt="Logo de la UCM" class="lupa">
+                    </button>
+                </div>
+            </div>
+
+            <div class="menuOpciones">
+                <button class="botonAvisosEntrantes" onclick="window.location.href='mainViewTec1.html'">
+                    Avisos entrantes
+                </button>
+                <button class="botonMisAvisos" onclick="window.location.href='mainViewTec2.html'">
+                    Mis avisos
+                </button>
+                <button class="botonHistorialAvisos" onclick="window.location.href='mainViewTec3.html'">
+                    Historial de Avisos
+                </button>
+                <button class="botonGestionUsuarios" onclick="window.location.href='mainViewTec4.html'">
+                    Gestión de usuarios
+                </button>
+            </div>
+
+            <table class="tablaTec2">
+                <tr>
+                    <th>Tipo</th>
+                    <th>Fecha</th>
+                    <th>Texto</th>
+                    <th>Acciones</th>
+                </tr>
+
+                <tr>
+                    <td class="tipos"><img src="images/exclamacion.png" alt="" width="35" height="35"></td>
+                    <td class="fechas">12/10/2021</td>
+                    <td>No puedo conectar a la red corporativa. Parece que el fallo...</td>
+                    <td class="acciones">
+                        <img src="images/visualizarVector.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalMisAvisos">
+                        <img src="images/basura.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalBorrarAviso">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="tipos"><img src="images/pregunta.png" alt="" width="35" height="35"></td>
+                    <td class="fechas">10/10/2021</td>
+                    <td>Propongo cambiar el diseño de la web a un modelo responsive para que se pueda visualizar en el móvil...</td>
+                    <td class="acciones">
+                        <img src="images/visualizarVector.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalMisAvisos">
+                        <img src="images/basura.svg" alt="" width="35" height="35">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="tipos"><img src="images/ok.png" alt="" width="35" height="35"></td>
+                    <td class="fechas">05/01/2021</td>
+                    <td>Feliz año a todos vosotros por el buen trabajo realizado y las atenciones recibidas...</td>
+                    <td class="acciones">
+                        <img src="images/visualizarVector.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalMisAvisos">
+                        <img src="images/basura.svg" alt="" width="35" height="35">
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Modal para visualizar aviso -->
+        <div class="modal fade" id="modalMisAvisos">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <!-- cabecera del diálogo -->
+                    <div class="modal-header">
+                        <h4 class="modal-title"><%=nameUser %></h4>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <!-- cuerpo del diálogo -->
+                    <div class="modal-body">
+                        <div class="subEncabezadoModal d-flex justify-content-between">
+                            <div><h5>Fecha: 12/10/2021</h5></div>
+                            <div><h5>Aviso nº<i>202101020001</i>: <label class="badge rounded-pill pildora">Sugerencia</label></h5></div>
+                        </div>
+                        <div class="comunicacionesModal"><h5>🔹<strong> Comunicaciones: </strong>Correo electrónico</h5></div>
+                        <div class="perfilModal"><h5>🔹<strong> Perfil: </strong><%=rol %></h5></div>
+                        <div class="observacionesModal">
+                            <h5>🔹<strong> Observaciones:</strong></h5>
+                            <div class="contenidoObservacion">
+                                He solicitado una nueva cuenta de correo electrónico para mi departamento pero no he recibido todavía ninguna respuesta. Por favor es urgente que dispongamos de esa cuenta genérica lo antes posible ya que en breve celebraremos el II Congreso de ciberseguridad y necesitamos esa cuenta para centralizar peticiones. Muchas Gracias.
+                            </div>
+                        </div>
+                        <div class="comentariosModal">
+                            <h5>🔸<strong> Comentarios del Técnico:</strong></h5>
+                            <div class="contenidoComentario col-auto">
+                                <textarea name="commentTec" class="form-control commentTec" rows="4"  placeholder="Escriba una respuesta al aviso..."></textarea>
+                            </div>
+                            <div class="text-end me-3">
+                                <button type="submit" class="btnFinAviso">Finalizar Aviso</button>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para eliminar aviso -->
+        <div class="modal fade" id="modalBorrarAviso">
+            <div class="modal-dialog modal-sm modal-dialog-centered">
+                <div class="modal-content">
+                    <!-- cabecera del diálogo -->
+                    <div class="modal-header borrarborde">
+                    <h4 class="modal-title">⚠Eliminar Aviso</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+            
+                    <!-- cuerpo del diálogo -->
+                    <div class="modal-body">
+                        ¿Está seguro que quieres eliminarlo?
+                    </div>
+            
+                    <!-- pie del diálogo -->
+                    <div class="modal-footer borrarborde">
+                        <button type="button" class="btn btnCancelarBorrado" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btnEliminarAviso" data-bs-dismiss="modal">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </body>
+
+</html>

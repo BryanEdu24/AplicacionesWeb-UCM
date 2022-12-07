@@ -1,0 +1,307 @@
+.container {
+    margin-top: 8%;
+    padding-bottom: 3%;
+    background-color: #dcdcdc6e;
+    backdrop-filter: blur(8px);
+    border: 0;
+    border-style: solid;
+    border-radius: 10px;
+    color: black;
+    box-shadow: 0 0 20px 5px black;
+}
+
+.wrap {
+    padding-right: 10%;
+    padding-top: 2%;
+    padding-bottom: 4%;
+}
+
+.search {
+    height: 30%;
+}
+
+.searchTerm {
+    width: 45vh;
+    height: 6vh;
+    border: 3px solid black;
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+    background-color: papayawhip;
+}
+
+.searchButton {
+    width: 8vh;
+    height: 6vh;
+    border: 3px solid black;
+    background: lightsteelblue;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    border-left: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lupa {
+    width: 7vh;
+    height: 4vh;
+}
+
+.menuOpciones {
+    margin-left: 10%;
+}
+
+.botonAvisosEntrantes {
+    border-radius: 5px;
+    padding: 0.5%;
+    color: black;
+    background-color: silver;
+}
+
+.botonAvisosEntrantes:hover {
+    border-radius: 5px;
+    padding: 0.5%;
+    color: white;
+    background-color: slategray;
+}
+
+.botonMisAvisos {
+    border-radius: 5px;
+    padding: 0.5%;
+    color: black;
+    background-color: silver;
+}
+
+.botonMisAvisos:hover {
+    border-radius: 5px;
+    padding: 0.5%;
+    color: white;
+    background-color: slategray;
+}
+
+.botonHistorialAvisos {
+    border-radius: 5px;
+    padding: 0.5%;
+    color: black;
+    background-color: silver;
+}
+
+.botonHistorialAvisos:hover {
+    border-radius: 5px;
+    padding: 0.5%;
+    color: white;
+    background-color: slategray;
+}
+
+.botonGestionUsuarios {
+    border-radius: 5px;
+    padding: 0.5%;
+    color: black;
+    background-color: silver;
+}
+
+.botonGestionUsuarios:hover {
+    border-radius: 5px;
+    padding: 0.5%;
+    color: white;
+    background-color: slategray;
+}
+
+.tablaTec1 {
+    background-color: midnightblue;
+    border-radius: 10px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    margin-top: 1.5%;
+    width: 80%;
+}
+
+th {
+    color: white;
+    text-align: center;
+    border-right: gainsboro 2px solid;
+    border-left: gainsboro 2px solid;
+    padding: 1%;
+    font-weight: bold;
+}
+
+.tablaTec1 tr:first-child th:first-child {
+    border-left: none;
+}
+
+.tablaTec1 tr:first-child th:last-child {
+    border-right: none;
+}
+
+.tablaTec1 tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+}
+
+.tablaTec1 tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
+
+td {
+    background-color: thistle;
+}
+
+td:first-child {
+    padding: 1%;
+}
+
+.fechas, .tipos, .acciones {
+    text-align: center;
+    width: 20vh;
+}
+
+.tipos {
+    border-right: gainsboro 2px solid;
+    width: 10vh;
+}
+
+.fechas {
+    border-right: gainsboro 2px solid;
+}
+
+.acciones {
+    border-left: gainsboro 2px solid;
+}
+
+tr {
+    border-bottom: gainsboro 2px solid;
+}
+
+tr:last-child  {
+    border: 0;
+}
+
+tr:first-child {
+    border: 0;
+}
+
+.modal {
+    background-color: #2e4b8185!important;
+    backdrop-filter: blur(8px);
+}
+
+.modal-content {
+    background-color: #343a40 !important;
+    color: white;
+    border-radius: 20px!important;
+}
+
+.pildora {
+    background-color: PaleGoldenrod;
+    color: black;
+}
+
+.comunicacionesModal {
+    background-color: lightcyan;
+    color: black;
+    border-radius: 5px;
+    padding-left: 1.5%;
+    padding: 0.5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.perfilModal {
+    background-color: lightcyan;
+    color: black;
+    border-radius: 5px;
+    padding-left: 1.5%;
+    padding: 0.5%;
+    margin-bottom: 1%;
+}
+
+.observacionesModal {
+    background-color: lightcyan;
+    color: black;
+    border-radius: 5px;
+    padding-left: 1.5%;
+    padding: 0.5%;
+    margin-bottom: 1%;
+}
+
+.contenidoObservacion {
+    border-radius: 5px;
+    margin-left: 5%;
+    margin-right: 2%;
+    margin-bottom: 1%;
+}
+
+.asignarTecnicoModal {
+    background-color: lightcyan;
+    color: black;
+    border-radius: 5px;
+    padding-left: 1.5%;
+    padding: 0.5%;
+    margin-bottom: 1%;
+}
+
+.contenidoAsignacion {
+    border-radius: 5px;
+    margin-left: 5%;
+    margin-right: 2%;
+}
+
+select {
+    background-color: cornsilk;
+    border: 0;
+    border-radius: 5px;
+    border-bottom: solid darkgray;
+    padding: 1%;
+    width: 30vh;
+}
+
+.btnAsignarTecnico {
+    background-color: SeaGreen;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    padding: 1%;
+    font-size: 18px;
+}
+
+.btnAsignarTecnico:hover {
+    background-color: darkgreen;
+    color: white;
+}
+
+.comentariosModal {
+    background-color: lightcyan;
+    color: black;
+    border-radius: 5px;
+    padding-left: 1.5%;
+    padding: 0.5%;
+    margin-bottom: 1%;
+}
+
+.contenidoComentario {
+    border-radius: 5px;
+    margin-left: 3%;
+    margin-right: 2%;
+    margin-bottom: 1%;
+}
+
+.commentTec {
+    background-color: cornsilk;
+    border: 0;
+    border-radius: 5px;
+    border-bottom: solid darkgray;
+    padding: 1%;
+}
+
+.btnFinAviso {
+    background-color: SeaGreen;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    padding: 1%;
+    font-size: 18px;
+}
+
+.btnFinAviso:hover {
+    background-color: darkgreen;
+    color: white;
+}

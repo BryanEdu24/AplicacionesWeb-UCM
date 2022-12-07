@@ -51,6 +51,20 @@
     margin-left: 10%;
 }
 
+.botonAvisosEntrantes {
+    border-radius: 5px;
+    padding: 0.5%;
+    color: black;
+    background-color: silver;
+}
+
+.botonAvisosEntrantes:hover {
+    border-radius: 5px;
+    padding: 0.5%;
+    color: white;
+    background-color: slategray;
+}
+
 .botonMisAvisos {
     border-radius: 5px;
     padding: 0.5%;
@@ -64,10 +78,6 @@
     color: white;
     background-color: slategray;
 }
-
-/* .botonMisAvisos:current{
-    background-color: red; dejar activo el boton
-} */
 
 .botonHistorialAvisos {
     border-radius: 5px;
@@ -83,7 +93,21 @@
     background-color: slategray;
 }
 
-.tablaUser {
+.botonGestionUsuarios {
+    border-radius: 5px;
+    padding: 0.5%;
+    color: black;
+    background-color: silver;
+}
+
+.botonGestionUsuarios:hover {
+    border-radius: 5px;
+    padding: 0.5%;
+    color: white;
+    background-color: slategray;
+}
+
+.tablaTec4 {
     background-color: midnightblue;
     border-radius: 10px;
     margin: 0 auto;
@@ -101,41 +125,39 @@ th {
     font-weight: bold;
 }
 
-.tablaUser tr:first-child th:first-child {
+.tablaTec4 tr:first-child th:first-child {
     border-left: none;
 }
 
-.tablaUser tr:first-child th:last-child {
+.tablaTec4 tr:first-child th:last-child {
     border-right: none;
 }
 
-.tablaUser tr:last-child td:last-child {
+.tablaTec4 tr:last-child td:last-child {
     border-bottom-right-radius: 10px;
 }
 
-.tablaUser tr:last-child td:first-child {
+.tablaTec4 tr:last-child td:first-child {
     border-bottom-left-radius: 10px;
 }
 
 td {
     background-color: thistle;
-    padding: 0.5%;
 }
 
-.fechas, .tipos, .tecnicos {
+td:first-child {
+    padding: 1%;
+}
+
+.fechas, .nombres, .roles, .acciones {
     text-align: center;
-    width: 20vh;
-}
-
-.tipos {
-    width: 10vh;
 }
 
 .fechas {
     border-right: gainsboro 2px solid;
 }
 
-.tipos {
+.roles {
     border-right: gainsboro 2px solid;
     border-left: gainsboro 2px solid;
 }

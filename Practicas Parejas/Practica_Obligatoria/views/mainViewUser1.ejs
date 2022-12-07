@@ -1,8 +1,102 @@
 <!DOCTYPE html>
 <html>
-  <body>
+  <head>
     <%- include("subplantillas/head") %>
+    <link rel="stylesheet" href="stylesheets/mainViewUser1.css" media="screen">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+  </head>
+  <body>
     <%- include("subplantillas/navbar") %>
-    
+     <!-- Front del mainViewUser -->
+     <div class="containerUser container ">
+      <div class="wrap">
+          <div class="search d-flex justify-content-end">
+              <input type="text" class="searchTerm" placeholder="Buscar avisos...">
+              <button type="submit" class="searchButton">
+                  <img src="images/lupaVector.svg" title="www.ucm.es" alt="Logo de la UCM" class="lupa">
+              </button>
+          </div>
+      </div>
+
+      <div class="menuOpciones">
+          <button class="botonMisAvisos" onclick="window.location.href='mainViewUser1.html'">
+              Mis avisos
+          </button>
+
+          <button class="botonHistorialAvisos" onclick="window.location.href='mainViewUser2.html'">
+              Historial de Avisos
+          </button>               
+      </div>
+
+      <table class="tablaUser1">
+          <tr>
+              <th>Fecha</th>
+              <th>Texto</th>
+              <th>Tipo</th>
+              <th>Técnico</th>
+          </tr>
+
+          <tr data-bs-toggle="modal" data-bs-target="#modalMisAvisos">
+              <td class="fechas">12/10/2021</td>
+              <td>No puedo conectar a la red corporativa. Parece que el fallo...</td>
+              <td class="tipos"><img src="images/exclamacion.png" alt="" width="35" height="35"></td>
+              <td class="tecnicos">❌Sin técnico❌</td>
+          </tr>
+          
+          <tr>
+              <td class="fechas">10/10/2021</td>
+              <td>Propongo cambiar el diseño de la web a un modelo responsive para que se pueda visualizar en el móvil...</td>
+              <td class="tipos"><img src="images/pregunta.png" alt="" width="35" height="35"></td>
+              <td class="tecnicos">Aitor Tilla</td>
+          </tr>
+          
+          <tr>
+              <td class="fechas">05/01/2021</td>
+              <td>Feliz año a todos vosotros por el buen trabajo realizado y las atenciones recibidas...</td>
+              <td class="tipos"><img src="images/ok.png" alt="" width="35" height="35"></td>
+              <td class="tecnicos">Felipe Lotas</td>
+          </tr>
+      </table>
+  </div>
+  
+  <div class="modal fade" id="modalMisAvisos">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+          <div class="modal-content">
+              <!-- cabecera del diálogo -->
+              <div class="modal-header">
+                  <h4 class="modal-title"><%=nameUser %></h4>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+              </div>
+
+              <!-- cuerpo del diálogo -->
+              <div class="modal-body">
+                  <div class="subEncabezadoModal d-flex justify-content-between">
+                      <div><h5>Fecha: 12/10/2021</h5></div>
+                      <div><h5>Aviso nº<i>202101020001</i>: <label class="badge rounded-pill pildora">Sugerencia</label></h5></div>
+                  </div>
+                  <div class="comunicacionesModal"><h5>🔹<strong> Comunicaciones: </strong>Correo electrónico</h5></div>
+                  <div class="perfilModal"><h5>🔹<strong> Perfil: </strong><%=rol %></h5></div>
+                  <div class="observacionesModal">
+                      <h5>🔹<strong> Observaciones:</strong></h5>
+                      <div class="contenidoObservacion">
+                          He solicitado una nueva cuenta de correo electrónico para mi departamento pero no he recibido todavía ninguna respuesta. Por favor es urgente que dispongamos de esa cuenta genérica lo antes posible ya que en breve celebraremos el II Congreso de ciberseguridad y necesitamos esa cuenta para centralizar peticiones. Muchas Gracias.
+                      </div>
+                  </div>
+                  <div class="comentariosModal">
+                      <h5>🔸<strong> Comentarios del Técnico:</strong></h5>
+                      <div class="contenidoComentario">
+                          La cuenta ha sido creada. A partir de ahora podéis utilizar la cuenta ciberseguridad.ii@ucm.es La clave de entrada es 121345. Recordad cambiarla la primera vez que entréis. Gracias por utilizar este servicio.
+                      </div>
+                      ----------------------------------------------------------------------------------------------------------------------
+                      <div class="contenidoComentarioBorrado">
+                          Este aviso ha sido eliminado por el técnico Aitor Tilla debido a:
+                          <br>
+                          "La cuenta de correo que se solicita no cuenta con los permisos del Departamento correspondiente."
+                      </div>
+                  </div>       
+              </div>
+          </div>
+      </div>
+  </div>
   </body>
 </html>
