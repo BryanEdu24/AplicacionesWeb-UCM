@@ -165,3 +165,117 @@ td:first-child {
 .filas {
     border-bottom: gainsboro 2px solid;
 }
+
+.modal {
+    background-color: #2e4b8185;
+    backdrop-filter: blur(8px);
+    border: 0;
+}
+
+.modal-content {
+    background-color: #343a40;
+    color: white;
+    border-radius: 20px;
+}
+
+.borrarborde {
+    border-top: none;
+}   
+
+.btnCancelarBorrado {
+    background-color: crimson;
+    color: white;
+}
+
+.btnCancelarBorrado:hover {
+    background-color: lightcoral;
+    color: black;
+}
+
+.btnEliminarUsuario {
+    background-color: dodgerblue;
+    color: white;
+}
+
+.btnEliminarUsuario:hover {
+    background-color: skyblue;
+    color: black;
+}
+
+.content-input input,
+.content-select select{
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+ 
+.content-input input{
+	visibility: hidden;
+	position: absolute;
+	right: 0;
+}
+
+.content-input{
+	position: relative;
+	margin-bottom: 30px;
+	padding:5px 0 5px 60px; /* Damos un padding de 60px para posicionar 
+        el elemento <i> en este espacio*/
+	display: block;
+}
+ 
+/* Estas reglas se aplicarán a todos las elementos i 
+después de cualquier input*/
+.content-input input + i{
+       background: lightgray;
+       border:2px solid black;
+       position: absolute; 
+       left: 0;
+       top: 0;
+}
+ 
+/* Estas reglas se aplicarán a todos los i despues 
+de un input de tipo checkbox*/
+.content-input input[type=checkbox ] + i{
+	width: 52px;
+	height: 30px;
+	border-radius: 15px;
+}
+
+.content-input input[type=checkbox] + i:before{
+	content: ''; /* No hay contenido */
+	width: 26px;
+	height: 26px;
+	background-color: dimgray;
+	border-radius: 50%;
+    border-color: aqua;
+	position: absolute;
+	z-index: 1;
+	left: 0px;
+	top: 0px;
+}
+
+.content-input input[type=checkbox]:checked + i:before{
+	left: 22px;
+	-webkit-box-shadow: -3px 0 3px 0 rgba(0,0,0,0.2);
+	box-shadow: 3px 0 -3px 0 rgba(0,0,0,0.2);
+}
+ 
+.content-input input[type=checkbox]:checked + i{
+ background: green;
+}
+
+.content-input input[type=checkbox] + i:after{
+	content: 'ON';
+	position: absolute;
+	font-size: 11px;
+	color: white;
+	top: 20%;
+	left: 2px;
+	opacity: 0 /* Ocultamos este elemento */;
+	transition: all 0.25s ease 0.25s;
+}
+ 
+/* Cuando esté checkeado cambiamos la opacidad a 1 y lo mostramos */
+.content-input input[type=checkbox]:checked + i:after{
+ opacity: 1;
+}

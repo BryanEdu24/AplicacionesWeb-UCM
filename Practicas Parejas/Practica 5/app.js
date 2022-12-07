@@ -128,7 +128,7 @@ app.get("/tasks",accessControl ,function (req, response){
         } else {
             listaTareas=tasks;
             listaEtiquetas=tags;
-            response.render("tasks", {listaTareas: listaTareas });      
+            response.render("tasks", {listaTareas: listaTareas, listaEtiquetas: listaEtiquetas });      
             console.log("Todo bien"); 
         }
     }); 
