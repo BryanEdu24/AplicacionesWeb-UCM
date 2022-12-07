@@ -33,7 +33,7 @@ function cb_getUserImageName(err, nameArchivo){
     if (err) {
     console.log(err.message);
     } else {
-        console.log("Nombre Fichero: " + nameArchivo);
+        console.log("Nombre Fichero: " + nameArchivo[0].img);
     }
 }
 
@@ -73,15 +73,15 @@ function cb_deleteCompleted(err){
 }
 
 var task = {
-    texto: 'mesa',
+    texto: 'profe',
     hecho: 1,
-    etiquetas: [{texto: 'Familia'}, {texto: 'Mio'}, {texto: 'Yaya'}]
+    etiquetas: [{texto: 'Universidad'}, {texto: 'TP'}, {texto: 'Nueva'}]
 };
 
 // Uso de los métodos de las clases DAOUsers y DAOTasks
-//daoUser.isUserCorrect('felipe.lotas@ucm.es','Felipe',cb_isUserCorrect);
+//daoUser.isUserCorrect('felipe.lotas@ucm.es','Fel',cb_isUserCorrect);
 //daoUser.getUserImageName('felipe.lotas@ucm.es', cb_getUserImageName);
-//daoTask.markTaskDone('5', cb_markTaskDone);
-//daoTask.deleteCompleted('felipe.lotas@ucm.es', cb_deleteCompleted);
-daoTask.insertTask('felipe.lotas@ucm.es',task,cb_insertTask);
-//daoTask.getAllTasks('felipe.lotas@ucm.es',cb_getAllTasks);
+//daoTask.markTaskDone('1', cb_markTaskDone);
+//daoTask.deleteCompleted('aitor.tilla@ucm.es', cb_deleteCompleted);
+//daoTask.insertTask('aitor.tilla@ucm.es',task,cb_insertTask);
+//daoTask.getAllTasks('aitor.tilla@ucm.es',cb_getAllTasks);

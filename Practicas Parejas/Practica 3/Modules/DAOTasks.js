@@ -11,7 +11,7 @@ class DAOTasks {
                 callback(new Error("Error de conexión a la base de datos"));
             }
             else {
-                const sql = "SELECT DISTINCT W.idTarea, W.texto, T.hecho, E.texto "
+                const sql = "SELECT DISTINCT W.idTarea, W.textoTarea, T.hecho, E.texto "
                 + "FROM aw_tareas_usuarios U JOIN aw_tareas_user_tarea T ON U.idUser = T.idUser "
                 + "JOIN aw_tareas_tareas W ON T.idTarea = W.idTarea "
                 + "JOIN aw_tareas_tareas_etiquetas L ON W.idTarea = L.idTarea "
@@ -41,7 +41,7 @@ class DAOTasks {
                 const sql = "SELECT U.idUser FROM aw_tareas_usuarios U " +
                 "WHERE U.email = ? UNION " +
                 "SELECT W.idTarea FROM aw_tareas_tareas W  " +
-                "WHERE W.texto = ? ";
+                "WHERE W.textoTarea = ? ";
                 connection.query( sql,
                     [email, task.texto],
                     function(err, taskNew) {
@@ -52,7 +52,7 @@ class DAOTasks {
                         else if (taskNew.length === 2) {
                             callback(new Error("Ya existe la tarea"));
                         }else{
-                            const sqlInsertTask = "INSERT INTO aw_tareas_tareas(texto)"+
+                            const sqlInsertTask = "INSERT INTO aw_tareas_tareas(textoTarea)"+
                             " VALUES(?)";
                             connection.query( sqlInsertTask,
                                 [task.texto],
@@ -174,7 +174,7 @@ class DAOTasks {
                 const sql = "SELECT DISTINCT T.idTarea, U.idUser" +
                 " FROM aw_tareas_usuarios U" +
                 " JOIN aw_tareas_user_tarea T ON U.idUser = T.idUser" +
-                " WHERE U.email = 'felipe.lotas@ucm.es' AND T.hecho = 1"
+                " WHERE U.email = ? AND T.hecho = 1"
                 connection.query( sql,
                     [email],
                     function(err, tasks) {
