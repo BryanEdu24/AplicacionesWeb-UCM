@@ -1,8 +1,8 @@
 <% let mensaje = getandClearFlash(); %>
-                        <% if (mensaje) { %>
-                            <div class="alert text-center alert-simple alert-danger alert-dismissible fade show mt-4" role="alert" data-brk-library="component__alert">
-                                <i class="fa fa-exclamation-triangle"></i>
-                                <%= mensaje %>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
+    <% if (mensaje) { %>
+        <div class="alert alert-simple alert-danger alert-dismissible fade show" role="alert" data-brk-library="component__alert">
+            <i class="fa fa-exclamation-triangle"></i>
+            <%= mensaje %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
 <% } %>
