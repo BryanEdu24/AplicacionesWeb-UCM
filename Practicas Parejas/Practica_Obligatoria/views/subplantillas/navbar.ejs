@@ -74,22 +74,25 @@
                 <!-- cuerpo del diálogo -->
                 <div class="modal-body">
                     <div class="fotoSuperpuesta">
-                        <img class="rounded-circle fotoPerfilModal" src="images/usuarioAnonimo.png" alt="Foto del Usuario" width="100" height="100"/>
+                        <img class="rounded-circle fotoPerfilModal" src="images/<%=idUser%>" alt="Foto del Usuario" width="100" height="100"/>
                     </div>
-                    <h4 class="text-center nameModal">Bryan Eduardo Córdova Ascurra</h4>
+                    <h4 class="text-center nameModal"><%=nameUser  %></h4>
 
                     <div class="d-flex align-items-center justify-content-center">
                         <div>
-                            <div class="fechaCreacionModal"><h5>🔹<strong> Fecha de creación: </strong>12/10/2022 <i class="horaModal">(20:45:59)</i></h5></div>
-                            <div class="perfilModal"><h5>🔹<strong>Tipo de perfil: </strong>Técnico</h5></div>
+                            <% %>
+
+                            <div class="fechaCreacionModal"><h5>🔹<strong> Fecha de creación: </strong><%=date %> </h5></div>
+                           
+                            <div class="perfilModal"><h5>🔹<strong>Tipo de perfil: </strong><%= rol %></h5></div>
                             <div class="contraseniaModal">
                                 <h5 class="d-flex justify-content-between align-items-center">
                                     <strong>🔹Contraseña: </strong>
-                                    <input type="password" name="contraModal" class="contraModal" value="LaQueTenga" disabled />
+                                    <input type="password" name="contraModal" class="contraModal" value="<%= password %>" disabled />
                                     <span class="fa fa-fw fa-eye password-icon show-password" title="Mostrar/Ocultar Contraseña"></span>
                                 </h5>
                             </div>
-                            <div class="nameUserModal"><h5>🔹<strong>Nickname: </strong>Susana Horia</h5></div>
+                            <div class="nameUserModal"><h5>🔹<strong>Nombre Usuario: </strong><%= nameUser %></h5></div>
                         </div>
                         <div class="datosAvisosModal">
                             <div class="">

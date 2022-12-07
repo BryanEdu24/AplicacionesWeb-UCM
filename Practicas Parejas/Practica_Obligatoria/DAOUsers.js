@@ -60,22 +60,72 @@ class DAOUsers {
         });
     }
 
+    insertTec(usuario, callback) {
+        this.pool.getConnection(function(err, connection) {
+             if (err)    callback(new Error("Error de conexión a la base de datos"));
+             else {
+                 let sql =
+                 "INSERT INTO personas(nombre, email, password, rol, numEmpleado, Foto, fecha) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                 connection.query(sql, [usuario.nombre, usuario.correo,
+                 usuario.contrasenia, usuario.opcion, usuario.numEmpleado, usuario.imagen, usuario.fecha],
+                 function(err, resultUser) {
+                     connection.release();
+                     if (err)    callback(new Error("Error a la hora de hacer la insercción"));
+                     else  {
+                         let sql = "UPDATE numempleado_tecnico SET idTecnico= ? , asignado=1 WHERE numEmpleado=?";
+                         connection.query(sql, [resultUser.insertId,usuario.numEmpleado ],
+                         function (err, result) {
+                             if (err) {
+                                 callback(new Error("Error a la hora de hacer la insercción en la tabla numempleado_tecnico"));
+                             } else {
+                                 callback(null, resultUser.insertId);
+                             }
+                         });
+                     }  
+                 });
+             }
+         });
+     }
+    
+
+
     insertUser(usuario, callback) {
        this.pool.getConnection(function(err, connection) {
             if (err)    callback(new Error("Error de conexión a la base de datos"));
             else {
                 let sql =
-                "INSERT INTO personas(nombre, email, password, rol, numEmpleado, Foto) VALUES (?, ?, ?, ?, ?, ?)";
+                "INSERT INTO personas(nombre, email, password, rol, numEmpleado, Foto, fecha) VALUES (?, ?, ?, ?, ?, ?, ?)";
                 connection.query(sql, [usuario.nombre, usuario.correo,
-                usuario.contrasenia, usuario.opcion, usuario.numEmpleado, usuario.imagen],
-                function(err, result) {
+                usuario.contrasenia, usuario.opcion, usuario.numEmpleado, usuario.imagen, usuario.fecha],
+                function(err, resultUser) {
                     connection.release();
                     if (err)    callback(new Error("Error a la hora de hacer la insercción"));
-                    else    callback(null, result.insertId);
+                    else  {
+                        callback(null, resultUser.insertId);
+                    }  
                 });
             }
         });
-        }
+    }
+
+    checkEmployee(numEmployee, callback){
+        this.pool.getConnection(function(err, connection) {
+            if (err)    callback(new Error("Error de conexión a la base de datos"));
+            else {
+                let sql =
+                "SELECT idTecnico FROM numempleado_tecnico WHERE numEmpleado = ?";
+                connection.query(sql, [numEmployee],
+                function(err, idTecnico) {
+                    connection.release();
+                    if (err)    callback(new Error("Error a la hora de comprobar el número de empleado"));
+                    else    {
+                        callback(null, idTecnico[0].idTecnico);
+                    }
+                });
+            }
+        });
+    }
+    
 }
 
 module.exports = DAOUsers;

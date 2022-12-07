@@ -6,6 +6,8 @@ const session = require("express-session");
 const mysqlSession = require("express-mysql-session");
 const { check, validationResult } = require("express-validator");
 const multer = require("multer");
+const moment = require("moment");
+
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -34,10 +36,15 @@ function accessControl(request, response, next) {
   if (request.session.currentUser) {
     console.log("El currentUser no es undefined: "+request.session.currentUser );
     let usuario = request.session.User;
+    let fecha = moment(usuario.fecha);
+    let fechaSpain = fecha.format("DD - MM - YYYY HH:mm:ss");
+    console.log(fechaSpain);
     response.locals.userEmail = request.session.currentUser;
     response.locals.nameUser = usuario.nombre;
     response.locals.idUser = usuario.id;
     response.locals.rol = usuario.rol;
+    response.locals.date = fechaSpain;
+    response.locals.password = usuario.password;
     next();
   }else{
       console.log("El currentUser es undefined: "+request.session.currentUser );
@@ -104,27 +111,47 @@ app.post("/registerPost.html",
   // El correo ha de ser una dirección de correo válida.
   //check("correo","Dirección de correo no válida").isEmail(),
   // Comprobación de contraseña
-  check("contrasenia","La contraseña no tiene entre 8 y 16 caracteres").isLength({ min: 8, max: 16 }),
+  /* check("contrasenia","La contraseña no tiene entre 8 y 16 caracteres").isLength({ min: 8, max: 16 }),
   check("contrasenia", "Contraseña no contiene al menos un dígito").matches(/[0-9]+/),
   check("contrasenia", "Contraseña no contiene al menos una minuscula").matches(/[a-z]+/),
   check("contrasenia", "Contraseña no contiene al menos una mayuscula").matches(/[A-Z]+/),
-  check("contrasenia", "Contraseña no contiene al menos un caracter no alfanumérico").matches(/[^a-zA-Z0-9]+/), 
+  check("contrasenia", "Contraseña no contiene al menos un caracter no alfanumérico").matches(/[^a-zA-Z0-9]+/),  */
   (request, response) => {
   const errors = validationResult(request);
   if (errors.isEmpty()) {
-      console.log("Todo correcto");
-      let usuario = {
-        correo: request.body.correo,
-        contrasenia: request.body.contrasenia,
-        nombre: request.body.NombreUsuario,
-        opcion: request.body.opciones,
-        tecnico: (request.body.tecnico === "ON" ? "tecnico­" : "usuario"),
-        numEmpleado: null,
-        imagen: null
-      };
-      if (request.body.numEmpleado != undefined) {
-        usuario.numEmpleado = request.body.numEmpleado;
-      }
+    let usuario = {
+      correo: request.body.correo,
+      contrasenia: request.body.contrasenia,
+      nombre: request.body.NombreUsuario,
+      opcion: request.body.opciones,
+      tecnico: (request.body.tecnico === "ON" ? "tecnico­" : "usuario"),
+      numEmpleado: null,
+      imagen: null
+    };
+    if (request.body.numEmpleado != undefined) {
+      daoU.checkEmployee(request.body.numEmpleado, function (err, idTec) {
+        if(err){
+          errores = [{msg: err.message}];
+          response.render("registerViewErrors", {errores: errores});
+        }else if (idTec != null ) {
+          errores = [{msg: 'Este numero de empleado ya tiene asignado un tecnico'}];
+          response.render("registerViewErrors", {errores: errores});
+        }else {
+          usuario.numEmpleado = request.body.numEmpleado;
+          console.log(usuario);
+          if (request.file) {
+            usuario.imagen= request.file.buffer ;
+          }
+          daoU.insertTec(usuario, function(err, newId) {
+              if (!err) {
+                usuario.id = newId;
+                response.redirect("/");
+                console.log("Tecnico ingresado correctamente");
+              }
+          });
+          } 
+      })
+    }else{
       console.log(usuario);
       if (request.file) {
         usuario.imagen= request.file.buffer ;
@@ -136,10 +163,12 @@ app.post("/registerPost.html",
             console.log("usuario ingresado correctamente");
           }
       });
-  } else {
-      response.render("registerViewErrors", {errores: errors.array()});
+      }   
+  } else{
+    response.render("registerViewErrors", {errores: errors.array()});
+   } 
   }
-});
+);
 
 /* Conseguir imagen del usuario por BD */
 app.get("/images/:id", (request, response) => {
