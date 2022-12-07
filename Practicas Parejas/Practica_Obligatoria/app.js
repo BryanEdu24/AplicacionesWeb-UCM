@@ -28,11 +28,21 @@ const middlewareSession = session({
 // Crear una instancia de DAOUsers
 const daoU = new DAOUsers(pool);
 
-const checkContrasenias = (contrasenia, contrasenia2) => {
-  if (contrasenia.equals(contrasenia2)) {
-    return true;
-  } else {
-    return false;
+//Middleware sesionCurrent
+function accessControl(request, response, next) {
+  console.log("Log en middleware: "+request.session.currentUser );
+  if (request.session.currentUser) {
+    console.log("El currentUser no es undefined: "+request.session.currentUser );
+    let usuario = request.session.User;
+    response.locals.userEmail = request.session.currentUser;
+    response.locals.nameUser = usuario.nombre;
+    response.locals.idUser = usuario.id;
+    response.locals.rol = usuario.rol;
+    next();
+  }else{
+      console.log("El currentUser es undefined: "+request.session.currentUser );
+      response.status(500);
+      response.redirect("/");  
   }
 };
 
@@ -60,26 +70,26 @@ app.set("views", path.join(__dirname, "views"));
 // Middleware para gestionar los mensajes flash
 app.use(mensajeFlash);
 
-
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 /* Post de iniciar sesión */
 app.post("/procesar_post.html", (request, response) => {
   daoU.isUserCorrect(request.body.correo, 
-    request.body.contrasenia, function cb_isUserCorrect(err, ok, id){
+    request.body.contrasenia, function cb_isUserCorrect(err, ok, user){
       if (err){
         console.log(err.message);
         response.setFlash("Error interno de acceso a la base de datos");
         response.redirect("/");
       }else if (ok){
         request.session.currentUser = request.body.correo;
-        response.locals.userEmail = request.body.correo;
-        response.render("index", {
-          id: id,
-          correo: request.body.correo,
-          contrasenia: request.body.contrasenia,
-          });
+        request.session.User = user;
+        if(user.rol === "PAS"){
+          response.redirect("/mainViewTec1.html");
+        }else{
+          response.redirect("/mainViewUser1.html");
+        }
+        
       }else{
         response.status(500);
         response.setFlash("Usuario y/o contraseña incorrectos");
@@ -155,6 +165,30 @@ app.get("/images/:id", (request, response) => {
 app.get("/logOut.html", (request, response) => {
   request.session.destroy();
   response.redirect("/");
+});
+
+app.get("/mainViewUser1.html", accessControl, (request,response) => {
+  response.render("mainViewUser1");
+});
+
+app.get("/mainViewUser2.html",accessControl, (request,response) => {
+  response.render("mainViewUser2");
+});
+
+app.get("/mainViewTec1.html",accessControl, (request,response) => {
+  response.render("mainViewTec1");
+});
+
+app.get("/mainViewTec2.html",accessControl, (request,response) => {
+  response.render("mainViewTec2");
+});
+
+app.get("/mainViewTec3.html",accessControl, (request,response) => {
+  response.render("mainViewTec3");
+});
+
+app.get("/mainViewTec4.html",accessControl, (request,response) => {
+  response.render("mainViewTec4");
 });
 
 

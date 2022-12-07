@@ -11,8 +11,6 @@ class DAOUsers {
                 callback(new Error("Error de conexión a la base de datos"));
             }
             else {
-                console.log(email);
-                console.log(password);
                 connection.query(" SELECT * FROM personas WHERE email = ? AND password = ?" ,
                     [email,password], 
                     function(err, rows) {
@@ -25,7 +23,7 @@ class DAOUsers {
                                 callback(null, false, null); //no está el usuario con el password proporcionado
                             }
                             else {
-                                callback(null, true, rows[0].id);
+                                callback(null, true, rows[0]);
                             } 
                         }
                     });
