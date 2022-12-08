@@ -30,33 +30,32 @@
             </div>
 
             <table class="tablaUser1">
-                <tr>
-                    <th>Fecha</th>
-                    <th>Texto</th>
-                    <th>Tipo</th>
-                    <th>Técnico</th>
-                </tr>
-
-                <tr data-bs-toggle="modal" data-bs-target="#modalMisAvisos">
-                    <td class="fechas">12/10/2021</td>
-                    <td>No puedo conectar a la red corporativa. Parece que el fallo...</td>
-                    <td class="tipos"><img src="images/exclamacion.png" alt="" width="35" height="35"></td>
-                    <td class="tecnicos">❌Sin técnico❌</td>
-                </tr>
-                
-                <tr>
-                    <td class="fechas">10/10/2021</td>
-                    <td>Propongo cambiar el diseño de la web a un modelo responsive para que se pueda visualizar en el móvil...</td>
-                    <td class="tipos"><img src="images/pregunta.png" alt="" width="35" height="35"></td>
-                    <td class="tecnicos">Aitor Tilla</td>
-                </tr>
-                
-                <tr>
-                    <td class="fechas">05/01/2021</td>
-                    <td>Feliz año a todos vosotros por el buen trabajo realizado y las atenciones recibidas...</td>
-                    <td class="tipos"><img src="images/ok.png" alt="" width="35" height="35"></td>
-                    <td class="tecnicos">Felipe Lotas</td>
-                </tr>
+                <% if (Avisos.length > 0) { %>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Texto</th>
+                        <th>Tipo</th>
+                        <th>Técnico</th>
+                    </tr>
+                    <% Avisos.forEach(function(aviso) { %>
+                        <tr data-bs-toggle="modal" data-bs-target="#modalMisAvisos">
+                            
+                                <td class="fechas"><%= aviso.fecha %></td>
+                                <% if(aviso.observaciones.length > 200){ %>
+                                    <td><%= aviso.observaciones.substr(0,200)%>...</td>
+                                <%} else {%>
+                                    <td><%= aviso.observaciones%></td>
+                                <%}%> 
+                                <td class="tipos"><img src="images/exclamacion.png" alt="" width="35" height="35"></td>
+                                <% if(aviso.asignado === 0){ %>
+                                    <td class="tecnicos">❌Sin técnico❌</td>
+                                <%} else {%>
+                                    <td class="tecnicos">Aitor Tilla</td>
+                                <%}%> 
+                            
+                        </tr>
+                    <% }); %>
+                <% } %>
             </table>
         </div>
     

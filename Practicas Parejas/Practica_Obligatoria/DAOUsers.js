@@ -111,7 +111,7 @@ class DAOUsers {
             if (err)    callback(new Error("Error de conexión a la base de datos"));
             else {
                 let sql =
-                "SELECT idTecnico FROM numempleado_tecnico WHERE numEmpleado = ?";
+                "SELECT idTecnico FROM numempleado_tecnico WHERE numEmpleado = ? AND asignado = 1";
                 connection.query(sql, [numEmployee],
                 function(err, idTecnico) {
                     connection.release();

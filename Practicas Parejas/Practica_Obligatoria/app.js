@@ -13,6 +13,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const registerRouter = require('./routes/register')
 const DAOUsers = require('./DAOUsers');
+const DAOAvisos = require('./DAOAvisos');
 const { request } = require("http");
 const { response } = require("express");
 
@@ -29,6 +30,7 @@ const middlewareSession = session({
 });
 // Crear una instancia de DAOUsers
 const daoU = new DAOUsers(pool);
+const daoA = new DAOAvisos(pool);
 
 //Middleware sesionCurrent
 function accessControl(request, response, next) {
@@ -37,7 +39,7 @@ function accessControl(request, response, next) {
     console.log("El currentUser no es undefined: "+request.session.currentUser );
     let usuario = request.session.User;
     let fecha = moment(usuario.fecha);
-    let fechaSpain = fecha.format("DD - MM - YYYY HH:mm:ss");
+    let fechaSpain = fecha.format("DD-MM-YYYY HH:mm:ss");
     console.log(fechaSpain);
     response.locals.userEmail = request.session.currentUser;
     response.locals.nameUser = usuario.nombre;
@@ -170,6 +172,30 @@ app.post("/registerPost.html",
   }
 );
 
+/* Post a la hora de crear un nuevo aviso */
+app.post("/post_nuevo_aviso.html", accessControl, (request, response) => {
+  let idUsuario = response.locals.idUser;
+  let aviso = {
+    tipo: request.body.tipoAviso,
+    subtipo: request.body.subtipoAviso,
+    categoria: null,
+    observacion: request.body.observacionUsuario
+  }
+  request.body.categoriaAviso.forEach(categoria => {
+    if (categoria != "opt0") {
+      aviso.categoria = categoria;
+    }
+  });
+  daoA.insertTask(aviso, idUsuario, function (err, newIdTask) {
+    if (!err) {
+      response.redirect("/mainViewUser1.html");
+      console.log("Aviso ingresado correctamente");
+    }else console.log(err.message);
+  })
+});
+
+
+
 /* Conseguir imagen del usuario por BD */
 app.get("/images/:id", (request, response) => {
   console.log("id User: " + request.params.id);
@@ -197,7 +223,20 @@ app.get("/logOut.html", (request, response) => {
 });
 
 app.get("/mainViewUser1.html", accessControl, (request,response) => {
-  response.render("mainViewUser1");
+  let idUsuario = response.locals.idUser;
+  let fecha = null;
+  let fechaSpain = null;
+  daoA.misAvisos(idUsuario, function (err, Avisos) {
+    if (!err) {
+      console.log(Avisos);
+      Avisos.forEach(aviso => {
+        fecha = moment(aviso.fecha);
+        fechaSpain = fecha.format("DD-MM-YYYY");
+        aviso.fecha = fechaSpain;
+      });
+      response.render("mainViewUser1", {Avisos: Avisos });
+    }else console.log(err.message);
+  });
 });
 
 app.get("/mainViewUser2.html",accessControl, (request,response) => {

@@ -15,7 +15,7 @@
                     </h4>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
-                <form method="POST" action="procesar_aviso.html" title="Formulario para ingresar aviso">
+                <form method="POST" action="post_nuevo_aviso.html" title="Formulario para ingresar aviso">
                     <!-- cuerpo del diálogo -->
                     <div class="modal-body">
                         <div class="comunicacionesModal">
@@ -48,7 +48,7 @@
                         <div class="comentarioNuevoAvisoModal mt-2">
                             <h5>🔸<strong> Comentario del aviso:</strong></h5>
                             <div class="contenidoNuevoAviso col-auto">
-                                <textarea name="commentTec" class="form-control textoTecnico" rows="4" placeholder="Escriba una respuesta al aviso..."></textarea>
+                                <textarea name="observacionUsuario" class="form-control textoTecnico" rows="4" placeholder="Escriba una respuesta al aviso..."></textarea>
                             </div>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                     <!-- pie del diálogo -->
                     <div class="modal-footer borrarborde">
                         <button type="button" class="btn btnCancelarNuevoAviso" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit"  class="btn btnNuevoAviso" data-bs-dismiss="modal">Enviar</button>
+                        <input type="submit" class="btn btnNuevoAviso" title="Enviar"/>
                     </div>
                 </form>
             </div>
