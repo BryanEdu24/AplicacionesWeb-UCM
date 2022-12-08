@@ -11,7 +11,7 @@ class DAOUsers {
                 callback(new Error("Error de conexión a la base de datos"));
             }
             else {
-                connection.query(" SELECT * FROM personas WHERE email = ? AND password = ?" ,
+                connection.query(" SELECT * FROM personas WHERE email = ? AND password = ? AND activo = 1" ,
                     [email,password], 
                     function(err, rows) {
                         connection.release(); // devolver al pool la conexión
@@ -38,7 +38,7 @@ class DAOUsers {
                 callback(new Error("Error de conexión a la base de datos"));
             }
             else {
-                connection.query("SELECT U.foto FROM personas AS U WHERE id = ?",
+                connection.query("SELECT U.foto FROM personas AS U WHERE id = ? AND activo = 1" ,
                     [idUser],
                     function(err, img){
                         connection.release(); //devolver la conexión a pool
@@ -65,7 +65,7 @@ class DAOUsers {
              if (err)    callback(new Error("Error de conexión a la base de datos"));
              else {
                  let sql =
-                 "INSERT INTO personas(nombre, email, password, rol, numEmpleado, Foto, fecha) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                 "INSERT INTO personas(nombre, email, password, rol, numEmpleado, Foto, fecha, activo) VALUES (?, ?, ?, ?, ?, ?, ?,1)";
                  connection.query(sql, [usuario.nombre, usuario.correo,
                  usuario.contrasenia, usuario.opcion, usuario.numEmpleado, usuario.imagen, usuario.fecha],
                  function(err, resultUser) {
@@ -87,14 +87,12 @@ class DAOUsers {
          });
      }
     
-
-
     insertUser(usuario, callback) {
        this.pool.getConnection(function(err, connection) {
             if (err)    callback(new Error("Error de conexión a la base de datos"));
             else {
                 let sql =
-                "INSERT INTO personas(nombre, email, password, rol, numEmpleado, Foto, fecha) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                "INSERT INTO personas(nombre, email, password, rol, numEmpleado, Foto, fecha, activo) VALUES (?, ?, ?, ?, ?, ?, ?, 1)";
                 connection.query(sql, [usuario.nombre, usuario.correo,
                 usuario.contrasenia, usuario.opcion, usuario.numEmpleado, usuario.imagen, usuario.fecha],
                 function(err, resultUser) {
