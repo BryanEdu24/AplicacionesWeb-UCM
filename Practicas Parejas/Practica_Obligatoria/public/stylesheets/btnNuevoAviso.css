@@ -38,6 +38,10 @@
     margin-top: 1%;
 }
 
+input {
+    cursor: pointer !important;
+}
+
 .animacionRadioBtn{
     border-radius: 15px;
     padding: 1%;
@@ -54,6 +58,10 @@
 .animacionRadioBtn:hover{
     background-position: 0 0;
     color: white;
+}
+
+.sugerencia, .incidencia, .felicitación {
+    cursor: pointer !important;
 }
 
 .comentarioNuevoAvisoModal {

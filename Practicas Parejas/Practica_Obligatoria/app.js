@@ -111,11 +111,11 @@ app.post("/registerPost.html",
   // El correo ha de ser una dirección de correo válida.
   //check("correo","Dirección de correo no válida").isEmail(),
   // Comprobación de contraseña
-  check("contrasenia","La contraseña no tiene entre 8 y 16 caracteres.").isLength({ min: 8, max: 16 }),
+  /*check("contrasenia","La contraseña no tiene entre 8 y 16 caracteres.").isLength({ min: 8, max: 16 }),
   check("contrasenia", "La contraseña no contiene al menos un dígito.").matches(/[0-9]+/),
   check("contrasenia", "La contraseña no contiene al menos una minuscula.").matches(/[a-z]+/),
   check("contrasenia", "La contraseña no contiene al menos una mayuscula.").matches(/[A-Z]+/),
-  check("contrasenia", "La contraseña no contiene al menos un caracter no alfanumérico.").matches(/[^a-zA-Z0-9]+/),
+  check("contrasenia", "La contraseña no contiene al menos un caracter no alfanumérico.").matches(/[^a-zA-Z0-9]+/),*/
   (request, response) => {
   const errors = validationResult(request);
   if (errors.isEmpty()) {
