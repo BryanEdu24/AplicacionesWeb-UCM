@@ -1,0 +1,114 @@
+.float{
+	position:fixed;
+	width:11vh;
+	height:11vh;
+	bottom:4vh;
+	right:5vh;
+    background-color: midnightblue;
+	border-radius: 50px;
+	text-align:center;
+	box-shadow: 2px 2px 2px black !important;
+    border: 0;
+}
+
+.float:hover {
+	position:fixed;
+	width:11vh;
+	height:11vh;
+	bottom:4.5vh;
+	right:5.5vh;
+    background-color: mediumslateblue;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 3px 3px 3px 3px black !important;
+    border: 0;
+}
+
+.btnFlotante {
+    width: 7vh;
+    height: 7vh;
+}
+
+.comunicacionesModal {
+    background-color: lightcyan;
+    color: black;
+    border-radius: 5px;
+    padding-left: 1.5%;
+    padding: 0.5%;
+    margin-top: 1%;
+}
+
+.animacionRadioBtn{
+    border-radius: 15px;
+    padding: 1%;
+    color:black;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer !important;
+    background-image: linear-gradient(to left, transparent, transparent 50%, Navy 50%, SlateBlue);
+    background-position: 100% 0;
+    background-size: 200% 100%;
+    transition: all .15s ease-in;
+}
+
+.animacionRadioBtn:hover{
+    background-position: 0 0;
+    color: white;
+}
+
+.comentarioNuevoAvisoModal {
+    background-color: lightcyan;
+    color: black;
+    border-radius: 5px;
+    padding-left: 1.5%;
+    padding: 0.5%;
+    margin-bottom: 1%;
+}
+
+.contenidoNuevoAviso {
+    border-radius: 5px;
+    margin-left: 3%;
+    margin-right: 2%;
+    margin-bottom: 1%;
+}
+
+.textoTecnico {
+    background-color: cornsilk;
+    border: 0;
+    border-radius: 5px;
+    border-bottom: solid darkgray;
+    padding: 1% !important;
+}
+
+.textoTecnico:focus {
+    background-color: cornsilk;
+}
+
+.borrarborde {
+    border-top: none;
+    margin-top: -3vh;
+}
+
+.btnCancelarNuevoAviso {
+    background-color: crimson;
+    color: white;
+    width: 13vh;
+    text-align: center;
+}
+
+.btnCancelarNuevoAviso:hover {
+    background-color: lightcoral;
+    color: black;
+}
+
+.btnNuevoAviso {
+    background-color: dodgerblue;
+    color: white;
+    width: 13vh;
+    text-align: center;
+}
+
+.btnNuevoAviso:hover {
+    background-color: skyblue;
+    color: black;
+}

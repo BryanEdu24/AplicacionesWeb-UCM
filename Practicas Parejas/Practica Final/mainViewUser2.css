@@ -330,6 +330,8 @@ tr:first-child {
     color: black;
 }
 
+/* css para el modal del perfil */
+
 .fotoSuperpuesta {
     position: relative;
     left: 0;

@@ -65,12 +65,6 @@
                 </tr>
             </table>
         </div>
-
-        <div>
-            <button class="float" data-bs-toggle="modal" data-bs-target="#modalNuevoAviso">
-                <img src="images/aniadirAviso.svg" alt="" class="btnFlotante">
-            </button>  
-        </div>
         
         <!-- Modal para visualizar aviso -->
         <div class="modal fade" id="modalHistorialAvisos">
@@ -102,60 +96,6 @@
                                 Macho solicitas los que quieras que yo estoy a punto de eliminarte la cuenta. Más te vale aprobar todo cabroncete ;)
                             </div>
                         </div>    
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal para nuevo aviso -->
-        <div class="modal fade" id="modalNuevoAviso">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
-                <div class="modal-content">
-                    <!-- cabecera del diálogo -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">
-                            <img src="images/aniadirAviso.svg" alt=""width="25" height="25" class="mb-2">
-                            Nuevo aviso
-                        </h4>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                    </div>
-
-                    <!-- cuerpo del diálogo -->
-                    <div class="modal-body">
-                        <div class="comunicacionesModal">
-                            <h5>🔹<strong> Seleccione un tipo de aviso:</strong></h5>
-                            <div class="d-flex justify-content-between ms-5 me-5 mb-2">
-                                <div class="animacionRadioBtn">
-                                    <input type="radio" name="opcionesAviso" value="Sugerencia" id="opt1">
-                                    <label for="opt1">Sugerencia</label>
-                                    <img src="images/pregunta.png" alt=""width="25" height="25">
-                                </div>
-                                <div class="animacionRadioBtn">
-                                    <input type="radio" name="opcionesAviso" value="Incidencia" id="opt2">
-                                    <label for="opt2">Incidencia
-                                    <img src="images/exclamacion.png" alt=""width="25" height="25">
-                                    
-                                </div>
-                                <div class="animacionRadioBtn">
-                                    <input type="radio" name="opcionesAviso" value="Felicitacion" id="opt3">
-                                    <label for="opt3">Felicitación</label>
-                                    <img src="images/ok.png" alt=""width="25" height="25">
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="comentariosModal">
-                            <h5>🔸<strong> Comentario del aviso:</strong></h5>
-                            <div class="contenidoComentario col-auto">
-                                <textarea name="commentTec" class="form-control commentTec" rows="4" placeholder="Escriba una respuesta al aviso..."></textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                     <!-- pie del diálogo -->
-                     <div class="modal-footer borrarborde">
-                        <button type="button" class="btn btnCancelarNuevoAviso" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btnNuevoAviso" data-bs-dismiss="modal">Enviar</button>
                     </div>
                 </div>
             </div>
@@ -208,6 +148,7 @@
             </div>
         </div>
     </body>
+
     <script>
         window.addEventListener("load", function() {
            // icono para mostrar contraseña
