@@ -64,6 +64,30 @@ input {
     cursor: pointer !important;
 }
 
+.selectsModal {
+    background-color: lightcyan;
+    color: black;
+    border-radius: 5px;
+    padding-left: 1.5%;
+    padding: 0.5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+select {
+    background-color: cornsilk;
+    border: 0;
+    border-radius: 5px;
+    border-bottom: solid darkgray;
+    padding: 1%;
+    margin-top: 2%;
+}
+
+.tituloSelect {
+    font-weight: bold;
+    color: midnightblue;
+}
+
 .comentarioNuevoAvisoModal {
     background-color: lightcyan;
     color: black;

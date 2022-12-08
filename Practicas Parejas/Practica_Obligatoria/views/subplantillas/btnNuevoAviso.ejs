@@ -23,26 +23,318 @@
                         <h5>🔹<strong> Seleccione un tipo de aviso:</strong></h5>
                         <div class="d-flex justify-content-between ms-5 me-5 mb-2">
                             <div class="animacionRadioBtn">
-                                <input type="radio" name="opcionesAviso" value="Sugerencia" id="opt1">
+                                <input type="radio" name="opcionesAviso" value="Sugerencia" id="opt1" onChange="seleccionSelect(this)">
                                 <label for="opt1" class="sugerencia">Sugerencia</label>
                                 <label for="opt1">
                                     <img src="images/pregunta.png" alt=""width="25" height="25">
                                 </label>
                             </div>
                             <div class="animacionRadioBtn">
-                                <input type="radio" name="opcionesAviso" value="Incidencia" id="opt2">
+                                <input type="radio" name="opcionesAviso" value="Incidencia" id="opt2" onChange="seleccionSelect(this)">
                                 <label for="opt2" class="incidencia">Incidencia</label>
                                 <label for="opt2">
                                     <img src="images/exclamacion.png" alt=""width="25" height="25">
                                 </label>
                             </div>
                             <div class="animacionRadioBtn">
-                                <input type="radio" name="opcionesAviso" value="Felicitacion" id="opt3">
+                                <input type="radio" name="opcionesAviso" value="Felicitacion" id="opt3" onChange="seleccionSelect(this)">
                                 <label for="opt3" class="felicitación">Felicitación</label>
                                 <label for="opt3">
                                     <img src="images/ok.png" alt=""width="25" height="25">
                                 </label>
                             </div>
+                        </div>
+                    </div>
+
+                    <section id="divNormalModal" style="display:none;"></section>
+                    <div class="selectsModal" id="divSelectsSugOculto" style="display:none;">
+                        <h5>🔹<strong> Seleccione el tipo de sugerencia:</strong></h5>
+                        <div class="perfilAlumno text-center">
+                            Para Alumno:
+                            <select name="opcionesAlumno" required="true">
+                                <option value="opt0" hidden selected>Seleccione una...</option>
+                                <option value="" disabled class="tituloSelect">Administración Digital</option>
+                                <option value="">Certificado digital de personal física</option>
+                                <option value="">Registro electrónico</option>
+                                <option value="">Sede electrónica</option>
+
+                                <option value="" disabled class="tituloSelect">Comunicaciones</option>
+                                <option value="">Correo electrónico</option>
+                                <option value="">Google Meet</option>
+                                <option value="">Cuenta de Alumno</option>
+
+                                <option value="" disabled class="tituloSelect">Conectividad</option>
+                                <option value="">Cortafuegos corporativo</option>
+                                <option value="">VPN Acceso remoto</option>
+                                <option value="">Wifi Eduroam (ssid: eduroam)</option>
+                                
+                                <option value="" disabled class="tituloSelect">Docencia</option>
+                                <option value="">Aula Virtual</option>
+                                <option value="">Moodle: Aula Global</option>
+                                <option value="">Plataforma de cursos online Privados</option>
+                                
+                                <option value="" disabled class="tituloSelect">Web</option>
+                                <option value="">Redirecciones Web</option>
+                            </select> 
+                        </div>
+
+                        <div class="perfilPAS text-center">
+                            Para PAS:
+                            <select name="opcionesPAS" required="true">
+                                <option value="opt0" hidden selected>Seleccione una...</option>
+                                <option value="" disabled class="tituloSelect">Administración Digital</option>
+                                <option value="">Certificado digital de personal física</option>
+                                <option value="">Certificado electrónico de empleado público </option>
+                                <option value="">Registro electrónico</option>
+                                <option value="">Sede electrónica</option>
+                                <option value="">Portafirmas</option>
+
+                                <option value="" disabled class="tituloSelect">Comunicaciones</option>
+                                <option value="">Correo electrónico</option>
+                                <option value="">Google Meet</option>
+                                <option value="">Cuenta de personal</option>
+                                <option value="">Cuenta genérica</option>
+
+                                <option value="" disabled class="tituloSelect">Conectividad</option>
+                                <option value="">Cuenta as la Red SARA</option>
+                                <option value="">Conexión por cable en despachos</option>
+                                <option value="">Cortafuegos corporativo</option>
+                                <option value="">Resolución de nombres de dominio (DNS)</option>
+                                <option value="">VPN Acceso remoto</option>
+                                <option value="">Wifi Eduroam (ssid: eduroam)</option>
+                                <option value="">Wifi para visitantes (ssid: UCM-Visitantes)</option>
+                                
+                                <option value="" disabled class="tituloSelect">Docencia</option>
+                                <option value="">Blackboard Collaborate</option>
+                                <option value="">Listados de clase</option>
+                                <option value="">Moodle: Aula Global</option>
+                                
+                                <option value="" disabled class="tituloSelect">Web</option>
+                                <option value="">Analítica Web</option>
+                                <option value="">Emisión de certificados SSL</option>
+                                <option value="">Hosting: alojamiento de páginas web</option>
+                                <option value="">Portal de eventos</option>
+                                <option value="">Redirecciones Web</option>
+                            </select> 
+                        </div>
+
+                        <div class="perfilPDI text-center">
+                            Para PDI:
+                            <select name="opcionesPDI" required="true">
+                                <option value="opt0" hidden selected>Seleccione una...</option>
+                                <option value="" disabled class="tituloSelect">Administración Digital</option>
+                                <option value="">Certificado digital de personal física</option>
+                                <option value="">Certificado electrónico de empleado público </option>
+                                <option value="">Registro electrónico</option>
+                                <option value="">Sede electrónica</option>
+                                <option value="">Portafirmas</option>
+
+                                <option value="" disabled class="tituloSelect">Comunicaciones</option>
+                                <option value="">Correo electrónico</option>
+                                <option value="">Google Meet</option>
+                                <option value="">Cuenta de personal</option>
+                                <option value="">Cuenta genérica</option>
+
+                                <option value="" disabled class="tituloSelect">Conectividad</option>
+                                <option value="">Conexión por cable en despachos</option>
+                                <option value="">Cortafuegos corporativo</option>
+                                <option value="">VPN Acceso remoto</option>
+                                <option value="">Wifi Eduroam (ssid: eduroam)</option>
+                                <option value="">Wifi para visitantes (ssid: UCM-Visitantes)</option>
+                                
+                                <option value="" disabled class="tituloSelect">Docencia</option>
+                                <option value="">Aula Virtual</option>
+                                <option value="">Blackboard Collaborate</option>
+                                <option value="">Listados de clase</option>
+                                <option value="">Moodle: Aula Global</option>
+                                <option value="">Plataforma de cursos online Privados</option>
+                                
+                                <option value="" disabled class="tituloSelect">Web</option>
+                                <option value="">Analítica Web</option>
+                                <option value="">Emisión de certificados SSL</option>
+                                <option value="">Hosting: alojamiento de páginas web</option>
+                                <option value="">Portal de eventos</option>
+                                <option value="">Redirecciones Web</option>
+                            </select> 
+                        </div>
+                        
+                        <div class="perfilAntAlumno text-center">
+                            Para Antiguo Alumno:
+                            <select name="opcionesAntAlumno" required="true" onChange="seleccionSelect(this)">
+                                <option value="opt0" hidden selected>Seleccione una...</option>
+                                <option value="" disabled class="tituloSelect">Administración Digital</option>
+                                <option value="">Registro electrónico</option>
+                                <option value="">Sede electrónica</option>
+
+                                <option value="" disabled class="tituloSelect">Comunicaciones</option>
+                                <option value="">Correo electrónico</option>
+                                <option value="">Google Meet</option>
+                                <option value="">Cuenta de Alumno</option>
+
+                                <option value="" disabled class="tituloSelect">Conectividad</option>
+
+                                <option value="" disabled class="tituloSelect">Docencia</option>
+                                
+                                <option value="" disabled class="tituloSelect">Web</option>
+                                <option value="">Redirecciones Web</option>
+                            </select> 
+                        </div>
+                    </div>
+
+                    <div class="selectsModal" id="divSelectsIncOculto" style="display:none;">
+                        <h5>🔹<strong> Seleccione el tipo de incidencia:</strong></h5>
+                        <div class="perfilAlumno text-center">
+                            Para Alumno:
+                            <select name="opcionesAlumno" required="true">
+                                <option value="opt0" hidden selected>Seleccione una...</option>
+                                <option value="" disabled class="tituloSelect">Administración Digital</option>
+                                <option value="">Certificado digital de personal física</option>
+                                <option value="">Registro electrónico</option>
+                                <option value="">Sede electrónica</option>
+
+                                <option value="" disabled class="tituloSelect">Comunicaciones</option>
+                                <option value="">Correo electrónico</option>
+                                <option value="">Google Meet</option>
+                                <option value="">Cuenta de Alumno</option>
+
+                                <option value="" disabled class="tituloSelect">Conectividad</option>
+                                <option value="">Cortafuegos corporativo</option>
+                                <option value="">VPN Acceso remoto</option>
+                                <option value="">Wifi Eduroam (ssid: eduroam)</option>
+                                
+                                <option value="" disabled class="tituloSelect">Docencia</option>
+                                <option value="">Aula Virtual</option>
+                                <option value="">Moodle: Aula Global</option>
+                                <option value="">Plataforma de cursos online Privados</option>
+                                
+                                <option value="" disabled class="tituloSelect">Web</option>
+                                <option value="">Redirecciones Web</option>
+                            </select> 
+                        </div>
+
+                        <div class="perfilPAS text-center">
+                            Para PAS:
+                            <select name="opcionesPAS" required="true">
+                                <option value="opt0" hidden selected>Seleccione una...</option>
+                                <option value="" disabled class="tituloSelect">Administración Digital</option>
+                                <option value="">Certificado digital de personal física</option>
+                                <option value="">Certificado electrónico de empleado público </option>
+                                <option value="">Registro electrónico</option>
+                                <option value="">Sede electrónica</option>
+                                <option value="">Portafirmas</option>
+
+                                <option value="" disabled class="tituloSelect">Comunicaciones</option>
+                                <option value="">Correo electrónico</option>
+                                <option value="">Google Meet</option>
+                                <option value="">Cuenta de personal</option>
+                                <option value="">Cuenta genérica</option>
+
+                                <option value="" disabled class="tituloSelect">Conectividad</option>
+                                <option value="">Cuenta as la Red SARA</option>
+                                <option value="">Conexión por cable en despachos</option>
+                                <option value="">Cortafuegos corporativo</option>
+                                <option value="">Resolución de nombres de dominio (DNS)</option>
+                                <option value="">VPN Acceso remoto</option>
+                                <option value="">Wifi Eduroam (ssid: eduroam)</option>
+                                <option value="">Wifi para visitantes (ssid: UCM-Visitantes)</option>
+                                
+                                <option value="" disabled class="tituloSelect">Docencia</option>
+                                <option value="">Blackboard Collaborate</option>
+                                <option value="">Listados de clase</option>
+                                <option value="">Moodle: Aula Global</option>
+                                
+                                <option value="" disabled class="tituloSelect">Web</option>
+                                <option value="">Analítica Web</option>
+                                <option value="">Emisión de certificados SSL</option>
+                                <option value="">Hosting: alojamiento de páginas web</option>
+                                <option value="">Portal de eventos</option>
+                                <option value="">Redirecciones Web</option>
+                            </select> 
+                        </div>
+
+                        <div class="perfilPDI text-center">
+                            Para PDI:
+                            <select name="opcionesPDI" required="true">
+                                <option value="opt0" hidden selected>Seleccione una...</option>
+                                <option value="" disabled class="tituloSelect">Administración Digital</option>
+                                <option value="">Certificado digital de personal física</option>
+                                <option value="">Certificado electrónico de empleado público </option>
+                                <option value="">Registro electrónico</option>
+                                <option value="">Sede electrónica</option>
+                                <option value="">Portafirmas</option>
+
+                                <option value="" disabled class="tituloSelect">Comunicaciones</option>
+                                <option value="">Correo electrónico</option>
+                                <option value="">Google Meet</option>
+                                <option value="">Cuenta de personal</option>
+                                <option value="">Cuenta genérica</option>
+
+                                <option value="" disabled class="tituloSelect">Conectividad</option>
+                                <option value="">Conexión por cable en despachos</option>
+                                <option value="">Cortafuegos corporativo</option>
+                                <option value="">VPN Acceso remoto</option>
+                                <option value="">Wifi Eduroam (ssid: eduroam)</option>
+                                <option value="">Wifi para visitantes (ssid: UCM-Visitantes)</option>
+                                
+                                <option value="" disabled class="tituloSelect">Docencia</option>
+                                <option value="">Aula Virtual</option>
+                                <option value="">Blackboard Collaborate</option>
+                                <option value="">Listados de clase</option>
+                                <option value="">Moodle: Aula Global</option>
+                                <option value="">Plataforma de cursos online Privados</option>
+                                
+                                <option value="" disabled class="tituloSelect">Web</option>
+                                <option value="">Analítica Web</option>
+                                <option value="">Emisión de certificados SSL</option>
+                                <option value="">Hosting: alojamiento de páginas web</option>
+                                <option value="">Portal de eventos</option>
+                                <option value="">Redirecciones Web</option>
+                            </select> 
+                        </div>
+                        
+                        <div class="perfilAntAlumno text-center">
+                            Para Antiguo Alumno:
+                            <select name="opcionesAntAlumno" required="true" onChange="seleccionSelect(this)">
+                                <option value="opt0" hidden selected>Seleccione una...</option>
+                                <option value="" disabled class="tituloSelect">Administración Digital</option>
+                                <option value="">Registro electrónico</option>
+                                <option value="">Sede electrónica</option>
+
+                                <option value="" disabled class="tituloSelect">Comunicaciones</option>
+                                <option value="">Correo electrónico</option>
+                                <option value="">Google Meet</option>
+                                <option value="">Cuenta de Alumno</option>
+
+                                <option value="" disabled class="tituloSelect">Conectividad</option>
+
+                                <option value="" disabled class="tituloSelect">Docencia</option>
+                                
+                                <option value="" disabled class="tituloSelect">Web</option>
+                                <option value="">Redirecciones Web</option>
+                            </select> 
+                        </div>
+                    </div>
+
+                    <div class="selectsModal" id="divSelectsFelOculto" style="display:none;">
+                        <h5>🔹<strong> Seleccione un departamento para felicitar:</strong></h5>
+                        <div class="perfilAlumno text-center mb-2">
+                            Para Alumno:
+                            <select name="opcionesAlumno" required="true">
+                                <option value="opt0" hidden selected>Seleccione uno...</option>
+                                <option value="">Archivo Universitario</option>
+                                <option value="">Asesoría Jurídica</option>
+                                <option value="">Biblioteca</option>
+                                <option value="">Centro de Información</option>
+                                <option value="">Departamentos docentes</option>
+                                <option value="">Inspección de Servicios</option>
+                                <option value="">Oficina de Gestión de Infraestructuras y Mantenimiento</option>
+                                <option value="">Servicio de Administración</option>
+                                <option value="">Servicios Informáticos</option>
+                                <option value="">Servicio de Documentación</option>
+                                <option value="">Servicio de Imprenta</option>
+                                <option value="">Servicio de Cafetería</option>
+                                <option value="">Toda la Universidad</option>
+                            </select> 
                         </div>
                     </div>
                     
@@ -62,4 +354,44 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function seleccionSelect(sel) {
+            if (sel.value=="Sugerencia"){
+                divT = document.getElementById("divSelectsSugOculto");
+                divT.style.display = "";
+
+                divC = document.getElementById("divNormalModal");
+                divC.style.display="none";
+                divC = document.getElementById("divSelectsIncOculto");
+                divC.style.display="none";
+                divC = document.getElementById("divSelectsFelOculto");
+                divC.style.display="none";
+
+            }
+            else if (sel.value=="Incidencia") {
+                divT = document.getElementById("divSelectsIncOculto");
+                divT.style.display = "";
+
+                divC = document.getElementById("divNormalModal");
+                divC.style.display="none";
+                divC = document.getElementById("divSelectsSugOculto");
+                divC.style.display="none";
+                divC = document.getElementById("divSelectsFelOculto");
+                divC.style.display="none";
+            }
+            else if (sel.value=="Felicitacion") {
+                divT = document.getElementById("divSelectsFelOculto");
+                divT.style.display = "";
+
+                divC = document.getElementById("divNormalModal");
+                divC.style.display="none";
+                divC = document.getElementById("divSelectsSugOculto");
+                divC.style.display="none";
+                divC = document.getElementById("divSelectsIncOculto");
+                divC.style.display="none";
+            }
+        }   
+    </script>
+
 </html>
