@@ -16,84 +16,84 @@
                     </h4>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
-                <form>
+                <form method="POST" action="procesar_aviso.html" title="Formulario para ingresar aviso">
                     <!-- cuerpo del diálogo -->
-                <div class="modal-body">
-                    <div class="comunicacionesModal">
-                        <h5>🔹<strong> Seleccione un tipo de aviso:</strong></h5>
-                        <div class="d-flex justify-content-between ms-5 me-5 mb-2">
-                            <div class="animacionRadioBtn">
-                                <input type="radio" name="tipoAviso" value="Sugerencia" id="opt1" onChange="seleccionSelect(this)">
-                                <label for="opt1" class="sugerencia">Sugerencia</label>
-                                <label for="opt1">
-                                    <img src="images/pregunta.png" alt=""width="25" height="25">
-                                </label>
+                    <div class="modal-body">
+                        <div class="comunicacionesModal">
+                            <h5>🔹<strong> Seleccione un tipo de aviso:</strong></h5>
+                            <div class="d-flex justify-content-between ms-5 me-5 mb-2">
+                                <div class="animacionRadioBtn">
+                                    <input type="radio" name="tipoAviso" value="Sugerencia" id="opt1" onChange="seleccionSelect(this)">
+                                    <label for="opt1" class="sugerencia">Sugerencia</label>
+                                    <label for="opt1">
+                                        <img src="images/pregunta.png" alt=""width="25" height="25">
+                                    </label>
+                                </div>
+                                <div class="animacionRadioBtn">
+                                    <input type="radio" name="tipoAviso" value="Incidencia" id="opt2" onChange="seleccionSelect(this)">
+                                    <label for="opt2" class="incidencia">Incidencia</label>
+                                    <label for="opt2">
+                                        <img src="images/exclamacion.png" alt=""width="25" height="25">
+                                    </label>
+                                </div>
+                                <div class="animacionRadioBtn">
+                                    <input type="radio" name="tipoAviso" value="Felicitacion" id="opt3" onChange="seleccionSelect(this)">
+                                    <label for="opt3" class="felicitación">Felicitación</label>
+                                    <label for="opt3">
+                                        <img src="images/ok.png" alt=""width="25" height="25">
+                                    </label>
+                                </div>
                             </div>
-                            <div class="animacionRadioBtn">
-                                <input type="radio" name="tipoAviso" value="Incidencia" id="opt2" onChange="seleccionSelect(this)">
-                                <label for="opt2" class="incidencia">Incidencia</label>
-                                <label for="opt2">
-                                    <img src="images/exclamacion.png" alt=""width="25" height="25">
-                                </label>
+                        </div>
+
+                        <section id="divNormalModal" style="display:none;"></section>
+                        <div class="selectsModal" id="divSelectsSugOculto" style="display:none;">
+                            <h5>🔹<strong> Seleccione el tipo de sugerencia:</strong></h5>
+                            <%- include("switchAvisoRol") %>
+                        </div>
+
+                        <section id="divNormalModal" style="display:none;"></section>
+                        <div class="selectsModal" id="divSelectsIncOculto" style="display:none;">
+                            <h5>🔹<strong> Seleccione el tipo de incidencia:</strong></h5>
+                            <%- include("switchAvisoRol") %>
+                        </div>
+
+                        <section id="divNormalModal" style="display:none;"></section>
+                        <div class="selectsModal" id="divSelectsFelOculto" style="display:none;">
+                            <h5>🔹<strong> Seleccione un departamento para felicitar:</strong></h5>
+                            <div class="perfilAlumno text-center mb-2">
+                                <select name="opcionesAlumno" required="true">
+                                    <option value="opt0" hidden selected>Seleccione uno...</option>
+                                    <option value="">Archivo Universitario</option>
+                                    <option value="">Asesoría Jurídica</option>
+                                    <option value="">Biblioteca</option>
+                                    <option value="">Centro de Información</option>
+                                    <option value="">Departamentos docentes</option>
+                                    <option value="">Inspección de Servicios</option>
+                                    <option value="">Oficina de Gestión de Infraestructuras y Mantenimiento</option>
+                                    <option value="">Servicio de Administración</option>
+                                    <option value="">Servicios Informáticos</option>
+                                    <option value="">Servicio de Documentación</option>
+                                    <option value="">Servicio de Imprenta</option>
+                                    <option value="">Servicio de Cafetería</option>
+                                    <option value="">Toda la Universidad</option>
+                                </select> 
                             </div>
-                            <div class="animacionRadioBtn">
-                                <input type="radio" name="tipoAviso" value="Felicitacion" id="opt3" onChange="seleccionSelect(this)">
-                                <label for="opt3" class="felicitación">Felicitación</label>
-                                <label for="opt3">
-                                    <img src="images/ok.png" alt=""width="25" height="25">
-                                </label>
+                        </div>
+                        
+                        <div class="comentarioNuevoAvisoModal">
+                            <h5>🔸<strong> Comentario del aviso:</strong></h5>
+                            <div class="contenidoNuevoAviso col-auto">
+                                <textarea name="commentTec" class="form-control textoTecnico" rows="4" placeholder="Escriba una respuesta al aviso..."></textarea>
                             </div>
                         </div>
                     </div>
 
-                    <section id="divNormalModal" style="display:none;"></section>
-                    <div class="selectsModal" id="divSelectsSugOculto" style="display:none;">
-                        <h5>🔹<strong> Seleccione el tipo de sugerencia:</strong></h5>
-                        <%- include("switchAvisoRol") %>
+                    <!-- pie del diálogo -->
+                    <div class="modal-footer borrarborde">
+                        <button type="button" class="btn btnCancelarNuevoAviso" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit"  class="btn btnNuevoAviso" data-bs-dismiss="modal">Enviar</button>
                     </div>
-
-                    <section id="divNormalModal" style="display:none;"></section>
-                    <div class="selectsModal" id="divSelectsIncOculto" style="display:none;">
-                        <h5>🔹<strong> Seleccione el tipo de incidencia:</strong></h5>
-                        <%- include("switchAvisoRol") %>
-                    </div>
-
-                    <section id="divNormalModal" style="display:none;"></section>
-                    <div class="selectsModal" id="divSelectsFelOculto" style="display:none;">
-                        <h5>🔹<strong> Seleccione un departamento para felicitar:</strong></h5>
-                        <div class="perfilAlumno text-center mb-2">
-                            <select name="opcionesAlumno" required="true">
-                                <option value="opt0" hidden selected>Seleccione uno...</option>
-                                <option value="">Archivo Universitario</option>
-                                <option value="">Asesoría Jurídica</option>
-                                <option value="">Biblioteca</option>
-                                <option value="">Centro de Información</option>
-                                <option value="">Departamentos docentes</option>
-                                <option value="">Inspección de Servicios</option>
-                                <option value="">Oficina de Gestión de Infraestructuras y Mantenimiento</option>
-                                <option value="">Servicio de Administración</option>
-                                <option value="">Servicios Informáticos</option>
-                                <option value="">Servicio de Documentación</option>
-                                <option value="">Servicio de Imprenta</option>
-                                <option value="">Servicio de Cafetería</option>
-                                <option value="">Toda la Universidad</option>
-                            </select> 
-                        </div>
-                    </div>
-                    
-                    <div class="comentarioNuevoAvisoModal">
-                        <h5>🔸<strong> Comentario del aviso:</strong></h5>
-                        <div class="contenidoNuevoAviso col-auto">
-                            <textarea name="commentTec" class="form-control textoTecnico" rows="4" placeholder="Escriba una respuesta al aviso..."></textarea>
-                        </div>
-                    </div>
-                </div>
-
-                 <!-- pie del diálogo -->
-                 <div class="modal-footer borrarborde">
-                    <button type="button" class="btn btnCancelarNuevoAviso" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit"  class="btn btnNuevoAviso" data-bs-dismiss="modal">Enviar</button>
-                </div>
 
                 </form>
                 
