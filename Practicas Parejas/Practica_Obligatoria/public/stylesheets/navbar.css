@@ -7,7 +7,7 @@ body {
 
 .row {
     color: white;
-    box-shadow: 1px 15px 15px darkgrey;
+    box-shadow: 1px 15px 15px darkgrey !important;
     margin: 0 auto;
 }
 

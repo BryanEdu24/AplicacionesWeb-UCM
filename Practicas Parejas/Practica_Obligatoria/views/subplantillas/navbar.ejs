@@ -46,27 +46,6 @@
             </div>
         </div>
     </nav>
-    
-    <script>
-        window.addEventListener("load", function() {
-           // icono para mostrar contraseña
-           showPassword = document.querySelector('.show-password');
-           showPassword.addEventListener('click', () => {
-               // elementos input de tipo clave
-               contrasenia = document.querySelector('.contraModal');
-
-               if (contrasenia.type === "text") {
-                   contrasenia.type = "password"
-                   showPassword.classList.toggle("fa-eye-slash");
-               } else {
-                   contrasenia.type = "text"
-                   showPassword.classList.remove('fa-eye-slash');
-                   showPassword.classList.remove('fa-eye');
-                }
-           })
-        });
-   </script>
-
     <!-- Modal para Pefil Usuario -->
     <div class="modal fade" id="modalPerfil">
         <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -76,20 +55,17 @@
                     <div class="fotoSuperpuesta">
                         <img class="rounded-circle fotoPerfilModal" src="images/<%=idUser%>" alt="Foto del Usuario" width="100" height="100"/>
                     </div>
-                    <h4 class="text-center nameModal"><%=nameUser  %></h4>
+                    <h4 class="text-center nameModal"><%=nameUser%></h4>
 
                     <div class="d-flex align-items-center justify-content-center">
                         <div>
-                            <% %>
-
                             <div class="fechaCreacionModal"><h5>🔹<strong> Fecha de creación: </strong><%=date %> </h5></div>
-                           
                             <div class="perfilModal"><h5>🔹<strong>Tipo de perfil: </strong><%= rol %></h5></div>
                             <div class="contraseniaModal">
                                 <h5 class="d-flex justify-content-between align-items-center">
                                     <strong>🔹Contraseña: </strong>
                                     <input type="password" name="contraModal" class="contraModal" value="<%= password %>" disabled />
-                                    <span class="fa fa-fw fa-eye password-icon show-password" title="Mostrar/Ocultar Contraseña"></span>
+                                    <span class="fa fa-fw fa-eye password-icon showPassword" title="Mostrar/Ocultar Contraseña"></span>
                                 </h5>
                             </div>
                             <div class="nameUserModal"><h5>🔹<strong>Nombre Usuario: </strong><%= nameUser %></h5></div>
@@ -116,5 +92,25 @@
             </div>
         </div>
     </div>
+
+    <script>
+        window.addEventListener("load", function() {
+           // icono para mostrar contraseña
+           showPassword = document.querySelector('.showPassword');
+           showPassword.addEventListener('click', () => {
+               // elementos input de tipo clave
+               contrasenia = document.querySelector('.contraModal');
+
+               if (contrasenia.type === "text") {
+                   contrasenia.type = "password"
+                   showPassword.classList.toggle("fa-eye-slash");
+               } else {
+                   contrasenia.type = "text"
+                   showPassword.classList.remove('fa-eye-slash');
+                   showPassword.classList.remove('fa-eye');
+                }
+           })
+        });
+   </script>
 
 </html>

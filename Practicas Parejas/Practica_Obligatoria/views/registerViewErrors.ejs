@@ -27,16 +27,13 @@
                         </div>      
                     </div>
                     <% if (errores.length>0) { %>
-                        <div class="cajaErrores">
+                        <div class="alert alert-simple alert-danger alert-dismissible fade show" role="alert" data-brk-library="component__alert">
                             <% errores.forEach(function(error) { %>
-                                <div>
-                                    <div class="alert alert-simple alert-danger alert-dismissible fade show" role="alert" data-brk-library="component__alert">
-                                        <i class="fa fa-exclamation-triangle"></i>
-                                        <%= error.msg %>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                </div>
+                                <i class="fa fa-exclamation-triangle"></i>
+                                <%= error.msg %>
+                                <br>
                             <% }); %>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     <% } %>
                     <div class="containerInputs col justify-content-center">

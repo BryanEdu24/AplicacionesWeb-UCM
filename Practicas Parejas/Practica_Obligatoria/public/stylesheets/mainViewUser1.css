@@ -80,148 +80,146 @@
 }
 
 .tablaUser1 {
-    background-color: midnightblue;
-    border-radius: 10px;
-    margin: 0 auto;
-    border-collapse: collapse;
-    margin-top: 1.5%;
-    width: 80%;
+    background-color: midnightblue !important;
+    border-radius: 10px !important;
+    margin: 0 auto !important;
+    border-collapse: collapse !important;
+    margin-top: 1.5% !important;
+    width: 80% !important;
 }
 
 th {
-    color: white;
-    text-align: center;
-    border-right: gainsboro 2px solid;
-    border-left: gainsboro 2px solid;
-    padding: 1%;
-    font-weight: bold;
+    color: white !important;
+    text-align: center !important;
+    border-right: gainsboro 2px solid !important;
+    border-left: gainsboro 2px solid !important;
+    padding: 1% !important;
+    font-weight: bold !important;
 }
 
 .tablaUser1 tr:first-child th:first-child {
-    border-left: none;
+    border-left: none !important;
 }
 
 .tablaUser1 tr:first-child th:last-child {
-    border-right: none;
+    border-right: none !important;
 }
 
 .tablaUser1 tr:last-child td:last-child {
-    border-bottom-right-radius: 10px;
+    border-bottom-right-radius: 10px !important;
 }
 
 .tablaUser1 tr:last-child td:first-child {
-    border-bottom-left-radius: 10px;
+    border-bottom-left-radius: 10px !important;
 }
 
 td {
-    background-color: thistle;
+    background-color: thistle !important;
 }
 
 td:first-child {
-    padding: 1%;
+    padding: 1% !important;
 }
 
 .fechas, .tipos, .tecnicos {
-    text-align: center;
-    width: 20vh;
+    text-align: center !important;
+    width: 20vh !important;
 }
 
 .fechas {
-    border-right: gainsboro 2px solid;
+    border-right: gainsboro 2px solid !important;
 }
 
 .tipos {
-    border-right: gainsboro 2px solid;
-    border-left: gainsboro 2px solid;
+    border-right: gainsboro 2px solid !important;
+    border-left: gainsboro 2px solid !important;
     width: 10vh;
 }
 
 .tecnicos {
-    border-left: gainsboro 2px solid;    
+    border-left: gainsboro 2px solid !important;    
 }
 
 tr {
-    border-bottom: gainsboro 2px solid;
+    border-bottom: gainsboro 2px solid !important;
 }
 
 tr:last-child  {
-    border: 0;
+    border: 0 !important;
 }
 
 tr:first-child {
-    border: 0;
+    border: 0 !important;
 }
 
-/* #2e4b8185 */
-.modal  {
+/* .modal  {
     background-color: #2e4b8185;
     backdrop-filter: blur(8px);
 }
 
-/* 343a40 */
 .modal-content {
     background-color: #343a40 !important;
     color: white;
     border-radius: 20px !important;
-}
+} */
 
 .pildora {
-    background-color: PaleGoldenrod;
-    color: black;
+    background-color: PaleGoldenrod !important;
+    color: black !important;
 }
 
 .comunicacionesModal {
-    background-color: lightcyan;
-    color: black;
-    border-radius: 5px;
-    padding-left: 1.5%;
-    padding: 0.5%;
-    margin-top: 1%;
-    margin-bottom: 1%;
+    background-color: lightcyan !important;
+    color: black !important;
+    border-radius: 5px !important;
+    padding-left: 1.5% !important;
+    padding: 0.5% !important;
+    margin-top: 1% !important;
+    margin-bottom: 1% !important;
 }
 
 .perfilModal {
-    background-color: lightcyan;
-    color: black;
-    border-radius: 5px;
-    padding-left: 1.5%;
-    padding: 0.5%;
-    margin-bottom: 1%;
+    background-color: lightcyan !important;
+    color: black !important;
+    border-radius: 5px !important;
+    padding-left: 1.5% !important;
+    padding: 0.5% !important;
+    margin-bottom: 1% !important;
 }
 
 .observacionesModal {
-    background-color: lightcyan;
-    color: black;
-    border-radius: 5px;
-    padding-left: 1.5%;
-    padding: 0.5%;
-    margin-bottom: 1%;
+    background-color: lightcyan !important;
+    color: black !important;
+    border-radius: 5px !important;
+    padding-left: 1.5% !important;
+    padding: 0.5% !important;
+    margin-bottom: 1% !important;
 }
 
 .contenidoObservacion {
-    border-radius: 5px;
-    margin-left: 5%;
-    margin-right: 2%;
-    margin-bottom: 1%;
+    border-radius: 5px !important;
+    margin-left: 5% !important;
+    margin-right: 2% !important;
+    margin-bottom: 1% !important;
 }
 
 .comentariosModal {
-    background-color: lightcyan;
-    color: black;
-    border-radius: 5px;
-    padding-left: 1.5%;
-    padding: 0.5%;
+    background-color: lightcyan !important;
+    color: black !important;
+    border-radius: 5px !important;
+    padding-left: 1.5% !important;
+    padding: 0.5% !important;
 }
 
 .contenidoComentario {
-    border-radius: 5px;
-    margin-left: 5%;
-    margin-right: 2%;
+    border-radius: 5px !important;
+    margin-left: 5% !important;
+    margin-right: 2% !important;
 }
 
 .contenidoComentarioBorrado {
-    border-radius: 5px;
-    margin-left: 5%;
-    margin-right: 2%;
-    margin-bottom: 1%;
+    border-radius: 5px !important;
+    margin-left: 5% !important;
+    margin-right: 2% !important;
+    margin-bottom: 1% !important;
 }
