@@ -1,251 +1,165 @@
 <% switch (rol) {
     case "Alumno": %>
-    <div class="perfilAlumno text-center">
-    Seleccione categoria 
-    <%- include("selCategoria") %>
-    <select name="categoriaAviso" required="true" id="SelectAD" style="display:none;">
-        <option value="opt0" hidden selected>Seleccione una...</option>
-        <option value="Certificado digital de personal física">Certificado digital de personal física</option>
-        <option value="Registro electrónico">Registro electrónico</option>
-        <option value="Sede electrónica">Sede electrónica</option>
-    </select> 
+        <%- include("selectsTipoAviso") %>
+        <div class="perfilAlumno text-center">
+            <select name="categoriaAviso" required="true" id="SelectAD" style="display:none;" class="selEspecial">
+                <option value="opt0" hidden selected>Seleccione una...</option>
+                <option value="Certificado digital de personal física">Certificado digital de personal física</option>
+                <option value="Registro electrónico">Registro electrónico</option>
+                <option value="Sede electrónica">Sede electrónica</option>
+            </select> 
 
-    <select name="categoriaAviso" required="true" id="SelectCom" style="display:none;">
-        <option value="opt0" hidden selected>Seleccione una...</option>
-        <option value="Correo electrónico">Correo electrónico</option>
-        <option value="Google Meet">Google Meet</option>
-        <option value="Cuenta de Alumno">Cuenta de Alumno</option>
-    </select> 
+            <select name="categoriaAviso" required="true" id="SelectCom" style="display:none;" class="selEspecial">
+                <option value="opt0" hidden selected>Seleccione una...</option>
+                <option value="Correo electrónico">Correo electrónico</option>
+                <option value="Google Meet">Google Meet</option>
+                <option value="Cuenta de Alumno">Cuenta de Alumno</option>
+            </select> 
 
-    <select name="categoriaAviso" required="true" id="SelectCon" style="display:none;">
-        <option value="opt0" hidden selected>Seleccione una...</option>
-        <option value="Cortafuegos corporativo">Cortafuegos corporativo</option>
-        <option value="VPN Acceso remoto">VPN Acceso remoto</option>
-        <option value="Wifi Eduroam (ssid: eduroam)">Wifi Eduroam (ssid: eduroam)</option>
-    </select> 
+            <select name="categoriaAviso" required="true" id="SelectCon" style="display:none;" class="selEspecial">
+                <option value="opt0" hidden selected>Seleccione una...</option>
+                <option value="Cortafuegos corporativo">Cortafuegos corporativo</option>
+                <option value="VPN Acceso remoto">VPN Acceso remoto</option>
+                <option value="Wifi Eduroam (ssid: eduroam)">Wifi Eduroam (ssid: eduroam)</option>
+            </select> 
 
-    <select name="categoriaAviso" required="true" id="SelectDoc" style="display:none;">
-        <option value="opt0" hidden selected>Seleccione una...</option>
-        <option value="Aula Virtual">Aula Virtual</option>
-        <option value=">Moodle: Aula Global">Moodle: Aula Global</option>
-        <option value="Plataforma de cursos online Privados">Plataforma de cursos online Privados</option>
-    </select> 
+            <select name="categoriaAviso" required="true" id="SelectDoc" style="display:none;" class="selEspecial">
+                <option value="opt0" hidden selected>Seleccione una...</option>
+                <option value="Aula Virtual">Aula Virtual</option>
+                <option value=">Moodle: Aula Global">Moodle: Aula Global</option>
+                <option value="Plataforma de cursos online Privados">Plataforma de cursos online Privados</option>
+            </select> 
 
-    <select name="categoriaAviso" required="true" id="SelectWeb" style="display:none;">
-        <option value="opt0" hidden selected>Seleccione una...</option>
-        <option value="Portal de Eventos">Portal de Eventos</option>
-    </select> 
-    </div>
+            <select name="categoriaAviso" required="true" id="SelectWeb" style="display:none;" class="selEspecial">
+                <option value="opt0" hidden selected>Seleccione una...</option>
+                <option value="Portal de Eventos">Portal de Eventos</option>
+            </select> 
+        </div>
     <% break; 
     case "PAS": %>
-    <div class="perfilPAS text-center">
-        Seleccione categoria 
-        <%- include("selCategoria") %>
-        <select name="categoriaAviso" required="true" id="SelectAD" style="display:none;">
-            <option value="opt0" hidden selected>Seleccione una...</option>
-            <option value="Certificado digital de personal física">Certificado digital de personal física</option>
-            <option value="Certificado electrónico de empleado público">Certificado electrónico de empleado público</option>
-            <option value="Registro electrónico">Registro electrónico</option>
-            <option value="Sede electrónica">Sede electrónica</option>
-            <option value="Portafirmas">Portafirmas</option>
-        </select> 
+        <%- include("selectsTipoAviso") %>
+        <div class="perfilPAS text-center">
+            <select name="categoriaAviso" required="true" id="SelectAD" style="display:none;" class="selEspecial">
+                <option value="opt0" hidden selected>Seleccione una...</option>
+                <option value="Certificado digital de personal física">Certificado digital de personal física</option>
+                <option value="Certificado electrónico de empleado público">Certificado electrónico de empleado público</option>
+                <option value="Registro electrónico">Registro electrónico</option>
+                <option value="Sede electrónica">Sede electrónica</option>
+                <option value="Portafirmas">Portafirmas</option>
+            </select> 
 
-        <select name="categoriaAviso" required="true" id="SelectCom" style="display:none;">
-            <option value="opt0" hidden selected>Seleccione una...</option>
-            <option value="Correo electrónico">Correo electrónico</option>
-            <option value="Google Meet">Google Meet</option>
-            <option value="Cuenta de personal">Cuenta de personal</option>
-            <option value="Cuenta genérica">Cuenta genérica</option>
-        </select> 
+            <select name="categoriaAviso" required="true" id="SelectCom" style="display:none;" class="selEspecial">
+                <option value="opt0" hidden selected>Seleccione una...</option>
+                <option value="Correo electrónico">Correo electrónico</option>
+                <option value="Google Meet">Google Meet</option>
+                <option value="Cuenta de personal">Cuenta de personal</option>
+                <option value="Cuenta genérica">Cuenta genérica</option>
+            </select> 
 
-        <select name="categoriaAviso" required="true" id="SelectCon" style="display:none;">
-            <option value="opt0" hidden selected>Seleccione una...</option>
-            <option value="Cuenta as la Red SARA">Cuenta as la Red SARA</option>
-            <option value="Conexión por cable en despachos">Conexión por cable en despachos</option>
-            <option value="Cortafuegos corporativo">Cortafuegos corporativo</option>
-            <option value="Resolución de nombres de dominio (DNS)">Resolución de nombres de dominio (DNS)</option>
-            <option value="VPN Acceso remoto">VPN Acceso remoto</option>
-            <option value="Wifi Eduroam (ssid: eduroam)">Wifi Eduroam (ssid: eduroam)</option>
-            <option value="Wifi para visitantes (ssid: UCM-Visitantes)">Wifi para visitantes (ssid: UCM-Visitantes)</option>
-        </select> 
+            <select name="categoriaAviso" required="true" id="SelectCon" style="display:none;" class="selEspecial">
+                <option value="opt0" hidden selected>Seleccione una...</option>
+                <option value="Cuenta as la Red SARA">Cuenta as la Red SARA</option>
+                <option value="Conexión por cable en despachos">Conexión por cable en despachos</option>
+                <option value="Cortafuegos corporativo">Cortafuegos corporativo</option>
+                <option value="Resolución de nombres de dominio (DNS)">Resolución de nombres de dominio (DNS)</option>
+                <option value="VPN Acceso remoto">VPN Acceso remoto</option>
+                <option value="Wifi Eduroam (ssid: eduroam)">Wifi Eduroam (ssid: eduroam)</option>
+                <option value="Wifi para visitantes (ssid: UCM-Visitantes)">Wifi para visitantes (ssid: UCM-Visitantes)</option>
+            </select> 
 
-        <select name="categoriaAviso" required="true" id="SelectDoc" style="display:none;">
-            <option value="opt0" hidden selected>Seleccione una...</option>
-            <option value="Blackboard Collaborate">Blackboard Collaborate</option>
-            <option value="Listados de clase">Listados de clase</option>
-            <option value="Moodle: Aula Global">Moodle: Aula Global</option>
-        </select> 
-        
-        <select name="categoriaAviso" required="true" id="SelectWeb" style="display:none;">
-            <option value="opt0" hidden selected>Seleccione una...</option>
-            <option value="Analítica Web">Analítica Web</option>
-            <option value="Emisión de certificados SSL">Emisión de certificados SSL</option>
-            <option value="Hosting: alojamiento de páginas web">Hosting: alojamiento de páginas web</option>
-            <option value="Portal de eventos">Portal de eventos</option>
-            <option value="Redirecciones Web">Redirecciones Web</option>
-        </select> 
-    </div> 
+            <select name="categoriaAviso" required="true" id="SelectDoc" style="display:none;" class="selEspecial">
+                <option value="opt0" hidden selected>Seleccione una...</option>
+                <option value="Blackboard Collaborate">Blackboard Collaborate</option>
+                <option value="Listados de clase">Listados de clase</option>
+                <option value="Moodle: Aula Global">Moodle: Aula Global</option>
+            </select> 
+            
+            <select name="categoriaAviso" required="true" id="SelectWeb" style="display:none;" class="selEspecial">
+                <option value="opt0" hidden selected>Seleccione una...</option>
+                <option value="Analítica Web">Analítica Web</option>
+                <option value="Emisión de certificados SSL">Emisión de certificados SSL</option>
+                <option value="Hosting: alojamiento de páginas web">Hosting: alojamiento de páginas web</option>
+                <option value="Portal de eventos">Portal de eventos</option>
+                <option value="Redirecciones Web">Redirecciones Web</option>
+            </select> 
+        </div> 
     <% break; 
     case "PDI": %>
-    <div class="perfilPDI text-center">
-        Seleccione categoria 
-        <%- include("selCategoria") %>
-        <select name="categoriaAviso" required="true" id="SelectAD" style="display:none;">
-            <option value="opt0" hidden selected>Seleccione una...</option>
-            <option value="Certificado digital de personal física">Certificado digital de personal física</option>
-            <option value="Certificado electrónico de empleado público">Certificado electrónico de empleado público</option>
-            <option value="Registro electrónico">Registro electrónico</option>
-            <option value="Sede electrónica">Sede electrónica</option>
-            <option value="Portafirmas">Portafirmas</option>
-        </select> 
+        <%- include("selectsTipoAviso") %>
+        <div class="perfilPDI text-center">
+            <select name="categoriaAviso" required="true" id="SelectAD" style="display:none;" class="selEspecial">
+                <option value="opt0" hidden selected>Seleccione una...</option>
+                <option value="Certificado digital de personal física">Certificado digital de personal física</option>
+                <option value="Certificado electrónico de empleado público">Certificado electrónico de empleado público</option>
+                <option value="Registro electrónico">Registro electrónico</option>
+                <option value="Sede electrónica">Sede electrónica</option>
+                <option value="Portafirmas">Portafirmas</option>
+            </select> 
 
-        <select name="categoriaAviso" required="true" id="SelectCom" style="display:none;">
-            <option value="opt0" hidden selected>Seleccione una...</option>
-            <option value="Correo electrónico">Correo electrónico</option>
-            <option value="Google Meet">Google Meet</option>
-            <option value="Cuenta de personal">Cuenta de personal</option>
-            <option value="Cuenta genérica">Cuenta genérica</option>
-        </select> 
+            <select name="categoriaAviso" required="true" id="SelectCom" style="display:none;" class="selEspecial">
+                <option value="opt0" hidden selected>Seleccione una...</option>
+                <option value="Correo electrónico">Correo electrónico</option>
+                <option value="Google Meet">Google Meet</option>
+                <option value="Cuenta de personal">Cuenta de personal</option>
+                <option value="Cuenta genérica">Cuenta genérica</option>
+            </select> 
 
-        <select name="categoriaAviso" required="true" id="SelectCon" style="display:none;">
-            <option value="opt0" hidden selected>Seleccione una...</option>
-            <option value="Conexión por cable en despachos">Conexión por cable en despachos</option>
-            <option value="Cortafuegos corporativo">Cortafuegos corporativo</option>
-            <option value="VPN Acceso remoto">VPN Acceso remoto</option>
-            <option value="Wifi Eduroam (ssid: eduroam)">Wifi Eduroam (ssid: eduroam)</option>
-            <option value="Wifi para visitantes (ssid: UCM-Visitantes)">Wifi para visitantes (ssid: UCM-Visitantes)</option>
-        </select> 
+            <select name="categoriaAviso" required="true" id="SelectCon" style="display:none;" class="selEspecial">
+                <option value="opt0" hidden selected>Seleccione una...</option>
+                <option value="Conexión por cable en despachos">Conexión por cable en despachos</option>
+                <option value="Cortafuegos corporativo">Cortafuegos corporativo</option>
+                <option value="VPN Acceso remoto">VPN Acceso remoto</option>
+                <option value="Wifi Eduroam (ssid: eduroam)">Wifi Eduroam (ssid: eduroam)</option>
+                <option value="Wifi para visitantes (ssid: UCM-Visitantes)">Wifi para visitantes (ssid: UCM-Visitantes)</option>
+            </select> 
 
-        <select name="categoriaAviso" required="true" id="SelectDoc" style="display:none;">
-            <option value="opt0" hidden selected>Seleccione una...</option>
-            <option value="Aula Virtual">Aula Virtual</option>
-            <option value="Blackboard Collaborate">Blackboard Collaborate</option>
-            <option value="Listados de clase">Listados de clase</option>
-            <option value="Moodle: Aula Global">Moodle: Aula Global</option>
-            <option value="Plataforma de cursos online Privados">Plataforma de cursos online Privados</option>
-        </select> 
-        
-        <select name="categoriaAviso" required="true" id="SelectWeb" style="display:none;">
-            <option value="opt0" hidden selected>Seleccione una...</option>
-            <option value="Analítica Web">Analítica Web</option>
-            <option value="Emisión de certificados SSL">Emisión de certificados SSL</option>
-            <option value="Hosting: alojamiento de páginas web">Hosting: alojamiento de páginas web</option>
-            <option value="Portal de eventos">Portal de eventos</option>
-            <option value="Redirecciones Web">Redirecciones Web</option>
-        </select>  
-    </div>
+            <select name="categoriaAviso" required="true" id="SelectDoc" style="display:none;" class="selEspecial">
+                <option value="opt0" hidden selected>Seleccione una...</option>
+                <option value="Aula Virtual">Aula Virtual</option>
+                <option value="Blackboard Collaborate">Blackboard Collaborate</option>
+                <option value="Listados de clase">Listados de clase</option>
+                <option value="Moodle: Aula Global">Moodle: Aula Global</option>
+                <option value="Plataforma de cursos online Privados">Plataforma de cursos online Privados</option>
+            </select> 
+            
+            <select name="categoriaAviso" required="true" id="SelectWeb" style="display:none;" class="selEspecial">
+                <option value="opt0" hidden selected>Seleccione una...</option>
+                <option value="Analítica Web">Analítica Web</option>
+                <option value="Emisión de certificados SSL">Emisión de certificados SSL</option>
+                <option value="Hosting: alojamiento de páginas web">Hosting: alojamiento de páginas web</option>
+                <option value="Portal de eventos">Portal de eventos</option>
+                <option value="Redirecciones Web">Redirecciones Web</option>
+            </select>  
+        </div>
     <% break; 
     case "Antiguo Alumno": %>
-    <div class="perfilAntAlumno text-center">
-        Seleccione categoria 
-        <%- include("selCategoria") %>
-        <select name="categoriaAviso" required="true" id="SelectAD" style="display:none;">
-            <option value="opt0" hidden selected>Seleccione una...</option>
-            <option value="Registro electrónico">Registro electrónico</option>
-            <option value="Sede electrónica">Sede electrónica</option>
-        </select> 
+        <%- include("selectsTipoAviso") %>
+        <div class="perfilAntAlumno text-center">
+            <select name="categoriaAviso" required="true" id="SelectAD" style="display:none;" class="selEspecial">
+                <option value="opt0" hidden selected>Seleccione una...</option>
+                <option value="Registro electrónico">Registro electrónico</option>
+                <option value="Sede electrónica">Sede electrónica</option>
+            </select> 
 
-        <select name="categoriaAviso" required="true" id="SelectCom" style="display:none;">
-            <option value="opt0" hidden selected>Seleccione una...</option>
-            <option value="Correo electrónico">Correo electrónico</option>
-        <option value="Google Meet">Google Meet</option>
-        <option value="Cuenta de Alumno">Cuenta de Alumno</option>
-        </select> 
+            <select name="categoriaAviso" required="true" id="SelectCom" style="display:none;" class="selEspecial">
+                <option value="opt0" hidden selected>Seleccione una...</option>
+                <option value="Correo electrónico">Correo electrónico</option>
+            <option value="Google Meet">Google Meet</option>
+            <option value="Cuenta de Alumno">Cuenta de Alumno</option>
+            </select> 
 
-        <select name="categoriaAviso" required="true" id="SelectCon" style="display:none;">
-            <option value="No tiene opciones disponibles" hidden selected>No tiene opciones disponibles</option>
-        </select> 
+            <select name="categoriaAviso" required="true" id="SelectCon" style="display:none;" class="selEspecial">
+                <option value="No tiene opciones disponibles" hidden selected>No tiene opciones disponibles</option>
+            </select> 
 
-        <select name="categoriaAviso" required="true" id="SelectDoc" style="display:none;">
-            <option value="No tiene opciones disponibles" hidden selected>No tiene opciones disponibles</option>
-        </select> 
-        
-        <select name="categoriaAviso" required="true" id="SelectWeb" style="display:none;">
-            <option value="No tiene opciones disponibles" hidden selected>Seleccione una...</option>
-            <option value="Portal de eventos">Portal de eventos</option>
-        </select>
-    </div> 
+            <select name="categoriaAviso" required="true" id="SelectDoc" style="display:none;" class="selEspecial">
+                <option value="No tiene opciones disponibles" hidden selected>No tiene opciones disponibles</option>
+            </select> 
+            
+            <select name="categoriaAviso" required="true" id="SelectWeb" style="display:none;" class="selEspecial">
+                <option value="No tiene opciones disponibles" hidden selected>Seleccione una...</option>
+                <option value="Portal de eventos">Portal de eventos</option>
+            </select>
+        </div> 
     <% break;
-   default:} %> 
-
-<script>
-    function seleccionSelectSub(sel) {
-            if (sel.value=="Administración Digital"){
-                divT = document.getElementById("SelectAD");
-                divT.style.display = "";
-
-                divC = document.getElementById("divNormalModal");
-                divC.style.display="none";
-                divC = document.getElementById("SelectCom");
-                divC.style.display="none";
-                divC = document.getElementById("SelectCon");
-                divC.style.display="none";
-                divC = document.getElementById("SelectDoc");
-                divC.style.display="none";
-                divC = document.getElementById("SelectWeb");
-                divC.style.display="none";
-
-            }
-            else if (sel.value=="Comunicaciones") {
-                divT = document.getElementById("SelectCom");
-                divT.style.display = "";
-
-                divC = document.getElementById("divNormalModal");
-                divC.style.display="none";
-                divC = document.getElementById("SelectAD");
-                divC.style.display="none";
-                divC = document.getElementById("SelectCon");
-                divC.style.display="none";
-                divC = document.getElementById("SelectDoc");
-                divC.style.display="none";
-                divC = document.getElementById("SelectWeb");
-                divC.style.display="none";
-            }
-            else if (sel.value=="Conectividad") {
-                divT = document.getElementById("SelectCon");
-                divT.style.display = "";
-
-                divC = document.getElementById("divNormalModal");
-                divC.style.display="none";
-                divC = document.getElementById("SelectCom");
-                divC.style.display="none";
-                divC = document.getElementById("SelectAD");
-                divC.style.display="none";
-                divC = document.getElementById("SelectDoc");
-                divC.style.display="none";
-                divC = document.getElementById("SelectWeb");
-                divC.style.display="none";
-            }
-            else if (sel.value=="Docencia") {
-                divT = document.getElementById("SelectDoc");
-                divT.style.display = "";
-
-                divC = document.getElementById("divNormalModal");
-                divC.style.display="none";
-                divC = document.getElementById("SelectCom");
-                divC.style.display="none";
-                divC = document.getElementById("SelectCon");
-                divC.style.display="none";
-                divC = document.getElementById("SelectAD");
-                divC.style.display="none";
-                divC = document.getElementById("SelectWeb");
-                divC.style.display="none";
-            }
-            else if (sel.value=="Web") {
-                divT = document.getElementById("SelectWeb");
-                divT.style.display = "";
-
-                divC = document.getElementById("divNormalModal");
-                divC.style.display="none";
-                divC = document.getElementById("SelectCom");
-                divC.style.display="none";
-                divC = document.getElementById("SelectCon");
-                divC.style.display="none";
-                divC = document.getElementById("SelectAD");
-                divC.style.display="none";
-                divC = document.getElementById("SelectDoc");
-                divC.style.display="none";
-            }
-        }   
- 
-</script>
+   default: break;} %>

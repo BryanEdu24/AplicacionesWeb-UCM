@@ -1,0 +1,72 @@
+<section id="divNormalModal" style="display:none;"></section>
+<div class="selectsModalCurioso" id="divSelectsSugOculto" style="display:none;">
+    <h5>🔹<strong> Seleccione el tipo de sugerencia:</strong></h5>
+    <%- include("selCategoria") %>
+</div>
+
+<div class="selectsModalCurioso" id="divSelectsIncOculto" style="display:none;">
+    <h5>🔹<strong> Seleccione el tipo de incidencia:</strong></h5>
+    <%- include("selCategoria") %>
+</div>
+
+<div class="selectsModal" id="divSelectsFelOculto" style="display:none;">
+    <h5>🔹<strong> Seleccione un departamento para felicitar:</strong></h5>
+    <div class="perfilAlumno text-center mb-2">
+        <select name="opcionesAlumno" required="true">
+            <option value="opt0" hidden selected>Seleccione uno...</option>
+            <option value="">Archivo Universitario</option>
+            <option value="">Asesoría Jurídica</option>
+            <option value="">Biblioteca</option>
+            <option value="">Centro de Información</option>
+            <option value="">Departamentos docentes</option>
+            <option value="">Inspección de Servicios</option>
+            <option value="">Oficina de Gestión de Infraestructuras y Mantenimiento</option>
+            <option value="">Servicio de Administración</option>
+            <option value="">Servicios Informáticos</option>
+            <option value="">Servicio de Documentación</option>
+            <option value="">Servicio de Imprenta</option>
+            <option value="">Servicio de Cafetería</option>
+            <option value="">Toda la Universidad</option>
+        </select> 
+    </div>
+</div>
+
+<script>
+    function seleccionSelect(sel) {
+        if (sel.value=="Sugerencia") {
+            divT = document.getElementById("divSelectsSugOculto");
+            divT.style.display = "";
+
+            divC = document.getElementById("divNormalModal");
+            divC.style.display="none";
+            divC = document.getElementById("divSelectsIncOculto");
+            divC.style.display="none";
+            divC = document.getElementById("divSelectsFelOculto");
+            divC.style.display="none";
+            option = 'Sugerencia';
+        }
+        else if (sel.value=="Incidencia") {
+            divT = document.getElementById("divSelectsIncOculto");
+            divT.style.display = "";
+
+            divC = document.getElementById("divNormalModal");
+            divC.style.display="none";
+            divC = document.getElementById("divSelectsSugOculto");
+            divC.style.display="none";
+            divC = document.getElementById("divSelectsFelOculto");
+            divC.style.display="none";
+            option = 'Incidencia';
+        }
+        else if (sel.value=="Felicitacion") {
+            divT = document.getElementById("divSelectsFelOculto");
+            divT.style.display = "";
+
+            divC = document.getElementById("divNormalModal");
+            divC.style.display="none";
+            divC = document.getElementById("divSelectsSugOculto");
+            divC.style.display="none";
+            divC = document.getElementById("divSelectsIncOculto");
+            divC.style.display="none";
+        }
+    }    
+</script>

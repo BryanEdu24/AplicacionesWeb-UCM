@@ -64,7 +64,7 @@ input {
     cursor: pointer !important;
 }
 
-.selectsModal {
+.selectsModal:not(.selectsModalCurioso) {
     background-color: lightcyan;
     color: black;
     border-radius: 5px;
@@ -74,13 +74,29 @@ input {
     margin-bottom: 1%;
 }
 
-select {
+.selectsModalCurioso {
+    background-color: lightcyan;
+    color: black;
+    border-top: 5px;
+    padding-left: 1.5%;
+    padding: 0.5%;
+}
+
+select:not(.selEspecial) {
     background-color: cornsilk;
     border: 0;
     border-radius: 5px;
     border-bottom: solid darkgray;
     padding: 1%;
     margin-top: 2%;
+}
+
+.selEspecial {
+    background-color: cornsilk;
+    border: 0;
+    border-radius: 5px;
+    border-bottom: solid darkgray;
+    padding: 1%;
 }
 
 .tituloSelect {
@@ -143,4 +159,14 @@ select {
 .btnNuevoAviso:hover {
     background-color: skyblue;
     color: black;
+}
+
+/* liada */
+
+.perfilAlumno, .perfilPAS, .perfilPDI, .perfilAntAlumno {
+    background-color: lightcyan;
+    color: black;
+    padding-left: 1.5%;
+    padding: 0.5%;
+    margin-top: 1%;   
 }

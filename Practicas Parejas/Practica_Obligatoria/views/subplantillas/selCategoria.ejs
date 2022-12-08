@@ -1,22 +1,107 @@
-    <div class="d-flex justify-content-between ms-5 me-5 mb-2">
-    <div class="animacionRadioBtn">
+<section id="divNormalModal2" style="display:none;"></section>
+<h6><strong> Seleccione una categoría:</strong></h6>
+<!-- Selects -->
+<div class="d-flex justify-content-center">
+    <div class="p-2">
         <input type="radio" name="subtipoAviso" value="Administración Digital" id="opt1" onChange="seleccionSelectSub(this)">
-        <label for="opt1" >Administación Digital</label>
+        <label for="opt1">Administación Digital</label>
     </div>
-    <div class="animacionRadioBtn">
+    <div class="p-2">
         <input type="radio" name="subtipoAviso" value="Comunicaciones" id="opt2" onChange="seleccionSelectSub(this)">
         <label for="opt2">Comunicaciones</label>
     </div>
-    <div class="animacionRadioBtn">
+    <div class="p-2">
         <input type="radio" name="subtipoAviso" value="Conectividad" id="opt3" onChange="seleccionSelectSub(this)">
         <label for="opt3" >Conectividad</label>
     </div>
-    <div class="animacionRadioBtn">
+    <div class="p-2">
         <input type="radio" name="subtipoAviso" value="Docencia" id="opt4" onChange="seleccionSelectSub(this)">
         <label for="opt4">Docencia</label>
     </div>
-    <div class="animacionRadioBtn">
+    <div class="p-2">
         <input type="radio" name="subtipoAviso" value="Web" id="opt5" onChange="seleccionSelectSub(this)">
-        <label for="opt5" >Web</label>
+        <label for="opt5">Web</label>
     </div>
-    </div>
+</div>
+<!-- Fin Selects -->
+
+<script>
+    function seleccionSelectSub(sel) {
+        if (sel.value=="Administración Digital"){
+            divT = document.getElementById("SelectAD");
+            divT.style.display = "";
+
+            divC = document.getElementById("divNormalModal2");
+            divC.style.display="none";
+            divC = document.getElementById("SelectCom");
+            divC.style.display="none";
+            divC = document.getElementById("SelectCon");
+            divC.style.display="none";
+            divC = document.getElementById("SelectDoc");
+            divC.style.display="none";
+            divC = document.getElementById("SelectWeb");
+            divC.style.display="none";
+        }
+        else if (sel.value=="Comunicaciones") {
+            divT = document.getElementById("SelectCom");
+            divT.style.display = "";
+
+            divC = document.getElementById("divNormalModal2");
+            divC.style.display="none";
+            divC = document.getElementById("SelectAD");
+            divC.style.display="none";
+            divC = document.getElementById("SelectCon");
+            divC.style.display="none";
+            divC = document.getElementById("SelectDoc");
+            divC.style.display="none";
+            divC = document.getElementById("SelectWeb");
+            divC.style.display="none";
+        }
+        else if (sel.value=="Conectividad") {
+            divT = document.getElementById("SelectCon");
+            divT.style.display = "";
+
+            divC = document.getElementById("divNormalModal2");
+            divC.style.display="none";
+            divC = document.getElementById("SelectCom");
+            divC.style.display="none";
+            divC = document.getElementById("SelectAD");
+            divC.style.display="none";
+            divC = document.getElementById("SelectDoc");
+            divC.style.display="none";
+            divC = document.getElementById("SelectWeb");
+            divC.style.display="none";
+        }
+        else if (sel.value=="Docencia") {
+            divT = document.getElementById("SelectDoc");
+            divT.style.display = "";
+
+            divC = document.getElementById("divNormalModal2");
+            divC.style.display="none";
+            divC = document.getElementById("SelectCom");
+            divC.style.display="none";
+            divC = document.getElementById("SelectCon");
+            divC.style.display="none";
+            divC = document.getElementById("SelectAD");
+            divC.style.display="none";
+            divC = document.getElementById("SelectWeb");
+            divC.style.display="none";
+        }
+        else if (sel.value=="Web") {
+            divT = document.getElementById("SelectWeb");
+            divT.style.display = "";
+
+            divC = document.getElementById("divNormalModal2");
+            divC.style.display="none";
+            divC = document.getElementById("SelectCom");
+            divC.style.display="none";
+            divC = document.getElementById("SelectCon");
+            divC.style.display="none";
+            divC = document.getElementById("SelectAD");
+            divC.style.display="none";
+            divC = document.getElementById("SelectDoc");
+            divC.style.display="none";
+        }
+    }   
+ 
+</script>
