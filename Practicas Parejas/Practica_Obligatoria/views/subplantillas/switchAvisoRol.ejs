@@ -1,7 +1,7 @@
 <% switch (rol) {
     case "Alumno": %>
         <%- include("selectsTipoAviso") %>
-        <div class="perfilAlumno text-center">
+        <div class="perfilAlumno text-center" style="display:none;" id="divSubSelects">
             <select name="categoriaAviso" required="true" id="SelectAD" style="display:none;" class="selEspecial">
                 <option value="opt0" hidden selected>Seleccione una...</option>
                 <option value="Certificado digital de personal física">Certificado digital de personal física</option>
@@ -38,7 +38,7 @@
     <% break; 
     case "PAS": %>
         <%- include("selectsTipoAviso") %>
-        <div class="perfilPAS text-center">
+        <div class="perfilPAS text-center" style="display:none;" id="divSubSelects">
             <select name="categoriaAviso" required="true" id="SelectAD" style="display:none;" class="selEspecial">
                 <option value="opt0" hidden selected>Seleccione una...</option>
                 <option value="Certificado digital de personal física">Certificado digital de personal física</option>
@@ -86,7 +86,7 @@
     <% break; 
     case "PDI": %>
         <%- include("selectsTipoAviso") %>
-        <div class="perfilPDI text-center">
+        <div class="perfilPDI text-center" style="display:none;" id="divSubSelects">
             <select name="categoriaAviso" required="true" id="SelectAD" style="display:none;" class="selEspecial">
                 <option value="opt0" hidden selected>Seleccione una...</option>
                 <option value="Certificado digital de personal física">Certificado digital de personal física</option>
@@ -134,7 +134,7 @@
     <% break; 
     case "Antiguo Alumno": %>
         <%- include("selectsTipoAviso") %>
-        <div class="perfilAntAlumno text-center">
+        <div class="perfilAntAlumno text-center" style="display:none;" id="divSubSelects">
             <select name="categoriaAviso" required="true" id="SelectAD" style="display:none;" class="selEspecial">
                 <option value="opt0" hidden selected>Seleccione una...</option>
                 <option value="Registro electrónico">Registro electrónico</option>

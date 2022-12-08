@@ -77,6 +77,8 @@ input {
 .selectsModalCurioso {
     background-color: lightcyan;
     color: black;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     border-top: 5px;
     padding-left: 1.5%;
     padding: 0.5%;
@@ -97,6 +99,7 @@ select:not(.selEspecial) {
     border-radius: 5px;
     border-bottom: solid darkgray;
     padding: 1%;
+    margin-bottom: 1%;
 }
 
 .tituloSelect {
@@ -166,7 +169,6 @@ select:not(.selEspecial) {
 .perfilAlumno, .perfilPAS, .perfilPDI, .perfilAntAlumno {
     background-color: lightcyan;
     color: black;
-    padding-left: 1.5%;
-    padding: 0.5%;
-    margin-top: 1%;   
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
