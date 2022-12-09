@@ -130,6 +130,10 @@ app.post("/registerPost.html",
       numEmpleado: null,
       imagen: null
     };
+
+    //Comprobar if usuario.opcion == "PAS"
+    //si lo es, comprobar 
+
     if (request.body.numEmpleado != undefined) {
       daoU.checkEmployee(request.body.numEmpleado, function (err, idTec) {
         if(err){
@@ -144,6 +148,7 @@ app.post("/registerPost.html",
           if (request.file) {
             usuario.imagen= request.file.buffer ;
           }
+
           daoU.insertTec(usuario, function(err, newId) {
               if (!err) {
                 usuario.id = newId;

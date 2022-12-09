@@ -117,7 +117,7 @@ class DAOUsers {
                     connection.release();
                     if (err)    callback(new Error("Error a la hora de comprobar el número de empleado"));
                     else    {
-                        callback(null, idTecnico[0].idTecnico);
+                        callback(null, idTecnico[0]);
                     }
                 });
             }
