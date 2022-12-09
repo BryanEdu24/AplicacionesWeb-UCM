@@ -16,7 +16,6 @@
 
         <div class="row justify-content-center mt-4">
             <div class="divGeneral">
-                <!-- enctype="multipart/form-data" -->
                 <form method="POST" action="registerPost.html" enctype="multipart/form-data" class="Formulario col"  title="Formulario de registro">
                     <div class="containerTextos">
                         <h2 class="mb-3"><strong>Crear cuenta</strong></h2>
@@ -26,16 +25,14 @@
                             <h5><strong>Centro de Atención al Usuario</strong></h5>
                         </div>      
                     </div>
-                    <% if (errores.length>0) { %>
-                        <div class="alert alert-simple alert-danger alert-dismissible fade show" role="alert" data-brk-library="component__alert">
+                        <div class="alert alert-simple alert-danger alert-dismissible fade show" role="alert" data-brk-library="component__alert" id="erroresRegister">
                             <% errores.forEach(function(error) { %>
                                 <i class="fa fa-exclamation-triangle"></i>
                                 <%= error.msg %>
                                 <br>
                             <% }); %>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="ocultarError(this)"></button>
                         </div>
-                    <% } %>
                     <div class="containerInputs col justify-content-center">
                         <div>
                             <img src="images/emailVector.svg" height="25" width="25" alt="E-mail" title="Simbolo correo">
@@ -149,6 +146,11 @@
                 divT = document.getElementById("divOculto");
                 divT.style.display = "none";
             }
+        }
+
+        function ocultarError(sel) {
+            divX = document.getElementById("erroresRegister");
+            divX.style.display="none";
         }
 
     </script>
