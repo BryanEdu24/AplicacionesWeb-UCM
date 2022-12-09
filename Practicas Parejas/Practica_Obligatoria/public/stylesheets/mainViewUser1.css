@@ -152,19 +152,18 @@ tr:first-child {
     border: 0 !important;
 }
 
-/* .modal  {
-    background-color: #2e4b8185;
-    backdrop-filter: blur(8px);
+.pildoraSugerencia {
+    background-color: PaleGoldenrod !important;
+    color: black !important;
 }
 
-.modal-content {
-    background-color: #343a40 !important;
-    color: white;
-    border-radius: 20px !important;
-} */
+.pildoraIncidencia {
+    background-color: red !important;
+    color: black !important;
+}
 
-.pildora {
-    background-color: PaleGoldenrod !important;
+.pildoraFelicitacion {
+    background-color: lightgreen !important;
     color: black !important;
 }
 

@@ -16,6 +16,7 @@ const DAOUsers = require('./DAOUsers');
 const DAOAvisos = require('./DAOAvisos');
 const { request } = require("http");
 const { response } = require("express");
+const { log } = require("console");
 
 const MySQLStore = mysqlSession(session);
 const app = express();
@@ -149,13 +150,13 @@ app.post("/registerPost.html",
             usuario.imagen= request.file.buffer ;
           }
 
-          daoU.insertTec(usuario, function(err, newId) {
+          /* daoU.insertTec(usuario, function(err, newId) {
               if (!err) {
                 usuario.id = newId;
                 response.redirect("/");
                 console.log("Tecnico ingresado correctamente");
               }
-          });
+          }); */
           } 
       })
     }else{
@@ -163,13 +164,13 @@ app.post("/registerPost.html",
       if (request.file) {
         usuario.imagen= request.file.buffer ;
       }
-      daoU.insertUser(usuario, function(err, newId) {
+      /* daoU.insertUser(usuario, function(err, newId) {
           if (!err) {
             usuario.id = newId;
             response.redirect("/");
             console.log("usuario ingresado correctamente");
           }
-      });
+      }); */
       }   
   } else{
     response.render("registerViewErrors", {errores: errors.array()});
@@ -179,6 +180,7 @@ app.post("/registerPost.html",
 
 /* Post a la hora de crear un nuevo aviso */
 app.post("/post_nuevo_aviso.html", accessControl, (request, response) => {
+  console.log(request.body);
   let idUsuario = response.locals.idUser;
   let aviso = {
     tipo: request.body.tipoAviso,
@@ -186,20 +188,34 @@ app.post("/post_nuevo_aviso.html", accessControl, (request, response) => {
     categoria: null,
     observacion: request.body.observacionUsuario
   }
-  request.body.categoriaAviso.forEach(categoria => {
-    if (categoria != "opt0") {
-      aviso.categoria = categoria;
-    }
-  });
-  daoA.insertTask(aviso, idUsuario, function (err, newIdTask) {
-    if (!err) {
-      response.redirect("/mainViewUser1.html");
-      console.log("Aviso ingresado correctamente");
-    }else console.log(err.message);
-  })
+  if (aviso.tipo === 'Felicitacion') {
+    aviso.categoria = request.body.categoriaFelicitacion;
+    daoA.insertTaskCongratulation(aviso, idUsuario, function (err, newIdTask) {
+      if (!err) {
+        response.redirect("/mainViewUser1.html");
+        console.log("Aviso de felicitación ingresado correctamente");
+      }else{
+        console.log(err.message);
+        response.end();
+      } 
+    })
+  }else{
+    request.body.categoriaAviso.forEach(categoria => {
+      if (categoria != "opt0") {
+        aviso.categoria = categoria;
+      }
+    });
+    daoA.insertTask(aviso, idUsuario, function (err, newIdTask) {
+      if (!err) {
+        response.redirect("/mainViewUser1.html");
+        console.log("Aviso ingresado correctamente");
+      }else{
+        console.log(err.message);
+        response.end();
+      } 
+    });
+  }
 });
-
-
 
 /* Conseguir imagen del usuario por BD */
 app.get("/images/:id", (request, response) => {
@@ -245,7 +261,21 @@ app.get("/mainViewUser1.html", accessControl, (request,response) => {
 });
 
 app.get("/mainViewUser2.html",accessControl, (request,response) => {
-  response.render("mainViewUser2");
+  let idUsuario = response.locals.idUser;
+  let fecha = null;
+  let fechaSpain = null;
+  daoA.historialAvisos(idUsuario, function (err, Avisos) {
+    if (!err) {
+      console.log(Avisos);
+      Avisos.forEach(aviso => {
+        fecha = moment(aviso.fecha);
+        fechaSpain = fecha.format("DD-MM-YYYY");
+        aviso.fecha = fechaSpain;
+      });
+      response.render("mainViewUser2", {Avisos: Avisos });
+    }else console.log(err.message);
+  });
+ 
 });
 
 app.get("/mainViewTec1.html",accessControl, (request,response) => {

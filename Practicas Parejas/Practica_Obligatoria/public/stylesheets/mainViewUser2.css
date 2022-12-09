@@ -65,7 +65,6 @@
     background-color: slategray;
 }
 
-
 .botonHistorialAvisos {
     border-radius: 5px;
     padding: 0.5%;
@@ -80,225 +79,149 @@
     background-color: slategray;
 }
 
-.float{
-	position:fixed;
-	width:11vh;
-	height:11vh;
-	bottom:4vh;
-	right:5vh;
-    background-color: midnightblue;
-	border-radius: 50px;
-	text-align:center;
-	box-shadow: 2px 2px 2px black;
-    border: 0;
-}
-
-.float:hover {
-	position:fixed;
-	width:11vh;
-	height:11vh;
-	bottom:4.5vh;
-	right:5.5vh;
-    background-color: dimgrey;
-	border-radius:50px;
-	text-align:center;
-	box-shadow: 3px 3px 3px 3px black;
-    border: 0;
-}
-
 .btnFlotante {
     width: 7vh;
     height: 7vh; 
 }
 
 .tablaUser2 {
-    background-color: midnightblue;
-    border-radius: 10px;
-    margin: 0 auto;
-    border-collapse: collapse;
-    margin-top: 1.5%;
-    width: 80%;
+    background-color: midnightblue !important;
+    border-radius: 10px !important;
+    margin: 0 auto !important;
+    border-collapse: collapse !important;
+    margin-top: 1.5% !important;
+    width: 80% !important;
 }
 
 th {
-    color: white;
-    text-align: center;
-    border-right: gainsboro 2px solid;
-    border-left: gainsboro 2px solid;
-    padding: 1%;
-    font-weight: bold;
+    color: white !important;
+    text-align: center !important;
+    border-right: gainsboro 2px solid !important;
+    border-left: gainsboro 2px solid !important;
+    padding: 1% !important;
+    font-weight: bold !important;
 }
 
 .tablaUser2 tr:first-child th:first-child {
-    border-left: none;
+    border-left: none !important;
 }
 
 .tablaUser2 tr:first-child th:last-child {
-    border-right: none;
+    border-right: none !important;
 }
 
 .tablaUser2 tr:last-child td:last-child {
-    border-bottom-right-radius: 10px;
+    border-bottom-right-radius: 10px !important;
 }
 
 .tablaUser2 tr:last-child td:first-child {
-    border-bottom-left-radius: 10px;
+    border-bottom-left-radius: 10px !important;
 }
 
 td {
-    background-color: thistle;
+    background-color: thistle !important;
 }
 
 td:first-child {
-    padding: 1%;
+    padding: 1% !important;
 }
 
 .fechas, .tipos, .acciones {
-    text-align: center;
-    width: 20vh;
+    text-align: center !important;
+    width: 20vh !important;
 }
 
 .tipos {
-    width: 10vh;
+    border-right: gainsboro 2px solid !important;
 }
 
 .fechas {
-    border-right: gainsboro 2px solid;
-    border-left: gainsboro 2px solid;
+    border-right: gainsboro 2px solid !important;
+    border-left: gainsboro 2px solid !important;
 }
 
 .acciones {
-    border-left: gainsboro 2px solid;
+    border-left: gainsboro 2px solid !important;
 }
 
 tr {
-    border-bottom: gainsboro 2px solid;
+    border-bottom: gainsboro 2px solid !important;
 }
 
 tr:last-child  {
-    border: 0;
+    border: 0 !important;
 }
 
 tr:first-child {
-    border: 0;
+    border: 0 !important;
 }
 
-.modal {
-    background-color: #2e4b8185 !important;
-    backdrop-filter: blur(8px);
-    border: 0;
+.pildoraSugerencia {
+    background-color: PaleGoldenrod !important;
+    color: black !important;
 }
 
-.modal-content {
-    background-color: #343a40 !important;
-    color: white;
-    border-radius: 20px;
+.pildoraIncidencia {
+    background-color: red !important;
+    color: black !important;
 }
 
-.pildora {
-    background-color: PaleGoldenrod;
-    color: black;
+.pildoraFelicitacion {
+    background-color: lightgreen !important;
+    color: black !important;
 }
 
 .comunicacionesModal {
-    background-color: lightcyan;
-    color: black;
-    border-radius: 5px;
-    padding-left: 1.5%;
-    padding: 0.5%;
-    margin-top: 1%;
-    margin-bottom: 1%;
+    background-color: lightcyan !important;
+    color: black !important;
+    border-radius: 5px !important;
+    padding-left: 1.5% !important;
+    padding: 0.5% !important;
+    margin-top: 1% !important;
+    margin-bottom: 1% !important;
 }
 
 .perfilModal {
-    background-color: lightcyan;
-    color: black;
-    border-radius: 5px;
-    padding-left: 1.5%;
-    padding: 0.5%;
-    margin-bottom: 1%;
+    background-color: lightcyan !important;
+    color: black !important;
+    border-radius: 5px !important;
+    padding-left: 1.5% !important;
+    padding: 0.5% !important;
+    margin-bottom: 1% !important;
 }
 
 .observacionesModal {
-    background-color: lightcyan;
-    color: black;
-    border-radius: 5px;
-    padding-left: 1.5%;
-    padding: 0.5%;
-    margin-bottom: 1%;
+    background-color: lightcyan !important;
+    color: black !important;
+    border-radius: 5px !important;
+    padding-left: 1.5% !important;
+    padding: 0.5% !important;
+    margin-bottom: 1% !important;
 }
 
 .contenidoObservacion {
-    border-radius: 5px;
-    margin-left: 5%;
-    margin-right: 2%;
-    margin-bottom: 1%;
+    border-radius: 5px !important;
+    margin-left: 5% !important;
+    margin-right: 2% !important;
+    margin-bottom: 1% !important;
 }
 
 .comentariosModal {
-    background-color: lightcyan;
-    color: black;
-    border-radius: 5px;
-    padding-left: 1.5%;
-    padding: 0.5%;
-    margin-bottom: 1%;
+    background-color: lightcyan !important;
+    color: black !important;
+    border-radius: 5px !important;
+    padding-left: 1.5%!important;
+    padding: 0.5% !important;
+    margin-bottom: 1% !important;
 }
 
 .contenidoComentario {
-    border-radius: 5px;
-    margin-left: 3%;
-    margin-right: 2%;
-    margin-bottom: 1%;
+    border-radius: 5px !important;
+    margin-left: 3% !important;
+    margin-right: 2% !important;
+    margin-bottom: 1% !important;
 }
 
-.comunicacionesModal {
-    background-color: lightcyan;
-    color: black;
-    border-radius: 5px;
-    padding-left: 1.5%;
-    padding: 0.5%;
-    margin-top: 1%;
-    margin-bottom: 1%;
-}
-
-.animacionRadioBtn{
-    border-radius: 15px;
-    padding: 1%;
-    color:black;
-    text-align: center;
-    font-weight: bold;
-    cursor: pointer;
-    background-image: linear-gradient(to left, transparent, transparent 50%, Navy 50%, SlateBlue);
-    background-position: 100% 0;
-    background-size: 200% 100%;
-    transition: all .15s ease-in;
-}
-
-.animacionRadioBtn:hover{
-    background-position: 0 0;
-    color: white;
-}
-
-.comentariosModal {
-    background-color: lightcyan;
-    color: black;
-    border-radius: 5px;
-    padding-left: 1.5%;
-    padding: 0.5%;
-    margin-bottom: 1%;
-}
-
-.contenidoComentario {
-    border-radius: 5px;
-    margin-left: 3%;
-    margin-right: 2%;
-    margin-bottom: 1%;
-}
-
-.commentTec {
-    background-color: cornsilk;
-    border: 0;
-    border-radius: 5px;
-    border-bottom: solid darkgray;
-    padding: 1%;
+.SubtituloCategoria{
+    margin-left: 4.75% !important;
 }

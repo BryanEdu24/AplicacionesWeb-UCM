@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head> <!-- Se sustituirá por include("head") -->
+<html>
+    <head>
+        <%- include("subplantillas/head") %>
         <link rel="stylesheet" href="stylesheets/mainViewUser2.css" media="screen">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
@@ -18,7 +19,7 @@
                     </button>
                 </div>
             </div>
-
+            
             <div class="menuOpciones">
                 <button class="botonMisAvisos" onclick="window.location.href='mainViewUser1.html'">
                     Mis avisos
@@ -30,39 +31,54 @@
             </div>
 
             <table class="tablaUser2">
-                <tr>
-                    <th>Tipo</th>
-                    <th>Fecha</th>
-                    <th>Texto</th>
-                    <th>Acciones</th>
-                </tr>
-
-                <tr>
-                    <td class="tipos"><img src="images/exclamacion.png" alt="" width="35" height="35"></td>
-                    <td class="fechas">12/10/2021</td>
-                    <td>No puedo conectar a la red corporativa. Parece que el fallo...</td>
-                    <td class="acciones">
-                        <img src="images/visualizarVector.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalHistorialAvisos">
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td class="tipos"><img src="images/pregunta.png" alt="" width="35" height="35"></td>
-                    <td class="fechas">10/10/2021</td>
-                    <td>Propongo cambiar el diseño de la web a un modelo responsive para que se pueda visualizar en el móvil...</td>
-                    <td class="acciones">
-                        <img src="images/visualizarVector.svg" alt="" width="35" height="35">
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td class="tipos"><img src="images/ok.png" alt="" width="35" height="35"></td>
-                    <td class="fechas">05/01/2021</td>
-                    <td>Feliz año a todos vosotros por el buen trabajo realizado y las atenciones recibidas...</td>
-                    <td class="acciones">
-                        <img src="images/visualizarVector.svg" alt="" width="35" height="35">
-                    </td>
-                </tr>
+                <% if (Avisos.length > 0) { %>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Fecha</th>
+                        <th>Texto</th>
+                        <th>Acciones</th>
+                    </tr>
+                    <% Avisos.forEach(function(aviso) { %>
+                        <tr>
+                            <td class="tipos">
+                                <% let tipoImg = aviso.tipo %>
+                                <% if (tipoImg === 'Sugerencia') { %>
+                                    <img src="images/pregunta.png" alt="" width="35" height="35">
+                                <% } else if (tipoImg === 'Incidencia') {%> 
+                                    <img src="images/exclamacion.png" alt="" width="35" height="35">              
+                                <% } else {%> 
+                                    <img src="images/ok.png" alt="" width="35" height="35">
+                                <% } %> 
+                            </td>
+                            <td class="fechas"><%= aviso.fecha %></td>
+                            <% if(aviso.observaciones.length > 200){ %>
+                                <td><%= aviso.observaciones.substr(0,200)%>...</td>
+                            <%} else {%>
+                                <td><%= aviso.observaciones%></td>
+                            <%}%> 
+                            <td class="acciones">
+                                <img src="images/visualizarVector.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalHistorialAvisos">
+                            </td>
+                        </tr>
+                    <% }); %>
+                <% } else {%>
+                    <thead>
+                        <th>Tipo</th>
+                        <th>Fecha</th>
+                        <th>Texto</th>
+                        <th>Acciones</th>
+                    </thead>
+                    <tr class="text-center">
+                        <td colspan="4">
+                            <strong>
+                                Vaya... no tienes historial de avisos
+                            </strong>
+                            <div>
+                                <img src="images/exclamacion.png" alt="" width="50" height="50">
+                            </div>
+                        </td>
+                    </tr>
+                <% } %>
             </table>
         </div>
         
@@ -72,7 +88,7 @@
             </button>  
         </div>
 
-        <!-- Modal para visualizar aviso -->
+        <!-- Modal para visualizar un aviso de historial -->
         <div class="modal fade" id="modalHistorialAvisos">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
@@ -108,27 +124,5 @@
         </div>
 
         <%- include("subplantillas/btnNuevoAviso") %>
-
-    </body>
-
-    <script>
-        window.addEventListener("load", function() {
-           // icono para mostrar contraseña
-           showPassword = document.querySelector('.show-password');
-           showPassword.addEventListener('click', () => {
-               // elementos input de tipo clave
-               contrasenia = document.querySelector('.contraModal');
-
-               if (contrasenia.type === "text") {
-                   contrasenia.type = "password"
-                   showPassword.classList.toggle("fa-eye-slash");
-               } else {
-                   contrasenia.type = "text"
-                   showPassword.classList.remove('fa-eye-slash');
-                   showPassword.classList.remove('fa-eye');
-                }
-           })
-        });
-   </script>
-    
+    </body>    
 </html>
