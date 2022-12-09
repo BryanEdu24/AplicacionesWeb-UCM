@@ -108,80 +108,79 @@
 }
 
 .tablaTec1 {
-    background-color: midnightblue;
-    border-radius: 10px;
-    margin: 0 auto;
-    border-collapse: collapse;
-    margin-top: 1.5%;
-    width: 80%;
+    background-color: midnightblue !important;
+    border-radius: 10px !important;
+    margin: 0 auto !important;
+    border-collapse: collapse !important;
+    margin-top: 1.5% !important;
+    width: 80% !important;
 }
 
 th {
-    color: white;
-    text-align: center;
-    border-right: gainsboro 2px solid;
-    border-left: gainsboro 2px solid;
-    padding: 1%;
-    font-weight: bold;
+    color: white !important;
+    text-align: center !important;
+    border-right: gainsboro 2px solid !important;
+    border-left: gainsboro 2px solid !important;
+    padding: 1% !important;
+    font-weight: bold !important;
 }
 
 .tablaTec1 tr:first-child th:first-child {
-    border-left: none;
+    border-left: none !important;
 }
 
 .tablaTec1 tr:first-child th:last-child {
-    border-right: none;
+    border-right: none !important;
 }
 
 .tablaTec1 tr:last-child td:last-child {
-    border-bottom-right-radius: 10px;
+    border-bottom-right-radius: 10px !important;
 }
 
 .tablaTec1 tr:last-child td:first-child {
-    border-bottom-left-radius: 10px;
+    border-bottom-left-radius: 10px !important;
 }
 
 td {
-    background-color: thistle;
+    background-color: thistle !important;
 }
 
 td:first-child {
-    padding: 1%;
+    padding: 1% !important;
 }
 
 .fechas, .tipos, .acciones {
-    text-align: center;
-    width: 20vh;
+    text-align: center !important;
+    width: 20vh !important;
 }
 
 .tipos {
-    border-right: gainsboro 2px solid;
-    width: 10vh;
+    border-right: gainsboro 2px solid !important;
 }
 
 .fechas {
-    border-right: gainsboro 2px solid;
+    border-right: gainsboro 2px solid !important;
 }
 
 .acciones {
-    border-left: gainsboro 2px solid;
+    border-left: gainsboro 2px solid !important;
 }
 
 tr {
-    border-bottom: gainsboro 2px solid;
+    border-bottom: gainsboro 2px solid !important;
 }
 
 tr:last-child  {
-    border: 0;
+    border: 0 !important;
 }
 
 tr:first-child {
-    border: 0;
+    border: 0 !important;
 }
 
 .modal {
     background-color: #2e4b8185!important;
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px) !important;
 }
 
 .modal-content {
@@ -190,118 +189,128 @@ tr:first-child {
     border-radius: 20px!important;
 }
 
-.pildora {
-    background-color: PaleGoldenrod;
-    color: black;
+.pildoraSugerencia {
+    background-color: PaleGoldenrod !important;
+    color: black !important;
+}
+
+.pildoraIncidencia {
+    background-color: red !important;
+    color: black !important;
+}
+
+.pildoraFelicitacion {
+    background-color: lightgreen !important;
+    color: black !important;
 }
 
 .comunicacionesModal {
-    background-color: lightcyan;
-    color: black;
-    border-radius: 5px;
-    padding-left: 1.5%;
-    padding: 0.5%;
-    margin-top: 1%;
-    margin-bottom: 1%;
+    background-color: lightcyan !important;
+    color: black !important;
+    border-radius: 5px !important;
+    padding-left: 1.5% !important;
+    padding: 0.5% !important;
+    margin-top: 1% !important;
+    margin-bottom: 1% !important;
 }
 
 .perfilModal {
-    background-color: lightcyan;
-    color: black;
-    border-radius: 5px;
-    padding-left: 1.5%;
-    padding: 0.5%;
-    margin-bottom: 1%;
+    background-color: lightcyan !important;
+    color: black !important;
+    border-radius: 5px !important;
+    padding-left: 1.5% !important;
+    padding: 0.5% !important;
+    margin-bottom: 1% !important;
 }
 
 .observacionesModal {
-    background-color: lightcyan;
-    color: black;
-    border-radius: 5px;
-    padding-left: 1.5%;
-    padding: 0.5%;
-    margin-bottom: 1%;
+    background-color: lightcyan !important;
+    color: black !important;
+    border-radius: 5px !important;
+    padding-left: 1.5% !important;
+    padding: 0.5% !important;
+    margin-bottom: 1% !important;
 }
 
 .contenidoObservacion {
-    border-radius: 5px;
-    margin-left: 5%;
-    margin-right: 2%;
-    margin-bottom: 1%;
+    border-radius: 5px !important;
+    margin-left: 5% !important;
+    margin-right: 2% !important;
+    margin-bottom: 1% !important;
 }
 
 .asignarTecnicoModal {
-    background-color: lightcyan;
-    color: black;
-    border-radius: 5px;
-    padding-left: 1.5%;
-    padding: 0.5%;
+    background-color: lightcyan !important;
+    color: black !important;
+    border-radius: 5px !important;
+    padding-left: 1.5% !important;
+    padding: 0.5% !important;
     margin-bottom: 1%;
 }
 
 .contenidoAsignacion {
-    border-radius: 5px;
-    margin-left: 5%;
-    margin-right: 2%;
+    border-radius: 5px !important;
+    margin-left: 5% !important;
+    margin-right: 2% !important;
 }
 
 select {
-    background-color: cornsilk;
-    border: 0;
-    border-radius: 5px;
-    border-bottom: solid darkgray;
-    padding: 1%;
-    width: 30vh;
+    background-color: cornsilk !important;
+    border: 0 !important;
+    border-radius: 5px !important;
+    border-bottom: solid darkgray !important;
+    padding: 1% !important;
+    width: 30vh !important;
 }
 
 .btnAsignarTecnico {
-    background-color: SeaGreen;
-    color: white;
-    border: 0;
-    border-radius: 5px;
-    padding: 1%;
-    font-size: 18px;
+    background-color: SeaGreen !important;
+    color: white !important;
+    border: 0 !important;
+    border-radius: 5px !important;
+    padding: 1% !important;
+    font-size: 18px !important;
 }
 
 .btnAsignarTecnico:hover {
-    background-color: darkgreen;
-    color: white;
+    background-color: darkgreen !important;
+    color: white !important;
 }
 
 .comentariosModal {
-    background-color: lightcyan;
-    color: black;
-    border-radius: 5px;
-    padding-left: 1.5%;
-    padding: 0.5%;
-    margin-bottom: 1%;
+    background-color: lightcyan !important;
+    color: black !important;
+    border-radius: 5px !important;
+    padding-left: 1.5% !important;
+    padding: 0.5% !important;
+    margin-bottom: 1% !important;
 }
 
 .contenidoComentario {
-    border-radius: 5px;
-    margin-left: 3%;
-    margin-right: 2%;
-    margin-bottom: 1%;
+    border-radius: 5px !important;
+    margin-left: 3% !important;
+    margin-right: 2% !important;
+    margin-bottom: 1% !important;
 }
 
 .commentTec {
-    background-color: cornsilk;
-    border: 0;
-    border-radius: 5px;
-    border-bottom: solid darkgray;
-    padding: 1%;
+    background-color: cornsilk !important;
+    border: 0 !important;
+    border-radius: 5px !important;
+    border-bottom: solid darkgray !important;
+    padding: 1% !important;
 }
 
 .btnFinAviso {
-    background-color: SeaGreen;
-    color: white;
-    border: 0;
-    border-radius: 5px;
-    padding: 1%;
-    font-size: 18px;
+    background-color: SeaGreen !important;
+    color: white !important;
+    border: 0 !important;
+    border-radius: 5px !important;
+    padding: 1% !important;
+    font-size: 18px !important;
 }
 
 .btnFinAviso:hover {
-    background-color: darkgreen;
-    color: white;
+    background-color: darkgreen !important;
+    color: white !important;
 }

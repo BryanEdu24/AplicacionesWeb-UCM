@@ -279,6 +279,7 @@ app.get("/mainViewUser2.html",accessControl, (request,response) => {
 });
 
 app.get("/mainViewTec1.html",accessControl, (request,response) => {
+  daoA.allAvisos()
   response.render("mainViewTec1");
 });
 

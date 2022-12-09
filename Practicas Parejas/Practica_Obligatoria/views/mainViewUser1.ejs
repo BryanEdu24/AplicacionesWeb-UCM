@@ -58,7 +58,7 @@
                             <% if(aviso.asignado === 0){ %>
                                 <td class="tecnicos">❌Sin técnico❌</td>
                             <%} else {%>
-                                <td class="tecnicos">Aitor Tilla</td>
+                                <td class="tecnicos"><%= aviso.nombreTecnico%></td>
                             <%}%> 
                         </tr>
                     <% }); %>
@@ -89,6 +89,7 @@
             </button>  
         </div>
 
+        <!-- Modal para visualizar aviso -->
         <div class="modal fade" id="modalMisAvisos">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
