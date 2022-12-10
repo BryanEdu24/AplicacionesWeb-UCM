@@ -173,3 +173,34 @@ tr:last-child  {
 tr:first-child {
     border: 0 !important;
 }
+
+.modal {
+    background-color: #2e4b8185!important;
+    backdrop-filter: blur(8px) !important;
+}
+
+.modal-content {
+    background-color: #343a40 !important;
+    color: white;
+    border-radius: 20px!important;
+}
+
+.btnCancelarBorrado {
+    background-color: crimson!important;
+    color: white !important;
+}
+
+.btnCancelarBorrado:hover {
+    background-color: lightcoral !important;
+    color: black !important;
+}
+
+.btnEliminarUsuario {
+    background-color: dodgerblue !important;
+    color: white !important;
+}
+
+.btnEliminarUsuario:hover {
+    background-color: skyblue !important;
+    color: black !important;
+}

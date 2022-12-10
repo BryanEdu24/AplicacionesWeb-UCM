@@ -222,6 +222,28 @@ app.post("/post_nuevo_aviso.html", accessControl, (request, response) => {
   }
 });
 
+/* Post para modal en vistaUsuario */
+app.post("/modalAviso", (request, response) => {
+  let idAviso = request.body.idAviso;
+  let aviso = null;
+  let fecha = null;
+  let fechaSpain = null;
+  daoA.getAviso(idAviso,function (err, task) {
+    if (!err) {
+      aviso = task;
+      fecha = moment(aviso.fecha);
+      fechaSpain = fecha.format("DD-MM-YYYY");
+      aviso.fecha = fechaSpain;
+      console.log(aviso);
+      response.json({ taskModal: aviso });
+
+    }else{
+      console.log(err.message);
+      response.status(400);
+		  response.end();
+    } 
+  })
+});
 /* Conseguir imagen del usuario por BD */
 app.get("/images/:id", (request, response) => {
   console.log("id User: " + request.params.id);
@@ -254,7 +276,6 @@ app.get("/mainViewUser1.html", accessControl, (request,response) => {
   let fechaSpain = null;
   daoA.misAvisos(idUsuario, function (err, Avisos) {
     if (!err) {
-      console.log(Avisos);
       Avisos.forEach(aviso => {
         fecha = moment(aviso.fecha);
         fechaSpain = fecha.format("DD-MM-YYYY");
@@ -271,8 +292,7 @@ app.get("/mainViewUser2.html",accessControl, (request,response) => {
   let fechaSpain = null;
   daoA.historialAvisos(idUsuario, function (err, Avisos) {
     if (!err) {
-      console.log(Avisos);
-      Avisos.forEach(aviso => {
+        Avisos.forEach(aviso => {
         fecha = moment(aviso.fecha);
         fechaSpain = fecha.format("DD-MM-YYYY");
         aviso.fecha = fechaSpain;
@@ -280,13 +300,11 @@ app.get("/mainViewUser2.html",accessControl, (request,response) => {
       response.render("mainViewUser2", {Avisos: Avisos });
     }else console.log(err.message);
   });
- 
 });
 
 app.get("/mainViewTec1.html",accessControl, (request,response) => {
   daoA.allAvisos(function (err, Avisos) {
     if (!err) {
-      console.log(Avisos);
       Avisos.forEach(aviso => {
         fecha = moment(aviso.fecha);
         fechaSpain = fecha.format("DD-MM-YYYY");
@@ -302,13 +320,33 @@ app.get("/mainViewTec2.html",accessControl, (request,response) => {
 });
 
 app.get("/mainViewTec3.html",accessControl, (request,response) => {
-  response.render("mainViewTec3");
-});
+  let idUsuario = response.locals.idUser;
+  let fecha = null;
+  let fechaSpain = null;
+  daoA.historialAvisos(idUsuario, function (err, Avisos) {
+    if (!err) {
+        Avisos.forEach(aviso => {
+        fecha = moment(aviso.fecha);
+        fechaSpain = fecha.format("DD-MM-YYYY");
+        aviso.fecha = fechaSpain;
+      });
+      response.render("mainViewTec3", {Avisos: Avisos });
+    }else console.log(err.message);
+  });});
 
 app.get("/mainViewTec4.html",accessControl, (request,response) => {
-  response.render("mainViewTec4");
-});
+  daoU.getAllUsers(function (err, Usuarios) {
+    if (!err) {
+        Usuarios.forEach(usuario => {
+        fecha=moment(usuario.fecha);
+        fechaSpain = fecha.format("DD-MM-YYYY");
+        usuario.fecha = fechaSpain;
+      });
+      response.render("mainViewTec4", {Usuarios: Usuarios }); 
+    } else console.log(err.message);
+  });
 
+});
 
 
 app.listen(config.portS, function(err) {

@@ -116,6 +116,23 @@ class DAOAvisos {
             }
         });
     }
+
+    getAviso(idAviso, callback){
+        this.pool.getConnection(function(err, connection) {
+            if (err) callback(new Error("Error de conexión a la base de datos en getAviso"));
+            else {                
+                let sql= "SELECT * FROM avisos A WHERE A.idAviso = ?" ;
+                connection.query(sql,[idAviso],
+                function(err, task) {
+                    connection.release();
+                    if (err) callback(new Error("Error a la hora de mostrar historial de avisos"));
+                    else    {
+                        callback(null, task[0]);
+                    }
+                });
+            }
+        });
+    }
 }
 
 module.exports = DAOAvisos;

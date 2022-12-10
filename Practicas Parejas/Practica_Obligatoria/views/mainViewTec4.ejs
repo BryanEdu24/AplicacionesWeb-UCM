@@ -39,53 +39,67 @@
             </div>
 
             <table class="tablaTec4">
-                <tr>
-                    <th>Fecha</th>
-                    <th>Nombre</th>
-                    <th>Rol</th>
-                    <th>Acciones</th>
-                </tr>
-
-                <tr>
-                    <td class="fechas">12/10/2021</td>
-                    <td class="nombres">Aitor Tilla</td>
-                    <td class="roles">Usuario 📚</td>
-                    <td class="acciones">
-                        <img src="images/basura.svg" alt="" width="35" height="35">
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td class="fechas">10/10/2021</td>
-                    <td class="nombres">María Zambrano</td>
-                    <td class="roles">Técnico 🛠</td>
-                    <td class="acciones">
-                        <img src="images/basura.svg" alt="" width="35" height="35">
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td class="fechas">05/01/2021</td>
-                    <td class="nombres">Álvaro Borja Morata Martín</td>
-                    <td class="roles">Técnico 🛠</td>
-                    <td class="acciones">
-                        <img src="images/basura.svg" alt="" width="35" height="35">
-                    </td>
-                </tr>
+                <% if (Usuarios.length > 0) { %>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Nombre</th>
+                        <th>Rol</th>
+                        <th>Acciones</th>
+                    </tr>
+                    <% Usuarios.forEach(function(usuario) { %>
+                        <tr>
+                            <td class="fechas"><%= usuario.fecha %></td>
+                            <td class="nombres"><%= usuario.nombre %></td>
+                            <td class="roles"><%= usuario.rol %></td>
+                            <td class="acciones">
+                                <img src="images/basura.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalBorrarUsuario">
+                            </td>
+                        </tr>
+                    <% }); %>
+                <% } else {%>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Nombre</th>
+                        <th>Rol</th>
+                        <th>Acciones</th>
+                    </tr>
+                    <tr class="text-center">
+                        <td colspan="4">
+                            <strong>
+                                ¡Vaya!... no hay usuarios para mostrar 😪
+                            </strong>
+                            <div>
+                                <img src="images/sinMensajes.png" alt="" width="50" height="50">
+                            </div>
+                        </td>
+                    </tr>
+                <% } %>
             </table>
         </div>
+
+        <!-- Modal para eliminar Usuario -->
+        <div class="modal fade" id="modalBorrarUsuario">
+            <div class="modal-dialog modal-sm modal-dialog-centered">
+                <div class="modal-content">
+                    <!-- cabecera del diálogo -->
+                    <div class="modal-header">
+                    <h4 class="modal-title">⚠Eliminar Usuario</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+            
+                    <!-- cuerpo del diálogo -->
+                    <div class="modal-body">
+                        ¿Está seguro que quieres eliminarlo?
+                        <div class="text-center"><h6 style="color: lightsalmon;">*No perderás sus datos*</h6></div>
+                    </div>
+            
+                    <!-- pie del diálogo -->
+                    <div class="modal-footer borrarborde">
+                        <button type="button" class="btn btnCancelarBorrado" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btnEliminarUsuario" data-bs-dismiss="modal">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div> 
     </body>
-
-    <script>
-        function marcarNegrita(txt, boton) {
-        if (boton == 'b1') {
-            document.getElementById("b1").bold;
-        }
-        else {
-            document.getElementById("b1").style.textDecoration = none;
-        }
-    }
-    </script>
-    
-
 </html>

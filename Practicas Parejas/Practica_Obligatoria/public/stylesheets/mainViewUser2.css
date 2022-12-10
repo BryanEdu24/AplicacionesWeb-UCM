@@ -162,7 +162,7 @@ tr:first-child {
 }
 
 .pildoraIncidencia {
-    background-color: red !important;
+    background-color: rgb(212, 80, 80) !important;
     color: black !important;
 }
 

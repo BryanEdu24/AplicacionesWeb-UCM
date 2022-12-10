@@ -41,27 +41,28 @@
                     </tr>
                     <% Avisos.forEach(function(aviso) { %>
                         <tr>
-                            <h1 id="idAvisoTabla"style="display:;"><%= aviso.idAviso%></h1>
-                            <td class="tipos">
-                                <% let tipoImg = aviso.tipo %>
-                                <% if (tipoImg === 'Sugerencia') { %>
-                                    <img src="images/pregunta.png" alt="" width="35" height="35">
-                                <% } else if (tipoImg === 'Incidencia') {%> 
-                                    <img src="images/exclamacion.png" alt="" width="35" height="35">              
-                                <% } else {%> 
-                                    <img src="images/ok.png" alt="" width="35" height="35">
-                                <% } %> 
-                            </td>
-                            <td class="fechas"><%= aviso.fecha %></td>
-                            <% if(aviso.observaciones.length > 200){ %>
-                                <td><%= aviso.observaciones.substr(0,200)%>...</td>
-                            <%} else {%>
-                                <td><%= aviso.observaciones%></td>
-                            <%}%> 
-                            <td class="acciones">
-                                <img id="botonEnviar" src="images/visualizarVector.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalHistorialAvisos"
-                                >
-                            </td>
+                                <td style="display:none;">>
+                                    <h1><%= aviso.idAviso%></h1>
+                                </td>
+                                <td class="tipos">
+                                    <% let tipoImg = aviso.tipo %>
+                                    <% if (tipoImg === 'Sugerencia') { %>
+                                        <img src="images/pregunta.png" alt="" width="35" height="35">
+                                    <% } else if (tipoImg === 'Incidencia') {%> 
+                                        <img src="images/exclamacion.png" alt="" width="35" height="35">              
+                                    <% } else {%> 
+                                        <img src="images/ok.png" alt="" width="35" height="35">
+                                    <% } %> 
+                                </td>
+                                <td class="fechas"><%= aviso.fecha %></td>
+                                <% if(aviso.observaciones.length > 200){ %>
+                                    <td><%= aviso.observaciones.substr(0,200)%>...</td>
+                                <%} else {%>
+                                    <td><%= aviso.observaciones%></td>
+                                <%}%> 
+                                <td class="acciones">
+                                    <img class="clickModal" data-bs-toggle="modal" data-bs-target="#modalAvisos" src="images/visualizarVector.svg" alt="" width="35" height="35">
+                                </td>
                         </tr>
                     <% }); %>
                 <% } else {%>
@@ -92,7 +93,7 @@
         </div>
 
         <!-- Modal para visualizar un aviso de historial -->
-        <div class="modal fade" id="modalHistorialAvisos">
+        <div class="modal fade" id="modalAvisos">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <!-- cabecera del diálogo -->
@@ -104,20 +105,20 @@
                     <!-- cuerpo del diálogo -->
                     <div class="modal-body">
                         <div class="subEncabezadoModal d-flex justify-content-between">
-                            <div><h5 id="fechaModal">Fecha: 12/10/2021</h5></div>
-                            <div><h5>Aviso nº<i>202101020001</i>: <label class="badge rounded-pill pildora">Sugerencia</label></h5></div>
+                            <div><span>Fecha:</span> <h5 id="fechaAvisoModal"> 12/10/2021</h5></div>
+                            <div><h5>Aviso nº<i id="idAvisoModal">202101020001</i>: <label class="badge rounded-pill pildora" id="tipoAvisoModal">Sugerencia</label></h5></div>
                         </div>
-                        <div class="comunicacionesModal"><h5>🔹<strong> Comunicaciones: </strong>Correo electrónico</h5></div>
+                        <div class="comunicacionesModal"><span>🔹<strong id="subtipoAvisoModal" style="display: none;"> Comunicaciones: </strong></span><h5  id="categoriaAvisoModal" >Correo electrónico</h5></div>
                         <div class="perfilModal"><h5>🔹<strong> Perfil: </strong><%=rol %></h5></div>
                         <div class="observacionesModal">
                             <h5>🔹<strong> Observaciones:</strong></h5>
-                            <div class="contenidoObservacion">
+                            <div class="contenidoObservacion" id="observacionesAvisoModal">
                                 He solicitado una nueva cuenta de correo electrónico para mi departamento pero no he recibido todavía ninguna respuesta. Por favor es urgente que dispongamos de esa cuenta genérica lo antes posible ya que en breve celebraremos el II Congreso de ciberseguridad y necesitamos esa cuenta para centralizar peticiones. Muchas Gracias.
                             </div>
                         </div>
                         <div class="comentariosModal">
                             <h5>🔸<strong> Comentarios del Técnico:</strong></h5>
-                            <div class="contenidoComentario">
+                            <div class="contenidoComentario" id="comentarioAvisoModal">
                                 Macho solicitas los que quieras que yo estoy a punto de eliminarte la cuenta. Más te vale aprobar todo cabroncete ;)
                             </div>
                         </div>    
@@ -130,54 +131,15 @@
     </body>   
     
     <script type="application/javascript">
-        $(function() {
+        $(document).ready(function() {
             // Cada vez que se pulse el botón de 'Enviar'
-            $("#botonEnviar").on("click", function() {
-                // Obtener el valor contenido en el cuadro de texto
-                // alert("has pulsado el botonEnviar")
-                $("#fechaModal").text("Nueva fecha creada");
-
-                let valor = $("#idAvisoTabla").val();
-                alert("valor: " + valor);
-                // console.log("valor: " + valor);
+            $(".clickModal").on("click", function() {
+                // Obtener el valor contenido en el cuadro de texto. Ir al padre navego
+                let valor = $($($(this).parents("tr")).find("td")).find("h1").eq(0).html();
+                console.log($($($(this).parents("tr")).find("td")).find("h1").eq(0).html());
                 // Realizar la petición al servidor
                 // Método parametrizado
- /*               $.ajax({
-                    method: "GET",
-                    url: "/factorial/ " + valor,
-                    // En caso de éxito, mostrar el resultado
-                    // en el documento HTML
-                    success: function (data, textStatus, jqXHR) {
-                        console.log(textStatus);
-                        $("#resultado").text("El resultado es " + data.resultado);
-                    },
-                    // En caso de error, mostrar el error producido
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        alert("Se ha producido un error: " + errorThrown);
-                    }
-                });
-                // Realizar la petición al servidor
-                // Método con parámetro en la petición GET
-                  $.ajax({
-                    method: "GET",
-                    url: "/factorial",
-                    data: {
-                        num: valor
-                    },
-                    // En caso de éxito, mostrar el resultado
-                    // en el documento HTML
-                    success: function (data, textStatus, jqXHR) {
-                        console.log(textStatus);
-                        $("#resultado").text("El resultado es " + data.resultado);
-                    },
-                    // En caso de error, mostrar el error producido
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        alert("Se ha producido un error: " + errorThrown);
-                    }
-                });
-            }); 
-                */
-               /*  $.ajax({
+             $.ajax({
                     type: "POST",
                     url: "/modalAviso",
                     contentType: "application/json",
@@ -186,14 +148,35 @@
                     // en el documento HTML
                     success: function (data, textStatus, jqXHR) {
                         console.log(textStatus);
-                        $("#resultado").text("El resultado es " + data.resultado);
+                        let taskDevuelto = data.taskModal;
+                        console.log(taskDevuelto);                        
+                        if (taskDevuelto.tipo ==='Sugerencia' ) {
+                            $("#subtipoAvisoModal").text(taskDevuelto.subtipo);
+                            $("#subtipoAvisoModal").show();
+                            $("#tipoAvisoModal").toggleClass("pildoraSugerencia");
+                        }else if (taskDevuelto.tipo ==='Incidencia') {
+                            $("#subtipoAvisoModal").text(taskDevuelto.subtipo);
+                            $("#subtipoAvisoModal").show();
+                            $("#tipoAvisoModal").toggleClass("pildoraIncidencia");
+                        } else {
+                            $("#subtipoAvisoModal").hide()
+                            $("#tipoAvisoModal").toggleClass("pildoraFelicitacion");
+                        }
+                        $("#idAvisoModal").text(taskDevuelto.idAviso);
+                        $("#tipoAvisoModal").text(taskDevuelto.tipo);
+                        $("#categoriaAvisoModal").text(taskDevuelto.categoria);
+                        $("#fechaAvisoModal").text(taskDevuelto.fecha);
+                        $("#observacionesAvisoModal").text(taskDevuelto.observaciones);
+                        if (taskDevuelto.comentario === null) {
+                            $("#comentarioAvisoModal").text("Aún no tiene comentarios del técnico en este aviso");
+                        }else { $("#comentarioAvisoModal").text(taskDevuelto.comentario);}
                     },
                     // En caso de error, mostrar el error producido
                     error: function (jqXHR, textStatus, errorThrown) {
                         alert("Se ha producido un error: " + errorThrown);
                     }
-                }); */
-            });
+                });
+            }); 
         });
     </script>
 </html>

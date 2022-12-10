@@ -123,6 +123,27 @@ class DAOUsers {
             }
         });
     }
+
+    getAllUsers(callback) {
+        this.pool.getConnection(function (err, connection) {
+            if (err) {
+                callback(new Error("Error de conexión a la base de datos"));                
+            }
+            else {
+                let sql ="SELECT * FROM personas P WHERE P.activo = 1" ;
+                connection.query(sql,
+                function (err, user) {
+                    connection.release();
+                    if (err) {
+                        callback(new Error("Error a la hora de mostrar todos los usuarios"))
+                    }
+                    else {
+                        callback(null, user);
+                    }
+                });
+            }
+        });
+    }
     
 }
 

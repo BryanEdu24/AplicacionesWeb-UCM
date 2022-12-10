@@ -39,40 +39,89 @@
             </div>
 
             <table class="tablaTec3">
-                <tr>
-                    <th>Tipo</th>
-                    <th>Fecha</th>
-                    <th>Texto</th>
-                    <th>Acciones</th>
-                </tr>
-
-                <tr>
-                    <td class="tipos"><img src="images/exclamacion.png" alt="" width="35" height="35"></td>
-                    <td class="fechas">12/10/2021</td>
-                    <td>No puedo conectar a la red corporativa. Parece que el fallo...</td>
-                    <td class="acciones">
-                        <img src="images/visualizarVector.svg" alt="" width="35" height="35">
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td class="tipos"><img src="images/pregunta.png" alt="" width="35" height="35"></td>
-                    <td class="fechas">10/10/2021</td>
-                    <td>Propongo cambiar el diseño de la web a un modelo responsive para que se pueda visualizar en el móvil...</td>
-                    <td class="acciones">
-                        <img src="images/visualizarVector.svg" alt="" width="35" height="35">
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td class="tipos"><img src="images/ok.png" alt="" width="35" height="35"></td>
-                    <td class="fechas">05/01/2021</td>
-                    <td>Feliz año a todos vosotros por el buen trabajo realizado y las atenciones recibidas...</td>
-                    <td class="acciones">
-                        <img src="images/visualizarVector.svg" alt="" width="35" height="35">
-                    </td>
-                </tr>
+                <% if (Avisos.length > 0) { %>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Fecha</th>
+                        <th>Texto</th>
+                        <th>Acciones</th>
+                    </tr>
+                    <% Avisos.forEach(function(aviso) { %>
+                        <tr>
+                            <td class="tipos">
+                                <% let tipoImg = aviso.tipo %>
+                                <% if (tipoImg === 'Sugerencia') { %>
+                                    <img src="images/pregunta.png" alt="" width="35" height="35">
+                                <% } else if (tipoImg === 'Incidencia') {%> 
+                                    <img src="images/exclamacion.png" alt="" width="35" height="35">              
+                                <% } else {%> 
+                                    <img src="images/ok.png" alt="" width="35" height="35">
+                                <% } %> 
+                            </td>
+                            <td class="fechas"><%= aviso.fecha %></td>
+                            <% if(aviso.observaciones.length > 200){ %>
+                                <td><%= aviso.observaciones.substr(0,200)%>...</td>
+                            <%} else {%>
+                                <td><%= aviso.observaciones%></td>
+                            <%}%> 
+                            <td class="acciones">
+                                <img src="images/visualizarVector.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalAvisos">
+                            </td>
+                        </tr>
+                    <% }); %>
+                <% } else {%>
+                    <thead>
+                        <th>Tipo</th>
+                        <th>Fecha</th>
+                        <th>Texto</th>
+                        <th>Acciones</th>
+                    </thead>
+                    <tr class="text-center">
+                        <td colspan="4">
+                            <strong>
+                                Vaya... no tienes historial de avisos
+                            </strong>
+                            <div>
+                                <img src="images/sinMensajes.png" alt="" width="50" height="50">
+                            </div>
+                        </td>
+                    </tr>
+                <% } %>
             </table>
+        </div>
+
+        <div class="modal fade" id="modalAvisos">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <!-- cabecera del diálogo -->
+                    <div class="modal-header">
+                        <h4 class="modal-title"><%=nameUser %></h4>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <!-- cuerpo del diálogo -->
+                    <div class="modal-body">
+                        <div class="subEncabezadoModal d-flex justify-content-between">
+                            <div><span>Fecha:</span> <h5 id="fechaAvisoModal"> 12/10/2021</h5></div>
+                            <div><h5>Aviso nº<i id="idAvisoModal">202101020001</i>: <label class="badge rounded-pill pildora" id="tipoAvisoModal">Sugerencia</label></h5></div>
+                        </div>
+                        <div class="comunicacionesModal"><span>🔹<strong id="subtipoAvisoModal" style="display: none;"> Comunicaciones: </strong></span><h5  id="categoriaAvisoModal" >Correo electrónico</h5></div>
+                        <div class="perfilModal"><h5>🔹<strong> Perfil: </strong><%=rol %></h5></div>
+                        <div class="observacionesModal">
+                            <h5>🔹<strong> Observaciones:</strong></h5>
+                            <div class="contenidoObservacion" id="observacionesAvisoModal">
+                                He solicitado una nueva cuenta de correo electrónico para mi departamento pero no he recibido todavía ninguna respuesta. Por favor es urgente que dispongamos de esa cuenta genérica lo antes posible ya que en breve celebraremos el II Congreso de ciberseguridad y necesitamos esa cuenta para centralizar peticiones. Muchas Gracias.
+                            </div>
+                        </div>
+                        <div class="comentariosModal">
+                            <h5>🔸<strong> Comentarios del Técnico:</strong></h5>
+                            <div class="contenidoComentario" id="comentarioAvisoModal">
+                                Macho solicitas los que quieras que yo estoy a punto de eliminarte la cuenta. Más te vale aprobar todo cabroncete ;)
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>
