@@ -157,18 +157,4 @@
         }
 
     </script>
-    <script type="application/javascript">
-        $(function() {
-            $("#numTecOculto").on("change", function() {
-            let valorRegExp = /\d{4}\-[a-z]{3}/;
-            let valor = $(event.target).prop("value").trim();
-                if (valor.search(valorRegExp)) {
-                    alert("No has introducido el numero de empleado en el formato correcto.");
-                    //$("#mensajeNumEmpleado").text("No has introducido en el formato correcto");
-                    event.preventDefault();   
-                }                        
-            });
-        });
-</script>
-
 </html>

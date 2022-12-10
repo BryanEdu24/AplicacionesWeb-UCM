@@ -50,7 +50,7 @@
                         <th>Acciones</th>
                     </tr>
                     <% Avisos.forEach(function(aviso) { %>
-                        <tr data-bs-toggle="modal" data-bs-target="#modalMisAvisos">
+                        <tr id="modalClick" data-bs-toggle="modal" data-bs-target="#modalMisAvisos">
                             <td class="tipos">
                                 <% let tipoImg = aviso.tipo %>
                                 <% if (tipoImg === 'Sugerencia') { %>

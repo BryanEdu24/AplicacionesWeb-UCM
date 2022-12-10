@@ -11,8 +11,6 @@
         <link rel="shortcut icon" href="images/AtencionUsuarioIcon.png">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
         <link rel="stylesheet" href="stylesheets/registerView.css" media="screen">
-        <!-- script checkear formato numero empleado -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
 
     <body>
@@ -64,7 +62,7 @@
 
                             <section id="divNormal" style="display:none;" ></section>
                             <section id="divOculto" style="display:none;">
-                                <input type="checkbox" id="checkbox" name="tecnico" value="ON" title="Usuario Técnico" onChange="esTecnico(this)" required="true">
+                                <input type="checkbox" id="checkbox" name="tecnico" value="ON" title="Usuario Técnico" onChange="esTecnico(this)">
                                 <label for="checkbox" title="Usuario Técnico"><strong>Técnico&#8195</strong></label>
                                 
                                 <img src="images/numEmpleadoVector.svg" height="30" width="30" alt="Identificador Técnico" title="Identificador Técnico">
@@ -166,18 +164,4 @@
         password.onchange = validatePassword;
         confirm_password.onkeyup = validatePassword;
     </script>
-    <script type="application/javascript">
-                    $(function() {
-                        $("#numTecOculto").on("change", function() {
-                        let valorRegExp = /\d{4}\-[a-z]{3}/;
-                        let valor = $(event.target).prop("value").trim();
-                            if (valor.search(valorRegExp)) {
-                                alert("No has introducido el numero de empleado en el formato correcto.");
-                                //$("#mensajeNumEmpleado").text("No has introducido en el formato correcto");
-                                event.preventDefault();   
-                            }                        
-                        });
-                    });
-    </script>
-
 </html>

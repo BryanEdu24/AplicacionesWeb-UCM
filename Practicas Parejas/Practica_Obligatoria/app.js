@@ -119,6 +119,11 @@ app.post("/registerPost.html",
   check("contrasenia", "La contraseña no contiene al menos una minuscula.").matches(/[a-z]+/),
   check("contrasenia", "La contraseña no contiene al menos una mayuscula.").matches(/[A-Z]+/),
   check("contrasenia", "La contraseña no contiene al menos un caracter no alfanumérico.").matches(/[^a-zA-Z0-9]+/),*/
+  check("numEmpleado", "ta mal la num").custom(function (value, {req}) {
+    return req.body.tecnico !== "ON" || ( 
+    req.body.tecnico === "ON" && /[0-9]{4}[-][a-zA-Z]{3}/.test(value) // Si cumple formato 
+    )
+  }),
   (request, response) => {
   const errors = validationResult(request);
   if (errors.isEmpty()) {

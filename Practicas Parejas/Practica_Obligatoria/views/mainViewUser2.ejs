@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="stylesheets/mainViewUser2.css" media="screen">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
 
     <body>
@@ -40,6 +41,7 @@
                     </tr>
                     <% Avisos.forEach(function(aviso) { %>
                         <tr>
+                            <h1 id="idAvisoTabla"style="display:;"><%= aviso.idAviso%></h1>
                             <td class="tipos">
                                 <% let tipoImg = aviso.tipo %>
                                 <% if (tipoImg === 'Sugerencia') { %>
@@ -57,7 +59,8 @@
                                 <td><%= aviso.observaciones%></td>
                             <%}%> 
                             <td class="acciones">
-                                <img src="images/visualizarVector.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalHistorialAvisos">
+                                <img id="botonEnviar" src="images/visualizarVector.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalHistorialAvisos"
+                                >
                             </td>
                         </tr>
                     <% }); %>
@@ -101,7 +104,7 @@
                     <!-- cuerpo del diálogo -->
                     <div class="modal-body">
                         <div class="subEncabezadoModal d-flex justify-content-between">
-                            <div><h5>Fecha: 12/10/2021</h5></div>
+                            <div><h5 id="fechaModal">Fecha: 12/10/2021</h5></div>
                             <div><h5>Aviso nº<i>202101020001</i>: <label class="badge rounded-pill pildora">Sugerencia</label></h5></div>
                         </div>
                         <div class="comunicacionesModal"><h5>🔹<strong> Comunicaciones: </strong>Correo electrónico</h5></div>
@@ -124,5 +127,73 @@
         </div>
 
         <%- include("subplantillas/btnNuevoAviso") %>
-    </body>    
+    </body>   
+    
+    <script type="application/javascript">
+        $(function() {
+            // Cada vez que se pulse el botón de 'Enviar'
+            $("#botonEnviar").on("click", function() {
+                // Obtener el valor contenido en el cuadro de texto
+                // alert("has pulsado el botonEnviar")
+                $("#fechaModal").text("Nueva fecha creada");
+
+                let valor = $("#idAvisoTabla").val();
+                alert("valor: " + valor);
+                // console.log("valor: " + valor);
+                // Realizar la petición al servidor
+                // Método parametrizado
+ /*               $.ajax({
+                    method: "GET",
+                    url: "/factorial/ " + valor,
+                    // En caso de éxito, mostrar el resultado
+                    // en el documento HTML
+                    success: function (data, textStatus, jqXHR) {
+                        console.log(textStatus);
+                        $("#resultado").text("El resultado es " + data.resultado);
+                    },
+                    // En caso de error, mostrar el error producido
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert("Se ha producido un error: " + errorThrown);
+                    }
+                });
+                // Realizar la petición al servidor
+                // Método con parámetro en la petición GET
+                  $.ajax({
+                    method: "GET",
+                    url: "/factorial",
+                    data: {
+                        num: valor
+                    },
+                    // En caso de éxito, mostrar el resultado
+                    // en el documento HTML
+                    success: function (data, textStatus, jqXHR) {
+                        console.log(textStatus);
+                        $("#resultado").text("El resultado es " + data.resultado);
+                    },
+                    // En caso de error, mostrar el error producido
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert("Se ha producido un error: " + errorThrown);
+                    }
+                });
+            }); 
+                */
+               /*  $.ajax({
+                    type: "POST",
+                    url: "/modalAviso",
+                    contentType: "application/json",
+                    data: JSON.stringify({ idAviso: valor }),
+                    // En caso de éxito, mostrar el resultado
+                    // en el documento HTML
+                    success: function (data, textStatus, jqXHR) {
+                        console.log(textStatus);
+                        $("#resultado").text("El resultado es " + data.resultado);
+                    },
+                    // En caso de error, mostrar el error producido
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert("Se ha producido un error: " + errorThrown);
+                    }
+                }); */
+            });
+        });
+    </script>
 </html>
