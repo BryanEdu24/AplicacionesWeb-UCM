@@ -35,42 +35,62 @@
             </div>
 
             <table class="tablaTec1">
-                <tr>
-                    <th>Tipo</th>
-                    <th>Fecha</th>
-                    <th>Texto</th>
-                    <th>Acciones</th>
-                </tr>
+               
 
-                <tr>
-                    <td class="tipos"><img src="images/exclamacion.png" alt="" width="35" height="35"></td>
-                    <td class="fechas">12/10/2021</td>
-                    <td>No puedo conectar a la red corporativa. Parece que el fallo...</td>
-                    <td class="acciones">
-                        <img src="images/tecnicoAsignado.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalMisAvisos">
-                        <img src="images/basura.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalBorrarAviso">
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td class="tipos"><img src="images/pregunta.png" alt="" width="35" height="35"></td>
-                    <td class="fechas">10/10/2021</td>
-                    <td>Propongo cambiar el diseño de la web a un modelo responsive para que se pueda visualizar en el móvil...</td>
-                    <td class="acciones">
-                        <img src="images/tecnicoNoAsignado.svg" alt="" width="35" height="35">
-                        <img src="images/basuraDeshabilitada.svg" alt="" width="35" height="35">
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td class="tipos"><img src="images/ok.png" alt="" width="35" height="35"></td>
-                    <td class="fechas">05/01/2021</td>
-                    <td>Feliz año a todos vosotros por el buen trabajo realizado y las atenciones recibidas...</td>
-                    <td class="acciones">
-                        <img src="images/tecnicoAsignado.svg" alt="" width="35" height="35">
-                        <img src="images/basura.svg" alt="" width="35" height="35">
-                    </td>
-                </tr>
+
+                <% if (Avisos.length > 0) { %>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Fecha</th>
+                        <th>Texto</th>
+                        <th>Acciones</th>
+                    </tr>
+                    <% Avisos.forEach(function(aviso) { %>
+                        <tr data-bs-toggle="modal" data-bs-target="#modalMisAvisos">
+                            <td class="tipos">
+                                <% let tipoImg = aviso.tipo %>
+                                <% if (tipoImg === 'Sugerencia') { %>
+                                    <img src="images/pregunta.png" alt="" width="35" height="35">
+                                <% } else if (tipoImg === 'Incidencia') {%> 
+                                    <img src="images/exclamacion.png" alt="" width="35" height="35">                                    
+                                <% } else {%> 
+                                    <img src="images/ok.png" alt="" width="35" height="35">                                    
+                                <% } %> 
+                            </td>
+                            <td class="fechas"><%= aviso.fecha %></td>
+                            <% if(aviso.observaciones.length > 200){ %>
+                                <td><%= aviso.observaciones.substr(0,200)%>...</td>
+                            <%} else {%>
+                                <td><%= aviso.observaciones%></td>
+                            <%}%> 
+                            <td class="acciones">
+                                <% if(aviso.asignado === 1){ %>
+                                    <img src="images/tecnicoAsignado.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalMisAvisos">
+                                <%} else {%>
+                                    <img src="images/tecnicoNoAsignado.svg" alt="" width="35" height="35">
+                                <%}%> 
+                                <img src="images/basuraDeshabilitada.svg" alt="" width="35" height="35">
+                            </td>
+                        </tr>
+                    <% }); %>
+                <% } else {%>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Fecha</th>
+                        <th>Texto</th>
+                        <th>Acciones</th>
+                    </tr>
+                    <tr class="text-center">
+                        <td colspan="4">
+                            <strong>
+                                Vaya... no hay avisos sin finalizar 😪
+                            </strong>
+                            <div>
+                                <img src="images/sinMensajes.png" alt="" width="50" height="50">
+                            </div>
+                        </td>
+                    </tr>
+                <% } %>
             </table>
         </div>
     

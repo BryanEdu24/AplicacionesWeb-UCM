@@ -279,8 +279,17 @@ app.get("/mainViewUser2.html",accessControl, (request,response) => {
 });
 
 app.get("/mainViewTec1.html",accessControl, (request,response) => {
-  daoA.allAvisos()
-  response.render("mainViewTec1");
+  daoA.allAvisos(function (err, Avisos) {
+    if (!err) {
+      console.log(Avisos);
+      Avisos.forEach(aviso => {
+        fecha = moment(aviso.fecha);
+        fechaSpain = fecha.format("DD-MM-YYYY");
+        aviso.fecha = fechaSpain;
+      });
+      response.render("mainViewTec1", {Avisos: Avisos });
+    }else console.log(err.message);
+  });
 });
 
 app.get("/mainViewTec2.html",accessControl, (request,response) => {

@@ -82,7 +82,6 @@ class DAOAvisos {
         this.pool.getConnection(function(err, connection) {
             if (err)    callback(new Error("Error de conexión a la base de datos en Mis Avisos"));
             else {
-                console.log(idUser);
                 let sql= 
                 "SELECT * FROM avisos A JOIN persona_aviso P ON P.idAviso = A.idAviso WHERE P.cerrado = 0 ORDER BY a.idAviso";
                 // "SELECT DISTINCT U.nombre, A.idAviso, A.tipo, A.subtipo, A.categoria, A.fecha, A.observaciones, A.comentario, A.asignado  FROM avisos A JOIN persona_aviso P ON P.idAviso = A.idAviso JOIN personas U ON U.id = P.idPersona WHERE p.idPersona = ? AND P.cerrado = 0" ;
