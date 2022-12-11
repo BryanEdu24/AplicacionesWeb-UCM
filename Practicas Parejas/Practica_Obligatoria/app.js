@@ -378,7 +378,7 @@ app.get("/mainViewTec3.html", accessControl, (request, response) => {
   let idUsuario = response.locals.idUser;
   let fecha = null;
   let fechaSpain = null;
-  daoA.historialAvisos(idUsuario, function (err, Avisos) {
+  daoA.historialAvisosTec(idUsuario, function (err, Avisos) {
     if (!err) {
       Avisos.forEach((aviso) => {
         fecha = moment(aviso.fecha);

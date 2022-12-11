@@ -23,7 +23,7 @@
             </div>
             <div class="perfilUsuario d-flex align-items-center"  data-bs-target="#modalPerfil">
                 <!-- <button class="btn-nameUser"  data-bs-toggle="modal" data-bs-target="#modalPerfil"> -->
-                    <span class="nombreUsuario" data-bs-toggle="modal" data-bs-target="#modalPerfil">
+                    <span class="nombreUsuario" id="clickModalPerfil" data-bs-toggle="modal" data-bs-target="#modalPerfil">
                         <%= nameUser %>&#8195	
                     </span>
                 <!-- </button> -->
@@ -36,7 +36,7 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end bg-dark">
                         <li>
-                            <div id="clickModalPerfil"class="dropdown-item perfil d-flex justify-content-between" data-bs-toggle="modal" data-bs-target="#modalPerfil">
+                            <div id="clickModalPerfil" class="dropdown-item perfil d-flex justify-content-between" data-bs-toggle="modal" data-bs-target="#modalPerfil">
                                 Perfil
                                 <span><img src="images/usuarioBlancoVector.svg" alt="Perfil Usuario" width="25" height="25"></span>
                             </div>
@@ -98,11 +98,7 @@
                     let totalAvisos = data.totalAvisos;
                     let totalSugeren = data.nSuge;
                     let totalInci = data.nInci;
-                    let totalFeli = data.nFeli;
-                    console.log(Object.values(totalAvisos)); 
-                    console.log(totalSugeren);  
-                    console.log(totalInci);  
-                    console.log(totalFeli);    
+                    let totalFeli = data.nFeli;    
                     $("#totalAvisosPerfilModal").text(Object.values(totalAvisos));
                     $("#incidenciasPerfilModal").text(Object.values(totalInci));
                     $("#sugerenciasPerfilModal").text(Object.values(totalSugeren));

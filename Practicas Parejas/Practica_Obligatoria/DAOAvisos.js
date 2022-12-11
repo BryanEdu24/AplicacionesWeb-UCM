@@ -158,6 +158,30 @@ class DAOAvisos {
     });
   }
 
+  // Historial de Avisos de Tecnico
+  historialAvisosTec(idTec, callback) {
+    this.pool.getConnection(function (err, connection) {
+      if (err)
+        callback(
+          new Error("Error de conexión a la base de datos en Historial Avisos")
+        );
+      else {
+        let sql =
+        "SELECT DISTINCT A.idAviso, A.tipo, A.subtipo, A.categoria, A.fecha, A.observaciones, A.comentario, A.asignado, A.nombreTecnico FROM avisos A JOIN tecnico_aviso T ON T.idAviso = A.idAviso WHERE T.idTecnico = ? AND T.cerrado = 1"
+        connection.query(sql, [idTec], function (err, tasks) {
+          connection.release();
+          if (err)
+            callback(
+              new Error("Error a la hora de mostrar historial de avisos")
+            );
+          else {
+            callback(null, tasks);
+          }
+        });
+      }
+    });
+  }
+
   getAviso(idAviso, callback) {
     this.pool.getConnection(function (err, connection) {
       if (err)
