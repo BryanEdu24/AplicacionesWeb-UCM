@@ -3,62 +3,96 @@ class DAOAvisos {
     this.pool = pool;
   }
 
+  asignarTectoTask(nameTec, idTask, callback) {
+    this.pool.getConnection(function (err, connection) {
+      if (err)
+        callback(
+          new Error("Error de conexión a la base de datos en Mis Avisos")
+        );
+      else {
+        let sql = "SELECT id FROM personas WHERE nombre = ?";
+        connection.query(sql, [nameTec], function (err, idTec) {
+          connection.release();
+          if (err) callback(new Error("Error a la hora de conseguir el id del usuario"));
+          else {
+            console.log(idTec[0].id);
+            let sql =
+              "INSERT INTO tecnico_aviso (idTecnico,idAviso,cerrado) VALUES(?,?,0);";
+            connection.query(sql, [idTec[0].id, idTask], function (err, result) {
+              if (err)
+                callback(new Error("Error a la hora de insertar en tecnico_aviso"));
+              else {
+                let sql =
+                  "UPDATE avisos A SET A.asignado = 1, A.nombreTecnico = ? WHERE A.idAviso = ?";
+                connection.query(sql, [nameTec, idTask], function (err, taskModificado) {
+                  if (err)
+                    callback(
+                      new Error("Error a la hora de actualizar la tabla avisos")
+                    );
+                  else {
+                    callback(null, taskModificado.insertId )
+                  }
+                });
+              }
+            });
+          }
+        });
+      }
+    });
+  }
+
   insertTask(task, idUser, callback) {
     this.pool.getConnection(function (err, connection) {
       if (err) callback(new Error("Error de conexión a la base de datos"));
       else {
         let sql = "SELECT nombre FROM personas WHERE id = ?";
-        connection.query(
-          sql,
-          [idUser],
-          function (err, nameUser) {
-            connection.release();
-            if (err) {
-              callback(
-                new Error(
-                  "Error a la hora de hacer la insercción en la tabla persona_aviso"
-                )
-              );
-            } else {
-              console.log("Insertando en BD usuario: " + nameUser[0].nombre);
-              let sql =
-                "INSERT INTO avisos(tipo, subtipo, categoria, observaciones, comentario, activo, asignado, eliminadoPor, nombreTecnico, creadoPor) VALUES (?,?,?,?,null,1,0,null,null,?)";
-              connection.query(
-                sql,
-                [
-                  task.tipo,
-                  task.subtipo,
-                  task.categoria,
-                  task.observacion.toString(),
-                  nameUser[0].nombre,
-                ],
-                function (err, taskInserted) {
-                  if (err)
-                    callback(new Error("Error a la hora de insertar el aviso"));
-                  else {
-                    let sql =
-                      "INSERT INTO persona_aviso (idPersona, idAviso, cerrado, borrado) VALUES (?,?,0,0);";
-                    connection.query(
-                      sql,
-                      [idUser, taskInserted.insertId],
-                      function (err, result) {
-                        if (err) {
-                          callback(
-                            new Error(
-                              "Error a la hora de hacer la insercción en la tabla persona_aviso"
-                            )
-                          );
-                        } else {
-                          callback(null, taskInserted.insertId);
-                        }
+        connection.query(sql, [idUser], function (err, nameUser) {
+          connection.release();
+          if (err) {
+            callback(
+              new Error(
+                "Error a la hora de hacer la insercción en la tabla persona_aviso"
+              )
+            );
+          } else {
+            console.log("Insertando en BD usuario: " + nameUser[0].nombre);
+            let sql =
+              "INSERT INTO avisos(tipo, subtipo, categoria, observaciones, comentario, activo, asignado, eliminadoPor, nombreTecnico, creadoPor) VALUES (?,?,?,?,null,1,0,null,null,?)";
+            connection.query(
+              sql,
+              [
+                task.tipo,
+                task.subtipo,
+                task.categoria,
+                task.observacion.toString(),
+                nameUser[0].nombre,
+              ],
+              function (err, taskInserted) {
+                if (err)
+                  callback(new Error("Error a la hora de insertar el aviso"));
+                else {
+                  let sql =
+                    "INSERT INTO persona_aviso (idPersona, idAviso, cerrado, borrado) VALUES (?,?,0,0);";
+                  connection.query(
+                    sql,
+                    [idUser, taskInserted.insertId],
+                    function (err, result) {
+                      if (err) {
+                        callback(
+                          new Error(
+                            "Error a la hora de hacer la insercción en la tabla persona_aviso"
+                          )
+                        );
+                      } else {
+                        callback(null, taskInserted.insertId);
                       }
-                    );
-                  }
+                    }
+                  );
                 }
-              );
-            }
+              }
+            );
           }
-        );
+        });
       }
     });
   }
@@ -68,54 +102,55 @@ class DAOAvisos {
       if (err) callback(new Error("Error de conexión a la base de datos"));
       else {
         let sql = "SELECT nombre FROM personas WHERE id = ?";
-        connection.query(
-          sql,
-          [idUser],
-          function (err, nameUser) {
-            connection.release();
-            if (err) {
-              callback(
-                new Error(
-                  "Error a la hora de hacer la insercción en la tabla persona_aviso"
-                )
-              );
-            } else {
-              let sql =
-                "INSERT INTO avisos(tipo, subtipo, categoria, observaciones, comentario, activo, asignado, eliminadoPor, nombreTecnico, creadoPor) VALUES (?,null,?,?,null,1,0,null,null,?)";
-              connection.query(
-                sql,
-                [task.tipo, task.categoria, task.observacion.toString(), nameUser],
-                function (err, taskInserted) {
-                  if (err)
-                    callback(
-                      new Error(
-                        "Error a la hora de insertar el aviso felicitación"
-                      )
-                    );
-                  else {
-                    let sql =
-                      "INSERT INTO persona_aviso (idPersona, idAviso, cerrado, borrado) VALUES (?,?,0,0);";
-                    connection.query(
-                      sql,
-                      [idUser, taskInserted.insertId],
-                      function (err, result) {
-                        if (err) {
-                          callback(
-                            new Error(
-                              "Error a la hora de hacer la insercción en la tabla persona_aviso"
-                            )
-                          );
-                        } else {
-                          callback(null, taskInserted.insertId);
-                        }
+        connection.query(sql, [idUser], function (err, nameUser) {
+          connection.release();
+          if (err) {
+            callback(
+              new Error(
+                "Error a la hora de hacer la insercción en la tabla persona_aviso"
+              )
+            );
+          } else {
+            let sql =
+              "INSERT INTO avisos(tipo, subtipo, categoria, observaciones, comentario, activo, asignado, eliminadoPor, nombreTecnico, creadoPor) VALUES (?,null,?,?,null,1,0,null,null,?)";
+            connection.query(
+              sql,
+              [
+                task.tipo,
+                task.categoria,
+                task.observacion.toString(),
+                nameUser,
+              ],
+              function (err, taskInserted) {
+                if (err)
+                  callback(
+                    new Error(
+                      "Error a la hora de insertar el aviso felicitación"
+                    )
+                  );
+                else {
+                  let sql =
+                    "INSERT INTO persona_aviso (idPersona, idAviso, cerrado, borrado) VALUES (?,?,0,0);";
+                  connection.query(
+                    sql,
+                    [idUser, taskInserted.insertId],
+                    function (err, result) {
+                      if (err) {
+                        callback(
+                          new Error(
+                            "Error a la hora de hacer la insercción en la tabla persona_aviso"
+                          )
+                        );
+                      } else {
+                        callback(null, taskInserted.insertId);
                       }
-                    );
-                  }
+                    }
+                  );
                 }
-              );
-            }
+              }
+            );
           }
-        );
+        });
       }
     });
   }
@@ -175,7 +210,7 @@ class DAOAvisos {
       else {
         console.log(idTec);
         let sql =
-        "SELECT DISTINCT A.idAviso, A.tipo, A.subtipo, A.categoria, A.fecha, A.observaciones, A.comentario, A.asignado, A.nombreTecnico FROM avisos A JOIN tecnico_aviso T ON T.idAviso = A.idAviso WHERE T.idTecnico = ?  AND T.cerrado = 0";
+          "SELECT DISTINCT A.idAviso, A.tipo, A.subtipo, A.categoria, A.fecha, A.observaciones, A.comentario, A.asignado, A.nombreTecnico FROM avisos A JOIN tecnico_aviso T ON T.idAviso = A.idAviso WHERE T.idTecnico = ?  AND T.cerrado = 0";
         connection.query(sql, [idTec], function (err, tasks) {
           connection.release();
           if (err) callback(new Error("Error a la hora de mostrar los avisos"));

@@ -294,6 +294,22 @@ app.post("/modalAvisosPerfilUser", (request, response) => {
   }
 });
 
+/* Post para asignar un aviso a un tecnico */
+app.post("/asignarAviso", (request, response) => {
+  let nomTecnico = request.body.nomTecnico;
+  let idAviso = request.body.idAviso;
+  daoA.asignarTectoTask(nomTecnico,idAviso, function (err, idAviso) {
+    if (!err) {
+      console.log(idAviso);
+      response.json({ idAviso: idAviso });
+    } else {
+      console.log(err.message);
+      response.status(400);
+      response.end();
+    }
+  });
+});
+
 /* Conseguir imagen del usuario por BD */
 app.get("/images/:id", (request, response) => {
   console.log("id User: " + request.params.id);

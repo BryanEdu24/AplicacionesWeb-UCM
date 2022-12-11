@@ -176,7 +176,8 @@
                 // En caso de éxito, mostrar el resultado
                 // en el documento HTML
                 success: function (data, textStatus, jqXHR) {
-                    console.log(textStatus);                       
+                    console.log(textStatus);    
+                    console.log("Asignado tecnico al aviso: "+ data.idAviso);                   
                 },
                 // En caso de error, mostrar el error producido
                 error: function (jqXHR, textStatus, errorThrown) {
