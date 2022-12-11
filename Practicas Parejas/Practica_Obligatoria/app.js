@@ -231,9 +231,9 @@ app.post("/modalAviso", (request, response) => {
   daoA.getAviso(idAviso,function (err, task) {
     if (!err) {
       aviso = task;
-      fecha = moment(aviso.fecha);
+      /* fecha = moment(aviso.fecha);
       fechaSpain = fecha.format("DD-MM-YYYY");
-      aviso.fecha = fechaSpain;
+      aviso.fecha = fechaSpain; */
       console.log(aviso);
       response.json({ taskModal: aviso });
 

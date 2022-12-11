@@ -37,10 +37,9 @@
                         <th>Texto</th>
                         <th>Tipo</th>
                         <th>Técnico</th>
-                        <th>Acciones</th>
                     </tr>
                     <% Avisos.forEach(function(aviso) { %>
-                        <tr>
+                        <tr class="clickModal" data-bs-toggle="modal" data-bs-target="#modalAvisos">
                             <td id="idAvisoTabla"style="display:none;">>
                                 <h1><%= aviso.idAviso%></h1>
                             </td>
@@ -65,9 +64,6 @@
                             <%} else {%>
                                 <td class="tecnicos"><%= aviso.nombreTecnico%></td>
                             <%}%> 
-                            <td class="acciones">
-                                <img class="clickModal" data-bs-toggle="modal" data-bs-target="#modalAvisos" src="images/visualizarVector.svg" alt="" width="35" height="35">
-                            </td>
                         </tr>
                     <% }); %>
                 <% } else {%>
@@ -139,8 +135,8 @@
             // Cada vez que se pulse el botón de 'Enviar'
             $(".clickModal").on("click", function() {
                 // Obtener el valor contenido en el cuadro de texto. Ir al padre navego
-                let valor = $($($(this).parents("tr")).find("td")).find("h1").eq(0).html();
-                console.log($($($(this).parents("tr")).find("td")).find("h1").eq(0).html());
+                let valor = $($(this).find("td")).find("h1").eq(0).html();
+                console.log($(this).find("td"));
                 // Realizar la petición al servidor
                 // Método parametrizado
              $.ajax({
@@ -162,7 +158,7 @@
                             $("#subtipoAvisoModal").text(taskDevuelto.subtipo);
                             $("#subtipoAvisoModal").show();
                             $("#tipoAvisoModal").toggleClass("pildoraIncidencia");
-                        } else {
+                        } else if (taskDevuelto.tipo ==='Felicitación'){
                             $("#subtipoAvisoModal").hide()
                             $("#tipoAvisoModal").toggleClass("pildoraFelicitacion");
                         }
