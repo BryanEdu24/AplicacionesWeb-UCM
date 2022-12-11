@@ -93,39 +93,7 @@
         </div>
 
         <!-- Modal para visualizar un aviso de historial -->
-        <div class="modal fade" id="modalAvisos">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
-                <div class="modal-content">
-                    <!-- cabecera del diálogo -->
-                    <div class="modal-header">
-                        <h4 id="creadoPorModalAviso" class="modal-title"><%=nameUser %></h4>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                    </div>
-        
-                    <!-- cuerpo del diálogo -->
-                    <div class="modal-body">
-                        <div class="subEncabezadoModal d-flex justify-content-between">
-                            <div><span>Fecha:</span> <h5 id="fechaAvisoModal"> 12/10/2021</h5></div>
-                            <div><h5>Aviso nº<i id="idAvisoModal">202101020001</i>: <label class="badge rounded-pill pildora" id="tipoAvisoModal">Sugerencia</label></h5></div>
-                        </div>
-                        <div class="comunicacionesModal"><span>🔹<strong id="subtipoAvisoModal" style="display: none;"> Comunicaciones: </strong></span><h5  id="categoriaAvisoModal" >Correo electrónico</h5></div>
-                        <div class="perfilModal"><h5>🔹<strong> Perfil: </strong><%=rol %></h5></div>
-                        <div class="observacionesModal">
-                            <h5>🔹<strong> Observaciones:</strong></h5>
-                            <div class="contenidoObservacion" id="observacionesAvisoModal">
-                                He solicitado una nueva cuenta de correo electrónico para mi departamento pero no he recibido todavía ninguna respuesta. Por favor es urgente que dispongamos de esa cuenta genérica lo antes posible ya que en breve celebraremos el II Congreso de ciberseguridad y necesitamos esa cuenta para centralizar peticiones. Muchas Gracias.
-                            </div>
-                        </div>
-                        <div class="comentariosModal">
-                            <h5>🔸<strong> Comentarios del Técnico:</strong></h5>
-                            <div class="contenidoComentario" id="comentarioAvisoModal">
-                                Macho solicitas los que quieras que yo estoy a punto de eliminarte la cuenta. Más te vale aprobar todo cabroncete ;)
-                            </div>
-                        </div>    
-                    </div>
-                </div>
-            </div>
-        </div>
+        <%- include("subplantillas/modalVerAviso") %>
 
         <%- include("subplantillas/btnNuevoAviso") %>
     </body>   
