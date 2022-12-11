@@ -66,11 +66,11 @@
                         </tr>
                     <% }); %>
                 <% } else {%>
-                    <tr>
-                        <th>Fecha</th>
-                        <th>Texto</th>
-                        <th>Tipo</th>
-                        <th>Técnico</th>
+                    <tr class="cabecera">
+                        <th>Fecha 📅</th>
+                        <th>Texto 📋</th>
+                        <th>Tipo 🔱</th>
+                        <th>Técnico 👨‍💻</th>
                     </tr>
                     <tr class="text-center">
                         <td colspan="4">
@@ -105,22 +105,20 @@
                     <!-- cuerpo del diálogo -->
                     <div class="modal-body">
                         <div class="subEncabezadoModal d-flex justify-content-between">
-                            <div><span>Fecha:</span> <h5 id="fechaAvisoModal"> 12/10/2021</h5></div>
-                            <div><h5>Aviso nº<i id="idAvisoModal">202101020001</i>: <label class="badge rounded-pill pildora" id="tipoAvisoModal">Sugerencia</label></h5></div>
+                            <div><h5>Fecha: <label id="fechaAvisoModal"> </label></h5></div>
+                            <div><h5>Aviso nº<i id="idAvisoModal"></i>: <label class="badge rounded-pill pildora" id="tipoAvisoModal">Sugerencia</label></h5></div>
                         </div>
-                        <div class="comunicacionesModal"><span>🔹<strong id="subtipoAvisoModal" style="display: none;"> Comunicaciones: </strong></span><h5  id="categoriaAvisoModal" >Correo electrónico</h5></div>
+                        <div class="comunicacionesModal">
+                            <h5>🔹 <strong id="subtipoAvisoModal"> :</strong><span id="categoriaAvisoModal"></span></h5>
+                        </div>
                         <div class="perfilModal"><h5>🔹<strong> Perfil: </strong><%=rol %></h5></div>
                         <div class="observacionesModal">
                             <h5>🔹<strong> Observaciones:</strong></h5>
-                            <div class="contenidoObservacion" id="observacionesAvisoModal">
-                                He solicitado una nueva cuenta de correo electrónico para mi departamento pero no he recibido todavía ninguna respuesta. Por favor es urgente que dispongamos de esa cuenta genérica lo antes posible ya que en breve celebraremos el II Congreso de ciberseguridad y necesitamos esa cuenta para centralizar peticiones. Muchas Gracias.
-                            </div>
+                            <div class="contenidoObservacion" id="observacionesAvisoModal"></div>
                         </div>
                         <div class="comentariosModal">
                             <h5>🔸<strong> Comentarios del Técnico:</strong></h5>
-                            <div class="contenidoComentario" id="comentarioAvisoModal">
-                                Macho solicitas los que quieras que yo estoy a punto de eliminarte la cuenta. Más te vale aprobar todo cabroncete ;)
-                            </div>
+                            <div class="contenidoComentario" id="comentarioAvisoModal"></div>
                         </div>    
                     </div>
                 </div>
@@ -152,18 +150,16 @@
                         if (taskDevuelto.tipo ==='Sugerencia' ) {
                             $("#subtipoAvisoModal").text(taskDevuelto.subtipo);
                             $("#subtipoAvisoModal").show();
-                            $("#tipoAvisoModal").toggleClass("pildoraSugerencia");
+                            $("#categoriaAvisoModal").text(taskDevuelto.categoria);
                         }else if (taskDevuelto.tipo ==='Incidencia') {
                             $("#subtipoAvisoModal").text(taskDevuelto.subtipo);
                             $("#subtipoAvisoModal").show();
-                            $("#tipoAvisoModal").toggleClass("pildoraIncidencia");
+                            $("#categoriaAvisoModal").text(taskDevuelto.categoria);
                         } else if (taskDevuelto.tipo ==='Felicitación'){
-                            $("#subtipoAvisoModal").hide()
-                            $("#tipoAvisoModal").toggleClass("pildoraFelicitacion");
+                            $("#subtipoAvisoModal").text(taskDevuelto.categoria);
                         }
                         $("#idAvisoModal").text(taskDevuelto.idAviso);
                         $("#tipoAvisoModal").text(taskDevuelto.tipo);
-                        $("#categoriaAvisoModal").text(taskDevuelto.categoria);
                         $("#fechaAvisoModal").text(taskDevuelto.fecha);
                         $("#observacionesAvisoModal").text(taskDevuelto.observaciones);
                         if (taskDevuelto.comentario === null) {

@@ -21,18 +21,16 @@
                     if (taskDevuelto.tipo ==='Sugerencia' ) {
                         $("#subtipoAvisoModal").text(taskDevuelto.subtipo);
                         $("#subtipoAvisoModal").show();
-                        $("#tipoAvisoModal").toggleClass("pildoraSugerencia");
+                        $("#categoriaAvisoModal").text(taskDevuelto.categoria);
                     }else if (taskDevuelto.tipo ==='Incidencia') {
                         $("#subtipoAvisoModal").text(taskDevuelto.subtipo);
                         $("#subtipoAvisoModal").show();
-                        $("#tipoAvisoModal").toggleClass("pildoraIncidencia");
-                    } else {
-                        $("#subtipoAvisoModal").hide()
-                        $("#tipoAvisoModal").toggleClass("pildoraFelicitacion");
+                        $("#categoriaAvisoModal").text(taskDevuelto.categoria);
+                    } else if (taskDevuelto.tipo ==='Felicitación'){
+                        $("#subtipoAvisoModal").text(taskDevuelto.categoria);
                     }
                     $("#idAvisoModal").text(taskDevuelto.idAviso);
                     $("#tipoAvisoModal").text(taskDevuelto.tipo);
-                    $("#categoriaAvisoModal").text(taskDevuelto.categoria);
                     $("#fechaAvisoModal").text(taskDevuelto.fecha);
                     $("#observacionesAvisoModal").text(taskDevuelto.observaciones);
                     $("#creadoPorModalAviso").text(taskDevuelto.creadoPor);

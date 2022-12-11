@@ -27,6 +27,11 @@
     border-right: none;
     border-radius: 5px 0 0 5px;
     background-color: papayawhip;
+    cursor: text;
+}
+
+.searchTerm:hover {
+    cursor: text !important;
 }
   
 .searchButton {
@@ -53,7 +58,7 @@
 
 .botonMisAvisos {
     border-radius: 5px;
-    padding: 0.5%;
+    padding: 0.25%;
     color: black;
     background-color: silver;
 }
@@ -69,6 +74,7 @@
     border-radius: 5px;
     padding: 0.5%;
     color: black;
+    font-weight: bold;
     background-color: silver;
 }
 
@@ -84,22 +90,34 @@
     height: 7vh; 
 }
 
+/* inicio css para la tabla user1 */
 .tablaUser2 {
-    background-color: midnightblue !important;
+    background-color: thistle !important;
     border-radius: 10px !important;
     margin: 0 auto !important;
-    border-collapse: collapse !important;
     margin-top: 1.5% !important;
     width: 80% !important;
 }
 
+.tablaUser2 tr:first-child th:first-child {
+    border-top-left-radius: 10px;
+}
+
+.tablaUser2 tr:first-child th:last-child {
+    border-top-right-radius: 10px;
+}
+
+.cabecera {
+    background-color: midnightblue;
+    color: white;
+    text-align: center;
+    font-weight: bold !important;
+}
+
 th {
-    color: white !important;
-    text-align: center !important;
+    padding: 1%;
     border-right: gainsboro 2px solid !important;
     border-left: gainsboro 2px solid !important;
-    padding: 1% !important;
-    font-weight: bold !important;
 }
 
 .tablaUser2 tr:first-child th:first-child {
@@ -110,65 +128,37 @@ th {
     border-right: none !important;
 }
 
-.tablaUser2 tr:last-child td:last-child {
-    border-bottom-right-radius: 10px !important;
-}
-
-.tablaUser2 tr:last-child td:first-child {
-    border-bottom-left-radius: 10px !important;
-}
-
 td {
-    background-color: thistle !important;
-}
-
-td:first-child {
-    padding: 1% !important;
-}
-
-.fechas, .tipos, .acciones {
-    text-align: center !important;
-    width: 20vh !important;
+    padding: 1%;
 }
 
 .tipos {
     border-right: gainsboro 2px solid !important;
+    text-align: center;
+    width: 15vh;
 }
 
 .fechas {
     border-right: gainsboro 2px solid !important;
-    border-left: gainsboro 2px solid !important;
+    text-align: center;
+    width: 20vh;
 }
 
 .acciones {
     border-left: gainsboro 2px solid !important;
+    text-align: center;
+    width: 25vh;
 }
 
-tr {
-    border-bottom: gainsboro 2px solid !important;
+.clickModalVisualizar:hover {
+    filter:drop-shadow(1px 1px 3px darkcyan);
 }
 
-tr:last-child  {
-    border: 0 !important;
-}
+/* fin css para la tabla user1 */
 
-tr:first-child {
-    border: 0 !important;
-}
-
-.pildoraSugerencia {
-    background-color: PaleGoldenrod !important;
-    color: black !important;
-}
-
-.pildoraIncidencia {
-    background-color: rgb(212, 80, 80) !important;
-    color: black !important;
-}
-
-.pildoraFelicitacion {
-    background-color: lightgreen !important;
-    color: black !important;
+.pildora {
+    background-image: linear-gradient(to left, BlueViolet, darkblue) !important;
+    color: beige !important;
 }
 
 .comunicacionesModal {
@@ -217,7 +207,7 @@ tr:first-child {
 
 .contenidoComentario {
     border-radius: 5px !important;
-    margin-left: 3% !important;
+    margin-left: 5% !important;
     margin-right: 2% !important;
     margin-bottom: 1% !important;
 }

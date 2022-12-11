@@ -60,6 +60,7 @@
     border-radius: 5px;
     padding: 0.5%;
     color: black;
+    font-weight: bold;
     background-color: silver;
 }
 
@@ -72,7 +73,7 @@
 
 .botonHistorialAvisos {
     border-radius: 5px;
-    padding: 0.5%;
+    padding: 0.25%;
     color: black;
     background-color: silver;
 }
@@ -150,20 +151,9 @@ td {
 }
 /* fin css para la tabla user1 */
 
-
-.pildoraSugerencia {
-    background-color: PaleGoldenrod !important;
-    color: black !important;
-}
-
-.pildoraIncidencia {
-    background-color: red !important;
-    color: black !important;
-}
-
-.pildoraFelicitacion {
-    background-color: lightgreen !important;
-    color: black !important;
+.pildora {
+    background-image: linear-gradient(to left, BlueViolet, darkblue) !important;
+    color: beige !important;
 }
 
 .comunicacionesModal {

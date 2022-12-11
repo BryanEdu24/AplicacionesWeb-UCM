@@ -14,8 +14,8 @@
         <div class="containerUser container ">
             <div class="wrap">
                 <div class="search d-flex justify-content-end">
-                    <input type="text" class="searchTerm" placeholder="Buscar avisos...">
-                    <button type="submit" class="searchButton">
+                    <input type="text" class="searchTerm" id="inputBuscador" placeholder=" Buscar avisos...">
+                    <button type="submit" class="searchButton" onclick="buscador(this)">
                         <img src="images/lupaVector.svg" title="www.ucm.es" alt="Logo de la UCM" class="lupa">
                     </button>
                 </div>
@@ -31,46 +31,46 @@
                 </button>
             </div>
 
-            <table class="tablaUser2">
+            <table class="tablaUser2" id="tablaUser">
                 <% if (Avisos.length > 0) { %>
-                    <tr>
-                        <th>Tipo</th>
-                        <th>Fecha</th>
-                        <th>Texto</th>
-                        <th>Acciones</th>
+                    <tr class="cabecera">
+                        <th>Tipo 🔱</th>
+                        <th>Fecha 📅</th>
+                        <th>Texto 📋</th>
+                        <th>Acciones 💻</th>
                     </tr>
                     <% Avisos.forEach(function(aviso) { %>
                         <tr>
-                                <td style="display:none;">>
-                                    <h1><%= aviso.idAviso%></h1>
-                                </td>
-                                <td class="tipos">
-                                    <% let tipoImg = aviso.tipo %>
-                                    <% if (tipoImg === 'Sugerencia') { %>
-                                        <img src="images/pregunta.png" alt="" width="35" height="35">
-                                    <% } else if (tipoImg === 'Incidencia') {%> 
-                                        <img src="images/exclamacion.png" alt="" width="35" height="35">              
-                                    <% } else {%> 
-                                        <img src="images/ok.png" alt="" width="35" height="35">
-                                    <% } %> 
-                                </td>
-                                <td class="fechas"><%= aviso.fecha %></td>
-                                <% if(aviso.observaciones.length > 200){ %>
-                                    <td><%= aviso.observaciones.substr(0,200)%>...</td>
-                                <%} else {%>
-                                    <td><%= aviso.observaciones%></td>
-                                <%}%> 
-                                <td class="acciones">
-                                    <img class="clickModalVisualizar" data-bs-toggle="modal" data-bs-target="#modalAvisos" src="images/visualizarVector.svg" alt="" width="35" height="35">
-                                </td>
+                            <td style="display:none;">>
+                                <h1><%= aviso.idAviso%></h1>
+                            </td>
+                            <td class="tipos">
+                                <% let tipoImg = aviso.tipo %>
+                                <% if (tipoImg === 'Sugerencia') { %>
+                                    <img src="images/pregunta.png" alt="" width="35" height="35" style="cursor: default;">
+                                <% } else if (tipoImg === 'Incidencia') {%> 
+                                    <img src="images/exclamacion.png" alt="" width="35" height="35" style="cursor: default;">               
+                                <% } else {%> 
+                                    <img src="images/ok.png" alt="" width="35" height="35" style="cursor: default;">
+                                <% } %> 
+                            </td>
+                            <td class="fechas"><%= aviso.fecha %></td>
+                            <% if(aviso.observaciones.length > 200){ %>
+                                <td><%= aviso.observaciones.substr(0,200)%>...</td>
+                            <%} else {%>
+                                <td><%= aviso.observaciones%></td>
+                            <%}%> 
+                            <td class="acciones">
+                                <img class="clickModalVisualizar" data-bs-toggle="modal" data-bs-target="#modalAvisos" src="images/visualizarVector.svg" alt="" width="35" height="35">
+                            </td>
                         </tr>
                     <% }); %>
                 <% } else {%>
-                    <tr>
-                        <th>Tipo</th>
-                        <th>Fecha</th>
-                        <th>Texto</th>
-                        <th>Acciones</th>
+                    <tr class="cabecera">
+                        <th>Tipo 🔱</th>
+                        <th>Fecha 📅</th>
+                        <th>Texto 📋</th>
+                        <th>Acciones 💻</th>
                     </tr>
                     <tr class="text-center">
                         <td colspan="4">
