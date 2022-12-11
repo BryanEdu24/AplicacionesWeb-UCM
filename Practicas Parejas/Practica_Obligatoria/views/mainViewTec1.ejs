@@ -47,7 +47,7 @@
                         <th>Acciones</th>
                     </tr>
                     <% Avisos.forEach(function(aviso) { %>
-                        <tr id="modalClick" data-bs-toggle="modal" data-bs-target="#modalMisAvisos">
+                        <tr>
                             <td class="tipos">
                                 <% let tipoImg = aviso.tipo %>
                                 <% if (tipoImg === 'Sugerencia') { %>
@@ -68,9 +68,9 @@
                                 <% if(aviso.asignado === 1){ %>
                                     <img src="images/tecnicoAsignado.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalMisAvisos">
                                 <%} else {%>
-                                    <img src="images/tecnicoNoAsignado.svg" alt="" width="35" height="35">
+                                    <img src="images/tecnicoNoAsignado.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalMisAvisos">
                                 <%}%> 
-                                <img src="images/basuraDeshabilitada.svg" alt="" width="35" height="35">
+                                <img src="images/basura.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalBorrarAviso">
                             </td>
                         </tr>
                     <% }); %>

@@ -7,36 +7,52 @@ class DAOAvisos {
     this.pool.getConnection(function (err, connection) {
       if (err) callback(new Error("Error de conexión a la base de datos"));
       else {
-        console.log(task);
-        let sql =
-          "INSERT INTO avisos(tipo, subtipo, categoria, observaciones, comentario, activo, asignado, eliminadoPor, nombreTecnico) VALUES (?,?,?,?,null,1,0,null,null)";
+        let sql = "SELECT nombre FROM personas WHERE id = ?";
         connection.query(
           sql,
-          [
-            task.tipo,
-            task.subtipo,
-            task.categoria,
-            task.observacion.toString(),
-          ],
-          function (err, taskInserted) {
+          [idUser],
+          function (err, nameUser) {
             connection.release();
-            if (err)
-              callback(new Error("Error a la hora de insertar el aviso"));
-            else {
+            if (err) {
+              callback(
+                new Error(
+                  "Error a la hora de hacer la insercción en la tabla persona_aviso"
+                )
+              );
+            } else {
+              console.log("Insertando en BD usuario: " + nameUser[0].nombre);
               let sql =
-                "INSERT INTO persona_aviso (idPersona, idAviso, cerrado, borrado) VALUES (?,?,0,0);";
+                "INSERT INTO avisos(tipo, subtipo, categoria, observaciones, comentario, activo, asignado, eliminadoPor, nombreTecnico, creadoPor) VALUES (?,?,?,?,null,1,0,null,null,?)";
               connection.query(
                 sql,
-                [idUser, taskInserted.insertId],
-                function (err, result) {
-                  if (err) {
-                    callback(
-                      new Error(
-                        "Error a la hora de hacer la insercción en la tabla persona_aviso"
-                      )
+                [
+                  task.tipo,
+                  task.subtipo,
+                  task.categoria,
+                  task.observacion.toString(),
+                  nameUser[0].nombre,
+                ],
+                function (err, taskInserted) {
+                  if (err)
+                    callback(new Error("Error a la hora de insertar el aviso"));
+                  else {
+                    let sql =
+                      "INSERT INTO persona_aviso (idPersona, idAviso, cerrado, borrado) VALUES (?,?,0,0);";
+                    connection.query(
+                      sql,
+                      [idUser, taskInserted.insertId],
+                      function (err, result) {
+                        if (err) {
+                          callback(
+                            new Error(
+                              "Error a la hora de hacer la insercción en la tabla persona_aviso"
+                            )
+                          );
+                        } else {
+                          callback(null, taskInserted.insertId);
+                        }
+                      }
                     );
-                  } else {
-                    callback(null, taskInserted.insertId);
                   }
                 }
               );
@@ -51,33 +67,49 @@ class DAOAvisos {
     this.pool.getConnection(function (err, connection) {
       if (err) callback(new Error("Error de conexión a la base de datos"));
       else {
-        console.log(task);
-        let sql =
-          "INSERT INTO avisos(tipo, subtipo, categoria, observaciones, comentario, activo, asignado, eliminadoPor, nombreTecnico) VALUES (?,null,?,?,null,1,0,null,null)";
+        let sql = "SELECT nombre FROM personas WHERE id = ?";
         connection.query(
           sql,
-          [task.tipo, task.categoria, task.observacion.toString()],
-          function (err, taskInserted) {
+          [idUser],
+          function (err, nameUser) {
             connection.release();
-            if (err)
+            if (err) {
               callback(
-                new Error("Error a la hora de insertar el aviso felicitación")
+                new Error(
+                  "Error a la hora de hacer la insercción en la tabla persona_aviso"
+                )
               );
-            else {
+            } else {
               let sql =
-                "INSERT INTO persona_aviso (idPersona, idAviso, cerrado, borrado) VALUES (?,?,0,0);";
+                "INSERT INTO avisos(tipo, subtipo, categoria, observaciones, comentario, activo, asignado, eliminadoPor, nombreTecnico, creadoPor) VALUES (?,null,?,?,null,1,0,null,null,?)";
               connection.query(
                 sql,
-                [idUser, taskInserted.insertId],
-                function (err, result) {
-                  if (err) {
+                [task.tipo, task.categoria, task.observacion.toString(), nameUser],
+                function (err, taskInserted) {
+                  if (err)
                     callback(
                       new Error(
-                        "Error a la hora de hacer la insercción en la tabla persona_aviso"
+                        "Error a la hora de insertar el aviso felicitación"
                       )
                     );
-                  } else {
-                    callback(null, taskInserted.insertId);
+                  else {
+                    let sql =
+                      "INSERT INTO persona_aviso (idPersona, idAviso, cerrado, borrado) VALUES (?,?,0,0);";
+                    connection.query(
+                      sql,
+                      [idUser, taskInserted.insertId],
+                      function (err, result) {
+                        if (err) {
+                          callback(
+                            new Error(
+                              "Error a la hora de hacer la insercción en la tabla persona_aviso"
+                            )
+                          );
+                        } else {
+                          callback(null, taskInserted.insertId);
+                        }
+                      }
+                    );
                   }
                 }
               );
@@ -111,7 +143,7 @@ class DAOAvisos {
     });
   }
 
-  // Mis Avisos de Tecnico
+  // Avisos Entrantes de Tecnico
   allAvisos(callback) {
     this.pool.getConnection(function (err, connection) {
       if (err)
@@ -133,6 +165,27 @@ class DAOAvisos {
     });
   }
 
+  //Mis Avisos de Tecnico
+  misAvisosTec(idTec, callback) {
+    this.pool.getConnection(function (err, connection) {
+      if (err)
+        callback(
+          new Error("Error de conexión a la base de datos en Mis Avisos")
+        );
+      else {
+        console.log(idTec);
+        let sql =
+        "SELECT DISTINCT A.idAviso, A.tipo, A.subtipo, A.categoria, A.fecha, A.observaciones, A.comentario, A.asignado, A.nombreTecnico FROM avisos A JOIN tecnico_aviso T ON T.idAviso = A.idAviso WHERE T.idTecnico = ?  AND T.cerrado = 0";
+        connection.query(sql, [idTec], function (err, tasks) {
+          connection.release();
+          if (err) callback(new Error("Error a la hora de mostrar los avisos"));
+          else {
+            callback(null, tasks);
+          }
+        });
+      }
+    });
+  }
   // Historial de Avisos de User
   historialAvisos(idUser, callback) {
     this.pool.getConnection(function (err, connection) {
@@ -167,7 +220,7 @@ class DAOAvisos {
         );
       else {
         let sql =
-        "SELECT DISTINCT A.idAviso, A.tipo, A.subtipo, A.categoria, A.fecha, A.observaciones, A.comentario, A.asignado, A.nombreTecnico FROM avisos A JOIN tecnico_aviso T ON T.idAviso = A.idAviso WHERE T.idTecnico = ? AND T.cerrado = 1"
+          "SELECT DISTINCT A.idAviso, A.tipo, A.subtipo, A.categoria, A.fecha, A.observaciones, A.comentario, A.asignado, A.nombreTecnico, A.creadoPor FROM avisos A JOIN tecnico_aviso T ON T.idAviso = A.idAviso WHERE T.idTecnico = ? AND T.cerrado = 1";
         connection.query(sql, [idTec], function (err, tasks) {
           connection.release();
           if (err)

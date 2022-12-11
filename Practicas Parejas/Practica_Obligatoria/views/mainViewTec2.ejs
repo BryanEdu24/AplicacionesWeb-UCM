@@ -39,42 +39,61 @@
             </div>
 
             <table class="tablaTec2">
-                <tr>
-                    <th>Tipo</th>
-                    <th>Fecha</th>
-                    <th>Texto</th>
-                    <th>Acciones</th>
-                </tr>
-
-                <tr>
-                    <td class="tipos"><img src="images/exclamacion.png" alt="" width="35" height="35"></td>
-                    <td class="fechas">12/10/2021</td>
-                    <td>No puedo conectar a la red corporativa. Parece que el fallo...</td>
-                    <td class="acciones">
-                        <img src="images/visualizarVector.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalMisAvisos">
-                        <img src="images/basura.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalBorrarAviso">
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="tipos"><img src="images/pregunta.png" alt="" width="35" height="35"></td>
-                    <td class="fechas">10/10/2021</td>
-                    <td>Propongo cambiar el diseño de la web a un modelo responsive para que se pueda visualizar en el móvil...</td>
-                    <td class="acciones">
-                        <img src="images/visualizarVector.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalMisAvisos">
-                        <img src="images/basura.svg" alt="" width="35" height="35">
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="tipos"><img src="images/ok.png" alt="" width="35" height="35"></td>
-                    <td class="fechas">05/01/2021</td>
-                    <td>Feliz año a todos vosotros por el buen trabajo realizado y las atenciones recibidas...</td>
-                    <td class="acciones">
-                        <img src="images/visualizarVector.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalMisAvisos">
-                        <img src="images/basura.svg" alt="" width="35" height="35">
-                    </td>
-                </tr>
+                <% if (Avisos.length > 0) { %>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Fecha</th>
+                        <th>Texto</th>
+                        <th>Acciones</th>
+                    </tr>
+                    <% Avisos.forEach(function(aviso) { %>
+                        <tr>
+                            <td style="display:none;">>
+                                <h1><%= aviso.idAviso%></h1>
+                            </td>
+                            <td class="tipos">
+                                <% let tipoImg = aviso.tipo %>
+                                <% if (tipoImg === 'Sugerencia') { %>
+                                    <img src="images/pregunta.png" alt="" width="35" height="35">
+                                <% } else if (tipoImg === 'Incidencia') {%> 
+                                    <img src="images/exclamacion.png" alt="" width="35" height="35">                                    
+                                <% } else {%> 
+                                    <img src="images/ok.png" alt="" width="35" height="35">                                    
+                                <% } %> 
+                            </td>
+                            <td class="fechas"><%= aviso.fecha %></td>
+                            <td id="idAvisoTabla"style="display:none;">>
+                                <h1><%= aviso.idAviso%></h1>
+                            </td>
+                            <% if(aviso.observaciones.length > 200){ %>
+                                <td><%= aviso.observaciones.substr(0,200)%>...</td>
+                            <%} else {%>
+                                <td><%= aviso.observaciones%></td>
+                            <%}%> 
+                            <td class="acciones">
+                                <img class="clickModalVisualizar" src="images/visualizarVector.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalMisAvisos">
+                                <img src="images/basura.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalBorrarAviso">
+                            </td>
+                        </tr>
+                    <% }); %>
+                <% } else {%>
+                    <thead>
+                        <th>Tipo</th>
+                        <th>Fecha</th>
+                        <th>Texto</th>
+                        <th>Acciones</th>
+                    </thead>
+                    <tr class="text-center">
+                        <td colspan="4">
+                            <strong>
+                                Vaya... no tiene avisos asignados 😪
+                            </strong>
+                            <div>
+                                <img src="images/sinMensajes.png" alt="" width="50" height="50">
+                            </div>
+                        </td>
+                    </tr>
+                <% } %>
             </table>
         </div>
 
@@ -84,21 +103,21 @@
                 <div class="modal-content">
                     <!-- cabecera del diálogo -->
                     <div class="modal-header">
-                        <h4 class="modal-title"><%=nameUser %></h4>
+                        <h4 id="creadoPorModalAviso" class="modal-title"><%=nameUser %></h4>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                     </div>
-
+        
                     <!-- cuerpo del diálogo -->
                     <div class="modal-body">
                         <div class="subEncabezadoModal d-flex justify-content-between">
-                            <div><h5>Fecha: 12/10/2021</h5></div>
-                            <div><h5>Aviso nº<i>202101020001</i>: <label class="badge rounded-pill pildora">Sugerencia</label></h5></div>
+                            <div><span>Fecha:</span> <h5 id="fechaAvisoModal"> 12/10/2021</h5></div>
+                            <div><h5>Aviso nº<i id="idAvisoModal">202101020001</i>: <label class="badge rounded-pill pildora">Sugerencia</label></h5></div>
                         </div>
-                        <div class="comunicacionesModal"><h5>🔹<strong> Comunicaciones: </strong>Correo electrónico</h5></div>
+                        <div class="comunicacionesModal"><span>🔹<strong id="subtipoAvisoModal" style="display: none;"> Comunicaciones: </strong></span><h5  id="categoriaAvisoModal" >Correo electrónico</h5></div>
                         <div class="perfilModal"><h5>🔹<strong> Perfil: </strong><%=rol %></h5></div>
                         <div class="observacionesModal">
                             <h5>🔹<strong> Observaciones:</strong></h5>
-                            <div class="contenidoObservacion">
+                            <div class="contenidoObservacion"  id="observacionesAvisoModal">
                                 He solicitado una nueva cuenta de correo electrónico para mi departamento pero no he recibido todavía ninguna respuesta. Por favor es urgente que dispongamos de esa cuenta genérica lo antes posible ya que en breve celebraremos el II Congreso de ciberseguridad y necesitamos esa cuenta para centralizar peticiones. Muchas Gracias.
                             </div>
                         </div>
@@ -117,28 +136,42 @@
         </div>
 
         <!-- Modal para eliminar aviso -->
-        <div class="modal fade" id="modalBorrarAviso">
-            <div class="modal-dialog modal-sm modal-dialog-centered">
-                <div class="modal-content">
-                    <!-- cabecera del diálogo -->
-                    <div class="modal-header">
-                    <h4 class="modal-title">⚠Eliminar Aviso</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                    </div>
-            
-                    <!-- cuerpo del diálogo -->
-                    <div class="modal-body">
-                        ¿Está seguro que quieres eliminarlo?
-                    </div>
-            
-                    <!-- pie del diálogo -->
-                    <div class="modal-footer borrarborde">
-                        <button type="button" class="btn btnCancelarBorrado" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btnEliminarAviso" data-bs-dismiss="modal">Aceptar</button>
+                <div class="modal fade" id="modalBorrarAviso">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                        <div class="modal-content">
+                            <!-- cabecera del diálogo -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Felipe Lotas</h4>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                            </div>
+        
+                            <!-- cuerpo del diálogo -->
+                            <div class="modal-body">
+                                <div class="subEncabezadoModal d-flex justify-content-between">
+                                    <div><h5>Fecha: 12/10/2021</h5></div>
+                                    <div><h5>Aviso nº<i>202101020001</i>: <label class="badge rounded-pill pildora">Sugerencia</label></h5></div>
+                                </div>
+                                <div class="comunicacionesModal"><h5>🔹<strong> Comunicaciones: </strong>Correo electrónico</h5></div>
+                                <div class="perfilModal"><h5>🔹<strong> Perfil: </strong>PDI</h5></div>
+                                <div class="observacionesModal">
+                                    <h5>🔹<strong> Observaciones:</strong></h5>
+                                    <div class="contenidoObservacion">
+                                        He solicitado una nueva cuenta de correo electrónico para mi departamento pero no he recibido todavía ninguna respuesta. Por favor es urgente que dispongamos de esa cuenta genérica lo antes posible ya que en breve celebraremos el II Congreso de ciberseguridad y necesitamos esa cuenta para centralizar peticiones. Muchas Gracias.
+                                    </div>
+                                </div>
+                                <div class="comentariosModal">
+                                    <h5>🔸<strong> Comentario del Técnico para la anulación:</strong></h5>
+                                    <div class="contenidoComentario col-auto">
+                                        <textarea name="commentTec" class="form-control commentTec" rows="4" placeholder="Escriba una comentario para anulación..."></textarea>
+                                    </div>
+                                    <div class="text-end me-3">
+                                        <button type="submit" id="btnActivo" class="btnFinAviso">Finalizar Aviso</button>
+                                    </div>
+                                </div>    
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div> 
     </body>
-
+    <script type="application/javascript" src="javascripts/modalVerAvisoTec.js"></script>
 </html>

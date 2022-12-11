@@ -371,7 +371,17 @@ app.get("/mainViewTec1.html", accessControl, (request, response) => {
 });
 
 app.get("/mainViewTec2.html", accessControl, (request, response) => {
-  response.render("mainViewTec2");
+  let idTecnico = response.locals.idUser;
+  daoA.misAvisosTec(idTecnico, function (err, Avisos) {
+    if (!err) {
+      Avisos.forEach((aviso) => {
+        fecha = moment(aviso.fecha);
+        fechaSpain = fecha.format("DD-MM-YYYY");
+        aviso.fecha = fechaSpain;
+      });
+      response.render("mainViewTec2", { Avisos: Avisos });
+    } else console.log(err.message);
+  });
 });
 
 app.get("/mainViewTec3.html", accessControl, (request, response) => {
