@@ -172,3 +172,7 @@ select:not(.selEspecial) {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }
+
+.SubtituloCategoria {
+    margin-left: 3.5%;
+}

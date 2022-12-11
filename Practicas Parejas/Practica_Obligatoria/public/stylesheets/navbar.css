@@ -11,9 +11,12 @@ body {
     margin: 0 auto;
 }
 
+.tituloYSubtitulo {
+    cursor: default;
+}
+
 .nombreUsuario {
     font-size: 20px;
-    cursor: pointer;
 }
 
 .nombreUsuario:hover {

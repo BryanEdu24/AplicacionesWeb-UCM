@@ -27,9 +27,14 @@
     border-right: none;
     border-radius: 5px 0 0 5px;
     background-color: papayawhip;
+    cursor: text;
+}
+
+.searchTerm:hover {
+    cursor: text !important;
 }
   
-.searchButton {
+.searchButton { 
     width: 8vh;
     height: 6vh;
     border: 3px solid black;
@@ -79,22 +84,34 @@
     background-color: slategray;
 }
 
+/* inicio css para la tabla user1 */
 .tablaUser1 {
-    background-color: midnightblue !important;
+    background-color: thistle !important;
     border-radius: 10px !important;
     margin: 0 auto !important;
-    border-collapse: collapse !important;
     margin-top: 1.5% !important;
     width: 80% !important;
 }
 
+.tablaUser1 tr:first-child th:first-child {
+    border-top-left-radius: 10px;
+}
+
+.tablaUser1 tr:first-child th:last-child {
+    border-top-right-radius: 10px;
+}
+
+.cabecera {
+    background-color: midnightblue;
+    color: white;
+    text-align: center;
+    font-weight: bold !important;
+}
+
 th {
-    color: white !important;
-    text-align: center !important;
+    padding: 1%;
     border-right: gainsboro 2px solid !important;
     border-left: gainsboro 2px solid !important;
-    padding: 1% !important;
-    font-weight: bold !important;
 }
 
 .tablaUser1 tr:first-child th:first-child {
@@ -105,52 +122,34 @@ th {
     border-right: none !important;
 }
 
-.tablaUser1 tr:last-child td:last-child {
-    border-bottom-right-radius: 10px !important;
-}
-
-.tablaUser1 tr:last-child td:first-child {
-    border-bottom-left-radius: 10px !important;
-}
-
 td {
-    background-color: thistle !important;
-}
-
-td:first-child {
-    padding: 1% !important;
-}
-
-.fechas, .tipos, .tecnicos {
-    text-align: center !important;
-    width: 20vh !important;
+    padding: 1%;
+    cursor: help;
 }
 
 .fechas {
     border-right: gainsboro 2px solid !important;
+    text-align: center;
+    width: 20vh;
 }
 
 .tipos {
     border-right: gainsboro 2px solid !important;
     border-left: gainsboro 2px solid !important;
-    width: 10vh;
+    text-align: center;
+    width: 15vh;
 }
 
 .tecnicos {
-    border-left: gainsboro 2px solid !important;    
+    text-align: center;
+    width: 25vh;
 }
 
-tr {
-    border-bottom: gainsboro 2px solid !important;
+.cruz {
+    text-shadow: 0 0 0.2em crimson, 0 0 0.2em crimson, 0 0 0.2em crimson !important;
 }
+/* fin css para la tabla user1 */
 
-tr:last-child  {
-    border: 0 !important;
-}
-
-tr:first-child {
-    border: 0 !important;
-}
 
 .pildoraSugerencia {
     background-color: PaleGoldenrod !important;

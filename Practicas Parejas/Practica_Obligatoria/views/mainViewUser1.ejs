@@ -31,14 +31,14 @@
 
             <table class="tablaUser1" id="tablaUser">
                 <% if (Avisos.length > 0) { %>
-                    <tr>
-                        <th>Fecha</th>
-                        <th>Texto</th>
-                        <th>Tipo</th>
-                        <th>Técnico</th>
+                    <tr class="cabecera">
+                        <th>Fecha 📅</th>
+                        <th>Texto 📋</th>
+                        <th>Tipo 🔱</th>
+                        <th>Técnico 👨‍💻</th>
                     </tr>
                     <% Avisos.forEach(function(aviso) { %>
-                        <tr class="clickModalVisualizar" data-bs-toggle="modal" data-bs-target="#modalAvisos">
+                        <tr class="clickModalVisualizar cuerpoTabla" data-bs-toggle="modal" data-bs-target="#modalAvisos">
                             <td style="display:none;">>
                                 <h1><%= aviso.idAviso%></h1>
                             </td>
@@ -51,15 +51,15 @@
                             <td class="tipos">
                                 <% let tipoImg = aviso.tipo %>
                                 <% if (tipoImg === 'Sugerencia') { %>
-                                    <img src="images/pregunta.png" alt="" width="35" height="35">
+                                    <img src="images/pregunta.png" alt="" width="35" height="35" style="cursor: help;">
                                 <% } else if (tipoImg === 'Incidencia') {%> 
-                                    <img src="images/exclamacion.png" alt="" width="35" height="35">                                    
+                                    <img src="images/exclamacion.png" alt="" width="35" height="35" style="cursor: help;">               
                                 <% } else {%> 
-                                    <img src="images/ok.png" alt="" width="35" height="35">                                    
+                                    <img src="images/ok.png" alt="" width="35" height="35" style="cursor: help;">
                                 <% } %> 
                             </td>
                             <% if(aviso.asignado === 0){ %>
-                                <td class="tecnicos">❌Sin técnico❌</td>
+                                <td class="tecnicos"><label class="cruz">❌</label>Sin técnico<label class="cruz">❌</label></td>
                             <%} else {%>
                                 <td class="tecnicos"><%= aviso.nombreTecnico%></td>
                             <%}%> 
