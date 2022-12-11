@@ -39,8 +39,8 @@
                         <th>Técnico</th>
                     </tr>
                     <% Avisos.forEach(function(aviso) { %>
-                        <tr class="clickModal" data-bs-toggle="modal" data-bs-target="#modalAvisos">
-                            <td id="idAvisoTabla"style="display:none;">>
+                        <tr class="clickModalVisualizar" data-bs-toggle="modal" data-bs-target="#modalAvisos">
+                            <td style="display:none;">>
                                 <h1><%= aviso.idAviso%></h1>
                             </td>
                             <td class="fechas"><%= aviso.fecha %></td>
@@ -133,7 +133,7 @@
     <script type="application/javascript">
         $(document).ready(function() {
             // Cada vez que se pulse el botón de 'Enviar'
-            $(".clickModal").on("click", function() {
+            $(".clickModalVisualizar").on("click", function() {
                 // Obtener el valor contenido en el cuadro de texto. Ir al padre navego
                 let valor = $($(this).find("td")).find("h1").eq(0).html();
                 console.log($(this).find("td"));

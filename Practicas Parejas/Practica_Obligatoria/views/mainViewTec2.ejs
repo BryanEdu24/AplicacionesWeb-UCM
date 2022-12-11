@@ -72,7 +72,7 @@
                             <%}%> 
                             <td class="acciones">
                                 <img class="clickModalVisualizar" src="images/visualizarVector.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalMisAvisos">
-                                <img src="images/basura.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalBorrarAviso">
+                                <img class="clickModalBorrar"src="images/basura.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalBorrarAviso">
                             </td>
                         </tr>
                     <% }); %>
@@ -111,7 +111,7 @@
                     <div class="modal-body">
                         <div class="subEncabezadoModal d-flex justify-content-between">
                             <div><span>Fecha:</span> <h5 id="fechaAvisoModal"> 12/10/2021</h5></div>
-                            <div><h5>Aviso nº<i id="idAvisoModal">202101020001</i>: <label class="badge rounded-pill pildora">Sugerencia</label></h5></div>
+                            <div><h5>Aviso nº<i id="idAvisoModal">202101020001</i>: <label class="badge rounded-pill pildora" id="tipoAvisoModal">Sugerencia</label></h5></div>
                         </div>
                         <div class="comunicacionesModal"><span>🔹<strong id="subtipoAvisoModal" style="display: none;"> Comunicaciones: </strong></span><h5  id="categoriaAvisoModal" >Correo electrónico</h5></div>
                         <div class="perfilModal"><h5>🔹<strong> Perfil: </strong><%=rol %></h5></div>
@@ -136,42 +136,9 @@
         </div>
 
         <!-- Modal para eliminar aviso -->
-                <div class="modal fade" id="modalBorrarAviso">
-                    <div class="modal-dialog modal-lg modal-dialog-centered">
-                        <div class="modal-content">
-                            <!-- cabecera del diálogo -->
-                            <div class="modal-header">
-                                <h4 class="modal-title">Felipe Lotas</h4>
-                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                            </div>
-        
-                            <!-- cuerpo del diálogo -->
-                            <div class="modal-body">
-                                <div class="subEncabezadoModal d-flex justify-content-between">
-                                    <div><h5>Fecha: 12/10/2021</h5></div>
-                                    <div><h5>Aviso nº<i>202101020001</i>: <label class="badge rounded-pill pildora">Sugerencia</label></h5></div>
-                                </div>
-                                <div class="comunicacionesModal"><h5>🔹<strong> Comunicaciones: </strong>Correo electrónico</h5></div>
-                                <div class="perfilModal"><h5>🔹<strong> Perfil: </strong>PDI</h5></div>
-                                <div class="observacionesModal">
-                                    <h5>🔹<strong> Observaciones:</strong></h5>
-                                    <div class="contenidoObservacion">
-                                        He solicitado una nueva cuenta de correo electrónico para mi departamento pero no he recibido todavía ninguna respuesta. Por favor es urgente que dispongamos de esa cuenta genérica lo antes posible ya que en breve celebraremos el II Congreso de ciberseguridad y necesitamos esa cuenta para centralizar peticiones. Muchas Gracias.
-                                    </div>
-                                </div>
-                                <div class="comentariosModal">
-                                    <h5>🔸<strong> Comentario del Técnico para la anulación:</strong></h5>
-                                    <div class="contenidoComentario col-auto">
-                                        <textarea name="commentTec" class="form-control commentTec" rows="4" placeholder="Escriba una comentario para anulación..."></textarea>
-                                    </div>
-                                    <div class="text-end me-3">
-                                        <button type="submit" id="btnActivo" class="btnFinAviso">Finalizar Aviso</button>
-                                    </div>
-                                </div>    
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <%- include("subplantillas/modalEliminarAviso") %>
     </body>
-    <script type="application/javascript" src="javascripts/modalVerAvisoTec.js"></script>
+    <!-- Script para poder mostrar modales -->
+    <script type="application/javascript" src="javascripts/modalVerAviso.js"></script>
+    <script type="application/javascript" src="javascripts/modalBorrarAviso.js"></script> 
 </html>
