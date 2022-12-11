@@ -178,6 +178,7 @@ class DAOAvisos {
     });
   }
 
+  //Avisos para perfil User
   avisosPerfil(idUser, callback) {
     this.pool.getConnection(function (err, connection) {
       if (err)
@@ -189,24 +190,26 @@ class DAOAvisos {
           connection.release();
           if (err)
             callback(
-              new Error("Error a la hora de conseguir el numero de avisos de un usuario")
+              new Error(
+                "Error a la hora de conseguir el numero de avisos de un usuario"
+              )
             );
           else {
             let sql =
               "SELECT COUNT(A.idAviso) FROM avisos A " +
               " JOIN persona_aviso P ON P.idAviso = A.idAviso " +
-              " JOIN personas U ON U.id = P.idPersona " +
               " WHERE p.idPersona = ? AND A.tipo = 'Sugerencia';";
             connection.query(sql, [idUser], function (err, countSug) {
               if (err)
                 callback(
-                  new Error("Error a la hora de conseguir el numero de sugerencias de un usuario")
+                  new Error(
+                    "Error a la hora de conseguir el numero de sugerencias de un usuario"
+                  )
                 );
               else {
                 let sql =
                   "SELECT COUNT(A.idAviso) FROM avisos A " +
                   " JOIN persona_aviso P ON P.idAviso = A.idAviso " +
-                  " JOIN personas U ON U.id = P.idPersona " +
                   " WHERE p.idPersona = ? AND A.tipo = 'Incidencia';";
                 connection.query(sql, [idUser], function (err, countInci) {
                   if (err)
@@ -219,7 +222,6 @@ class DAOAvisos {
                     let sql =
                       "SELECT COUNT(A.idAviso) FROM avisos A " +
                       " JOIN persona_aviso P ON P.idAviso = A.idAviso " +
-                      " JOIN personas U ON U.id = P.idPersona " +
                       " WHERE p.idPersona = ? AND A.tipo = 'Felicitación';";
                     connection.query(sql, [idUser], function (err, countFeli) {
                       if (err)
@@ -229,7 +231,85 @@ class DAOAvisos {
                           )
                         );
                       else {
-                        callback(null, countAvisos[0], countSug[0], countInci[0],countFeli[0]);
+                        callback(
+                          null,
+                          countAvisos[0],
+                          countSug[0],
+                          countInci[0],
+                          countFeli[0]
+                        );
+                      }
+                    });
+                  }
+                });
+              }
+            });
+          }
+        });
+      }
+    });
+  }
+
+  //Avisos para perfil Tecnico
+  avisosPerfilTec(idTec, callback) {
+    this.pool.getConnection(function (err, connection) {
+      if (err)
+        callback(new Error("Error de conexión a la base de datos en getAviso"));
+      else {
+        let sql =
+          "SELECT COUNT(T.idAviso) FROM tecnico_aviso T WHERE T.idTecnico = ?;";
+        connection.query(sql, [idTec], function (err, countAvisos) {
+          connection.release();
+          if (err)
+            callback(
+              new Error(
+                "Error a la hora de conseguir el numero de avisos de un tecnico "
+              )
+            );
+          else {
+            let sql =
+              "SELECT COUNT(A.idAviso) FROM avisos A " +
+              " JOIN tecnico_aviso T ON T.idAviso = A.idAviso " +
+              " WHERE T.idTecnico = ? AND A.tipo = 'Sugerencia';";
+            connection.query(sql, [idTec], function (err, countSug) {
+              if (err)
+                callback(
+                  new Error(
+                    "Error a la hora de conseguir el numero de sugerencias de un tecnico"
+                  )
+                );
+              else {
+                let sql =
+                  "SELECT COUNT(A.idAviso) FROM avisos A " +
+                  " JOIN tecnico_aviso T ON T.idAviso = A.idAviso " +
+                  " WHERE T.idTecnico = ? AND A.tipo = 'Incidencia';";
+                connection.query(sql, [idTec], function (err, countInci) {
+                  if (err)
+                    callback(
+                      new Error(
+                        "Error a la hora de conseguir el numero de incidencias de un tecnico"
+                      )
+                    );
+                  else {
+                    let sql =
+                      "SELECT COUNT(A.idAviso) FROM avisos A " +
+                      " JOIN tecnico_aviso T ON T.idAviso = A.idAviso " +
+                      " WHERE T.idTecnico = ? AND A.tipo = 'Felicitación';";
+                    connection.query(sql, [idTec], function (err, countFeli) {
+                      if (err)
+                        callback(
+                          new Error(
+                            "Error a la hora de conseguir el numero de felicitaciones de un tecnico"
+                          )
+                        );
+                      else {
+                        callback(
+                          null,
+                          countAvisos[0],
+                          countSug[0],
+                          countInci[0],
+                          countFeli[0]
+                        );
                       }
                     });
                   }

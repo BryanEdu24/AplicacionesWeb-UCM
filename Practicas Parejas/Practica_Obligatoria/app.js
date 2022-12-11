@@ -251,22 +251,47 @@ app.post("/modalAviso", (request, response) => {
   });
 });
 
-/* Post para modal Avisos en Perfil Usuario */
+/* Post para modal Avisos en Perfil */
 app.post("/modalAvisosPerfilUser", (request, response) => {
   let idUser = request.body.idUser;
+  let rol = request.body.rol;
   let aviso = null;
   let fecha = null;
   let fechaSpain = null;
-  daoA.avisosPerfil(idUser, function (err, totalAvisos, nSuge, nInci, nFeli ) {
-    if (!err) {
-      // console.log(Object.values(totalAvisos));
-      response.json({ totalAvisos: totalAvisos, nSuge: nSuge, nInci: nInci, nFeli: nFeli });
-    } else {
-      console.log(err.message);
-      response.status(400);
-      response.end();
-    }
-  });
+  if (rol === "PAS") {
+    daoA.avisosPerfilTec(
+      idUser,
+      function (err, totalAvisos, nSuge, nInci, nFeli) {
+        if (!err) {
+          response.json({
+            totalAvisos: totalAvisos,
+            nSuge: nSuge,
+            nInci: nInci,
+            nFeli: nFeli,
+          });
+        } else {
+          console.log(err.message);
+          response.status(400);
+          response.end();
+        }
+      }
+    );
+  } else {
+    daoA.avisosPerfil(idUser, function (err, totalAvisos, nSuge, nInci, nFeli) {
+      if (!err) {
+        response.json({
+          totalAvisos: totalAvisos,
+          nSuge: nSuge,
+          nInci: nInci,
+          nFeli: nFeli,
+        });
+      } else {
+        console.log(err.message);
+        response.status(400);
+        response.end();
+      }
+    });
+  }
 });
 
 /* Conseguir imagen del usuario por BD */

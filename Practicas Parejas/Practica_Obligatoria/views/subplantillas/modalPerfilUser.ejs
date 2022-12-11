@@ -1,0 +1,56 @@
+<!-- Modal para Pefil Usuario -->
+<div class="modal fade" id="modalPerfil">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <!-- cuerpo del diálogo -->
+            <div class="modal-body">
+                <div class="fotoSuperpuesta">
+                    <img class="rounded-circle fotoPerfilModal" src="images/<%=idUser%>" alt="Foto del Usuario" width="100" height="100"/>
+                </div>
+                <h4 class="text-center nameModal"><%=nameUser%></h4>
+
+                <div class="d-flex align-items-center justify-content-center">
+                    <div>
+                        <div class="fechaCreacionModal"><h5>🔹<strong>Fecha de creación: </strong><%=date %> </h5></div>
+                        <div class="perfilModal"><h5>🔹<strong>Tipo de perfil: </strong><%= rol %></h5></div>
+                        <div class="contraseniaModal">
+                            <h5 class="d-flex justify-content-between align-items-center">
+                                <strong>🔹Contraseña:  </strong>
+                                <input type="password" name="contraModal" class="contraModal" value="<%= password %>" disabled />
+                                <span class="fa fa-fw fa-eye password-icon showPassword" title="Mostrar/Ocultar Contraseña"></span>
+                            </h5>
+                        </div>
+                        <div class="nameUserModal"><h5>🔹<strong>Nombre Usuario: </strong><%= nameUser %></h5></div>
+                    </div>
+                    <div class="datosAvisosModal">
+                        <div class="">
+                            <h5>
+                                🔹<strong> Datos de Avisos: </strong>
+                            </h5>
+                        </div>
+                        <div class="ms-4">
+                            <h5>◽<strong>Avisos realizados: </strong>
+                                <span id="totalAvisosPerfilModal"></span>
+                            </h5>
+                            <h5>◽<strong>Incidencias: </strong>
+                                <span id="incidenciasPerfilModal"></span>
+                            </h5>
+                            <h5>◽<strong>Sugerencias: </strong>
+                                <span id="sugerenciasPerfilModal"></span>
+                            </h5>
+                            <h5>◽<strong>Felicitaciones: </strong>
+                                <span id="felicitacionesPerfilModal"></span>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- pie del diálogo -->
+            <div class="modal-footer borrarborde">
+                <button type="button" class="btn btnCerrarPerfil" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

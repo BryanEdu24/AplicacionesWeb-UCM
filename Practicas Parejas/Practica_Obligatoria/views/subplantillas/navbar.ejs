@@ -31,6 +31,7 @@
                 <div class="dropdown ">
                     <button class="btn dropdown-toggle" data-bs-toggle="dropdown">
                         <h1 id="idUserPerfilNavbar" style="display: none;"><%=idUser%></h1>
+                        <h1 id="rolUserPerfilNavbar" style="display: none;"><%=rol%></h1>
                         <img class="rounded-circle fotoPerfil" src="images/<%=idUser%>" alt="Foto del Usuario" width="75" height="75"/>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end bg-dark">
@@ -51,61 +52,11 @@
             </div>
         </div>
     </nav>
-    <!-- Modal para Pefil Usuario -->
-    <div class="modal fade" id="modalPerfil">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <!-- cuerpo del diálogo -->
-                <div class="modal-body">
-                    <div class="fotoSuperpuesta">
-                        <img class="rounded-circle fotoPerfilModal" src="images/<%=idUser%>" alt="Foto del Usuario" width="100" height="100"/>
-                    </div>
-                    <h4 class="text-center nameModal"><%=nameUser%></h4>
-
-                    <div class="d-flex align-items-center justify-content-center">
-                        <div>
-                            <div class="fechaCreacionModal"><h5>🔹<strong>Fecha de creación: </strong><%=date %> </h5></div>
-                            <div class="perfilModal"><h5>🔹<strong>Tipo de perfil: </strong><%= rol %></h5></div>
-                            <div class="contraseniaModal">
-                                <h5 class="d-flex justify-content-between align-items-center">
-                                    <strong>🔹Contraseña:  </strong>
-                                    <input type="password" name="contraModal" class="contraModal" value="<%= password %>" disabled />
-                                    <span class="fa fa-fw fa-eye password-icon showPassword" title="Mostrar/Ocultar Contraseña"></span>
-                                </h5>
-                            </div>
-                            <div class="nameUserModal"><h5>🔹<strong>Nombre Usuario: </strong><%= nameUser %></h5></div>
-                        </div>
-                        <div class="datosAvisosModal">
-                            <div class="">
-                                <h5>
-                                    🔹<strong> Datos de Avisos: </strong>
-                                </h5>
-                            </div>
-                            <div class="ms-4">
-                                <h5>◽<strong>Avisos realizados: </strong>
-                                    <span id="totalAvisosPerfilModal"></span>
-                                </h5>
-                                <h5>◽<strong>Incidencias: </strong>
-                                    <span id="incidenciasPerfilModal"></span>
-                                </h5>
-                                <h5>◽<strong>Sugerencias: </strong>
-                                    <span id="sugerenciasPerfilModal"></span>
-                                </h5>
-                                <h5>◽<strong>Felicitaciones: </strong>
-                                    <span id="felicitacionesPerfilModal"></span>
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- pie del diálogo -->
-                <div class="modal-footer borrarborde">
-                    <button type="button" class="btn btnCerrarPerfil" data-bs-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <% if(rol === 'PAS') { %>
+        <%- include("modalPerfilTec") %>
+    <%}else{ %>
+        <%- include("modalPerfilUser") %>
+    <%}%> 
     <script>
         window.addEventListener("load", function() {
            // icono para mostrar contraseña
@@ -125,20 +76,21 @@
            })
         });
    </script>
-   <script type="application/javascript">
+
+    <script type="application/javascript">
     $(document).ready(function() {
         // Cada vez que se pulse el botón de 'Enviar'
         $("#clickModalPerfil").on("click", function() {
             // Obtener el valor contenido en el cuadro de texto. Ir al padre navego
-            let valor = $("#idUserPerfilNavbar").text();
-            console.log(valor);
+            let idUser = $("#idUserPerfilNavbar").text();
+            let rol = $("#rolUserPerfilNavbar").text();
             // Realizar la petición al servidor
             // Método parametrizado
          $.ajax({
                 type: "POST",
                 url: "/modalAvisosPerfilUser",
                 contentType: "application/json",
-                data: JSON.stringify({ idUser: valor }),
+                data: JSON.stringify({ idUser: idUser, rol: rol }),
                 // En caso de éxito, mostrar el resultado
                 // en el documento HTML
                 success: function (data, textStatus, jqXHR) {
@@ -163,6 +115,7 @@
             });
         }); 
     });
-</script>
+    </script>
+   
 
 </html>
