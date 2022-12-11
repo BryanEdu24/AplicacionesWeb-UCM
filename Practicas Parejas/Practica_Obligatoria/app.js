@@ -200,7 +200,7 @@ app.post("/post_nuevo_aviso.html", accessControl, (request, response) => {
     categoria: null,
     observacion: request.body.observacionUsuario,
   };
-  if (aviso.tipo === "Felicitacion") {
+  if (aviso.tipo === "Felicitación") {
     aviso.categoria = request.body.categoriaFelicitacion;
     daoA.insertTaskCongratulation(aviso, idUsuario, function (err, newIdTask) {
       if (!err) {
