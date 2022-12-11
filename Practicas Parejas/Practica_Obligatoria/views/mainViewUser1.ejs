@@ -4,7 +4,6 @@
         <%- include("subplantillas/head") %>
         <link rel="stylesheet" href="stylesheets/mainViewUser1.css" media="screen">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
-        <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     </head>
 
     <body>
@@ -13,8 +12,8 @@
         <div class="containerUser container ">
             <div class="wrap">
                 <div class="search d-flex justify-content-end">
-                    <input type="text" class="searchTerm" placeholder="Buscar avisos...">
-                    <button type="submit" class="searchButton">
+                    <input type="text" class="searchTerm" id="inputBuscador" placeholder=" Buscar avisos...">
+                    <button type="submit" class="searchButton" onclick="buscador(this)">
                         <img src="images/lupaVector.svg" title="www.ucm.es" alt="Logo de la UCM" class="lupa">
                     </button>
                 </div>
@@ -30,7 +29,7 @@
                 </button>               
             </div>
 
-            <table class="tablaUser1">
+            <table class="tablaUser1" id="tablaUser">
                 <% if (Avisos.length > 0) { %>
                     <tr>
                         <th>Fecha</th>
@@ -67,19 +66,19 @@
                         </tr>
                     <% }); %>
                 <% } else {%>
-                    <thead>
+                    <tr>
                         <th>Fecha</th>
                         <th>Texto</th>
                         <th>Tipo</th>
                         <th>Técnico</th>
-                    </thead>
+                    </tr>
                     <tr class="text-center">
                         <td colspan="4">
                             <strong>
-                                Vaya... no tiene avisos creados 😪
+                                ¡Vaya!... no tiene avisos creados.
                             </strong>
                             <div>
-                                <img src="images/sinMensajes.png" alt="" width="50" height="50">
+                                <img src="images/sinAvisosCreados.svg" alt="" width="50" height="50">
                             </div>
                         </td>
                     </tr>
@@ -180,5 +179,25 @@
         });
     </script>
 
+    <script>
+        function buscador(lupa) {
+            let varInput = $('#inputBuscador').val(); // Pillamos el valor del Input (trim para quitar espacios)
+
+            $('#tablaUser').find('tr').each(i => { // Recorro la tabla por cada tr
+                if (i === 0) {
+                    //Ignora caso de 
+                }
+                else {
+                    $('#tablaUser1').find('tr').eq(i).show();
+                    if (($($('#tablaUser1').find('tr').eq(i)).find('td').eq(2).html()).includes(varInput)) { // Devuelve lo que hay dentro del td (2 por la posicion del texto) y comprobamos con includes si contiene lo de varInput
+                        // Nada
+                    }
+                    else {
+                        $('#tablaUser1').find('tr').eq(i).hide();
+                    }
+                }
+            });
+        }
+    </script>
 
 </html>

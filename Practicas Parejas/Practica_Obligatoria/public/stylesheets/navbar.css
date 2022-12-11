@@ -16,17 +16,25 @@ body {
     cursor: pointer;
 }
 
+.nombreUsuario:hover {
+    text-shadow: 0 0 0.2em lightseagreen, 0 0 0.2em lightseagreen, 0 0 0.2em lightseagreen !important;
+}
+
 .fotoPerfil {
     padding: 1%;
     background-color: white;
 }
 
 .fotoPerfil:hover {
-    box-shadow: 0 0 0 3px lightseagreen;
+    box-shadow: 0 0 5px 3px lightseagreen;
 }   
 
 img, .dropdown-toggle {
     cursor: pointer;
+}
+
+.dropdown-toggle:hover {
+    text-shadow: 0 0 0.2em lightseagreen, 0 0 0.2em lightseagreen, 0 0 0.2em lightseagreen !important;
 }
 
 .dropdown-menu {
