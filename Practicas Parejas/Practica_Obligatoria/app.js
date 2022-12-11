@@ -310,6 +310,22 @@ app.post("/asignarAviso", (request, response) => {
   });
 });
 
+/* Post para borrar un aviso */
+app.post("/borrarAviso", (request, response) => {
+  let commentTec = request.body.comTecnico;
+  let nomTecnico = request.body.nameTecnico;
+  let idAviso = request.body.idAviso;
+  daoA.deleteTask(commentTec,nomTecnico,idAviso, function (err, idAviso) {
+    if (!err) {
+      console.log(idAviso);
+      response.json({ idAviso: idAviso });
+    } else {
+      console.log(err.message);
+      response.status(400);
+      response.end();
+    }
+  });
+});
 /* Conseguir imagen del usuario por BD */
 app.get("/images/:id", (request, response) => {
   console.log("id User: " + request.params.id);

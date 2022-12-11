@@ -3,6 +3,48 @@ class DAOAvisos {
     this.pool = pool;
   }
 
+  deleteTask(commentTec, nameTec, idAviso, callback) {
+    this.pool.getConnection(function (err, connection) {
+      if (err)
+        callback(
+          new Error("Error de conexión a la base de datos en eliminar un aviso")
+        );
+      else {
+        let sql =
+          " UPDATE tecnico_aviso T SET T.cerrado = 1 WHERE t.idAviso = ? ";
+        connection.query(sql, [idAviso], function (err, idAvisoUpdated) {
+          connection.release();
+          if (err) callback(new Error("Error a la hora de actualizar tecnico_aviso"));
+          else {
+            let sql =
+              " UPDATE persona_aviso P SET P.cerrado = 1, P.borrado = 1 WHERE P.idAviso = ? ";
+            connection.query(sql, [idAviso], function (err, idAvisoUpdated) {
+              if (err)
+                callback(new Error("Error a la hora de actualizar persona_aviso"));
+              else {
+                let sql =
+                "UPDATE avisos A SET A.activo = 0, A.eliminadoPor = ?, A.comentario= ? WHERE A.idAviso = ? " ;                connection.query(
+                  sql,
+                  [nameTec, commentTec, idAviso],
+                  function (err, idAvisoUpdated) {
+                    if (err)
+                      callback(
+                        new Error("Error a la hora de actualizar avisos")
+                      );
+                    else {
+                      console.log(idAvisoUpdated);
+                      callback(null, idAvisoUpdated);
+                    }
+                  }
+                );
+              }
+            });
+          }
+        });
+      }
+    });
+  }
+
   asignarTectoTask(nameTec, idTask, callback) {
     this.pool.getConnection(function (err, connection) {
       if (err)
@@ -13,28 +55,43 @@ class DAOAvisos {
         let sql = "SELECT id FROM personas WHERE nombre = ?";
         connection.query(sql, [nameTec], function (err, idTec) {
           connection.release();
-          if (err) callback(new Error("Error a la hora de conseguir el id del usuario"));
+          if (err)
+            callback(
+              new Error("Error a la hora de conseguir el id del usuario")
+            );
           else {
             console.log(idTec[0].id);
             let sql =
               "INSERT INTO tecnico_aviso (idTecnico,idAviso,cerrado) VALUES(?,?,0);";
-            connection.query(sql, [idTec[0].id, idTask], function (err, result) {
-              if (err)
-                callback(new Error("Error a la hora de insertar en tecnico_aviso"));
-              else {
-                let sql =
-                  "UPDATE avisos A SET A.asignado = 1, A.nombreTecnico = ? WHERE A.idAviso = ?";
-                connection.query(sql, [nameTec, idTask], function (err, taskModificado) {
-                  if (err)
-                    callback(
-                      new Error("Error a la hora de actualizar la tabla avisos")
-                    );
-                  else {
-                    callback(null, taskModificado.insertId )
-                  }
-                });
+            connection.query(
+              sql,
+              [idTec[0].id, idTask],
+              function (err, result) {
+                if (err)
+                  callback(
+                    new Error("Error a la hora de insertar en tecnico_aviso")
+                  );
+                else {
+                  let sql =
+                    "UPDATE avisos A SET A.asignado = 1, A.nombreTecnico = ? WHERE A.idAviso = ?";
+                  connection.query(
+                    sql,
+                    [nameTec, idTask],
+                    function (err, taskModificado) {
+                      if (err)
+                        callback(
+                          new Error(
+                            "Error a la hora de actualizar la tabla avisos"
+                          )
+                        );
+                      else {
+                        callback(null, taskModificado.insertId);
+                      }
+                    }
+                  );
+                }
               }
-            });
+            );
           }
         });
       }
@@ -55,7 +112,6 @@ class DAOAvisos {
               )
             );
           } else {
-            console.log("Insertando en BD usuario: " + nameUser[0].nombre);
             let sql =
               "INSERT INTO avisos(tipo, subtipo, categoria, observaciones, comentario, activo, asignado, eliminadoPor, nombreTecnico, creadoPor) VALUES (?,?,?,?,null,1,0,null,null,?)";
             connection.query(
@@ -119,7 +175,7 @@ class DAOAvisos {
                 task.tipo,
                 task.categoria,
                 task.observacion.toString(),
-                nameUser,
+                nameUser[0].nombre,
               ],
               function (err, taskInserted) {
                 if (err)
@@ -178,6 +234,28 @@ class DAOAvisos {
     });
   }
 
+  //Mis Avisos de Tecnico
+  misAvisosTec(idTec, callback) {
+    this.pool.getConnection(function (err, connection) {
+      if (err)
+        callback(
+          new Error("Error de conexión a la base de datos en Mis Avisos")
+        );
+      else {
+        console.log(idTec);
+        let sql =
+          "SELECT DISTINCT A.idAviso, A.tipo, A.subtipo, A.categoria, A.fecha, A.observaciones, A.comentario, A.asignado, A.nombreTecnico FROM avisos A JOIN tecnico_aviso T ON T.idAviso = A.idAviso WHERE T.idTecnico = ?  AND T.cerrado = 0";
+        connection.query(sql, [idTec], function (err, tasks) {
+          connection.release();
+          if (err) callback(new Error("Error a la hora de mostrar los avisos"));
+          else {
+            callback(null, tasks);
+          }
+        });
+      }
+    });
+  }
+
   // Avisos Entrantes de Tecnico
   allAvisos(callback) {
     this.pool.getConnection(function (err, connection) {
@@ -200,27 +278,6 @@ class DAOAvisos {
     });
   }
 
-  //Mis Avisos de Tecnico
-  misAvisosTec(idTec, callback) {
-    this.pool.getConnection(function (err, connection) {
-      if (err)
-        callback(
-          new Error("Error de conexión a la base de datos en Mis Avisos")
-        );
-      else {
-        console.log(idTec);
-        let sql =
-          "SELECT DISTINCT A.idAviso, A.tipo, A.subtipo, A.categoria, A.fecha, A.observaciones, A.comentario, A.asignado, A.nombreTecnico FROM avisos A JOIN tecnico_aviso T ON T.idAviso = A.idAviso WHERE T.idTecnico = ?  AND T.cerrado = 0";
-        connection.query(sql, [idTec], function (err, tasks) {
-          connection.release();
-          if (err) callback(new Error("Error a la hora de mostrar los avisos"));
-          else {
-            callback(null, tasks);
-          }
-        });
-      }
-    });
-  }
   // Historial de Avisos de User
   historialAvisos(idUser, callback) {
     this.pool.getConnection(function (err, connection) {
@@ -270,6 +327,7 @@ class DAOAvisos {
     });
   }
 
+  //Conseguir un aviso para modal
   getAviso(idAviso, callback) {
     this.pool.getConnection(function (err, connection) {
       if (err)
