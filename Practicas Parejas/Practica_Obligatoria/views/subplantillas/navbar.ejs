@@ -7,6 +7,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script> 
         <link rel="stylesheet" href="stylesheets/navbar.css" media="screen">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
 
     <nav class="row bg-dark fixed">
@@ -29,11 +30,12 @@
                 
                 <div class="dropdown ">
                     <button class="btn dropdown-toggle" data-bs-toggle="dropdown">
+                        <h1 id="idUserPerfilNavbar" style="display: none;"><%=idUser%></h1>
                         <img class="rounded-circle fotoPerfil" src="images/<%=idUser%>" alt="Foto del Usuario" width="75" height="75"/>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end bg-dark">
                         <li>
-                            <div class="dropdown-item perfil d-flex justify-content-between" data-bs-toggle="modal" data-bs-target="#modalPerfil">
+                            <div id="clickModalPerfil"class="dropdown-item perfil d-flex justify-content-between" data-bs-toggle="modal" data-bs-target="#modalPerfil">
                                 Perfil
                                 <span><img src="images/usuarioBlancoVector.svg" alt="Perfil Usuario" width="25" height="25"></span>
                             </div>
@@ -62,11 +64,11 @@
 
                     <div class="d-flex align-items-center justify-content-center">
                         <div>
-                            <div class="fechaCreacionModal"><h5>🔹<strong> Fecha de creación: </strong><%=date %> </h5></div>
+                            <div class="fechaCreacionModal"><h5>🔹<strong>Fecha de creación: </strong><%=date %> </h5></div>
                             <div class="perfilModal"><h5>🔹<strong>Tipo de perfil: </strong><%= rol %></h5></div>
                             <div class="contraseniaModal">
                                 <h5 class="d-flex justify-content-between align-items-center">
-                                    <strong>🔹Contraseña: </strong>
+                                    <strong>🔹Contraseña:  </strong>
                                     <input type="password" name="contraModal" class="contraModal" value="<%= password %>" disabled />
                                     <span class="fa fa-fw fa-eye password-icon showPassword" title="Mostrar/Ocultar Contraseña"></span>
                                 </h5>
@@ -80,10 +82,18 @@
                                 </h5>
                             </div>
                             <div class="ms-4">
-                                <h5>◽<strong> Avisos realizados: </strong>20</h5>
-                                <h5>◽<strong> Incidencias: </strong>15</h5>
-                                <h5>◽<strong> Sugerencias: </strong>3</h5>
-                                <h5>◽<strong> Felicitaciones: </strong>2</h5>
+                                <h5>◽<strong>Avisos realizados: </strong>
+                                    <span id="totalAvisosPerfilModal"></span>
+                                </h5>
+                                <h5>◽<strong>Incidencias: </strong>
+                                    <span id="incidenciasPerfilModal"></span>
+                                </h5>
+                                <h5>◽<strong>Sugerencias: </strong>
+                                    <span id="sugerenciasPerfilModal"></span>
+                                </h5>
+                                <h5>◽<strong>Felicitaciones: </strong>
+                                    <span id="felicitacionesPerfilModal"></span>
+                                </h5>
                             </div>
                         </div>
                     </div>
@@ -115,5 +125,44 @@
            })
         });
    </script>
+   <script type="application/javascript">
+    $(document).ready(function() {
+        // Cada vez que se pulse el botón de 'Enviar'
+        $("#clickModalPerfil").on("click", function() {
+            // Obtener el valor contenido en el cuadro de texto. Ir al padre navego
+            let valor = $("#idUserPerfilNavbar").text();
+            console.log(valor);
+            // Realizar la petición al servidor
+            // Método parametrizado
+         $.ajax({
+                type: "POST",
+                url: "/modalAvisosPerfilUser",
+                contentType: "application/json",
+                data: JSON.stringify({ idUser: valor }),
+                // En caso de éxito, mostrar el resultado
+                // en el documento HTML
+                success: function (data, textStatus, jqXHR) {
+                    console.log(textStatus);
+                    let totalAvisos = data.totalAvisos;
+                    let totalSugeren = data.nSuge;
+                    let totalInci = data.nInci;
+                    let totalFeli = data.nFeli;
+                    console.log(Object.values(totalAvisos)); 
+                    console.log(totalSugeren);  
+                    console.log(totalInci);  
+                    console.log(totalFeli);    
+                    $("#totalAvisosPerfilModal").text(Object.values(totalAvisos));
+                    $("#incidenciasPerfilModal").text(Object.values(totalInci));
+                    $("#sugerenciasPerfilModal").text(Object.values(totalSugeren));
+                    $("#felicitacionesPerfilModal").text(Object.values(totalFeli));                     
+                },
+                // En caso de error, mostrar el error producido
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert("Se ha producido un error: " + errorThrown);
+                }
+            });
+        }); 
+    });
+</script>
 
 </html>
