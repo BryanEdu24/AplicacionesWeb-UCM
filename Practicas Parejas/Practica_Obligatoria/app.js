@@ -365,7 +365,13 @@ app.get("/mainViewTec1.html", accessControl, (request, response) => {
         fechaSpain = fecha.format("DD-MM-YYYY");
         aviso.fecha = fechaSpain;
       });
-      response.render("mainViewTec1", { Avisos: Avisos });
+      daoU.getAllTecs(function (err, Tecs) {
+        if(!err){
+          response.render("mainViewTec1", { Avisos: Avisos, Tecs: Tecs });
+        }else{
+          console.log(err.message);
+        }
+      })
     } else console.log(err.message);
   });
 });

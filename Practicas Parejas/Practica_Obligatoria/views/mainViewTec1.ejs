@@ -69,9 +69,9 @@
                             <%}%> 
                             <td class="acciones">
                                 <% if(aviso.asignado === 1){ %>
-                                    <img class="clickModalVisualizar" src="images/tecnicoAsignado.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalMisAvisos">
+                                    <img  src="images/tecnicoNoAsignado.svg" alt="" width="35" height="35">
                                 <%} else {%>
-                                    <img class="clickModalVisualizar" src="images/tecnicoNoAsignado.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalMisAvisos">
+                                    <img class="clickModalVisualizar" src="images/tecnicoAsignado.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalMisAvisos">
                                 <%}%> 
                                 <img class="clickModalBorrar" src="images/basura.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalBorrarAviso">
                             </td>
@@ -134,11 +134,17 @@
                             <div class="contenidoAsignacion d-flex justify-content-between">
                                 <div>
                                     Seleccione un técnico:
-                                    <select name="opciones" required="true" onChange="seleccionPerfil(this)">
-                                        <option value="opcion0" hidden>Técnicos disponibles...</option>
-                                        <option value="opcion1">Elver Galarga</option>
-                                        <option value="opcion2">Don Andrés Lionel Messi</option>
-                                        <option value="opcion3">Álvaro Borja Morata Martín</option>
+                                    <select name="opciones" required="true" id="seleccionTecnico">
+
+                                        <% if(Tecs.length >0) { %>
+
+                                            <% Tecs.forEach(tecnico => { %>
+                                                <option value="opcion0" selected="selected" hidden>Técnicos disponibles...</option>
+                                                <option value="<%= tecnico.nombre %>" ><%= tecnico.nombre %></option>
+                                            <% });%>
+                                        <% }else { %>
+                                            <option value="opcion0" hidden>No hay tecnicos disponibles</option>
+                                        <% } %> 
                                     </select>
                                 </div>
                                 <button type="submit" class="btnAsignarTecnico">Asignar</button> 
@@ -155,7 +161,33 @@
     </body>
     <!-- Script para poder mostrar modales -->
     <script type="application/javascript" src="javascripts/modalVerAviso.js"></script>    
-    <script type="application/javascript" src="javascripts/modalBorrarAviso.js"></script>    
+    <script type="application/javascript" src="javascripts/modalBorrarAviso.js"></script> 
+    <script>
+        $(".asignarTecnicoModal button[type=submit]").on("click", function(){
+            let nomTecnico = $("#seleccionTecnico option:selected").text();
+            console.log(nomTecnico);
+            let idAviso =  $("#idAvisoModal").text();
+            console.log(idAviso);
+            $.ajax({
+                type: "POST",
+                url: "/asignarAviso",
+                contentType: "application/json",
+                data: JSON.stringify({ nomTecnico: nomTecnico, idAviso: idAviso }),
+                // En caso de éxito, mostrar el resultado
+                // en el documento HTML
+                success: function (data, textStatus, jqXHR) {
+                    console.log(textStatus);                       
+                },
+                // En caso de error, mostrar el error producido
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert("Se ha producido un error: " + errorThrown);
+                }
+            });
+
+
+
+        });
+    </script>   
 
 
 

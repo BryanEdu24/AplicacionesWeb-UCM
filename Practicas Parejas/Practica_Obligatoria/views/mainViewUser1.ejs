@@ -181,19 +181,19 @@
 
     <script>
         function buscador(lupa) {
-            let varInput = $('#inputBuscador').val(); // Pillamos el valor del Input (trim para quitar espacios)
+            let varInput = $('#inputBuscador').val().trim().toLowerCase(); // Pillamos el valor del Input (trim para quitar espacios)
 
             $('#tablaUser').find('tr').each(i => { // Recorro la tabla por cada tr
                 if (i === 0) {
                     //Ignora caso de 
                 }
                 else {
-                    $('#tablaUser1').find('tr').eq(i).show();
-                    if (($($('#tablaUser1').find('tr').eq(i)).find('td').eq(2).html()).includes(varInput)) { // Devuelve lo que hay dentro del td (2 por la posicion del texto) y comprobamos con includes si contiene lo de varInput
+                    $('#tablaUser').find('tr').eq(i).show();
+                    if (($($('#tablaUser').find('tr').eq(i)).find('td').eq(2).html()).includes(varInput)) { // Devuelve lo que hay dentro del td (2 por la posicion del texto) y comprobamos con includes si contiene lo de varInput
                         // Nada
                     }
                     else {
-                        $('#tablaUser1').find('tr').eq(i).hide();
+                        $('#tablaUser').find('tr').eq(i).hide();
                     }
                 }
             });

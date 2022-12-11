@@ -144,6 +144,27 @@ class DAOUsers {
             }
         });
     }
+
+    getAllTecs(callback) {
+        this.pool.getConnection(function (err, connection) {
+            if (err) {
+                callback(new Error("Error de conexión a la base de datos"));                
+            }
+            else {
+                let sql ="SELECT * FROM personas P WHERE P.activo = 1 AND P.rol = 'PAS'" ;
+                connection.query(sql,
+                function (err, tecs) {
+                    connection.release();
+                    if (err) {
+                        callback(new Error("Error a la hora de mostrar todos los usuarios"))
+                    }
+                    else {
+                        callback(null, tecs);
+                    }
+                });
+            }
+        });
+    }
     
 }
 
