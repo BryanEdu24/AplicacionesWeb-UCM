@@ -123,24 +123,37 @@ img, .dropdown-toggle {
     font-size: 15px;
 }
 
+.datosUsuarioModal {
+    width: 55%;
+}
+
 .fechaCreacionModal {
     background-color: lightcyan;
     color: black;
     border-radius: 5px;
     padding-left: 1.5%;
     padding: 0.5%;
-    margin-top: 1%;
-    margin-bottom: 1%;
+    margin-bottom: 2%;
+    box-shadow: 0 0 5px 1px white;
 }
 
-.contraseniaModal {
+.perfilUserModaal {
     background-color: lightcyan;
     color: black;
     border-radius: 5px;
     padding-left: 1.5%;
     padding: 0.5%;
-    margin-top: 1%;
-    margin-bottom: 1%;
+    margin-bottom: 2%;
+    box-shadow: 0 0 5px 1px white;
+}
+
+.contraseniaUseerModal {
+    background-color: lightcyan;
+    color: black;
+    border-radius: 5px;
+    padding-left: 1.5%;
+    padding: 0.5%;
+    box-shadow: 0 0 5px 1px white;
 }
 
 .contraModal {
@@ -158,26 +171,27 @@ img, .dropdown-toggle {
     border-radius: 5px;
     padding-left: 1.5%;
     padding: 0.5%;
-    margin-top: 1%;
-    margin-bottom: 1%;
+    margin-top: 2%;
+    box-shadow: 0 0 5px 1px white;
 }
 
 .datosAvisosModal {
     background-color: lightcyan;
     color: black;
     border-radius: 5px;
-    padding-left: 10%;
-    padding: 0.5%;
+    padding: 1%;
     margin-top: 1%;
-    margin-left: 5%;
+    margin-left: 3%;
     margin-bottom: 1%;
+    box-shadow: 0 0 5px 3px white;
 }
 
 .btnCerrarPerfil {
     background-color: crimson;
     color: white;
-    width: 13vh;
+    width: 15vh;
     text-align: center;
+    margin-top: 1.5%;
 }
 
 .btnCerrarPerfil:hover {

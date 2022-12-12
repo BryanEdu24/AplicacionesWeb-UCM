@@ -38,13 +38,13 @@
                 </button>
             </div>
 
-            <table class="tablaTec1">
+            <table class="tablaTec1" id="tablaUser">
                 <% if (Avisos.length > 0) { %>
-                    <tr>
-                        <th>Tipo</th>
-                        <th>Fecha</th>
-                        <th>Texto</th>
-                        <th>Acciones</th>
+                    <tr class="cabecera">
+                        <th>Tipo 🔱</th>
+                        <th>Fecha 📅</th>
+                        <th>Texto 📋</th>
+                        <th>Acciones 💻</th>
                     </tr>
                     <% Avisos.forEach(function(aviso) { %>
                         <tr>
@@ -54,11 +54,11 @@
                             <td class="tipos">
                                 <% let tipoImg = aviso.tipo %>
                                 <% if (tipoImg === 'Sugerencia') { %>
-                                    <img src="images/pregunta.png" alt="" width="35" height="35">
+                                    <img src="images/pregunta.png" alt="" width="35" height="35" style="cursor: default;">
                                 <% } else if (tipoImg === 'Incidencia') {%> 
-                                    <img src="images/exclamacion.png" alt="" width="35" height="35">                                    
+                                    <img src="images/exclamacion.png" alt="" width="35" height="35" style="cursor: default;">               
                                 <% } else {%> 
-                                    <img src="images/ok.png" alt="" width="35" height="35">                                    
+                                    <img src="images/ok.png" alt="" width="35" height="35" style="cursor: default;">
                                 <% } %> 
                             </td>
                             <td class="fechas"><%= aviso.fecha %></td>
@@ -78,19 +78,19 @@
                         </tr>
                     <% }); %>
                 <% } else {%>
-                    <tr>
-                        <th>Tipo</th>
-                        <th>Fecha</th>
-                        <th>Texto</th>
-                        <th>Acciones</th>
+                    <tr class="cabecera">
+                        <th>Tipo 🔱</th>
+                        <th>Fecha 📅</th>
+                        <th>Texto 📋</th>
+                        <th>Acciones 💻</th>
                     </tr>
                     <tr class="text-center">
                         <td colspan="4">
                             <strong>
-                                Vaya... no hay avisos sin finalizar 😪
+                                Vaya... no tienes avisos entrantes
                             </strong>
                             <div>
-                                <img src="images/sinMensajes.png" alt="" width="50" height="50">
+                                <img src="images/sinAvisosEntrantes.svg" alt="" width="50" height="50">
                             </div>
                         </td>
                     </tr>

@@ -38,7 +38,7 @@
                         <th>Técnico 👨‍💻</th>
                     </tr>
                     <% Avisos.forEach(function(aviso) { %>
-                        <tr class="clickModalVisualizar cuerpoTabla" data-bs-toggle="modal" data-bs-target="#modalAvisos">
+                        <tr class="clickModalVisualizar" data-bs-toggle="modal" data-bs-target="#modalAvisos">
                             <td style="display:none;">>
                                 <h1><%= aviso.idAviso%></h1>
                             </td>
@@ -127,6 +127,7 @@
 
         <%- include("subplantillas/btnNuevoAviso") %>
     </body>
+    
     <script type="application/javascript">
         $(document).ready(function() {
             // Cada vez que se pulse el botón de 'Enviar'
@@ -178,7 +179,6 @@
     <script>
         function buscador(lupa) {
             let varInput = $('#inputBuscador').val().trim().toLowerCase(); // Pillamos el valor del Input (trim para quitar espacios)
-
             $('#tablaUser').find('tr').each(i => { // Recorro la tabla por cada tr
                 if (i === 0) {
                     //Ignora caso de 

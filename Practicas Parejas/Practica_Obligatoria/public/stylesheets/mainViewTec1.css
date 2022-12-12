@@ -29,6 +29,10 @@
     background-color: papayawhip;
 }
 
+.searchTerm:hover {
+    cursor: text !important;
+}
+
 .searchButton {
     width: 8vh;
     height: 6vh;
@@ -55,6 +59,7 @@
     border-radius: 5px;
     padding: 0.5%;
     color: black;
+    font-weight: bold;
     background-color: silver;
 }
 
@@ -67,7 +72,7 @@
 
 .botonMisAvisos {
     border-radius: 5px;
-    padding: 0.5%;
+    padding: 0.25%;
     color: black;
     background-color: silver;
 }
@@ -81,7 +86,7 @@
 
 .botonHistorialAvisos {
     border-radius: 5px;
-    padding: 0.5%;
+    padding: 0.25%;
     color: black;
     background-color: silver;
 }
@@ -95,7 +100,7 @@
 
 .botonGestionUsuarios {
     border-radius: 5px;
-    padding: 0.5%;
+    padding: 0.25%;
     color: black;
     background-color: silver;
 }
@@ -107,22 +112,34 @@
     background-color: slategray;
 }
 
+/* inicio css para la tabla user1 */
 .tablaTec1 {
-    background-color: midnightblue !important;
+    background-color: thistle !important;
     border-radius: 10px !important;
     margin: 0 auto !important;
-    border-collapse: collapse !important;
     margin-top: 1.5% !important;
     width: 80% !important;
 }
 
+.tablaTec1 tr:first-child th:first-child {
+    border-top-left-radius: 10px;
+}
+
+.tablaTec1 tr:first-child th:last-child {
+    border-top-right-radius: 10px;
+}
+
+.cabecera {
+    background-color: midnightblue;
+    color: white;
+    text-align: center;
+    font-weight: bold !important;
+}
+
 th {
-    color: white !important;
-    text-align: center !important;
+    padding: 1%;
     border-right: gainsboro 2px solid !important;
     border-left: gainsboro 2px solid !important;
-    padding: 1% !important;
-    font-weight: bold !important;
 }
 
 .tablaTec1 tr:first-child th:first-child {
@@ -133,75 +150,33 @@ th {
     border-right: none !important;
 }
 
-.tablaTec1 tr:last-child td:last-child {
-    border-bottom-right-radius: 10px !important;
-}
-
-.tablaTec1 tr:last-child td:first-child {
-    border-bottom-left-radius: 10px !important;
-}
-
 td {
-    background-color: thistle !important;
-}
-
-td:first-child {
-    padding: 1% !important;
-}
-
-.fechas, .tipos, .acciones {
-    text-align: center !important;
-    width: 20vh !important;
+    padding: 1%;
 }
 
 .tipos {
     border-right: gainsboro 2px solid !important;
+    text-align: center;
+    width: 15vh;
 }
 
 .fechas {
     border-right: gainsboro 2px solid !important;
+    text-align: center;
+    width: 20vh;
 }
 
 .acciones {
     border-left: gainsboro 2px solid !important;
+    text-align: center;
+    width: 25vh;
 }
 
-tr {
-    border-bottom: gainsboro 2px solid !important;
-}
+/* fin css para la tabla user1 */
 
-tr:last-child  {
-    border: 0 !important;
-}
-
-tr:first-child {
-    border: 0 !important;
-}
-
-.modal {
-    background-color: #2e4b8185!important;
-    backdrop-filter: blur(8px) !important;
-}
-
-.modal-content {
-    background-color: #343a40 !important;
-    color: white;
-    border-radius: 20px!important;
-}
-
-.pildoraSugerencia {
-    background-color: PaleGoldenrod !important;
-    color: black !important;
-}
-
-.pildoraIncidencia {
-    background-color: red !important;
-    color: black !important;
-}
-
-.pildoraFelicitacion {
-    background-color: lightgreen !important;
-    color: black !important;
+.pildora {
+    background-image: linear-gradient(to left, BlueViolet, darkblue) !important;
+    color: beige !important;
 }
 
 .comunicacionesModal {

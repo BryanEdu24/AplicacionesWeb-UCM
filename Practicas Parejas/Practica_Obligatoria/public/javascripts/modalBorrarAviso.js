@@ -21,14 +21,11 @@
                     if (taskDevuelto.tipo ==='Sugerencia' ) {
                         $("#subtipoAvisoModalBorrar").text(taskDevuelto.subtipo);
                         $("#subtipoAvisoModalBorrar").show();
-                        $("#tipoAvisoModalBorrar").toggleClass("pildoraSugerencia");
                     }else if (taskDevuelto.tipo ==='Incidencia') {
                         $("#subtipoAvisoModalBorrar").text(taskDevuelto.subtipo);
                         $("#subtipoAvisoModalBorrar").show();
-                        $("#tipoAvisoModalBorrar").toggleClass("pildoraIncidencia");
                     } else {
                         $("#subtipoAvisoModalBorrar").hide()
-                        $("#tipoAvisoModalBorrar").toggleClass("pildoraFelicitacion");
                     }
                     $("#idAvisoModalBorrar").text(taskDevuelto.idAviso);
                     $("#tipoAvisoModalBorrar").text(taskDevuelto.tipo);
