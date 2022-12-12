@@ -31,7 +31,8 @@
                     $("#tipoAvisoModalBorrar").text(taskDevuelto.tipo);
                     $("#categoriaAvisoModalBorrar").text(taskDevuelto.categoria);
                     $("#fechaAvisoModalBorrar").text(taskDevuelto.fecha);
-                    $("#observacionesAvisoModalBorrar").text(taskDevuelto.observaciones);
+                    let observacionesFinal = taskDevuelto.observaciones.replace(/\n/g,'<br/>');
+                    $("#observacionesAvisoModalBorrar").html(observacionesFinal);
                     $("#creadoPorModalAvisoBorrar").text(taskDevuelto.creadoPor);
                 },
                 // En caso de error, mostrar el error producido

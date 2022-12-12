@@ -32,11 +32,24 @@
                     $("#idAvisoModal").text(taskDevuelto.idAviso);
                     $("#tipoAvisoModal").text(taskDevuelto.tipo);
                     $("#fechaAvisoModal").text(taskDevuelto.fecha);
-                    $("#observacionesAvisoModal").text(taskDevuelto.observaciones);
+                    let observacionesFinal = taskDevuelto.observaciones.replace(/\n/g,'<br/>');
+                    $("#observacionesAvisoModal").html(observacionesFinal);
                     $("#creadoPorModalAviso").text(taskDevuelto.creadoPor);
                     if (taskDevuelto.comentario === null) {
                         $("#comentarioAvisoModal").text("Aún no tiene comentarios del técnico en este aviso");
-                    }else { $("#comentarioAvisoModal").text(taskDevuelto.comentario);}
+                    }else { 
+                        if (taskDevuelto.eliminadoPor === null) {
+                            let comentarioFinal = taskDevuelto.comentario.replace(/\n/g,'<br/>');
+                            $("#comentarioAvisoModal").html(comentarioFinal);
+                        } else {
+                            let text = 'Este aviso ha sido eliminado por el técnico '+ 
+                            taskDevuelto.eliminadoPor + `\n`;
+                            let nuevoTexto = text.replace(/\n/g,'<br/>');
+                            console.log(nuevoTexto);
+                            let comentarioFinal = taskDevuelto.comentario.replace(/\n/g,'<br/>');
+                            $("#comentarioAvisoModal").html(nuevoTexto + comentarioFinal);
+                        }
+                    }
                 },
                 // En caso de error, mostrar el error producido
                 error: function (jqXHR, textStatus, errorThrown) {

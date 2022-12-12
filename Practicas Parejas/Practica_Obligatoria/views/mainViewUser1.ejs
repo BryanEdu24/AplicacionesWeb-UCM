@@ -126,8 +126,8 @@
         </div>
 
         <%- include("subplantillas/btnNuevoAviso") %>
-    </body>
-    
+    </body> 
+    <!-- No es el mismo código que modalVerAviso: aqui puede pulsar en cualquier parte de la tabla -->
     <script type="application/javascript">
         $(document).ready(function() {
             // Cada vez que se pulse el botón de 'Enviar'
@@ -162,10 +162,14 @@
                         $("#idAvisoModal").text(taskDevuelto.idAviso);
                         $("#tipoAvisoModal").text(taskDevuelto.tipo);
                         $("#fechaAvisoModal").text(taskDevuelto.fecha);
-                        $("#observacionesAvisoModal").text(taskDevuelto.observaciones);
+                        let observacionesFinal = taskDevuelto.observaciones.replace(/\n/g,'<br/>');
+                        $("#observacionesAvisoModal").html(observacionesFinal);
                         if (taskDevuelto.comentario === null) {
                             $("#comentarioAvisoModal").text("Aún no tiene comentarios del técnico en este aviso");
-                        }else { $("#comentarioAvisoModal").text(taskDevuelto.comentario);}
+                        }else { 
+                            let comentarioFinal= taskDevuelto.comentario.replace(/\n/g,'<br/>');
+                            $("#comentarioAvisoModal").html(comentarioFinal);
+                        }
                     },
                     // En caso de error, mostrar el error producido
                     error: function (jqXHR, textStatus, errorThrown) {

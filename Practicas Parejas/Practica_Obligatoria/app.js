@@ -326,6 +326,58 @@ app.post("/borrarAviso", (request, response) => {
     }
   });
 });
+
+/* Post para finalizar un aviso */
+app.post("/finalizarAviso", (request, response) => {
+  let commentTec = request.body.comTecnico;
+  let idAviso = request.body.idAviso;
+  daoA.completeTask(commentTec,idAviso, function (err, idAviso) {
+    if (!err) {
+      console.log(idAviso);
+      response.json({ idAviso: idAviso });
+    } else {
+      console.log(err.message);
+      response.status(400);
+      response.end();
+    }
+  });
+});
+
+/* Post para borrar usuarios */
+app.post("/borrarUser", (request, response) => {
+  let idUserDeleted = request.body.idUserDeleted;
+  let rolUser = request.body.rolUser;
+  let nameTec = request.body.nameTec;
+console.log(idUserDeleted);
+console.log(rolUser);
+console.log(nameTec);
+
+  if (rolUser === 'PAS') {
+    daoU.deleteUserTec(idUserDeleted,nameTec, function (err) {
+      if (!err) {
+        let correct = true;
+        response.json({ correct: correct });
+      } else {
+        console.log(err.message);
+        response.status(400);
+        response.end();
+      }
+    });
+  } else {
+    console.log("Va a borrar un usuario");
+    daoU.deleteUser(idUserDeleted,nameTec, function (err) {
+      if (!err) {
+        let correct = true;
+        response.json({ correct: correct });
+      } else {
+        console.log(err.message);
+        response.status(400);
+        response.end();
+      }
+    });
+  }
+});
+
 /* Conseguir imagen del usuario por BD */
 app.get("/images/:id", (request, response) => {
   console.log("id User: " + request.params.id);

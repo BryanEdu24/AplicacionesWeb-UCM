@@ -97,7 +97,7 @@
             </table>
         </div>
 
-        <!-- Modal para visualizar aviso -->
+        <!-- Modal para finalizar aviso -->
         <div class="modal fade" id="modalMisAvisos">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
@@ -121,10 +121,10 @@
                                 He solicitado una nueva cuenta de correo electrónico para mi departamento pero no he recibido todavía ninguna respuesta. Por favor es urgente que dispongamos de esa cuenta genérica lo antes posible ya que en breve celebraremos el II Congreso de ciberseguridad y necesitamos esa cuenta para centralizar peticiones. Muchas Gracias.
                             </div>
                         </div>
-                        <div class="comentariosModal">
+                        <div class="comentariosModal" id="finalizarAvisoModal">
                             <h5>🔸<strong> Comentarios del Técnico:</strong></h5>
                             <div class="contenidoComentario col-auto">
-                                <textarea name="commentTec" class="form-control commentTec" rows="4"  placeholder="Escriba una respuesta al aviso..."></textarea>
+                                <textarea id="comentarioFinalizarAviso" name="commentTec" class="form-control commentTec" rows="4"  placeholder="Escriba una respuesta al aviso..."></textarea>
                             </div>
                             <div class="text-end me-3">
                                 <button type="submit" class="btnFinAviso">Finalizar Aviso</button>
@@ -141,4 +141,31 @@
     <!-- Script para poder mostrar modales -->
     <script type="application/javascript" src="javascripts/modalVerAviso.js"></script>
     <script type="application/javascript" src="javascripts/modalBorrarAviso.js"></script> 
+    <script type="application/javascript" src="javascripts/borrarAviso.js"></script>
+    <script>
+        $("#finalizarAvisoModal button[type=submit]").on("click", function(){
+            let comTecnico = $("#comentarioFinalizarAviso").val();
+            console.log(comTecnico);
+            let idAviso =  $("#idAvisoModal").text();
+            console.log(idAviso);
+             $.ajax({
+                type: "POST",
+                url: "/borrarAviso",
+                contentType: "application/json",
+                data: JSON.stringify({ comTecnico: comTecnico, idAviso: idAviso  }),
+                // En caso de éxito, mostrar el resultado
+                // en el documento HTML
+                success: function (data, textStatus, jqXHR) {
+                    console.log(textStatus);   
+                    location.reload()
+                    console.log("Aviso finalizado exitosamente: "+ data.idAviso);                   
+                },
+                // En caso de error, mostrar el error producido
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert("Se ha producido un error: " + errorThrown);
+                }
+            }); 
+        });
+
+    </script>
 </html>

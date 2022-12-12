@@ -48,11 +48,14 @@
                     </tr>
                     <% Usuarios.forEach(function(usuario) { %>
                         <tr>
+                            <td style="display:none;">>
+                                <h1><%= usuario.id%></h1>
+                            </td>
                             <td class="fechas"><%= usuario.fecha %></td>
                             <td class="nombres"><%= usuario.nombre %></td>
                             <td class="roles"><%= usuario.rol %></td>
                             <td class="acciones">
-                                <img src="images/basura.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalBorrarUsuario">
+                                <img class="clickModalBorrarUser" src="images/basura.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalBorrarUsuario">
                             </td>
                         </tr>
                     <% }); %>
@@ -102,4 +105,47 @@
             </div>
         </div> 
     </body>
+<script type="application/javascript">
+     $(document).ready(function() {
+        // Cada vez que se pulse el botón de 'Enviar'
+        $(".clickModalBorrarUser").on("click", function() {
+            // Obtener el valor contenido en el cuadro de texto. Ir al padre navego
+            let idUserDeleted = $($($(this).parents("tr")).find("td")).find("h1").eq(0).html();
+            let nombreUserDeleted = $($(this).parents("tr")).find(".nombres").eq(0).html();
+            let nombreUser = $("#nombreUserNavBar").text()
+            let rolUser = $($(this).parents("tr")).find(".roles").eq(0).html();
+            console.log(idUserDeleted);
+            console.log("nombre Navbar " + nombreUser);
+            console.log( $($(this).parents("tr")).find(".nombres").eq(0).html() );
+            console.log(rolUser);
+            if (nombreUserDeleted === nombreUser) {
+                console.log("No puedes borrarte a ti mismo. Pidele a Edu que cree un modal que indique ese mensaje");
+            }else{
+                console.log("puedes borrar");
+                $.ajax({
+                    type: "POST",
+                    url: "/borrarUser",
+                    contentType: "application/json",
+                    data: JSON.stringify({ idUserDeleted: idUserDeleted, rolUser: rolUser, nameTec: nombreUser }),
+                    // En caso de éxito, mostrar el resultado
+                    // en el documento HTML
+                    success: function (data, textStatus, jqXHR) {
+                        console.log(textStatus);
+                        let idDevuelto = data.idAvisoDeleted;
+                        console.log("Usuario eliminado correctamente: "+ idDevuelto);
+                        location.reload()
+                    },
+                    // En caso de error, mostrar el error producido
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert("Se ha producido un error: " + errorThrown);
+                    }
+                });
+
+
+
+            }
+         }); 
+    });
+</script>
+
 </html>

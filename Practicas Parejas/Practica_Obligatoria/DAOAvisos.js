@@ -3,6 +3,47 @@ class DAOAvisos {
     this.pool = pool;
   }
 
+  completeTask(commentTec, idAviso, callback){
+    this.pool.getConnection(function (err, connection) {
+      if (err)
+        callback(
+          new Error("Error de conexión a la base de datos en finalizar Aviso")
+        );
+      else {
+        let sql =
+          "UPDATE tecnico_aviso T SET T.cerrado = 1 WHERE t.idAviso = ? ";
+        connection.query(sql,[idAviso], function (err, idAvisoUpdated) {
+          connection.release();
+          if (err) callback(new Error("Error a la hora de actualizar tecnico_aviso"));
+          else {
+            let sql =
+              " UPDATE persona_aviso P SET P.cerrado = 1 WHERE P.idAviso = ? ";
+            connection.query(sql, [idAviso], function (err, idAvisoUpdated) {
+              if (err)
+                callback(new Error("Error a la hora de actualizar persona_aviso"));
+              else {
+                let sql =
+                "UPDATE avisos A SET A.activo = 0, A.comentario= ? WHERE A.idAviso = ? " ;                connection.query(
+                  sql,
+                  [commentTec, idAviso],
+                  function (err, idAvisoUpdated) {
+                    if (err)
+                      callback(
+                        new Error("Error a la hora de actualizar avisos")
+                      );
+                    else {
+                      callback(null, idAvisoUpdated);
+                    }
+                  }
+                );
+              }
+            });
+          }
+        });
+      }
+    });
+  }
+
   deleteTask(commentTec, nameTec, idAviso, callback) {
     this.pool.getConnection(function (err, connection) {
       if (err)
@@ -32,7 +73,6 @@ class DAOAvisos {
                         new Error("Error a la hora de actualizar avisos")
                       );
                     else {
-                      console.log(idAvisoUpdated);
                       callback(null, idAvisoUpdated);
                     }
                   }
@@ -222,7 +262,6 @@ class DAOAvisos {
         console.log(idUser);
         let sql =
           "SELECT DISTINCT U.nombre, A.idAviso, A.tipo, A.subtipo, A.categoria, A.fecha, A.observaciones, A.comentario, A.asignado, A.nombreTecnico FROM avisos A JOIN persona_aviso P ON P.idAviso = A.idAviso JOIN personas U ON U.id = P.idPersona WHERE p.idPersona = ?  AND P.cerrado = 0";
-        // "SELECT DISTINCT U.nombre, A.idAviso, A.tipo, A.subtipo, A.categoria, A.fecha, A.observaciones, A.comentario, A.asignado  FROM avisos A JOIN persona_aviso P ON P.idAviso = A.idAviso JOIN personas U ON U.id = P.idPersona WHERE p.idPersona = ? AND P.cerrado = 0" ;
         connection.query(sql, [idUser], function (err, tasks) {
           connection.release();
           if (err) callback(new Error("Error a la hora de mostrar los avisos"));
@@ -266,7 +305,6 @@ class DAOAvisos {
       else {
         let sql =
           "SELECT * FROM avisos A JOIN persona_aviso P ON P.idAviso = A.idAviso WHERE P.cerrado = 0 ORDER BY a.idAviso";
-        // "SELECT DISTINCT U.nombre, A.idAviso, A.tipo, A.subtipo, A.categoria, A.fecha, A.observaciones, A.comentario, A.asignado  FROM avisos A JOIN persona_aviso P ON P.idAviso = A.idAviso JOIN personas U ON U.id = P.idPersona WHERE p.idPersona = ? AND P.cerrado = 0" ;
         connection.query(sql, function (err, tasks) {
           connection.release();
           if (err) callback(new Error("Error a la hora de mostrar los avisos"));
