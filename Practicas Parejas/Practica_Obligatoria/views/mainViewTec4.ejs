@@ -16,8 +16,8 @@
                         <input id="checkboxUsers" type="checkbox" class="me-1">
                         <label for="checkboxUsers"><strong>Usuarios</strong></label>
                     </span>
-                    <input type="text" class="searchTerm" placeholder="Buscar avisos...">
-                    <button type="submit" class="searchButton">
+                    <input type="text" class="searchTerm" id="inputBuscador" placeholder="Buscar avisos...">
+                    <button type="submit" class="searchButton" onclick="buscador(this)">
                         <img src="images/lupaVector.svg" title="www.ucm.es" alt="Logo de la UCM" class="lupa">
                     </button>
                 </div>
@@ -38,13 +38,13 @@
                 </button>
             </div>
 
-            <table class="tablaTec4">
+            <table class="tablaTec4" id="tablaTec">
                 <% if (Usuarios.length > 0) { %>
-                    <tr>
-                        <th>Fecha</th>
-                        <th>Nombre</th>
-                        <th>Rol</th>
-                        <th>Acciones</th>
+                    <tr class="cabecera">
+                        <th>Fecha 📅</th>
+                        <th>Nombre 🅰</th>
+                        <th>Rol 🔀</th>
+                        <th>Acciones 💻</th>
                     </tr>
                     <% Usuarios.forEach(function(usuario) { %>
                         <tr>
@@ -60,11 +60,11 @@
                         </tr>
                     <% }); %>
                 <% } else {%>
-                    <tr>
-                        <th>Fecha</th>
-                        <th>Nombre</th>
-                        <th>Rol</th>
-                        <th>Acciones</th>
+                    <tr class="cabecera">
+                        <th>Fecha 📅</th>
+                        <th>Nombre ✏</th>
+                        <th>Rol 🔀</th>
+                        <th>Acciones 💻</th>
                     </tr>
                     <tr class="text-center">
                         <td colspan="4">
@@ -105,47 +105,64 @@
             </div>
         </div> 
     </body>
-<script type="application/javascript">
-     $(document).ready(function() {
-        // Cada vez que se pulse el botón de 'Enviar'
-        $(".clickModalBorrarUser").on("click", function() {
-            // Obtener el valor contenido en el cuadro de texto. Ir al padre navego
-            let idUserDeleted = $($($(this).parents("tr")).find("td")).find("h1").eq(0).html();
-            let nombreUserDeleted = $($(this).parents("tr")).find(".nombres").eq(0).html();
-            let nombreUser = $("#nombreUserNavBar").text()
-            let rolUser = $($(this).parents("tr")).find(".roles").eq(0).html();
-            console.log(idUserDeleted);
-            console.log("nombre Navbar " + nombreUser);
-            console.log( $($(this).parents("tr")).find(".nombres").eq(0).html() );
-            console.log(rolUser);
-            if (nombreUserDeleted === nombreUser) {
-                console.log("No puedes borrarte a ti mismo. Pidele a Edu que cree un modal que indique ese mensaje");
-            }else{
-                console.log("puedes borrar");
-                $.ajax({
-                    type: "POST",
-                    url: "/borrarUser",
-                    contentType: "application/json",
-                    data: JSON.stringify({ idUserDeleted: idUserDeleted, rolUser: rolUser, nameTec: nombreUser }),
-                    // En caso de éxito, mostrar el resultado
-                    // en el documento HTML
-                    success: function (data, textStatus, jqXHR) {
-                        console.log(textStatus);
-                        let idDevuelto = data.idAvisoDeleted;
-                        console.log("Usuario eliminado correctamente: "+ idDevuelto);
-                        location.reload()
-                    },
-                    // En caso de error, mostrar el error producido
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        alert("Se ha producido un error: " + errorThrown);
+
+    <script type="application/javascript">
+        $(document).ready(function() {
+            // Cada vez que se pulse el botón de 'Enviar'
+            $(".clickModalBorrarUser").on("click", function() {
+                // Obtener el valor contenido en el cuadro de texto. Ir al padre navego
+                let idUserDeleted = $($($(this).parents("tr")).find("td")).find("h1").eq(0).html();
+                let nombreUserDeleted = $($(this).parents("tr")).find(".nombres").eq(0).html();
+                let nombreUser = $("#nombreUserNavBar").text()
+                let rolUser = $($(this).parents("tr")).find(".roles").eq(0).html();
+                console.log(idUserDeleted);
+                console.log("nombre Navbar " + nombreUser);
+                console.log( $($(this).parents("tr")).find(".nombres").eq(0).html() );
+                console.log(rolUser);
+                if (nombreUserDeleted === nombreUser) {
+                    console.log("No puedes borrarte a ti mismo. Pidele a Edu que cree un modal que indique ese mensaje");
+                }else{
+                    console.log("puedes borrar");
+                    $.ajax({
+                        type: "POST",
+                        url: "/borrarUser",
+                        contentType: "application/json",
+                        data: JSON.stringify({ idUserDeleted: idUserDeleted, rolUser: rolUser, nameTec: nombreUser }),
+                        // En caso de éxito, mostrar el resultado
+                        // en el documento HTML
+                        success: function (data, textStatus, jqXHR) {
+                            console.log(textStatus);
+                            let idDevuelto = data.idAvisoDeleted;
+                            console.log("Usuario eliminado correctamente: "+ idDevuelto);
+                            location.reload()
+                        },
+                        // En caso de error, mostrar el error producido
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert("Se ha producido un error: " + errorThrown);
+                        }
+                    });
+                }
+            }); 
+        });
+    </script>
+    <script>
+        function buscador(lupa) {
+            let varInput = $('#inputBuscador').val().trim().toLowerCase(); // Pillamos el valor del Input (trim para quitar espacios)
+            $('#tablaTec').find('tr').each(i => { // Recorro la tabla por cada tr
+                if (i === 0) {
+                    //Ignora caso de 
+                }
+                else {
+                    $('#tablaTec').find('tr').eq(i).show();
+                    if (($($('#tablaTec').find('tr').eq(i)).find('td').eq(3).html()).includes(varInput)) { // Devuelve lo que hay dentro del td (2 por la posicion del texto) y comprobamos con includes si contiene lo de varInput
+                        // Nada
                     }
-                });
-
-
-
-            }
-         }); 
-    });
-</script>
+                    else {
+                        $('#tablaTec').find('tr').eq(i).hide();
+                    }
+                }
+            });
+        }
+    </script>
 
 </html>

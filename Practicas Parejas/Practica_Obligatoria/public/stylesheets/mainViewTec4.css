@@ -53,7 +53,7 @@
 
 .botonAvisosEntrantes {
     border-radius: 5px;
-    padding: 0.5%;
+    padding: 0.25%;
     color: black;
     background-color: silver;
 }
@@ -67,7 +67,7 @@
 
 .botonMisAvisos {
     border-radius: 5px;
-    padding: 0.5%;
+    padding: 0.25%;
     color: black;
     background-color: silver;
 }
@@ -81,7 +81,7 @@
 
 .botonHistorialAvisos {
     border-radius: 5px;
-    padding: 0.5%;
+    padding: 0.25%;
     color: black;
     background-color: silver;
 }
@@ -97,6 +97,7 @@
     border-radius: 5px;
     padding: 0.5%;
     color: black;
+    font-weight: bold;
     background-color: silver;
 }
 
@@ -107,22 +108,34 @@
     background-color: slategray;
 }
 
+/* inicio css para la tabla tec4 */
 .tablaTec4 {
-    background-color: midnightblue !important;
+    background-color: thistle !important;
     border-radius: 10px !important;
     margin: 0 auto !important;
-    border-collapse: collapse !important;
     margin-top: 1.5% !important;
     width: 80% !important;
 }
 
+.tablaTec4 tr:first-child th:first-child {
+    border-top-left-radius: 10px;
+}
+
+.tablaTec4 tr:first-child th:last-child {
+    border-top-right-radius: 10px;
+}
+
+.cabecera {
+    background-color: midnightblue;
+    color: white;
+    text-align: center;
+    font-weight: bold !important;
+}
+
 th {
-    color: white !important;
-    text-align: center !important;
+    padding: 1%;
     border-right: gainsboro 2px solid !important;
     border-left: gainsboro 2px solid !important;
-    padding: 1% !important;
-    font-weight: bold !important;
 }
 
 .tablaTec4 tr:first-child th:first-child {
@@ -133,57 +146,39 @@ th {
     border-right: none !important;
 }
 
-.tablaTec4 tr:last-child td:last-child {
-    border-bottom-right-radius: 10px !important;
-}
-
-.tablaTec4 tr:last-child td:first-child {
-    border-bottom-left-radius: 10px !important;
-}
-
 td {
-    background-color: thistle !important;
-}
-
-td:first-child {
-    padding: 1.5% !important;
-}
-
-.fechas, .nombres, .roles, .acciones {
-    text-align: center !important;
+    padding: 1%;
 }
 
 .fechas {
     border-right: gainsboro 2px solid !important;
+    text-align: center;
+    width: 20vh;
+}
+
+.nombres {
+    border-right: gainsboro 2px solid !important;
+    border-left: gainsboro 2px solid !important;
+    text-align: center;
 }
 
 .roles {
-    border-right: gainsboro 2px solid !important;
     border-left: gainsboro 2px solid !important;
+    text-align: center;
+    width: 25vh;
 }
 
-tr {
-    border-bottom: gainsboro 2px solid !important;
+.acciones {
+    border-left: gainsboro 2px solid !important;
+    text-align: center;
+    width: 20vh;
 }
 
-tr:last-child  {
-    border: 0 !important;
+.clickModalVisualizar:hover {
+    filter:drop-shadow(1px 1px 3px darkcyan);
 }
 
-tr:first-child {
-    border: 0 !important;
-}
-
-.modal {
-    background-color: #2e4b8185!important;
-    backdrop-filter: blur(8px) !important;
-}
-
-.modal-content {
-    background-color: #343a40 !important;
-    color: white;
-    border-radius: 20px!important;
-}
+/* fin css para la tabla tec2 */
 
 .btnCancelarBorrado {
     background-color: crimson!important;
