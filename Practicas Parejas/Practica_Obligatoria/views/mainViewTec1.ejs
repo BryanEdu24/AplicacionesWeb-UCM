@@ -16,8 +16,8 @@
                         <input id="checkboxUsers" type="checkbox" class="me-1">
                         <label for="checkboxUsers"><strong>Usuarios</strong></label>
                     </span>
-                    <input type="text" class="searchTerm" placeholder="Buscar avisos...">
-                    <button type="submit" class="searchButton">
+                    <input type="text" class="searchTerm" id="inputBuscador" placeholder="Buscar avisos...">
+                    <button type="submit" class="searchButton" onclick="buscador(this)">
                         <img src="images/lupaVector.svg" title="www.ucm.es" alt="Logo de la UCM" class="lupa">
                     </button>
                 </div>
@@ -69,7 +69,7 @@
                             <%}%> 
                             <td class="acciones">
                                 <% if(aviso.asignado === 1){ %>
-                                    <img  src="images/tecnicoNoAsignado.svg" alt="" width="35" height="35">
+                                    <img  src="images/tecnicoNoAsignado.svg" alt="" width="35" height="35" style="cursor: default;">
                                 <%} else {%>
                                     <img class="clickModalVisualizar" src="images/tecnicoAsignado.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalMisAvisos">
                                 <%}%> 
@@ -98,7 +98,7 @@
             </table>
         </div>
     
-        <!-- Modal para visualizar aviso -->
+        <!-- Modal para asignar Técnico -->
         <div class="modal fade" id="modalMisAvisos">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
@@ -111,26 +111,19 @@
                     <!-- cuerpo del diálogo -->
                     <div class="modal-body">
                         <div class="subEncabezadoModal d-flex justify-content-between">
-                            <div><span>Fecha:</span> <h5 id="fechaAvisoModal"> 12/10/2021</h5></div>
-                            <div>
-                                <h5>
-                                    Aviso nº<i id="idAvisoModal">202101020001</i>:
-                                    <label class="badge rounded-pill pildoraFelicitacion" id="tipoAvisoModal">
-                                        Felicitación
-                                    </label>
-                                </h5>
-                            </div>
+                            <div><h5>Fecha: <label id="fechaAvisoModal"> </label></h5></div>
+                            <div><h5>Aviso nº<i id="idAvisoModal"></i>: <label class="badge rounded-pill pildora" id="tipoAvisoModal"></label></h5></div>
                         </div>
-                        <div class="comunicacionesModal"><span>🔹<strong id="subtipoAvisoModal" style="display: none;"> Comunicaciones: </strong></span><h5  id="categoriaAvisoModal" >Correo electrónico</h5></div>
-                        <div class="perfilModal"><h4>🔹<strong> Perfil: </strong><%=rol %></h4></div>
+                        <div class="comunicacionesModal">
+                            <h5>🔹 <strong id="subtipoAvisoModal"></strong>: <span id="categoriaAvisoModal">: </span></h5>
+                        </div>
+                        <div class="perfilModal"><h5>🔹<strong> Perfil: </strong><%=rol %></h5></div>
                         <div class="observacionesModal">
-                            <h4>🔹<strong> Observaciones:</strong></h4>
-                            <div class="contenidoObservacion" id="observacionesAvisoModal">
-                                He solicitado una nueva cuenta de correo electrónico para mi departamento pero no he recibido todavía ninguna respuesta. Por favor es urgente que dispongamos de esa cuenta genérica lo antes posible ya que en breve celebraremos el II Congreso de ciberseguridad y necesitamos esa cuenta para centralizar peticiones. Muchas Gracias.
-                            </div>
+                            <h5>🔹<strong> Observaciones:</strong></h5>
+                            <div class="contenidoObservacion" id="observacionesAvisoModal"></div>
                         </div>
                         <div class="asignarTecnicoModal">
-                            <h4>🔸<strong> Asignar tecnico a aviso:</strong></h4>
+                            <h5>🔸<strong> Asignar tecnico a aviso:</strong></h5>
                             <div class="contenidoAsignacion d-flex justify-content-between">
                                 <div>
                                     Seleccione un técnico:
@@ -164,5 +157,24 @@
     <script type="application/javascript" src="javascripts/modalBorrarAviso.js"></script> 
     <script type="application/javascript" src="javascripts/asignarTecnico.js"></script>
     <script type="application/javascript" src="javascripts/borrarAviso.js"></script>
+    <script>
+        function buscador(lupa) {
+            let varInput = $('#inputBuscador').val().trim().toLowerCase(); // Pillamos el valor del Input (trim para quitar espacios)
+            $('#tablaUser').find('tr').each(i => { // Recorro la tabla por cada tr
+                if (i === 0) {
+                    //Ignora caso de 
+                }
+                else {
+                    $('#tablaUser').find('tr').eq(i).show();
+                    if (($($('#tablaUser').find('tr').eq(i)).find('td').eq(3).html()).includes(varInput)) { // Devuelve lo que hay dentro del td (2 por la posicion del texto) y comprobamos con includes si contiene lo de varInput
+                        // Nada
+                    }
+                    else {
+                        $('#tablaUser').find('tr').eq(i).hide();
+                    }
+                }
+            });
+        }
+    </script>
 
 </html>

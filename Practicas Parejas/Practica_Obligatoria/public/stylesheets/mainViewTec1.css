@@ -172,7 +172,15 @@ td {
     width: 25vh;
 }
 
-/* fin css para la tabla user1 */
+.clickModalVisualizar:hover {
+    filter:drop-shadow(2px 2px 5px mediumorchid);
+}
+
+.clickModalBorrar:hover {
+    filter:drop-shadow(2px 2px 5px tomato);
+}
+
+/* fin css para la tabla tec1 */
 
 .pildora {
     background-image: linear-gradient(to left, BlueViolet, darkblue) !important;

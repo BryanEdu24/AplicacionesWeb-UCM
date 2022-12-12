@@ -107,6 +107,7 @@ img, .dropdown-toggle {
     margin-right: auto;
     width: 100px;
     top: -10vh;
+    filter:drop-shadow(0px 0px 5px lightcyan);
 }
 
 .fotoPerfilModal {

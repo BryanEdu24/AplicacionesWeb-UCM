@@ -21,15 +21,16 @@
                     if (taskDevuelto.tipo ==='Sugerencia' ) {
                         $("#subtipoAvisoModalBorrar").text(taskDevuelto.subtipo);
                         $("#subtipoAvisoModalBorrar").show();
+                        $("#categoriaAvisoModalBorrar").text(taskDevuelto.categoria);
                     }else if (taskDevuelto.tipo ==='Incidencia') {
                         $("#subtipoAvisoModalBorrar").text(taskDevuelto.subtipo);
                         $("#subtipoAvisoModalBorrar").show();
-                    } else {
-                        $("#subtipoAvisoModalBorrar").hide()
+                        $("#categoriaAvisoModalBorrar").text(taskDevuelto.categoria);
+                    } else if (taskDevuelto.tipo ==='Felicitación') {
+                        $("#subtipoAvisoModalBorrar").text(taskDevuelto.categoria);
                     }
                     $("#idAvisoModalBorrar").text(taskDevuelto.idAviso);
                     $("#tipoAvisoModalBorrar").text(taskDevuelto.tipo);
-                    $("#categoriaAvisoModalBorrar").text(taskDevuelto.categoria);
                     $("#fechaAvisoModalBorrar").text(taskDevuelto.fecha);
                     let observacionesFinal = taskDevuelto.observaciones.replace(/\n/g,'<br/>');
                     $("#observacionesAvisoModalBorrar").html(observacionesFinal);
