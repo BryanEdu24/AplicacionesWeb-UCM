@@ -17,27 +17,15 @@
                 success: function (data, textStatus, jqXHR) {
                     console.log(textStatus);
                     let taskDevuelto = data.taskModal;
-                    console.log(taskDevuelto);                        
-                    if (taskDevuelto.tipo ==='Sugerencia' ) {
-                        $("#subtipoAvisoModal").text(taskDevuelto.subtipo);
-                        $("#subtipoAvisoModal").show();
-                        $("#categoriaAvisoModal").text(taskDevuelto.categoria);
-                    }else if (taskDevuelto.tipo ==='Incidencia') {
-                        $("#subtipoAvisoModal").text(taskDevuelto.subtipo);
-                        $("#subtipoAvisoModal").show();
-                        $("#categoriaAvisoModal").text(taskDevuelto.categoria);
-                    } else if (taskDevuelto.tipo ==='Felicitación'){
-                        $("#subtipoAvisoModal").text(taskDevuelto.categoria);
-                    }
+                    console.log(taskDevuelto.tipo); 
                     $("#idAvisoModal").text(taskDevuelto.idAviso);
                     $("#tipoAvisoModal").text(taskDevuelto.tipo);
                     $("#fechaAvisoModal").text(taskDevuelto.fecha);
                     let observacionesFinal = taskDevuelto.observaciones.replace(/\n/g,'<br/>');
                     $("#observacionesAvisoModal").html(observacionesFinal);
                     $("#creadoPorModalAviso").text(taskDevuelto.creadoPor);
-                    if (taskDevuelto.comentario === null) {
-                        $("#comentarioAvisoModal").text("Aún no tiene comentarios del técnico en este aviso");
-                    }else { 
+
+                    if (taskDevuelto.asignado === 1) {
                         if (taskDevuelto.eliminadoPor === null) {
                             let comentarioFinal = taskDevuelto.comentario.replace(/\n/g,'<br/>');
                             $("#comentarioAvisoModal").html(comentarioFinal);
@@ -49,7 +37,16 @@
                             let comentarioFinal = taskDevuelto.comentario.replace(/\n/g,'<br/>');
                             $("#comentarioAvisoModal").html(nuevoTexto + comentarioFinal);
                         }
+                    }else{
+                        $("#comentarioAvisoModal").text("Aún no tiene comentarios del técnico en este aviso");
                     }
+                    $("#subtipoAvisoModal").text(taskDevuelto.subtipo);
+                    $("#categoriaAvisoModal").text(taskDevuelto.categoria);
+                    if (taskDevuelto.tipo ==='Felicitación' ) {
+                        $("#subtipoAvisoModal").text(taskDevuelto.categoria);
+                        $("#categoriaAvisoModal").hide();
+                    }                   
+
                 },
                 // En caso de error, mostrar el error producido
                 error: function (jqXHR, textStatus, errorThrown) {

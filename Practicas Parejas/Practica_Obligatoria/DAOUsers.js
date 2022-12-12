@@ -204,30 +204,39 @@ class DAOUsers {
           connection.release();
           if (err) {
             callback(
-              new Error("Error a la hora de eliminar en tabla personas")
+              new Error(
+                "Error a la hora de eliminar en tabla personas al usuario"
+              )
             );
           } else {
-            console.log("Entra en update persona_Aviso");
+            console.log("Ha borrado al usuario en personas ");
             let sql =
               "UPDATE persona_aviso SET cerrado = 1 , borrado = 1 WHERE idPersona=?;";
             connection.query(sql, [idUser], function (err, idUserDeleted) {
               if (err) {
                 callback(
-                  new Error("Error a la hora de elimar en persona_aviso")
+                  new Error(
+                    "Error a la hora de eliminar los avisos del usuario en persona_aviso"
+                  )
                 );
               } else {
-                console.log("Entra en seleccionar todos los avisos");
+                console.log("Ha cerrado y borrado los avisos en persona_aviso");
                 let sql =
                   "SELECT * FROM persona_aviso P WHERE P.borrado = 1 AND P.cerrado = 1 AND P.idPersona = ?";
                 connection.query(sql, [idUser], function (err, avisos) {
                   if (err) {
                     callback(
-                      new Error("Error a la hora de elimar en persona_aviso")
+                      new Error(
+                        "Error a la hora de conseguir los avisos eliminados del usuario en persona_aviso"
+                      )
                     );
                   } else {
+                    console.log(
+                      "Ha conseguido los avisos eliminados va a hacer el forEach de todos los avisos"
+                    );
+                    console.log(avisos);
                     let i = 0;
                     avisos.forEach(function (aviso) {
-                        console.log("Entra en forEach de todos los avisos");
                       let sql =
                         "UPDATE avisos A SET A.activo = 0, A.eliminadoPor = ? , A.creadoPor = 'Usuario Eliminado' WHERE A.idAviso = ? ";
                       connection.query(
@@ -237,32 +246,34 @@ class DAOUsers {
                           if (err) {
                             callback(
                               new Error(
-                                "Error de acceso a la base de datos a la hora de eliminar avisos de un usuario en avisos"
+                                "Error de acceso a la base de datos a la hora de eliminar avisos de un usuario en la tabla avisos"
                               )
                             );
                           } else {
-                            if (i === avisos.length - 1) {
-                              callback(null);
-                            } else {
-                                i++;
-                                console.log("Borra tecnico_aviso de un borrado de usuario: " + aviso.idAviso);
-
-                              let sql =
-                                "UPDATE tecnico_aviso T SET T.cerrado = 1 WHERE T.idAviso = ?";
-                              connection.query(
-                                sql,
-                                [aviso.idAviso],
-                                function (err, avisosAfectados) {
-                                  if (err) {
-                                    callback(
-                                      new Error(
-                                        "Error de acceso a la base de datos a la hora de eliminar avisos de un usuario en tecnico-avisos"
-                                      )
-                                    );
-                                  } 
+                            console.log(
+                              "Ha actualizado los datos de la tabla avisos del aviso: " +
+                                aviso.idAviso
+                            );
+                            let sql =
+                              "UPDATE tecnico_aviso T SET T.cerrado = 1 WHERE T.idAviso = ?";
+                            connection.query(
+                              sql,
+                              [aviso.idAviso],
+                              function (err, avisosAfectados) {
+                                if (err) {
+                                  callback(
+                                    new Error(
+                                      "Error de acceso a la base de datos a la hora de eliminar avisos de un usuario en tecnico-avisos"
+                                    )
+                                  );
+                                }else{
+                                  if (i === avisos.length - 1) {
+                                    console.log("Ha cerrado el aviso del tecnico con idAviso: "+ aviso.idAviso);
+                                    callback(null);
+                                  }else i++;
                                 }
-                              );
-                            }
+                              }
+                            );
                           }
                         }
                       );
@@ -307,7 +318,9 @@ class DAOUsers {
                 connection.query(sql, [idTec], function (err, avisos) {
                   if (err) {
                     callback(
-                      new Error("Error a la hora de conseguir los avisos del tecnico en tecnico-aviso")
+                      new Error(
+                        "Error a la hora de conseguir los avisos del tecnico en tecnico-aviso"
+                      )
                     );
                   } else {
                     let i = 0;
@@ -325,27 +338,25 @@ class DAOUsers {
                               )
                             );
                           } else {
-                            if (i === avisos.length - 1) {
-                              callback(null, avisosAfectados);
-                            } else {
-                                let sql =
-                                  "UPDATE persona_aviso T SET T.cerrado = 1 AND T.borrado = 1 WHERE T.idAviso = ?";
-                                connection.query(
-                                  sql,
-                                  [aviso.idAviso],
-                                  function (err, avisosAfectados) {
-                                    if (err) {
-                                      callback(
-                                        new Error(
-                                          "Error de acceso a la base de datos a la hora de eliminar avisos de un tecnico en persona-avisos"
-                                        )
-                                      );
-                                    } else {
-                                        i++;
-                                    }
-                                  }
-                                );
+                            let sql =
+                              "UPDATE persona_aviso T SET T.cerrado = 1 AND T.borrado = 1 WHERE T.idAviso = ?";
+                            connection.query(
+                              sql,
+                              [aviso.idAviso],
+                              function (err, avisosAfectados) {
+                                if (err) {
+                                  callback(
+                                    new Error(
+                                      "Error de acceso a la base de datos a la hora de eliminar avisos de un tecnico en persona-avisos"
+                                    )
+                                  );
+                                } else {
+                                  if (i === avisos.length - 1) {
+                                    callback(null, avisosAfectados);
+                                  } else i++;
+                                }
                               }
+                            );
                           }
                         }
                       );
