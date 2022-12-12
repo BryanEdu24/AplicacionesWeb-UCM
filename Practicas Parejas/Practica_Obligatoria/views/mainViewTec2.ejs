@@ -38,33 +38,30 @@
                 </button>
             </div>
 
-            <table class="tablaTec2">
+            <table class="tablaTec2" id="tablaTec">
                 <% if (Avisos.length > 0) { %>
-                    <tr>
-                        <th>Tipo</th>
-                        <th>Fecha</th>
-                        <th>Texto</th>
-                        <th>Acciones</th>
+                    <tr class="cabecera">
+                        <th>Tipo 🔱</th>
+                        <th>Fecha 📅</th>
+                        <th>Texto 📋</th>
+                        <th>Técnico 👨‍💻</th>
                     </tr>
                     <% Avisos.forEach(function(aviso) { %>
                         <tr>
-                            <td style="display:none;">>
+                            <td id="idAvisoTabla"style="display:none;">>
                                 <h1><%= aviso.idAviso%></h1>
                             </td>
                             <td class="tipos">
                                 <% let tipoImg = aviso.tipo %>
                                 <% if (tipoImg === 'Sugerencia') { %>
-                                    <img src="images/pregunta.png" alt="" width="35" height="35">
+                                    <img src="images/pregunta.png" alt="" width="35" height="35" style="cursor: default;">
                                 <% } else if (tipoImg === 'Incidencia') {%> 
-                                    <img src="images/exclamacion.png" alt="" width="35" height="35">                                    
+                                    <img src="images/exclamacion.png" alt="" width="35" height="35" style="cursor: default;">               
                                 <% } else {%> 
-                                    <img src="images/ok.png" alt="" width="35" height="35">                                    
+                                    <img src="images/ok.png" alt="" width="35" height="35" style="cursor: default;">
                                 <% } %> 
                             </td>
                             <td class="fechas"><%= aviso.fecha %></td>
-                            <td id="idAvisoTabla"style="display:none;">>
-                                <h1><%= aviso.idAviso%></h1>
-                            </td>
                             <% if(aviso.observaciones.length > 200){ %>
                                 <td><%= aviso.observaciones.substr(0,200)%>...</td>
                             <%} else {%>
@@ -77,12 +74,12 @@
                         </tr>
                     <% }); %>
                 <% } else {%>
-                    <thead>
+                    <tr class="cabecera">
                         <th>Tipo 🔱</th>
                         <th>Fecha 📅</th>
                         <th>Texto 📋</th>
                         <th>Técnico 👨‍💻</th>
-                    </thead>
+                    </tr>
                     <tr class="text-center">
                         <td colspan="4">
                             <strong>
