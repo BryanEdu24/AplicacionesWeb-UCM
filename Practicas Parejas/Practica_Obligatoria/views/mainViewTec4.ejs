@@ -13,7 +13,7 @@
             <div class="wrap">
                 <div class="search d-flex justify-content-end">
                     <span class="me-3 d-flex align-items-center">
-                        <input id="checkboxUsers" type="checkbox" class="me-1">
+                        <input id="checkboxUsers" type="checkbox" class="me-1" data-bs-toggle="modal" data-bs-target="#modalNoTeBorres">
                         <label for="checkboxUsers"><strong>Usuarios</strong></label>
                     </span>
                     <input type="text" class="searchTerm" id="inputBuscador" placeholder="Buscar avisos...">
@@ -38,6 +38,9 @@
                 </button>
             </div>
 
+            <div class="overflow-auto">
+
+            </div>
             <table class="tablaTec4" id="tablaTec">
                 <% if (Usuarios.length > 0) { %>
                     <tr class="cabecera">
@@ -55,24 +58,24 @@
                             <td class="nombres"><%= usuario.nombre %></td>
                             <td class="roles"><%= usuario.rol %></td>
                             <td class="acciones">
-                                <img class="clickModalBorrarUser" src="images/basura.svg" alt="" width="35" height="35" data-bs-toggle="modal" data-bs-target="#modalBorrarUsuario">
+                                <img class="clickModalBorrarUser" src="images/basura.svg" alt="" width="35" height="35">
                             </td>
                         </tr>
                     <% }); %>
                 <% } else {%>
                     <tr class="cabecera">
                         <th>Fecha 📅</th>
-                        <th>Nombre ✏</th>
+                        <th>Nombre 🅰</th>
                         <th>Rol 🔀</th>
                         <th>Acciones 💻</th>
                     </tr>
                     <tr class="text-center">
                         <td colspan="4">
                             <strong>
-                                ¡Vaya!... no hay usuarios para mostrar 😪
+                                ¡Vaya!... no hay usuarios para mostrar
                             </strong>
                             <div>
-                                <img src="images/sinMensajes.png" alt="" width="50" height="50">
+                                <img src="images/sinUsuarios.svg" alt="" width="50" height="50">
                             </div>
                         </td>
                     </tr>
@@ -86,8 +89,7 @@
                 <div class="modal-content">
                     <!-- cabecera del diálogo -->
                     <div class="modal-header">
-                    <h4 class="modal-title">⚠Eliminar Usuario</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                        <h4 class="modal-title">⚠Eliminar Usuario</h5>
                     </div>
             
                     <!-- cuerpo del diálogo -->
@@ -100,6 +102,31 @@
                     <div class="modal-footer borrarborde">
                         <button type="button" class="btn btnCancelarBorrado" data-bs-dismiss="modal">Cancelar</button>
                         <button type="button" class="btn btnEliminarUsuario" data-bs-dismiss="modal">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para no eliminarte a ti mismo -->
+        <div class="modal fade" id="modalNoTeBorres">
+            <div class="modal-dialog modal-sm modal-dialog-centered">
+                <div class="modal-content">
+                    <!-- cabecera del diálogo -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">⛔ Atención</h5>
+                    </div>
+            
+                    <!-- cuerpo del diálogo -->
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <strong style="text-shadow: 2px 1px 1px red;"><h5>¡ No puedes eliminarte !</h5></strong>
+                            <h6 style="text-shadow: 2px 1px 1px black;">* Provocarías un error en la matrix *</h6>
+                        </div>
+                    </div>
+            
+                    <!-- pie del diálogo -->
+                    <div class="modal-footer borrarborde">
+                        <button type="button" class="btn btnEntendido" data-bs-dismiss="modal">Entendido</button>
                     </div>
                 </div>
             </div>

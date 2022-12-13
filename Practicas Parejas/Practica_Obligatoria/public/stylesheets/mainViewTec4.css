@@ -199,3 +199,13 @@ td {
     background-color: skyblue !important;
     color: black !important;
 }
+
+.btnEntendido {
+    background-color: darkcyan !important;
+    color: white !important;
+}
+
+.btnEntendido:hover {
+    background-color: paleturquoise !important;
+    color: black !important;
+}
