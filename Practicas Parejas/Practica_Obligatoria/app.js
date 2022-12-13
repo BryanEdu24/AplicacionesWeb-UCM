@@ -161,9 +161,19 @@ app.post(
 
             daoU.insertTec(usuario, function(err, newId) {
               if (!err) {
-                usuario.id = newId;
-                response.redirect("/");
-                console.log("Tecnico ingresado correctamente");
+                if(repeat){
+                  errores = [
+                    { msg: "Este correo ya esta asignado a un usuario" },
+                  ];
+                  response.render("registerViewErrors", { errores: errores });
+                }else{
+                  usuario.id = newId;
+                  response.redirect("/");
+                  console.log("Tecnico ingresado correctamente"); 
+                }
+              }else{
+                console.log(err.message);
+                response.end();
               }
           });
           }
@@ -173,7 +183,7 @@ app.post(
         if (request.file) {
           usuario.imagen = request.file.buffer;
         }
-        daoU.insertUser(usuario, function(err,repeat, newId) {
+        daoU.insertUser(usuario, function(err, repeat, newId) {
           if (!err) {
             if(repeat){
               errores = [
@@ -183,7 +193,7 @@ app.post(
             }else{
               usuario.id = newId;
               response.redirect("/");
-              console.log("usuario ingresado correctamente");
+              console.log("usuario ingresado correctamente"); 
             }
           }else{
             console.log(err.message);
@@ -416,6 +426,7 @@ app.get("/logOut.html", (request, response) => {
   response.redirect("/");
 });
 
+/* GET para mis avisos de usuario */
 app.get("/mainViewUser1.html", accessControl, (request, response) => {
   let idUsuario = response.locals.idUser;
   let fecha = null;
@@ -432,6 +443,7 @@ app.get("/mainViewUser1.html", accessControl, (request, response) => {
   });
 });
 
+/* GET para historial de avisos de usuario */
 app.get("/mainViewUser2.html", accessControl, (request, response) => {
   let idUsuario = response.locals.idUser;
   let fecha = null;
@@ -448,6 +460,7 @@ app.get("/mainViewUser2.html", accessControl, (request, response) => {
   });
 });
 
+/* GET para asignar y borrar avisos  (TECNICO)*/
 app.get("/mainViewTec1.html", accessControl, (request, response) => {
   daoA.allAvisos(function (err, Avisos) {
     if (!err) {
@@ -467,6 +480,7 @@ app.get("/mainViewTec1.html", accessControl, (request, response) => {
   });
 });
 
+/* GET para finalizar y borrar avisos  (TECNICO)*/
 app.get("/mainViewTec2.html", accessControl, (request, response) => {
   let idTecnico = response.locals.idUser;
   daoA.misAvisosTec(idTecnico, function (err, Avisos) {
@@ -481,6 +495,7 @@ app.get("/mainViewTec2.html", accessControl, (request, response) => {
   });
 });
 
+/* GET para historial de avisos  (TECNICO)*/
 app.get("/mainViewTec3.html", accessControl, (request, response) => {
   let idUsuario = response.locals.idUser;
   let fecha = null;
@@ -497,6 +512,7 @@ app.get("/mainViewTec3.html", accessControl, (request, response) => {
   });
 });
 
+/* GET para gestión de usuarioss  (TECNICO)*/
 app.get("/mainViewTec4.html", accessControl, (request, response) => {
   daoU.getAllUsers(function (err, Usuarios) {
     if (!err) {

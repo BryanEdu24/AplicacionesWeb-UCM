@@ -61,44 +61,57 @@ class DAOUsers {
     this.pool.getConnection(function (err, connection) {
       if (err) callback(new Error("Error de conexión a la base de datos"));
       else {
-        let sql =
-          "INSERT INTO  ucm_aw_cau_usu_usuarios(nombre, email, password, rol, numEmpleado, Foto, fecha, activo) VALUES (?, ?, ?, ?, ?, ?, ?,1)";
-        connection.query(
-          sql,
-          [
-            usuario.nombre,
-            usuario.correo,
-            usuario.contrasenia,
-            usuario.opcion,
-            usuario.numEmpleado,
-            usuario.imagen,
-            usuario.fecha,
-          ],
-          function (err, resultUser) {
-            connection.release();
-            if (err)
-              callback(new Error("Error a la hora de hacer la insercción"));
-            else {
+        let sql = "SELECT id FROM ucm_aw_cau_usu_usuarios WHERE email = ? ";
+        connection.query(sql, [usuario.correo], function (err, emailRepeat) {
+          connection.release();
+          if (err)
+            callback(new Error("Error a la hora de hacer la insercción"));
+          else {
+            if (emailRepeat != "") {
+              callback(null, true, emailRepeat);
+            } else {
               let sql =
-                "UPDATE ucm_aw_cau_nte_numempleado_tecnico SET idTecnico= ? , asignado=1 WHERE numEmpleado=?";
+                "INSERT INTO  ucm_aw_cau_usu_usuarios(nombre, email, password, rol, numEmpleado, Foto, fecha, activo) VALUES (?, ?, ?, ?, ?, ?, ?,1)";
               connection.query(
                 sql,
-                [resultUser.insertId, usuario.numEmpleado],
-                function (err, result) {
-                  if (err) {
+                [
+                  usuario.nombre,
+                  usuario.correo,
+                  usuario.contrasenia,
+                  usuario.opcion,
+                  usuario.numEmpleado,
+                  usuario.imagen,
+                  usuario.fecha,
+                ],
+                function (err, resultUser) {
+                  if (err)
                     callback(
-                      new Error(
-                        "Error a la hora de hacer la insercción en la tabla ucm_aw_cau_nte_numempleado_tecnico"
-                      )
+                      new Error("Error a la hora de hacer la insercción")
                     );
-                  } else {
-                    callback(null, resultUser.insertId);
+                  else {
+                    let sql =
+                      "UPDATE ucm_aw_cau_nte_numempleado_tecnico SET idTecnico= ? , asignado=1 WHERE numEmpleado=?";
+                    connection.query(
+                      sql,
+                      [resultUser.insertId, usuario.numEmpleado],
+                      function (err, result) {
+                        if (err) {
+                          callback(
+                            new Error(
+                              "Error a la hora de hacer la insercción en la tabla ucm_aw_cau_nte_numempleado_tecnico"
+                            )
+                          );
+                        } else {
+                          callback(null,false, resultUser.insertId);
+                        }
+                      }
+                    );
                   }
                 }
               );
             }
           }
-        );
+        });
       }
     });
   }
@@ -113,7 +126,7 @@ class DAOUsers {
           if (err)
             callback(new Error("Error a la hora de hacer la insercción"));
           else {
-            if (emailRepeat) {
+            if (emailRepeat != "") {
               callback(null, true, emailRepeat);
             } else {
               let sql =
@@ -130,7 +143,6 @@ class DAOUsers {
                   usuario.fecha,
                 ],
                 function (err, resultUser) {
-                  connection.release();
                   if (err)
                     callback(
                       new Error("Error a la hora de hacer la insercción")
