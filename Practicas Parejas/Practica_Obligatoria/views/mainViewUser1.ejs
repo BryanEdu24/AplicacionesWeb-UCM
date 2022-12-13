@@ -109,7 +109,7 @@
                             <div><h5>Aviso nº<i id="idAvisoModal"></i>: <label class="badge rounded-pill pildora" id="tipoAvisoModal"></label></h5></div>
                         </div>
                         <div class="comunicacionesModal">
-                            <h5>🔹 <strong id="subtipoAvisoModal"> :</strong><span id="categoriaAvisoModal"></span></h5>
+                            <h5>🔹 <strong id="subtipoAvisoModal"></strong>: <span id="categoriaAvisoModal"></span></h5>
                         </div>
                         <div class="perfilModal"><h5>🔹<strong> Perfil: </strong><%=rol %></h5></div>
                         <div class="observacionesModal">
@@ -148,28 +148,34 @@
                         console.log(textStatus);
                         let taskDevuelto = data.taskModal;
                         console.log(taskDevuelto);                        
-                        if (taskDevuelto.tipo ==='Sugerencia' ) {
-                            $("#subtipoAvisoModal").text(taskDevuelto.subtipo);
-                            $("#subtipoAvisoModal").show();
-                            $("#categoriaAvisoModal").text(taskDevuelto.categoria);
-                        }else if (taskDevuelto.tipo ==='Incidencia') {
-                            $("#subtipoAvisoModal").text(taskDevuelto.subtipo);
-                            $("#subtipoAvisoModal").show();
-                            $("#categoriaAvisoModal").text(taskDevuelto.categoria);
-                        } else if (taskDevuelto.tipo ==='Felicitación'){
-                            $("#subtipoAvisoModal").text(taskDevuelto.categoria);
-                        }
                         $("#idAvisoModal").text(taskDevuelto.idAviso);
                         $("#tipoAvisoModal").text(taskDevuelto.tipo);
                         $("#fechaAvisoModal").text(taskDevuelto.fecha);
                         let observacionesFinal = taskDevuelto.observaciones.replace(/\n/g,'<br/>');
                         $("#observacionesAvisoModal").html(observacionesFinal);
-                        if (taskDevuelto.comentario === null) {
+                        $("#creadoPorModalAviso").text(taskDevuelto.creadoPor);
+
+                        if (taskDevuelto.asignado === 1) {
+                            if (taskDevuelto.eliminadoPor === null) {
+                                let comentarioFinal = taskDevuelto.comentario.replace(/\n/g,'<br/>');
+                                $("#comentarioAvisoModal").html(comentarioFinal);
+                            } else {
+                                let text = 'Este aviso ha sido eliminado por el técnico '+ 
+                                taskDevuelto.eliminadoPor + `\n`;
+                                let nuevoTexto = text.replace(/\n/g,'<br/>');
+                                console.log(nuevoTexto);
+                                let comentarioFinal = taskDevuelto.comentario.replace(/\n/g,'<br/>');
+                                $("#comentarioAvisoModal").html(nuevoTexto + comentarioFinal);
+                            }
+                        }else{
                             $("#comentarioAvisoModal").text("Aún no tiene comentarios del técnico en este aviso");
-                        }else { 
-                            let comentarioFinal= taskDevuelto.comentario.replace(/\n/g,'<br/>');
-                            $("#comentarioAvisoModal").html(comentarioFinal);
                         }
+                        $("#subtipoAvisoModal").text(taskDevuelto.subtipo);
+                        $("#categoriaAvisoModal").text(taskDevuelto.categoria);
+                        if (taskDevuelto.tipo ==='Felicitación' ) {
+                            $("#subtipoAvisoModal").text(taskDevuelto.categoria);
+                            $("#categoriaAvisoModal").hide();
+                        } 
                     },
                     // En caso de error, mostrar el error producido
                     error: function (jqXHR, textStatus, errorThrown) {

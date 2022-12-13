@@ -123,7 +123,7 @@ app.post(
   check("contrasenia", "La contraseña no contiene al menos una minuscula.").matches(/[a-z]+/),
   check("contrasenia", "La contraseña no contiene al menos una mayuscula.").matches(/[A-Z]+/),
   check("contrasenia", "La contraseña no contiene al menos un caracter no alfanumérico.").matches(/[^a-zA-Z0-9]+/),*/
-  check("numEmpleado", "ta mal la num").custom(function (value, { req }) {
+  check("numEmpleado", "El formato de numero de empleado no es el correcto").custom(function (value, { req }) {
     return (
       req.body.tecnico !== "ON" ||
       (req.body.tecnico === "ON" && /[0-9]{4}[-][a-zA-Z]{3}/.test(value)) // Si cumple formato
@@ -162,13 +162,13 @@ app.post(
               usuario.imagen = request.file.buffer;
             }
 
-            /* daoU.insertTec(usuario, function(err, newId) {
+            daoU.insertTec(usuario, function(err, newId) {
               if (!err) {
                 usuario.id = newId;
                 response.redirect("/");
                 console.log("Tecnico ingresado correctamente");
               }
-          }); */
+          });
           }
         });
       } else {
@@ -176,13 +176,13 @@ app.post(
         if (request.file) {
           usuario.imagen = request.file.buffer;
         }
-        /* daoU.insertUser(usuario, function(err, newId) {
+        daoU.insertUser(usuario, function(err, newId) {
           if (!err) {
             usuario.id = newId;
             response.redirect("/");
             console.log("usuario ingresado correctamente");
           }
-      }); */
+      });
       }
     } else {
       response.render("registerViewErrors", { errores: errors.array() });
