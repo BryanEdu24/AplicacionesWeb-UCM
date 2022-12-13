@@ -176,3 +176,63 @@ td {
     filter:drop-shadow(1px 1px 3px darkcyan);
 }
 /* fin css para la tabla tec3 */
+
+.pildora {
+    background-image: linear-gradient(to left, BlueViolet, darkblue) !important;
+    color: beige !important;
+}
+
+.comunicacionesModal {
+    background-color: lightcyan !important;
+    color: black !important;
+    border-radius: 5px !important;
+    padding-left: 1.5% !important;
+    padding: 0.5% !important;
+    margin-top: 1% !important;
+    margin-bottom: 1% !important;
+}
+
+.perfilModal {
+    background-color: lightcyan !important;
+    color: black !important;
+    border-radius: 5px !important;
+    padding-left: 1.5% !important;
+    padding: 0.5% !important;
+    margin-bottom: 1% !important;
+}
+
+.observacionesModal {
+    background-color: lightcyan !important;
+    color: black !important;
+    border-radius: 5px !important;
+    padding-left: 1.5% !important;
+    padding: 0.5% !important;
+    margin-bottom: 1% !important;
+}
+
+.contenidoObservacion {
+    border-radius: 5px !important;
+    margin-left: 5% !important;
+    margin-right: 2% !important;
+    margin-bottom: 1% !important;
+}
+
+.comentariosModal {
+    background-color: lightcyan !important;
+    color: black !important;
+    border-radius: 5px !important;
+    padding-left: 1.5%!important;
+    padding: 0.5% !important;
+    margin-bottom: 1% !important;
+}
+
+.contenidoComentario {
+    border-radius: 5px !important;
+    margin-left: 5% !important;
+    margin-right: 2% !important;
+    margin-bottom: 1% !important;
+}
+
+.SubtituloCategoria{
+    margin-left: 4.75% !important;
+}
