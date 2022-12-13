@@ -147,6 +147,7 @@
                 console.log( $($(this).parents("tr")).find(".nombres").eq(0).html() );
                 console.log(rolUser);
                 if (nombreUserDeleted === nombreUser) {
+                    $('#modalNoTeBorres').modal('show');
                     console.log("No puedes borrarte a ti mismo. Pidele a Edu que cree un modal que indique ese mensaje");
                 }else{
                     console.log("puedes borrar");
