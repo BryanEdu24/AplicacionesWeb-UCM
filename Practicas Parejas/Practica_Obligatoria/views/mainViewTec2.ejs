@@ -107,15 +107,16 @@
                     <!-- cuerpo del diálogo -->
                     <div class="modal-body">
                         <div class="subEncabezadoModal d-flex justify-content-between">
-                            <div><span>Fecha:</span> <h5 id="fechaAvisoModal"> 12/10/2021</h5></div>
-                            <div><h5>Aviso nº<i id="idAvisoModal">202101020001</i>: <label class="badge rounded-pill pildora" id="tipoAvisoModal">Sugerencia</label></h5></div>
+                            <div><span>Fecha:</span> <h5 id="fechaAvisoModal"> </h5></div>
+                            <div><h5>Aviso nº<i id="idAvisoModal"></i>: <label class="badge rounded-pill pildora" id="tipoAvisoModal"></label></h5></div>
                         </div>
-                        <div class="comunicacionesModal"><span>🔹<strong id="subtipoAvisoModal" style="display: none;"> Comunicaciones: </strong></span><h5  id="categoriaAvisoModal" >Correo electrónico</h5></div>
+                        <div class="comunicacionesModal">
+                            <h5>🔹 <strong id="subtipoAvisoModal"></strong>: <span id="categoriaAvisoModal"></span></h5>
+                        </div>
                         <div class="perfilModal"><h5>🔹<strong> Perfil: </strong><%=rol %></h5></div>
                         <div class="observacionesModal">
                             <h5>🔹<strong> Observaciones:</strong></h5>
                             <div class="contenidoObservacion"  id="observacionesAvisoModal">
-                                He solicitado una nueva cuenta de correo electrónico para mi departamento pero no he recibido todavía ninguna respuesta. Por favor es urgente que dispongamos de esa cuenta genérica lo antes posible ya que en breve celebraremos el II Congreso de ciberseguridad y necesitamos esa cuenta para centralizar peticiones. Muchas Gracias.
                             </div>
                         </div>
                         <div class="comentariosModal" id="finalizarAvisoModal">
@@ -136,7 +137,7 @@
         <%- include("subplantillas/modalEliminarAviso") %>
     </body>
     <!-- Script para poder mostrar modales -->
-    <script type="application/javascript" src="javascripts/modalVerAviso.js"></script>
+    <script type="application/javascript" src="javascripts/modalFinalizarAviso.js"></script>
     <script type="application/javascript" src="javascripts/modalBorrarAviso.js"></script> 
     <script type="application/javascript" src="javascripts/borrarAviso.js"></script>
     <script>

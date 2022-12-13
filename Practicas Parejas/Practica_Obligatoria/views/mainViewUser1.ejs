@@ -147,7 +147,9 @@
                     success: function (data, textStatus, jqXHR) {
                         console.log(textStatus);
                         let taskDevuelto = data.taskModal;
-                        console.log(taskDevuelto);                        
+                        console.log(taskDevuelto);
+                        $("#categoriaAvisoModal").text("");
+                        $("#subtipoAvisoModal").text("");                 
                         $("#idAvisoModal").text(taskDevuelto.idAviso);
                         $("#tipoAvisoModal").text(taskDevuelto.tipo);
                         $("#fechaAvisoModal").text(taskDevuelto.fecha);
@@ -157,8 +159,12 @@
 
                         if (taskDevuelto.asignado === 1) {
                             if (taskDevuelto.eliminadoPor === null) {
-                                let comentarioFinal = taskDevuelto.comentario.replace(/\n/g,'<br/>');
-                                $("#comentarioAvisoModal").html(comentarioFinal);
+                                if (taskDevuelto.comentario != null) {
+                                    let comentarioFinal = taskDevuelto.comentario.replace(/\n/g,'<br/>');
+                                    $("#comentarioAvisoModal").html(comentarioFinal);
+                                }else{
+                                    $("#comentarioAvisoModal").text("Aún no tiene comentarios del técnico en este aviso");
+                                }
                             } else {
                                 let text = 'Este aviso ha sido eliminado por el técnico '+ 
                                 taskDevuelto.eliminadoPor + `\n`;
@@ -168,14 +174,18 @@
                                 $("#comentarioAvisoModal").html(nuevoTexto + comentarioFinal);
                             }
                         }else{
-                            $("#comentarioAvisoModal").text("Aún no tiene comentarios del técnico en este aviso");
+                            $("#comentarioAvisoModal").text("Aún no ha sido asginado a ningún tecnico este aviso");
                         }
-                        $("#subtipoAvisoModal").text(taskDevuelto.subtipo);
-                        $("#categoriaAvisoModal").text(taskDevuelto.categoria);
+
+
                         if (taskDevuelto.tipo ==='Felicitación' ) {
-                            $("#subtipoAvisoModal").text(taskDevuelto.categoria);
-                            $("#categoriaAvisoModal").hide();
-                        } 
+                        $("#subtipoAvisoModal").text("Tipo de Felicitación");
+                        $("#categoriaAvisoModal").text(taskDevuelto.categoria);
+                        }  else{
+                            $("#subtipoAvisoModal").text(taskDevuelto.subtipo);
+                            $("#categoriaAvisoModal").text(taskDevuelto.categoria); 
+                        }      
+                          
                     },
                     // En caso de error, mostrar el error producido
                     error: function (jqXHR, textStatus, errorThrown) {

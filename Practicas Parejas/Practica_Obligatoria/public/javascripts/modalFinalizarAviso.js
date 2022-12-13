@@ -24,40 +24,14 @@
                     $("#fechaAvisoModal").text(taskDevuelto.fecha);
                     let observacionesFinal = taskDevuelto.observaciones.replace(/\n/g,'<br/>');
                     $("#observacionesAvisoModal").html(observacionesFinal);
-                    $("#creadoPorModalAviso").text(taskDevuelto.creadoPor);
-
-                    if (taskDevuelto.asignado === 1) {
-                        if (taskDevuelto.eliminadoPor === null) {
-                            if (taskDevuelto.comentario != null) {
-                                let comentarioFinal = taskDevuelto.comentario.replace(/\n/g,'<br/>');
-                                $("#comentarioAvisoModal").html(comentarioFinal);
-                            }else{
-                                $("#comentarioAvisoModal").text("Aún no tiene comentarios del técnico en este aviso");
-                            }
-                        } else {
-                            let text = 'Este aviso ha sido eliminado por el técnico '+ 
-                            taskDevuelto.eliminadoPor + `\n`;
-                            let nuevoTexto = text.replace(/\n/g,'<br/>');
-                            console.log(nuevoTexto);
-                            if (taskDevuelto.comentario != null) {
-                                let comentarioFinal = taskDevuelto.comentario.replace(/\n/g,'<br/>');
-                                $("#comentarioAvisoModal").html(nuevoTexto + comentarioFinal);
-                            }else {
-                                $("#comentarioAvisoModal").html(nuevoTexto);
-                            }
-                        }
-                    }else{
-                        $("#comentarioAvisoModal").text("Aún no ha sido asginado a ningún tecnico este aviso");
-                    }
-                   
+                    $("#creadoPorModalAviso").text(taskDevuelto.creadoPor); 
                     if (taskDevuelto.tipo ==='Felicitación' ) {
                         $("#subtipoAvisoModal").text("Tipo de Felicitación");
                         $("#categoriaAvisoModal").text(taskDevuelto.categoria);
                     }  else{
                         $("#subtipoAvisoModal").text(taskDevuelto.subtipo);
                         $("#categoriaAvisoModal").text(taskDevuelto.categoria); 
-                    }           
-
+                    }      
                 },
                 // En caso de error, mostrar el error producido
                 error: function (jqXHR, textStatus, errorThrown) {
