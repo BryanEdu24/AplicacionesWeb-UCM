@@ -526,6 +526,11 @@ app.get("/mainViewTec4.html", accessControl, (request, response) => {
   });
 });
 
+// GET para error 404
+app.get("*", function(req, response) {
+	response.render("error404", {user: req.session.user, errores: errores });
+});
+
 app.listen(config.portS, function (err) {
   if (err) {
     console.log("ERROR al iniciar el servidor");
