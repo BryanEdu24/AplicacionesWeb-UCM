@@ -142,9 +142,6 @@ app.post(
         imagen: null,
       };
 
-      //Comprobar if usuario.opcion == "PAS"
-      //si lo es, comprobar
-
       if (request.body.numEmpleado != undefined) {
         daoU.checkEmployee(request.body.numEmpleado, function (err, idTec) {
           if (err) {
@@ -176,11 +173,21 @@ app.post(
         if (request.file) {
           usuario.imagen = request.file.buffer;
         }
-        daoU.insertUser(usuario, function(err, newId) {
+        daoU.insertUser(usuario, function(err,repeat, newId) {
           if (!err) {
-            usuario.id = newId;
-            response.redirect("/");
-            console.log("usuario ingresado correctamente");
+            if(repeat){
+              errores = [
+                { msg: "Este correo ya esta asignado a un usuario" },
+              ];
+              response.render("registerViewErrors", { errores: errores });
+            }else{
+              usuario.id = newId;
+              response.redirect("/");
+              console.log("usuario ingresado correctamente");
+            }
+          }else{
+            console.log(err.message);
+            response.end();
           }
       });
       }

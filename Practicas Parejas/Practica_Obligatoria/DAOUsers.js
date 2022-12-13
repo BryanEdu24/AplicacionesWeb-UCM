@@ -107,28 +107,42 @@ class DAOUsers {
     this.pool.getConnection(function (err, connection) {
       if (err) callback(new Error("Error de conexión a la base de datos"));
       else {
-        let sql =
-          "INSERT INTO  ucm_aw_cau_usu_usuarios(nombre, email, password, rol, numEmpleado, Foto, fecha, activo) VALUES (?, ?, ?, ?, ?, ?, ?, 1)";
-        connection.query(
-          sql,
-          [
-            usuario.nombre,
-            usuario.correo,
-            usuario.contrasenia,
-            usuario.opcion,
-            usuario.numEmpleado,
-            usuario.imagen,
-            usuario.fecha,
-          ],
-          function (err, resultUser) {
-            connection.release();
-            if (err)
-              callback(new Error("Error a la hora de hacer la insercción"));
-            else {
-              callback(null, resultUser.insertId);
+        let sql = "SELECT id FROM ucm_aw_cau_usu_usuarios WHERE email = ? ";
+        connection.query(sql, [usuario.correo], function (err, emailRepeat) {
+          connection.release();
+          if (err)
+            callback(new Error("Error a la hora de hacer la insercción"));
+          else {
+            if (emailRepeat) {
+              callback(null, true, emailRepeat);
+            } else {
+              let sql =
+                "INSERT INTO  ucm_aw_cau_usu_usuarios(nombre, email, password, rol, numEmpleado, Foto, fecha, activo) VALUES (?, ?, ?, ?, ?, ?, ?, 1)";
+              connection.query(
+                sql,
+                [
+                  usuario.nombre,
+                  usuario.correo,
+                  usuario.contrasenia,
+                  usuario.opcion,
+                  usuario.numEmpleado,
+                  usuario.imagen,
+                  usuario.fecha,
+                ],
+                function (err, resultUser) {
+                  connection.release();
+                  if (err)
+                    callback(
+                      new Error("Error a la hora de hacer la insercción")
+                    );
+                  else {
+                    callback(null, false, resultUser.insertId);
+                  }
+                }
+              );
             }
           }
-        );
+        });
       }
     });
   }
@@ -199,7 +213,8 @@ class DAOUsers {
       if (err) {
         callback(new Error("Error de conexión a la base de datos"));
       } else {
-        let sql = "UPDATE  ucm_aw_cau_usu_usuarios P SET P.activo = 0 WHERE P.id = ?";
+        let sql =
+          "UPDATE  ucm_aw_cau_usu_usuarios P SET P.activo = 0 WHERE P.id = ?";
         connection.query(sql, [idUser], function (err, idUserDeleted) {
           connection.release();
           if (err) {
@@ -220,7 +235,9 @@ class DAOUsers {
                   )
                 );
               } else {
-                console.log("Ha cerrado y borrado los avisos en  ucm_aw_cau_usa_usuario_avisos");
+                console.log(
+                  "Ha cerrado y borrado los avisos en  ucm_aw_cau_usa_usuario_avisos"
+                );
                 let sql =
                   "SELECT * FROM  ucm_aw_cau_usa_usuario_avisos P WHERE P.borrado = 1 AND P.cerrado = 1 AND P.idPersona = ?";
                 connection.query(sql, [idUser], function (err, avisos) {
@@ -266,11 +283,14 @@ class DAOUsers {
                                       "Error de acceso a la base de datos a la hora de eliminar avisos de un usuario en ucm_aw_cau_tea_tecnico_aviso"
                                     )
                                   );
-                                }else{
+                                } else {
                                   if (i === avisos.length - 1) {
-                                    console.log("Ha cerrado el aviso del tecnico con idAviso: "+ aviso.idAviso);
+                                    console.log(
+                                      "Ha cerrado el aviso del tecnico con idAviso: " +
+                                        aviso.idAviso
+                                    );
                                     callback(null);
-                                  }else i++;
+                                  } else i++;
                                 }
                               }
                             );
@@ -293,7 +313,8 @@ class DAOUsers {
       if (err) {
         callback(new Error("Error de conexión a la base de datos"));
       } else {
-        let sql = "UPDATE  ucm_aw_cau_usu_usuarios P SET P.activo = 0 WHERE P.id = ?";
+        let sql =
+          "UPDATE  ucm_aw_cau_usu_usuarios P SET P.activo = 0 WHERE P.id = ?";
         connection.query(sql, [idTec], function (err, idUserDeleted) {
           connection.release();
           if (err) {
