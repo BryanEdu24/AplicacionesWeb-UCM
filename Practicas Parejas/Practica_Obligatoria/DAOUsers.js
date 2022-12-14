@@ -84,6 +84,7 @@ class DAOUsers {
                   usuario.fecha,
                 ],
                 function (err, resultUser) {
+                  connection.release();
                   if (err)
                     callback(
                       new Error("Error a la hora de hacer la insercción")

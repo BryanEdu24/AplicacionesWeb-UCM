@@ -377,10 +377,6 @@ app.post("/borrarUser", (request, response) => {
   let idUserDeleted = request.body.idUserDeleted;
   let rolUser = request.body.rolUser;
   let nameTec = request.body.nameTec;
-console.log(idUserDeleted);
-console.log(rolUser);
-console.log(nameTec);
-
   if (rolUser === 'PAS') {
     daoU.deleteUserTec(idUserDeleted,nameTec, function (err) {
       if (!err) {
@@ -405,6 +401,42 @@ console.log(nameTec);
       }
     });
   }
+});
+
+/* Post para busqueda de usuarios */
+app.post("/busqUsers", accessControl, (request, response) => {
+  daoU.getAllUsers(function (err, Usuarios) {
+    let usuario = request.body.nombreUsuario;
+    console.log("Usuario a buscar: "+ usuario);
+    let correct = true;
+    if (!err) {
+      response.json({ Usuarios: Usuarios, usuario: usuario });
+      /* console.log(Usuarios);
+      let i=0;
+      let j = 0;
+      let usersFinds = [];
+      console.log("Tamaño usuarios: "+ (Usuarios.length-1));
+      while (i < (Usuarios.length)) {
+          console.log(Usuarios[i]);
+          let usuarioBuscar = Usuarios[i].nombre.toLowerCase();
+          if (usuarioBuscar.includes(usuario) ) {
+              console.log("Se ha encontrado al usuario:" + usuarioBuscar);
+              usersFinds[j] = Usuarios[i];
+              j++;
+          }else{
+              console.log("No se ha encontrado al usuario");
+          } 
+          i++;
+      }
+      console.log("Usuarios encontrados:" + usersFinds); */
+      // response.render("mainViewTec4", { Usuarios: Usuarios });
+      // response.redirect("/");
+    } else{
+      console.log(err.message);
+      response.status(400);
+      response.end();
+    }
+  });
 });
 
 /* Conseguir imagen del usuario por BD */
@@ -531,6 +563,7 @@ app.get("/mainViewTec4.html", accessControl, (request, response) => {
     } else console.log(err.message);
   });
 });
+
 
 /* Middleware 404 */
 app.use(middleware404);
