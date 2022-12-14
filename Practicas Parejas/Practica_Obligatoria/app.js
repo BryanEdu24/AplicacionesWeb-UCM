@@ -72,7 +72,7 @@ function mensajeFlash(request, response, next) {
 /* Middleware error */
 function middleware404(request,response){
   response.status(404);
-  response.redirect("error404");
+  response.render("error404");
 }
 
 const multerFactory = multer({ storage: multer.memoryStorage() });

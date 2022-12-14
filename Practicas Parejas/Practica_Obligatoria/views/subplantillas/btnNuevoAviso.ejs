@@ -22,14 +22,14 @@
                             <h5>🔹<strong> Seleccione un tipo de aviso:</strong></h5>
                             <div class="d-flex justify-content-between ms-5 me-5 mb-2">
                                 <div class="animacionRadioBtn">
-                                    <input type="radio" name="tipoAviso" value="Sugerencia" id="optSug" onChange="seleccionSelect(this)">
+                                    <input type="radio" name="tipoAviso" value="Sugerencia" id="optSug" onChange="seleccionSelect(this)" required>
                                     <label for="optSug" class="sugerencia">Sugerencia</label>
                                     <label for="optSug">
                                         <img src="images/pregunta.png" alt=""width="25" height="25">
                                     </label>
                                 </div>
                                 <div class="animacionRadioBtn">
-                                    <input type="radio" name="tipoAviso" value="Incidencia" id="optInc" onChange="seleccionSelect(this)">
+                                    <input type="radio" name="tipoAviso" value="Incidencia" id="optInc" onChange="seleccionSelect(this)" >
                                     <label for="optInc" class="incidencia">Incidencia</label>
                                     <label for="optInc">
                                         <img src="images/exclamacion.png" alt=""width="25" height="25">
@@ -48,11 +48,10 @@
                         <div class="comentarioNuevoAvisoModal mt-2">
                             <h5>🔸<strong> Comentario del aviso:</strong></h5>
                             <div class="contenidoNuevoAviso col-auto">
-                                <textarea name="observacionUsuario" class="form-control textoTecnico" rows="4" placeholder="Escriba una respuesta al aviso..."></textarea>
+                                <textarea name="observacionUsuario" class="form-control textoTecnico" rows="4" placeholder="Escriba una respuesta al aviso..." required></textarea>
                             </div>
                         </div>
                     </div>
-
                     <!-- pie del diálogo -->
                     <div class="modal-footer borrarborde">
                         <button type="button" class="btn btnCancelarNuevoAviso" data-bs-dismiss="modal">Cancelar</button>
@@ -103,6 +102,20 @@
                 divC.style.display="none";
                 divC = document.getElementById("divSubSelects");
                 divC.style.display="none";
+                
+                // document.getElementById("divSelectsSugOculto").setAttribute("pointer-events", "none");
+                // document.getElementById("divSelectsIncOculto").setAttribute("pointer-events", "none");
+                document.getElementById("opt1").disabled = true;
+                document.getElementById("opt2").disabled = true;
+                document.getElementById("opt3").disabled = true;
+                document.getElementById("opt4").disabled = true;
+                document.getElementById("opt5").disabled = true;
+                $("#opt1").disabled = true;
+                $("#opt2").disabled = true;
+                $("#opt3").disabled = true;
+                $("#opt4").disabled = true;
+                $("#opt5").disabled = true;
+                // $("#subtiposSugInc").setAttribute("pointer-events", "none");
             }
         }    
     </script>
