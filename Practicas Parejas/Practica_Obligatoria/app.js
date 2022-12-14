@@ -109,8 +109,6 @@ app.post("/procesar_post.html", (request, response) => {
           response.redirect("/mainViewUser1.html");
         }
       } else {
-        console.log(err.message);
-        response.status(400);
         response.setFlash("Usuario y/o contraseña incorrectos");
         response.redirect("/");
       }
@@ -411,26 +409,6 @@ app.post("/busqUsers", accessControl, (request, response) => {
     let correct = true;
     if (!err) {
       response.json({ Usuarios: Usuarios, usuario: usuario });
-      /* console.log(Usuarios);
-      let i=0;
-      let j = 0;
-      let usersFinds = [];
-      console.log("Tamaño usuarios: "+ (Usuarios.length-1));
-      while (i < (Usuarios.length)) {
-          console.log(Usuarios[i]);
-          let usuarioBuscar = Usuarios[i].nombre.toLowerCase();
-          if (usuarioBuscar.includes(usuario) ) {
-              console.log("Se ha encontrado al usuario:" + usuarioBuscar);
-              usersFinds[j] = Usuarios[i];
-              j++;
-          }else{
-              console.log("No se ha encontrado al usuario");
-          } 
-          i++;
-      }
-      console.log("Usuarios encontrados:" + usersFinds); */
-      // response.render("mainViewTec4", { Usuarios: Usuarios });
-      // response.redirect("/");
     } else{
       console.log(err.message);
       response.status(400);
