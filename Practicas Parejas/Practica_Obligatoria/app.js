@@ -69,6 +69,12 @@ function mensajeFlash(request, response, next) {
   next();
 }
 
+/* Middleware error */
+function middleware404(request,response){
+  response.status(404);
+  response.redirect("error404");
+}
+
 const multerFactory = multer({ storage: multer.memoryStorage() });
 
 app.use(express.static(path.join(__dirname, "public")));
@@ -111,12 +117,16 @@ app.post("/procesar_post.html", (request, response) => {
   );
 });
 
+/* Para cerrar sesión */
+app.get("/logOut.html", (request, response) => {
+  request.session.destroy();
+  response.redirect("/");
+});
+
 /* Post del register */
 app.post(
   "/registerPost.html",
   multerFactory.single("foto"),
-  // El correo ha de ser una dirección de correo válida.
-  //check("correo","Dirección de correo no válida").isEmail(),
   // Comprobación de contraseña
   check("contrasenia","La contraseña no tiene entre 8 y 16 caracteres.").isLength({ min: 8, max: 16 }),
   check("contrasenia", "La contraseña no contiene al menos un dígito.").matches(/[0-9]+/),
@@ -420,12 +430,6 @@ app.get("/images/:id", (request, response) => {
   }
 });
 
-/* Para cerrar sesión */
-app.get("/logOut.html", (request, response) => {
-  request.session.destroy();
-  response.redirect("/");
-});
-
 /* GET para mis avisos de usuario */
 app.get("/mainViewUser1.html", accessControl, (request, response) => {
   let idUsuario = response.locals.idUser;
@@ -526,10 +530,7 @@ app.get("/mainViewTec4.html", accessControl, (request, response) => {
   });
 });
 
-// GET para error 404
-// app.get("*", function(req, response) {
-// 	response.render("error404", {user: req.session.user, errores: errores });
-// });
+app.use(middleware404);
 
 app.listen(config.portS, function (err) {
   if (err) {
