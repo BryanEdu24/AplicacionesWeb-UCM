@@ -250,6 +250,7 @@ app.post("/post_nuevo_aviso.html", accessControl, (request, response) => {
         console.log("Aviso ingresado correctamente");
       } else {
         console.log(err.message);
+        response.status(400);
         response.end();
       }
     });
@@ -430,6 +431,8 @@ app.get("/images/:id", (request, response) => {
       function cb_getUserImageName(err, nameArchivo) {
         if (err) {
           console.log(err.message);
+          response.status(400);
+          response.end();
         } else if (nameArchivo[0].foto === null) {
           response.sendFile(
             path.join(__dirname, "public/images", "usuarioAnonimo.png")
@@ -455,7 +458,11 @@ app.get("/mainViewUser1.html", accessControl, (request, response) => {
         aviso.fecha = fechaSpain;
       });
       response.render("mainViewUser1", { Avisos: Avisos });
-    } else console.log(err.message);
+    } else{
+      console.log(err.message);
+      response.status(400);
+      response.end();
+    } 
   });
 });
 
@@ -472,7 +479,11 @@ app.get("/mainViewUser2.html", accessControl, (request, response) => {
         aviso.fecha = fechaSpain;
       });
       response.render("mainViewUser2", { Avisos: Avisos });
-    } else console.log(err.message);
+    } else{
+      console.log(err.message);
+      response.status(400);
+      response.end();
+    } 
   });
 });
 
@@ -490,9 +501,15 @@ app.get("/mainViewTec1.html", accessControl, (request, response) => {
           response.render("mainViewTec1", { Avisos: Avisos, Tecs: Tecs });
         }else{
           console.log(err.message);
+          response.status(400);
+          response.end();
         }
       })
-    } else console.log(err.message);
+    } else{
+      console.log(err.message);
+      response.status(400);
+      response.end();
+    }
   });
 });
 
@@ -507,7 +524,11 @@ app.get("/mainViewTec2.html", accessControl, (request, response) => {
         aviso.fecha = fechaSpain;
       });
       response.render("mainViewTec2", { Avisos: Avisos });
-    } else console.log(err.message);
+    } else{
+      console.log(err.message);
+      response.status(400);
+      response.end();
+    } 
   });
 });
 
@@ -524,7 +545,11 @@ app.get("/mainViewTec3.html", accessControl, (request, response) => {
         aviso.fecha = fechaSpain;
       });
       response.render("mainViewTec3", { Avisos: Avisos });
-    } else console.log(err.message);
+    } else{
+      console.log(err.message);
+      response.status(400);
+      response.end();
+    } 
   });
 });
 
@@ -538,10 +563,13 @@ app.get("/mainViewTec4.html", accessControl, (request, response) => {
         usuario.fecha = fechaSpain;
       });
       response.render("mainViewTec4", { Usuarios: Usuarios });
-    } else console.log(err.message);
+    } else { 
+      console.log(err.message);
+      response.status(400);
+      response.end();
+    }
   });
 });
-
 
 /* Middleware 404 */
 app.use(middleware404);

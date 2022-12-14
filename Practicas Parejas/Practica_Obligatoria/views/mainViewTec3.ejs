@@ -17,7 +17,7 @@
                         <label for="checkboxUsers"><strong>Usuarios</strong></label>
                     </span>
                     <input type="text" class="searchTerm" id="inputBuscador" placeholder="Buscar avisos...">
-                    <button type="submit" class="searchButton" onclick="buscador(this)">
+                    <button type="submit" class="searchButton" onclick="buscador2(this)">
                         <img src="images/lupaVector.svg" title="www.ucm.es" alt="Logo de la UCM" class="lupa">
                     </button>
                 </div>
@@ -95,6 +95,8 @@
 
         <!-- Modal para visualizar aviso -->
         <%- include("subplantillas/modalVerAviso") %>
+        <!-- Modal busqueda de usuaios -->
+        <%- include("subplantillas/modalBusquedaUsuarios") %>
     </body>
     <!-- Script para poder mostrar el modal de visualizar aviso -->
     <script type="application/javascript" src="javascripts/modalVerAviso.js"></script>
