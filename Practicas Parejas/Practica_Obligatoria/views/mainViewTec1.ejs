@@ -133,12 +133,13 @@
 
                                             <% Tecs.forEach(tecnico => { %>
                                                 <option value="opcion0" selected="selected" hidden>Técnicos disponibles...</option>
-                                                <option value="<%= tecnico.nombre %>" ><%= tecnico.nombre %></option>
+                                                <option required="true" value="<%= tecnico.nombre %>"  ><%= tecnico.nombre %></option>
                                             <% });%>
                                         <% }else { %>
                                             <option value="opcion0" hidden>No hay tecnicos disponibles</option>
                                         <% } %> 
                                     </select>
+                                    <p id="falloAsignar" style="display: none; color: red;">No has seleccionado un tecnico para asignar</p>
                                 </div>
                                 <button type="submit" class="btnAsignarTecnico">Asignar</button> 
                             </div>

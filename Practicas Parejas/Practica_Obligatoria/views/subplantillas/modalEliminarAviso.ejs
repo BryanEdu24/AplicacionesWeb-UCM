@@ -24,7 +24,8 @@
                 <div class="comentariosModal" id="eliminarAvisoModal">
                     <h5>🔸<strong> Comentario del Técnico para la anulación:</strong></h5>
                     <div class="contenidoComentario col-auto">
-                        <textarea id="comentarioBorrarAviso" name="commentTec" class="form-control commentTec" rows="4" placeholder="Escriba una comentario para anulación..."></textarea>
+                        <textarea required="true" id="comentarioBorrarAviso" name="commentTec" class="form-control commentTec" rows="4" placeholder="Escriba una comentario para anulación..."></textarea>
+                        <p id="noCommentarioVacioEliminar" style="display:none; color: red;"> No puedes borrar un aviso sin ingresar un comentario listo/a</p>
                     </div>
                     <div class="text-end me-3">
                         <button type="submit" id="btnActivo" class="btnFinAviso">Finalizar Aviso</button>

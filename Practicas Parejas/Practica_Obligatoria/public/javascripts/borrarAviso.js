@@ -1,12 +1,16 @@
 "use strict"
 $("#eliminarAvisoModal button[type=submit]").on("click", function(){
     let comTecnico = $("#comentarioBorrarAviso").val();
-    console.log(comTecnico);
     let nameTecnico =  $("#nombreUserNavBar").text();
     console.log(nameTecnico);
     let idAviso =  $("#idAvisoModalBorrar").text();
     console.log(idAviso);
-    $.ajax({
+    if (comTecnico === "") {
+        console.log("El comentario es vacio\n");
+        $("#noCommentarioVacioEliminar").show();
+    } else {
+        $("#noCommentarioVacioEliminar").hide();
+         $.ajax({
         type: "POST",
         url: "/borrarAviso",
         contentType: "application/json",
@@ -22,5 +26,6 @@ $("#eliminarAvisoModal button[type=submit]").on("click", function(){
         error: function (jqXHR, textStatus, errorThrown) {
             alert("Se ha producido un error: " + errorThrown);
         }
-    });
+        });
+    }
 });

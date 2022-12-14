@@ -123,6 +123,7 @@
                             <h5>🔸<strong> Comentarios del Técnico:</strong></h5>
                             <div class="contenidoComentario col-auto">
                                 <textarea id="comentarioFinalizarAviso" name="commentTec" class="form-control commentTec" rows="4"  placeholder="Escriba una respuesta al aviso..."></textarea>
+                                <p id="noCommentarioVacioEliminar" style="display:none; color: red;"> No puedes finalizar un aviso sin ingresar un comentario listo/a</p>
                             </div>
                             <div class="text-end me-3">
                                 <button type="submit" class="btnFinAviso">Finalizar Aviso</button>
@@ -146,7 +147,12 @@
             console.log(comTecnico);
             let idAviso =  $("#idAvisoModal").text();
             console.log(idAviso);
-             $.ajax({
+            if (comTecnico === "") {
+                console.log("El comentario es vacio\n");
+                $("#noCommentarioVacioEliminar").show();
+            }else{
+                $("#noCommentarioVacioEliminar").hide();
+                $.ajax({
                 type: "POST",
                 url: "/borrarAviso",
                 contentType: "application/json",
@@ -163,6 +169,7 @@
                     alert("Se ha producido un error: " + errorThrown);
                 }
             }); 
+            }
         });
 
     </script>
