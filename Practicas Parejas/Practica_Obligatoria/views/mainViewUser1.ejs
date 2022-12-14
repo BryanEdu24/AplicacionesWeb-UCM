@@ -205,7 +205,7 @@
                 }
                 else {
                     $('#tablaUser').find('tr').eq(i).show();
-                    if (($($('#tablaUser').find('tr').eq(i)).find('td').eq(2).html()).includes(varInput)) { // Devuelve lo que hay dentro del td (2 por la posicion del texto) y comprobamos con includes si contiene lo de varInput
+                    if (($($('#tablaUser').find('tr').eq(i)).find('td').eq(2).html().toLowerCase()).includes(varInput)) { // Devuelve lo que hay dentro del td (2 por la posicion del texto) y comprobamos con includes si contiene lo de varInput
                         // Nada
                     }
                     else {

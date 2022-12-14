@@ -239,11 +239,15 @@ app.post("/post_nuevo_aviso.html", accessControl, (request, response) => {
       }
     });
   } else {
-    request.body.categoriaAviso.forEach((categoria) => {
-      if (categoria != "opt0") {
-        aviso.categoria = categoria;
-      }
-    });
+    console.log("Rol del usuario: "+ response.locals.rol);
+    if (response.locals.rol === 'Antiguo Alumno') {
+        request.body.categoriaAviso.forEach((categoria) => {
+        if (categoria != "opt0") {
+          aviso.categoria = categoria;
+        }
+      });
+    }else     aviso.categoria = request.body.categoriaAviso;
+    
     daoA.insertTask(aviso, idUsuario, function (err, newIdTask) {
       if (!err) {
         response.redirect("/mainViewUser1.html");
