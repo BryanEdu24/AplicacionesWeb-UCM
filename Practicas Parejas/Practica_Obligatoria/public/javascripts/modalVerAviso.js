@@ -47,7 +47,25 @@
                             }
                         }
                     }else{
-                        $("#comentarioAvisoModal").text("Aún no ha sido asginado a ningún tecnico este aviso");
+                        if (taskDevuelto.eliminadoPor === null) {
+                            if (taskDevuelto.comentario != null) {
+                                let comentarioFinal = taskDevuelto.comentario.replace(/\n/g,'<br/>');
+                                $("#comentarioAvisoModal").html(comentarioFinal);
+                            }else{
+                                $("#comentarioAvisoModal").text("Aún no ha sido asginado a ningún tecnico este aviso");
+                            }
+                        } else {
+                            let text = 'Este aviso ha sido eliminado por el técnico '+ 
+                            taskDevuelto.eliminadoPor + `\n`;
+                            let nuevoTexto = text.replace(/\n/g,'<br/>');
+                            console.log(nuevoTexto);
+                            if (taskDevuelto.comentario != null) {
+                                let comentarioFinal = taskDevuelto.comentario.replace(/\n/g,'<br/>');
+                                $("#comentarioAvisoModal").html(nuevoTexto + comentarioFinal);
+                            }else {
+                                $("#comentarioAvisoModal").html(nuevoTexto);
+                            }
+                        }
                     }
                    
                     if (taskDevuelto.tipo ==='Felicitación' ) {
