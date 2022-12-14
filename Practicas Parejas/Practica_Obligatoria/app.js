@@ -109,7 +109,8 @@ app.post("/procesar_post.html", (request, response) => {
           response.redirect("/mainViewUser1.html");
         }
       } else {
-        response.status(500);
+        console.log(err.message);
+        response.status(400);
         response.setFlash("Usuario y/o contraseña incorrectos");
         response.redirect("/");
       }
@@ -235,6 +236,7 @@ app.post("/post_nuevo_aviso.html", accessControl, (request, response) => {
         console.log("Aviso de felicitación ingresado correctamente");
       } else {
         console.log(err.message);
+        response.status(400);
         response.end();
       }
     });
@@ -530,6 +532,7 @@ app.get("/mainViewTec4.html", accessControl, (request, response) => {
   });
 });
 
+/* Middleware 404 */
 app.use(middleware404);
 
 app.listen(config.portS, function (err) {
